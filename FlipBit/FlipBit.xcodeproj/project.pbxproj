@@ -15,6 +15,34 @@
 		06470DB42377B6D500419238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06470DB22377B6D500419238 /* LaunchScreen.storyboard */; };
 		06470DBF2377B6D500419238 /* FlipBitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DBE2377B6D500419238 /* FlipBitTests.swift */; };
 		06470DCA2377B6D500419238 /* FlipBitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DC92377B6D500419238 /* FlipBitUITests.swift */; };
+		06470DE02377BBBF00419238 /* NetQuilt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06470DDD2377B7CE00419238 /* NetQuilt.framework */; };
+		06470DE12377BBBF00419238 /* NetQuilt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06470DDD2377B7CE00419238 /* NetQuilt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06470DE52377C19700419238 /* BitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DE42377C19700419238 /* BitService.swift */; };
+		06470DEB2377C1F400419238 /* DataConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DEA2377C1F400419238 /* DataConvertible.swift */; };
+		06470DF02377C24B00419238 /* Requestable+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DEF2377C24B00419238 /* Requestable+Additions.swift */; };
+		06470DF22377C28100419238 /* Bundle+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DF12377C28100419238 /* Bundle+Additions.swift */; };
+		06470DF42377C29800419238 /* Date+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DF32377C29800419238 /* Date+Additions.swift */; };
+		06470DF62377C2B000419238 /* DateFormatter+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DF52377C2B000419238 /* DateFormatter+Additions.swift */; };
+		06470DF82377C2C700419238 /* Double+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DF72377C2C700419238 /* Double+Additions.swift */; };
+		06470DFA2377C2DE00419238 /* Optional+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DF92377C2DE00419238 /* Optional+Additions.swift */; };
+		06470DFC2377C2FB00419238 /* Result+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DFB2377C2FB00419238 /* Result+Additions.swift */; };
+		06470DFE2377C31000419238 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DFD2377C31000419238 /* String+Additions.swift */; };
+		06470E022377C35D00419238 /* BitService+Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E012377C35D00419238 /* BitService+Application.swift */; };
+		06470E042377C37800419238 /* BitService+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E032377C37800419238 /* BitService+Configuration.swift */; };
+		06470E062377C39400419238 /* BitService+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E052377C39400419238 /* BitService+Environment.swift */; };
+		06470E082377C3B500419238 /* BitService+Registry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E072377C3B500419238 /* BitService+Registry.swift */; };
+		06470E0E2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E0D2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift */; };
+		06470E102377C69700419238 /* BitService+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E0F2377C69700419238 /* BitService+Error.swift */; };
+		06470E132377C6C600419238 /* BitService+BBAPIKeyInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E122377C6C600419238 /* BitService+BBAPIKeyInfo.swift */; };
+		06470E152377C6EF00419238 /* BitService+BBOrderBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E142377C6EF00419238 /* BitService+BBOrderBook.swift */; };
+		06470E192377C7C600419238 /* BitService+BBPredictedFunding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E182377C7C600419238 /* BitService+BBPredictedFunding.swift */; };
+		06470E1B2377C7E600419238 /* BitService+BBPreviousFundingFee.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E1A2377C7E600419238 /* BitService+BBPreviousFundingFee.swift */; };
+		06470E1D2377C80700419238 /* BitService+BBServerTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E1C2377C80700419238 /* BitService+BBServerTime.swift */; };
+		06470E1F2377C82100419238 /* BitService+BBTickers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E1E2377C82100419238 /* BitService+BBTickers.swift */; };
+		06470E222377C85500419238 /* BitService+Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E212377C85500419238 /* BitService+Response.swift */; };
+		06470E242377C87300419238 /* BitService+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E232377C87300419238 /* BitService+Service.swift */; };
+		06470E262377C8BD00419238 /* Constants+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E252377C8BD00419238 /* Constants+Endpoints.swift */; };
+		06470E292377C8CD00419238 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E282377C8CD00419238 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +62,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		06470DE22377BBBF00419238 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				06470DE12377BBBF00419238 /* NetQuilt.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		06470DA42377B6D500419238 /* FlipBit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipBit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06470DA72377B6D500419238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +91,33 @@
 		06470DC52377B6D500419238 /* FlipBitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlipBitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06470DC92377B6D500419238 /* FlipBitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipBitUITests.swift; sourceTree = "<group>"; };
 		06470DCB2377B6D500419238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		06470DDD2377B7CE00419238 /* NetQuilt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetQuilt.framework; path = Carthage/Build/iOS/NetQuilt.framework; sourceTree = "<group>"; };
+		06470DE42377C19700419238 /* BitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitService.swift; sourceTree = "<group>"; };
+		06470DEA2377C1F400419238 /* DataConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConvertible.swift; sourceTree = "<group>"; };
+		06470DEF2377C24B00419238 /* Requestable+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Requestable+Additions.swift"; sourceTree = "<group>"; };
+		06470DF12377C28100419238 /* Bundle+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Additions.swift"; sourceTree = "<group>"; };
+		06470DF32377C29800419238 /* Date+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Additions.swift"; sourceTree = "<group>"; };
+		06470DF52377C2B000419238 /* DateFormatter+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Additions.swift"; sourceTree = "<group>"; };
+		06470DF72377C2C700419238 /* Double+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Additions.swift"; sourceTree = "<group>"; };
+		06470DF92377C2DE00419238 /* Optional+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Additions.swift"; sourceTree = "<group>"; };
+		06470DFB2377C2FB00419238 /* Result+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Additions.swift"; sourceTree = "<group>"; };
+		06470DFD2377C31000419238 /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
+		06470E012377C35D00419238 /* BitService+Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+Application.swift"; sourceTree = "<group>"; };
+		06470E032377C37800419238 /* BitService+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+Configuration.swift"; sourceTree = "<group>"; };
+		06470E052377C39400419238 /* BitService+Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+Environment.swift"; sourceTree = "<group>"; };
+		06470E072377C3B500419238 /* BitService+Registry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+Registry.swift"; sourceTree = "<group>"; };
+		06470E0D2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBApiKeyInfo+Endpoint.swift"; sourceTree = "<group>"; };
+		06470E0F2377C69700419238 /* BitService+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+Error.swift"; sourceTree = "<group>"; };
+		06470E122377C6C600419238 /* BitService+BBAPIKeyInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBAPIKeyInfo.swift"; sourceTree = "<group>"; };
+		06470E142377C6EF00419238 /* BitService+BBOrderBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBOrderBook.swift"; sourceTree = "<group>"; };
+		06470E182377C7C600419238 /* BitService+BBPredictedFunding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBPredictedFunding.swift"; sourceTree = "<group>"; };
+		06470E1A2377C7E600419238 /* BitService+BBPreviousFundingFee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBPreviousFundingFee.swift"; sourceTree = "<group>"; };
+		06470E1C2377C80700419238 /* BitService+BBServerTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBServerTime.swift"; sourceTree = "<group>"; };
+		06470E1E2377C82100419238 /* BitService+BBTickers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBTickers.swift"; sourceTree = "<group>"; };
+		06470E212377C85500419238 /* BitService+Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+Response.swift"; sourceTree = "<group>"; };
+		06470E232377C87300419238 /* BitService+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+Service.swift"; sourceTree = "<group>"; };
+		06470E252377C8BD00419238 /* Constants+Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Endpoints.swift"; sourceTree = "<group>"; };
+		06470E282377C8CD00419238 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +125,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06470DE02377BBBF00419238 /* NetQuilt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +153,7 @@
 				06470DBD2377B6D500419238 /* FlipBitTests */,
 				06470DC82377B6D500419238 /* FlipBitUITests */,
 				06470DA52377B6D500419238 /* Products */,
+				06470DD72377B78100419238 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +170,9 @@
 		06470DA62377B6D500419238 /* FlipBit */ = {
 			isa = PBXGroup;
 			children = (
+				06470E272377C8C100419238 /* Global */,
+				06470DE62377C1BE00419238 /* BitService */,
+				06470DFF2377C32A00419238 /* Framework */,
 				06470DA72377B6D500419238 /* AppDelegate.swift */,
 				06470DA92377B6D500419238 /* SceneDelegate.swift */,
 				06470DAB2377B6D500419238 /* ViewController.swift */,
@@ -128,6 +202,173 @@
 			path = FlipBitUITests;
 			sourceTree = "<group>";
 		};
+		06470DD72377B78100419238 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				06470DDD2377B7CE00419238 /* NetQuilt.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		06470DE32377C17600419238 /* BitService */ = {
+			isa = PBXGroup;
+			children = (
+				06470DE42377C19700419238 /* BitService.swift */,
+			);
+			path = BitService;
+			sourceTree = "<group>";
+		};
+		06470DE62377C1BE00419238 /* BitService */ = {
+			isa = PBXGroup;
+			children = (
+				06470DE32377C17600419238 /* BitService */,
+				06470DE72377C1D400419238 /* Common */,
+				06470DEC2377C21200419238 /* Extensions */,
+			);
+			path = BitService;
+			sourceTree = "<group>";
+		};
+		06470DE72377C1D400419238 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				06470DE82377C1DF00419238 /* Protocols */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		06470DE82377C1DF00419238 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				06470DE92377C1E500419238 /* Convertibles */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		06470DE92377C1E500419238 /* Convertibles */ = {
+			isa = PBXGroup;
+			children = (
+				06470DEA2377C1F400419238 /* DataConvertible.swift */,
+			);
+			path = Convertibles;
+			sourceTree = "<group>";
+		};
+		06470DEC2377C21200419238 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				06470DED2377C22F00419238 /* NetQuilt */,
+				06470DEE2377C23700419238 /* Foundation */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		06470DED2377C22F00419238 /* NetQuilt */ = {
+			isa = PBXGroup;
+			children = (
+				06470DEF2377C24B00419238 /* Requestable+Additions.swift */,
+				06470E252377C8BD00419238 /* Constants+Endpoints.swift */,
+			);
+			path = NetQuilt;
+			sourceTree = "<group>";
+		};
+		06470DEE2377C23700419238 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				06470DF12377C28100419238 /* Bundle+Additions.swift */,
+				06470DF32377C29800419238 /* Date+Additions.swift */,
+				06470DF52377C2B000419238 /* DateFormatter+Additions.swift */,
+				06470DF72377C2C700419238 /* Double+Additions.swift */,
+				06470DF92377C2DE00419238 /* Optional+Additions.swift */,
+				06470DFB2377C2FB00419238 /* Result+Additions.swift */,
+				06470DFD2377C31000419238 /* String+Additions.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		06470DFF2377C32A00419238 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				06470E002377C33F00419238 /* Configuration */,
+				06470E092377C3CA00419238 /* Endpoints */,
+				06470E0A2377C3E100419238 /* Error */,
+				06470E0B2377C3FA00419238 /* Models */,
+				06470E0C2377C40000419238 /* Service */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
+		06470E002377C33F00419238 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				06470E012377C35D00419238 /* BitService+Application.swift */,
+				06470E032377C37800419238 /* BitService+Configuration.swift */,
+				06470E052377C39400419238 /* BitService+Environment.swift */,
+				06470E072377C3B500419238 /* BitService+Registry.swift */,
+			);
+			path = Configuration;
+			sourceTree = "<group>";
+		};
+		06470E092377C3CA00419238 /* Endpoints */ = {
+			isa = PBXGroup;
+			children = (
+				06470E0D2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift */,
+			);
+			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		06470E0A2377C3E100419238 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				06470E0F2377C69700419238 /* BitService+Error.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		06470E0B2377C3FA00419238 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				06470E112377C6B000419238 /* Bybit */,
+				06470E202377C83900419238 /* Response */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		06470E0C2377C40000419238 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				06470E232377C87300419238 /* BitService+Service.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		06470E112377C6B000419238 /* Bybit */ = {
+			isa = PBXGroup;
+			children = (
+				06470E122377C6C600419238 /* BitService+BBAPIKeyInfo.swift */,
+				06470E142377C6EF00419238 /* BitService+BBOrderBook.swift */,
+				06470E182377C7C600419238 /* BitService+BBPredictedFunding.swift */,
+				06470E1A2377C7E600419238 /* BitService+BBPreviousFundingFee.swift */,
+				06470E1C2377C80700419238 /* BitService+BBServerTime.swift */,
+				06470E1E2377C82100419238 /* BitService+BBTickers.swift */,
+			);
+			path = Bybit;
+			sourceTree = "<group>";
+		};
+		06470E202377C83900419238 /* Response */ = {
+			isa = PBXGroup;
+			children = (
+				06470E212377C85500419238 /* BitService+Response.swift */,
+			);
+			path = Response;
+			sourceTree = "<group>";
+		};
+		06470E272377C8C100419238 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				06470E282377C8CD00419238 /* Constants.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +379,8 @@
 				06470DA02377B6D500419238 /* Sources */,
 				06470DA12377B6D500419238 /* Frameworks */,
 				06470DA22377B6D500419238 /* Resources */,
+				06470DDC2377B7A100419238 /* ShellScript */,
+				06470DE22377BBBF00419238 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,14 +497,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		06470DDC2377B7A100419238 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/NetQuilt.framework",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/NetQuilt.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		06470DA02377B6D500419238 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06470DF82377C2C700419238 /* Double+Additions.swift in Sources */,
+				06470E0E2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift in Sources */,
+				06470DEB2377C1F400419238 /* DataConvertible.swift in Sources */,
+				06470DFA2377C2DE00419238 /* Optional+Additions.swift in Sources */,
+				06470E222377C85500419238 /* BitService+Response.swift in Sources */,
+				06470E292377C8CD00419238 /* Constants.swift in Sources */,
 				06470DAC2377B6D500419238 /* ViewController.swift in Sources */,
+				06470E042377C37800419238 /* BitService+Configuration.swift in Sources */,
+				06470E132377C6C600419238 /* BitService+BBAPIKeyInfo.swift in Sources */,
+				06470DF62377C2B000419238 /* DateFormatter+Additions.swift in Sources */,
 				06470DA82377B6D500419238 /* AppDelegate.swift in Sources */,
+				06470E062377C39400419238 /* BitService+Environment.swift in Sources */,
+				06470E1F2377C82100419238 /* BitService+BBTickers.swift in Sources */,
+				06470E082377C3B500419238 /* BitService+Registry.swift in Sources */,
+				06470E152377C6EF00419238 /* BitService+BBOrderBook.swift in Sources */,
+				06470E022377C35D00419238 /* BitService+Application.swift in Sources */,
+				06470DFE2377C31000419238 /* String+Additions.swift in Sources */,
+				06470DFC2377C2FB00419238 /* Result+Additions.swift in Sources */,
 				06470DAA2377B6D500419238 /* SceneDelegate.swift in Sources */,
+				06470E192377C7C600419238 /* BitService+BBPredictedFunding.swift in Sources */,
+				06470DE52377C19700419238 /* BitService.swift in Sources */,
+				06470E262377C8BD00419238 /* Constants+Endpoints.swift in Sources */,
+				06470E242377C87300419238 /* BitService+Service.swift in Sources */,
+				06470E102377C69700419238 /* BitService+Error.swift in Sources */,
+				06470DF22377C28100419238 /* Bundle+Additions.swift in Sources */,
+				06470DF02377C24B00419238 /* Requestable+Additions.swift in Sources */,
+				06470E1D2377C80700419238 /* BitService+BBServerTime.swift in Sources */,
+				06470DF42377C29800419238 /* Date+Additions.swift in Sources */,
+				06470E1B2377C7E600419238 /* BitService+BBPreviousFundingFee.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +726,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JQDKUJH9S8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = FlipBit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -452,6 +748,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = JQDKUJH9S8;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = FlipBit/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

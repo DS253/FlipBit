@@ -1,0 +1,11 @@
+framework module NetQuilt {
+  umbrella header "NetQuilt.h"
+
+  export *
+  module * { export * }
+}
+
+module NetQuilt.Swift {
+    header "NetQuilt-Swift.h"
+    requires objc
+}

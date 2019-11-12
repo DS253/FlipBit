@@ -1,0 +1,10 @@
+{
+  "commitish" : "v1",
+  "iOS" : [
+    {
+      "name" : "NetQuilt",
+      "hash" : "bf6f530dc66ab2ddfcb9f09e136f73d3ad0d90301e2b3c8284e6e5b0e2af86d5",
+      "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
+    }
+  ]
+}

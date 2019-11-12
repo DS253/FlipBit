@@ -1,0 +1,19 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "1b99879ecb5f9605d4fe8c60c9df667fb090a634",
+  "iOS" : [
+    {
+      "name" : "NetQuilt",
+      "hash" : "9123266bea27fe1cfc043859dd65d8d92a6f854ca7a8f9b9dd74f68dd00b9217",
+      "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
+    }
+  ]
+}
