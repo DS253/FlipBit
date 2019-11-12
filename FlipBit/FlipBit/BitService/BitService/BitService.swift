@@ -21,8 +21,20 @@ public struct BitService {
 
 public extension BitService {
     
+    enum BybitSymbol: String, Codable {
+        case BTC = "BTCUSD"
+        case ETH = "ETHUSD"
+        case EOS = "EOSUSD"
+        case XRP = "XRPUSD"
+    }
+    
     func lookupAPIKeyInfo(completion: @escaping (Result<BybitAPIKeyInfo, BitService.Error>) -> Void) {
         let endpoint = BybitAPIKeyInfo.Endpoint(timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitAPIKeyInfo.self, on: completion)
+    }
+    
+    func lookupOrderBook(symbol: BybitSymbol, completion: @escaping (Result<BybitOrderbook, BitService.Error>) -> Void) {
+        let endpoint = BybitOrderbook.Endpoint.init(symbol: symbol)
+        service.load(endpoint, expecting: BybitOrderbook.self, on: completion)
     }
 }

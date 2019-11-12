@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060D96E2237B68A80040598A /* BBOrderBook+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96E1237B68A80040598A /* BBOrderBook+Endpoint.swift */; };
 		06470DA82377B6D500419238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DA72377B6D500419238 /* AppDelegate.swift */; };
 		06470DAA2377B6D500419238 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DA92377B6D500419238 /* SceneDelegate.swift */; };
 		06470DAC2377B6D500419238 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DAB2377B6D500419238 /* ViewController.swift */; };
@@ -77,6 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		060D96E1237B68A80040598A /* BBOrderBook+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBOrderBook+Endpoint.swift"; sourceTree = "<group>"; };
 		06470DA42377B6D500419238 /* FlipBit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipBit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06470DA72377B6D500419238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06470DA92377B6D500419238 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				06470E0D2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift */,
+				060D96E1237B68A80040598A /* BBOrderBook+Endpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				06470E062377C39400419238 /* BitService+Environment.swift in Sources */,
 				06470E1F2377C82100419238 /* BitService+BBTickers.swift in Sources */,
 				06470E082377C3B500419238 /* BitService+Registry.swift in Sources */,
+				060D96E2237B68A80040598A /* BBOrderBook+Endpoint.swift in Sources */,
 				06470E152377C6EF00419238 /* BitService+BBOrderBook.swift in Sources */,
 				06470E022377C35D00419238 /* BitService+Application.swift in Sources */,
 				06470DFE2377C31000419238 /* String+Additions.swift in Sources */,

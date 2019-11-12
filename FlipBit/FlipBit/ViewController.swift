@@ -21,6 +21,7 @@ class Services {
     typealias StandardServiceCompletion = (Error?) -> Void
     typealias ResponseServiceCompletion<T: Model> = (T?, Error?) -> Void
     typealias BitServiceAPILookupCompletion = (Result<BitService.BybitAPIKeyInfo, BitService.Error>) -> Void
+    typealias BitServiceOrderbookLookupCompletion = (Result<BitService.BybitOrderbook, BitService.Error>) -> Void
     typealias BybitAPIKeyInfo = BitService.BybitAPIKeyInfo
     
     let api: Service = {
@@ -31,6 +32,10 @@ class Services {
     
     func fetchBybitAPIKeyInfo(completion: @escaping BitServiceAPILookupCompletion) {
         bitService.lookupAPIKeyInfo(completion: completion)
+    }
+    
+    func fetchBybitOrderBook(symbol: BitService.BybitSymbol, completion: @escaping BitServiceOrderbookLookupCompletion) {
+        bitService.lookupOrderBook(symbol: symbol, completion: completion)
     }
     
     private func load<Endpoint: Requestable, Expecting: Model>(endpoint: Endpoint, completion: ResponseServiceCompletion<Expecting>? = nil) {
@@ -51,7 +56,7 @@ class Services {
     
 class ViewController: UIViewController {
 
-    var apiKey: BitService.BybitAPIKeyInfo?
+    var orderbook: BitService.BybitOrderbook?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -63,15 +68,24 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        services.fetchBybitAPIKeyInfo { result in
+        services.fetchBybitOrderBook(symbol: .XRP) { result in
             switch result {
                 case let .success(result):
-                    self.apiKey = result
-                    print(self.apiKey)
+                    self.orderbook = result
+                    print(self.orderbook)
                 case let .failure(error):
                     print(error)
             }
         }
+//        services.fetchBybitAPIKeyInfo { result in
+//            switch result {
+//                case let .success(result):
+//                    self.apiKey = result
+//                    print(self.apiKey)
+//                case let .failure(error):
+//                    print(error)
+//            }
+//        }
     }
 }
 

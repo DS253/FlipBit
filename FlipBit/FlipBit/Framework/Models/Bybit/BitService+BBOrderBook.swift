@@ -9,14 +9,30 @@
 import Foundation
 import NetQuilt
 
-struct BybitBookItem {
-    let symbol: String
-    let price: String
-    let size: Int
-    let side: String
+public extension BitService {
+    /// A type that represents a single order of the Bybit OrderBook.
+    struct BybitBookItem {
+        
+        /// The symbol of the order.
+        let symbol: BitService.BybitSymbol
+        
+        /// The price the order will be triggered at.
+        let price: String
+        
+        /// The size of the order.
+        let size: Int
+        
+        /// The side of the order: Buy or Sell.
+        let side: BybitBookItem.Side
+        
+        enum Side: String, Codable {
+            case Buy
+            case Sell
+        }
+    }
 }
 
-extension BybitBookItem: Model {
+extension BitService.BybitBookItem: Model {
     /// List of top level coding keys.
     enum CodingKeys: String, CodingKey {
         case symbol
@@ -25,15 +41,15 @@ extension BybitBookItem: Model {
         case side
     }
 
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let results = try decoder.container(keyedBy: CodingKeys.self)
-        self.symbol = try results.decode(String.self, forKey: .symbol)
+        self.symbol = try results.decode(BitService.BybitSymbol.self, forKey: .symbol)
         self.price = try results.decode(String.self, forKey: .price)
         self.size = try results.decode(Int.self, forKey: .size)
-        self.side = try results.decode(String.self, forKey: .side)
+        self.side = try results.decode(Side.self, forKey: .side)
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         try container.encode(symbol, forKey: .symbol)
@@ -43,22 +59,24 @@ extension BybitBookItem: Model {
     }
 }
 
-struct BybitOrderbook {
+public extension BitService {
+    
+    struct BybitOrderbook {
+        let returnCode: Int
+        let response: BybitOrderbook.Response
+        let exitCode: String
+        let exitInfo: String
+        let time: String
+        let book: [BitService.BybitBookItem]
 
-    let returnCode: Int
-    let response: BybitOrderbook.Response
-    let exitCode: String
-    let exitInfo: String?
-    let time: String
-    let book: [BybitBookItem]
-
-    enum Response: String, Decodable {
-        case OK
-        case failure
+        enum Response: String, Decodable {
+            case OK
+            case failure
+        }
     }
 }
 
-extension BybitOrderbook: Model {
+extension BitService.BybitOrderbook: Model {
     /// List of top level coding keys.
     private enum CodingKeys: String, CodingKey {
         case exit = "ext_code"
@@ -69,21 +87,20 @@ extension BybitOrderbook: Model {
         case time = "time_now"
     }
 
-    internal init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         self.returnCode = try values.decode(Int.self, forKey: .returnCode)
         self.exitCode = try values.decode(String.self, forKey: .exit)
-        self.exitInfo = try values.decodeIfPresent(String.self, forKey: .info)
+        self.exitInfo = try values.decode(String.self, forKey: .info)
         self.time = try values.decode(String.self, forKey: .time)
         self.response = try values.decode(Response.self, forKey: .response)
 
-        self.book = try values.decode([BybitBookItem].self, forKey: .result)
+        self.book = try values.decode([BitService.BybitBookItem].self, forKey: .result)
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         try container.encode(book, forKey: .result)
     }
 }
-

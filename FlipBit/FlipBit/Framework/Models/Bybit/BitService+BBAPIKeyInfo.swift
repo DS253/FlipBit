@@ -10,28 +10,28 @@ import Foundation
 import NetQuilt
 
 public extension BitService {
-    /// A type that represents the API Key information for the Bybit account
+    /// A type that represents the API Key information for the Bybit account.
     struct BybitAPIKeyInfo {
         
-        /// The API key for the Bybit account
+        /// The API key for the Bybit account.
         let apiKey: String
         
-        /// The user ID for the Bybit account
+        /// The user ID for the Bybit account.
         let userID: Int
 
-        /// Associated IP addresses permitted to access Bybit
+        /// Associated IP addresses permitted to access Bybit.
         let ipAddresses: [String]
 
-        /// Unique information about the account - currently returns the account holder's name
+        /// Unique information about the account - currently returns the account holder's name.
         let note: String
 
-        /// Actions the Bybit account is allowed to take
+        /// Actions the Bybit account is allowed to take.
         let permissions: [String]
 
-        /// The time the Bybit account was created
+        /// The time the Bybit account was created.
         let timeCreated: String
 
-        /// The read only flag
+        /// The read only flag.
         let isReadOnly: Bool
         
         let response: BybitAPIKeyInfo.Response
