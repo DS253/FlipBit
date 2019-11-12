@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		060D96E2237B68A80040598A /* BBOrderBook+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96E1237B68A80040598A /* BBOrderBook+Endpoint.swift */; };
 		060D96E4237B70A70040598A /* BBServerTime+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96E3237B70A70040598A /* BBServerTime+Endpoint.swift */; };
+		060D96E6237B78AF0040598A /* BBTickers+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96E5237B78AF0040598A /* BBTickers+Endpoint.swift */; };
 		06470DA82377B6D500419238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DA72377B6D500419238 /* AppDelegate.swift */; };
 		06470DAA2377B6D500419238 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DA92377B6D500419238 /* SceneDelegate.swift */; };
 		06470DAC2377B6D500419238 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DAB2377B6D500419238 /* ViewController.swift */; };
@@ -81,6 +82,7 @@
 /* Begin PBXFileReference section */
 		060D96E1237B68A80040598A /* BBOrderBook+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBOrderBook+Endpoint.swift"; sourceTree = "<group>"; };
 		060D96E3237B70A70040598A /* BBServerTime+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBServerTime+Endpoint.swift"; sourceTree = "<group>"; };
+		060D96E5237B78AF0040598A /* BBTickers+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBTickers+Endpoint.swift"; sourceTree = "<group>"; };
 		06470DA42377B6D500419238 /* FlipBit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipBit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06470DA72377B6D500419238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06470DA92377B6D500419238 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				06470E0D2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift */,
 				060D96E1237B68A80040598A /* BBOrderBook+Endpoint.swift */,
 				060D96E3237B70A70040598A /* BBServerTime+Endpoint.swift */,
+				060D96E5237B78AF0040598A /* BBTickers+Endpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				06470E192377C7C600419238 /* BitService+BBPredictedFunding.swift in Sources */,
 				06470DE52377C19700419238 /* BitService.swift in Sources */,
 				06470E262377C8BD00419238 /* Constants+Endpoints.swift in Sources */,
+				060D96E6237B78AF0040598A /* BBTickers+Endpoint.swift in Sources */,
 				06470E242377C87300419238 /* BitService+Service.swift in Sources */,
 				06470E102377C69700419238 /* BitService+Error.swift in Sources */,
 				06470DF22377C28100419238 /* Bundle+Additions.swift in Sources */,
