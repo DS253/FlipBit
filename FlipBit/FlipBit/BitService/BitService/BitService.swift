@@ -37,4 +37,9 @@ public extension BitService {
         let endpoint = BybitOrderbook.Endpoint.init(symbol: symbol)
         service.load(endpoint, expecting: BybitOrderbook.self, on: completion)
     }
+    
+    func lookupServerTime(completion: @escaping (Result<BybitServerTime, BitService.Error>) -> Void) {
+        let endpoint = BybitServerTime.Endpoint.init()
+        service.load(endpoint, expecting: BybitServerTime.self, on: completion)
+    }
 }

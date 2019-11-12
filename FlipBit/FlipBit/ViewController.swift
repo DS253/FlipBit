@@ -22,6 +22,7 @@ class Services {
     typealias ResponseServiceCompletion<T: Model> = (T?, Error?) -> Void
     typealias BitServiceAPILookupCompletion = (Result<BitService.BybitAPIKeyInfo, BitService.Error>) -> Void
     typealias BitServiceOrderbookLookupCompletion = (Result<BitService.BybitOrderbook, BitService.Error>) -> Void
+    typealias BitServiceServerTimeLookupCompletion = (Result<BitService.BybitServerTime, BitService.Error>) -> Void
     typealias BybitAPIKeyInfo = BitService.BybitAPIKeyInfo
     
     let api: Service = {
@@ -36,6 +37,10 @@ class Services {
     
     func fetchBybitOrderBook(symbol: BitService.BybitSymbol, completion: @escaping BitServiceOrderbookLookupCompletion) {
         bitService.lookupOrderBook(symbol: symbol, completion: completion)
+    }
+    
+    func fetchBybitServerTime(completion: @escaping BitServiceServerTimeLookupCompletion) {
+        bitService.lookupServerTime(completion: completion)
     }
     
     private func load<Endpoint: Requestable, Expecting: Model>(endpoint: Endpoint, completion: ResponseServiceCompletion<Expecting>? = nil) {
@@ -56,7 +61,7 @@ class Services {
     
 class ViewController: UIViewController {
 
-    var orderbook: BitService.BybitOrderbook?
+    var time: BitService.BybitServerTime?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -68,15 +73,28 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        services.fetchBybitOrderBook(symbol: .XRP) { result in
+        services.fetchBybitServerTime { result in
             switch result {
-                case let .success(result):
-                    self.orderbook = result
-                    print(self.orderbook)
-                case let .failure(error):
-                    print(error)
+            case let .success(result):
+                self.time = result
+                print(self.time)
+                guard let op = self.time else { return }
+                let seconds = Double(op.time)
+                print(seconds?.convertSecondsToDate())
+                
+            case let .failure(error):
+                print(error)
             }
         }
+//        services.fetchBybitOrderBook(symbol: .XRP) { result in
+//            switch result {
+//                case let .success(result):
+//                    self.orderbook = result
+//                    print(self.orderbook)
+//                case let .failure(error):
+//                    print(error)
+//            }
+//        }
 //        services.fetchBybitAPIKeyInfo { result in
 //            switch result {
 //                case let .success(result):

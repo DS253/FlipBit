@@ -9,23 +9,26 @@
 import Foundation
 import NetQuilt
 
-struct BybitServerTime {
+public extension BitService {
+    /// The official server time for Bybit.
+    struct BybitServerTime {
+        /// The server time in seconds.
+        let time: String
 
-    let time: String
+        let response: BybitServerTime.Response
 
-    let response: BybitServerTime.Response
+        let exitCode: String
 
-    let exitCode: String
+        let exitInfo: String
 
-    let exitInfo: String?
-
-    enum Response: String, Decodable {
-        case OK
-        case failure
+        enum Response: String, Decodable {
+            case OK
+            case failure
+        }
     }
 }
 
-extension BybitServerTime: Model {
+extension BitService.BybitServerTime: Model {
 
     /// List of top level coding keys.
     private enum CodingKeys: String, CodingKey {
@@ -36,15 +39,15 @@ extension BybitServerTime: Model {
     }
 
     /// Decodable conformance
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         self.response = try values.decode(Response.self, forKey: .response)
         self.time = try values.decode(String.self, forKey: .time)
         self.exitCode = try values.decode(String.self, forKey: .exit)
-        self.exitInfo = try values.decodeIfPresent(String.self, forKey: .info)
+        self.exitInfo = try values.decode(String.self, forKey: .info)
     }
 
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         try container.encode(time, forKey: .time)
