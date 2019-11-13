@@ -35,6 +35,16 @@ public extension BitService {
         case XRP = "XRPUSD"
     }
     
+    enum BybitWithdrawalStatus: String, Codable {
+        case ToBeConfirmed
+        case UnderReview
+        case Pending
+        case Success
+        case CancelByUser
+        case Reject
+        case Expire
+    }
+    
     enum BybitFundingEvent: String, Codable {
         case Deposit
         case Withdraw
@@ -84,5 +94,10 @@ public extension BitService {
     func lookupBybitWalletRecord(currency: Currency, pageNumber: Int, completion: @escaping (Result<BybitWalletRecords, BitService.Error>) -> Void) {
         let endpoint = BybitWalletRecords.Endpoint.init(currency: currency, pageNumber: pageNumber, timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitWalletRecords.self, on: completion)
+    }
+    
+    func lookupBybitWithdrawRecord(currency: Currency, pageNumber: Int, completion: @escaping (Result<BybitWithdrawalRecords, BitService.Error>) -> Void) {
+        let endpoint = BybitWithdrawalRecords.Endpoint.init(currency: currency, pageNumber: pageNumber, timeStamp: Date().bybitTimestamp())
+        service.load(endpoint, expecting: BybitWithdrawalRecords.self, on: completion)
     }
 }

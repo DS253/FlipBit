@@ -1,5 +1,5 @@
 //
-//  BBWalletFundRecord+Endpoint.swift
+//  BBWithdrawalRecord+Endpoint.swift
 //  FlipBit
 //
 //  Created by Daniel Stewart on 11/12/19.
@@ -9,8 +9,7 @@
 import Foundation
 import NetQuilt
 
-extension BitService.BybitWalletRecords {
-    
+extension BitService.BybitWithdrawalRecords {
     struct Endpoint: Requestable {
         
         var currency: BitService.Currency
@@ -26,13 +25,13 @@ extension BitService.BybitWalletRecords {
         }
         
         var signature: String {
-            let queries = "api_key=\(theAPIKey)&coin=\(currency.rawValue)&limit=50&page=\(pageNumber)&recv_window=1000000&timestamp=\(timestamp)"
+            let queries = "api_key=\(theAPIKey)&currency=\(currency.rawValue)&limit=50&page=\(pageNumber)&recv_window=1000000&timestamp=\(timestamp)"
             return queries.buildSignature(secretKey: secret)
         }
         
         var queryItems: [NetQuilt.QueryItem]? {
             return [NetQuilt.QueryItem(name: "api_key", value: theAPIKey),
-                    NetQuilt.QueryItem(name: "coin", value: currency.rawValue),
+                    NetQuilt.QueryItem(name: "currency", value: currency.rawValue),
                     NetQuilt.QueryItem(name: "limit", value: "50"),
                     NetQuilt.QueryItem(name: "page", value: String(pageNumber)),
                     NetQuilt.QueryItem(name: "recv_window", value: "1000000"),
