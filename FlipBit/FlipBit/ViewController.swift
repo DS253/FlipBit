@@ -26,6 +26,7 @@ class Services {
     typealias BitServicePreviousFundingLookupCompletion = (Result<BitService.BybitPreviousFundingFee, BitService.Error>) -> Void
     typealias BitServiceServerTimeLookupCompletion = (Result<BitService.BybitServerTime, BitService.Error>) -> Void
     typealias BitServiceTickersLookupCompletion = (Result<BitService.BybitTickers, BitService.Error>) -> Void
+    typealias BitServiceTradeRecordLookupCompletion = (Result<BitService.BybitTradeRecords, BitService.Error>) -> Void
     typealias BitServiceWalletRecordLookupCompletion = (Result<BitService.BybitWalletRecords, BitService.Error>) -> Void
     typealias BitServiceWithdrawRecordLookupCompletion = (Result<BitService.BybitWithdrawalRecords, BitService.Error>) -> Void
     typealias BybitAPIKeyInfo = BitService.BybitAPIKeyInfo
@@ -54,6 +55,10 @@ class Services {
     
     func fetchBybitServerTime(completion: @escaping BitServiceServerTimeLookupCompletion) {
         bitService.lookupBybitServerTime(completion: completion)
+    }
+    
+    func fetchBybitTradeRecords(symbol: BitService.BybitSymbol, pageNumber: Int, completion: @escaping BitServiceTradeRecordLookupCompletion) {
+        bitService.lookupBybitTradeRecords(symbol: symbol, pageNumber: pageNumber, completion: completion)
     }
     
     func fetchBybitTickers(symbol: BitService.BybitSymbol, completion: @escaping BitServiceTickersLookupCompletion) {
@@ -86,7 +91,7 @@ class Services {
     
 class ViewController: UIViewController {
 
-    var walletRecords: BitService.BybitWithdrawalRecords?
+    var tradeRecords: BitService.BybitTradeRecords?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -98,16 +103,26 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        services.fetchBybitWithdrawRecords(currency: .BTC, pageNumber: 1) { result in
+        services.fetchBybitTradeRecords(symbol: .BTC, pageNumber: 1) { result in
             switch result {
             case let .success(result):
-                self.walletRecords = result
-                print(self.walletRecords)
+                self.tradeRecords = result
+                print(self.tradeRecords)
                 
             case let .failure(error):
                 print(error)
             }
         }
+//        services.fetchBybitWithdrawRecords(currency: .BTC, pageNumber: 1) { result in
+//            switch result {
+//            case let .success(result):
+//                self.walletRecords = result
+//                print(self.walletRecords)
+//
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
 //        services.fetchBybitWalletRecords(currency: .BTC, pageNumber: 3) { result in
 //            switch result {
 //            case let .success(result):

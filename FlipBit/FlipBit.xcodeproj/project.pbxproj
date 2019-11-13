@@ -16,6 +16,8 @@
 		060D96EE237B9D8B0040598A /* BBWalletFundRecord+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96ED237B9D8B0040598A /* BBWalletFundRecord+Endpoint.swift */; };
 		060D96F0237BAC770040598A /* BitService+BBWithdrawalRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96EF237BAC770040598A /* BitService+BBWithdrawalRecord.swift */; };
 		060D96F2237BB2B30040598A /* BBWithdrawalRecord+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96F1237BB2B30040598A /* BBWithdrawalRecord+Endpoint.swift */; };
+		060D96F4237BBC480040598A /* BitService+BBTradeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96F3237BBC480040598A /* BitService+BBTradeRecord.swift */; };
+		060D96F6237BC6900040598A /* BBTradeRecord+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96F5237BC6900040598A /* BBTradeRecord+Endpoint.swift */; };
 		06470DA82377B6D500419238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DA72377B6D500419238 /* AppDelegate.swift */; };
 		06470DAA2377B6D500419238 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DA92377B6D500419238 /* SceneDelegate.swift */; };
 		06470DAC2377B6D500419238 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DAB2377B6D500419238 /* ViewController.swift */; };
@@ -95,6 +97,8 @@
 		060D96ED237B9D8B0040598A /* BBWalletFundRecord+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBWalletFundRecord+Endpoint.swift"; sourceTree = "<group>"; };
 		060D96EF237BAC770040598A /* BitService+BBWithdrawalRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBWithdrawalRecord.swift"; sourceTree = "<group>"; };
 		060D96F1237BB2B30040598A /* BBWithdrawalRecord+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBWithdrawalRecord+Endpoint.swift"; sourceTree = "<group>"; };
+		060D96F3237BBC480040598A /* BitService+BBTradeRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBTradeRecord.swift"; sourceTree = "<group>"; };
+		060D96F5237BC6900040598A /* BBTradeRecord+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBTradeRecord+Endpoint.swift"; sourceTree = "<group>"; };
 		06470DA42377B6D500419238 /* FlipBit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipBit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06470DA72377B6D500419238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06470DA92377B6D500419238 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -334,6 +338,7 @@
 				060D96E9237B82910040598A /* BBPreviousFundingFee+Endpoint.swift */,
 				060D96E3237B70A70040598A /* BBServerTime+Endpoint.swift */,
 				060D96E5237B78AF0040598A /* BBTickers+Endpoint.swift */,
+				060D96F5237BC6900040598A /* BBTradeRecord+Endpoint.swift */,
 				060D96ED237B9D8B0040598A /* BBWalletFundRecord+Endpoint.swift */,
 				060D96F1237BB2B30040598A /* BBWithdrawalRecord+Endpoint.swift */,
 			);
@@ -374,6 +379,7 @@
 				06470E1A2377C7E600419238 /* BitService+BBPreviousFundingFee.swift */,
 				06470E1C2377C80700419238 /* BitService+BBServerTime.swift */,
 				06470E1E2377C82100419238 /* BitService+BBTickers.swift */,
+				060D96F3237BBC480040598A /* BitService+BBTradeRecord.swift */,
 				060D96EB237B95720040598A /* BitService+BBWalletFundRecord.swift */,
 				060D96EF237BAC770040598A /* BitService+BBWithdrawalRecord.swift */,
 			);
@@ -557,10 +563,12 @@
 				06470DFA2377C2DE00419238 /* Optional+Additions.swift in Sources */,
 				06470E222377C85500419238 /* BitService+Response.swift in Sources */,
 				060D96F0237BAC770040598A /* BitService+BBWithdrawalRecord.swift in Sources */,
+				060D96F6237BC6900040598A /* BBTradeRecord+Endpoint.swift in Sources */,
 				06470E292377C8CD00419238 /* Constants.swift in Sources */,
 				06470DAC2377B6D500419238 /* ViewController.swift in Sources */,
 				060D96EE237B9D8B0040598A /* BBWalletFundRecord+Endpoint.swift in Sources */,
 				060D96E8237B7E2E0040598A /* BBPredictedFunding+Endpoint.swift in Sources */,
+				060D96F4237BBC480040598A /* BitService+BBTradeRecord.swift in Sources */,
 				06470E042377C37800419238 /* BitService+Configuration.swift in Sources */,
 				06470E132377C6C600419238 /* BitService+BBAPIKeyInfo.swift in Sources */,
 				06470DF62377C2B000419238 /* DateFormatter+Additions.swift in Sources */,

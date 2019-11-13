@@ -28,6 +28,23 @@ public extension BitService {
         case XRP = "XRP"
     }
     
+    enum BybitExecutionType: String, Codable {
+        case Funding
+        case Trade
+    }
+    
+    enum BybitLiquidity: String, Codable {
+        case AddedLiquidity
+        case RemovedLiquidity
+        case Other = ""
+    }
+    
+    enum BybitOrderType: String, Codable {
+        case Limit
+        case Market
+        case Other = ""
+    }
+    
     enum BybitSymbol: String, Codable {
         case BTC = "BTCUSD"
         case ETH = "ETHUSD"
@@ -89,6 +106,11 @@ public extension BitService {
     func lookupBybitTickers(symbol: BybitSymbol, completion: @escaping (Result<BybitTickers, BitService.Error>) -> Void) {
         let endpoint = BybitTickers.Endpoint.init(symbol: symbol)
         service.load(endpoint, expecting: BybitTickers.self, on: completion)
+    }
+    
+    func lookupBybitTradeRecords(symbol: BybitSymbol, pageNumber: Int, completion: @escaping (Result<BybitTradeRecords, BitService.Error>) -> Void) {
+        let endpoint = BybitTradeRecords.Endpoint.init(symbol: symbol, pageNumber: pageNumber, timeStamp: Date().bybitTimestamp())
+        service.load(endpoint, expecting: BybitTradeRecords.self, on: completion)
     }
     
     func lookupBybitWalletRecord(currency: Currency, pageNumber: Int, completion: @escaping (Result<BybitWalletRecords, BitService.Error>) -> Void) {
