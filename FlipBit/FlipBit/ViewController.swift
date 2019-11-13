@@ -23,6 +23,7 @@ class Services {
     typealias BitServiceAPILookupCompletion = (Result<BitService.BybitAPIKeyInfo, BitService.Error>) -> Void
     typealias BitServiceOrderbookLookupCompletion = (Result<BitService.BybitOrderbook, BitService.Error>) -> Void
     typealias BitServicePredictedFundingLookupCompletion = (Result<BitService.BybitPredictedFunding, BitService.Error>) -> Void
+    typealias BitServicePreviousFundingLookupCompletion = (Result<BitService.BybitPreviousFundingFee, BitService.Error>) -> Void
     typealias BitServiceServerTimeLookupCompletion = (Result<BitService.BybitServerTime, BitService.Error>) -> Void
     typealias BitServiceTickersLookupCompletion = (Result<BitService.BybitTickers, BitService.Error>) -> Void
     typealias BybitAPIKeyInfo = BitService.BybitAPIKeyInfo
@@ -43,6 +44,10 @@ class Services {
     
     func fetchBybitPredictedFunding(symbol: BitService.BybitSymbol, completion: @escaping BitServicePredictedFundingLookupCompletion) {
         bitService.lookupBybitPredictedFunding(symbol: symbol, completion: completion)
+    }
+    
+    func fetchBybitPreviousFunding(symbol: BitService.BybitSymbol, completion: @escaping BitServicePreviousFundingLookupCompletion) {
+        bitService.lookupBybitPreviousFunding(symbol: symbol, completion: completion)
     }
     
     func fetchBybitServerTime(completion: @escaping BitServiceServerTimeLookupCompletion) {
@@ -71,7 +76,7 @@ class Services {
     
 class ViewController: UIViewController {
 
-    var funding: BitService.BybitPredictedFunding?
+    var previousFunding: BitService.BybitPreviousFundingFee?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -83,16 +88,26 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        services.fetchBybitPredictedFunding(symbol: .BTC) { result in
+        services.fetchBybitPreviousFunding(symbol: .BTC) { result in
             switch result {
             case let .success(result):
-                self.funding = result
-                print(self.funding)
+                self.previousFunding = result
+                print(self.previousFunding)
                 
             case let .failure(error):
                 print(error)
             }
         }
+//        services.fetchBybitPredictedFunding(symbol: .BTC) { result in
+//            switch result {
+//            case let .success(result):
+//                self.funding = result
+//                print(self.funding)
+//
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
         
 //        services.fetchBybitTickers(symbol: .BTC) { result in
 //            switch result {

@@ -28,6 +28,11 @@ public extension BitService {
         case XRP = "XRPUSD"
     }
     
+    enum BybitOrderSide: String, Codable {
+        case Buy
+        case Sell
+    }
+    
     func lookupBybitAPIKeyInfo(completion: @escaping (Result<BybitAPIKeyInfo, BitService.Error>) -> Void) {
         let endpoint = BybitAPIKeyInfo.Endpoint(timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitAPIKeyInfo.self, on: completion)
@@ -41,6 +46,11 @@ public extension BitService {
     func lookupBybitPredictedFunding(symbol: BybitSymbol, completion: @escaping (Result<BybitPredictedFunding, BitService.Error>) -> Void) {
         let endpoint = BybitPredictedFunding.Endpoint.init(symbol: symbol, timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitPredictedFunding.self, on: completion)
+    }
+    
+    func lookupBybitPreviousFunding(symbol: BybitSymbol, completion: @escaping (Result<BybitPreviousFundingFee, BitService.Error>) -> Void) {
+        let endpoint = BybitPreviousFundingFee.Endpoint.init(symbol: symbol, timeStamp: Date().bybitTimestamp())
+        service.load(endpoint, expecting: BybitPreviousFundingFee.self, on: completion)
     }
     
     func lookupBybitServerTime(completion: @escaping (Result<BybitServerTime, BitService.Error>) -> Void) {

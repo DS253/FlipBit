@@ -19,16 +19,11 @@ public extension BitService {
         /// The price the order will be triggered at.
         let price: String
         
-        /// The size of the order.
+        /// The position size of the order.
         let size: Int
         
         /// The side of the order: Buy or Sell.
-        let side: BybitBookItem.Side
-        
-        enum Side: String, Codable {
-            case Buy
-            case Sell
-        }
+        let side: BybitOrderSide
     }
 }
 
@@ -46,7 +41,7 @@ extension BitService.BybitBookItem: Model {
         self.symbol = try results.decode(BitService.BybitSymbol.self, forKey: .symbol)
         self.price = try results.decode(String.self, forKey: .price)
         self.size = try results.decode(Int.self, forKey: .size)
-        self.side = try results.decode(Side.self, forKey: .side)
+        self.side = try results.decode(BitService.BybitOrderSide.self, forKey: .side)
     }
 
     public func encode(to encoder: Encoder) throws {
