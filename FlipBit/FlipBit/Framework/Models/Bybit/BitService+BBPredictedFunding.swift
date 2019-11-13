@@ -9,22 +9,28 @@
 import Foundation
 import NetQuilt
 
-struct BybitPredictedFunding {
-    let returnCode: Int
-    let response: BybitPredictedFunding.Response
-    let exitCode: String
-    let exitInfo: String?
-    let time: String
-    let fundingRate: Double
-    let fundingFee: Double
-    
-    enum Response: String, Decodable {
-        case ok
-        case failure
+public extension BitService {
+    struct BybitPredictedFunding {
+        let returnCode: Int
+        let response: BybitPredictedFunding.Response
+        let exitCode: String
+        let exitInfo: String?
+        let time: String
+        
+        /// The predicted funding rate. When the rate is positive, longs pay shorts. When negative, shorts pay longs.
+        let fundingRate: Double
+        
+        /// The funding fee.
+        let fundingFee: Double
+        
+        enum Response: String, Decodable {
+            case ok
+            case failure
+        }
     }
 }
 
-extension BybitPredictedFunding: Model {
+extension BitService.BybitPredictedFunding: Model {
     /// List of top level coding keys.
     private enum CodingKeys: String, CodingKey {
         case exit = "ext_code"
@@ -37,7 +43,7 @@ extension BybitPredictedFunding: Model {
         case fundingFee = "predicted_funding_fee"
     }
     
-    internal init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         self.returnCode = try values.decode(Int.self, forKey: .returnCode)
@@ -52,11 +58,10 @@ extension BybitPredictedFunding: Model {
         self.fundingFee = try dictionary.decode(Double.self, forKey: .fundingFee)
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encode(fundingFee, forKey: .fundingFee)
         try container.encode(fundingRate, forKey: .fundingRate)
     }
 }
-

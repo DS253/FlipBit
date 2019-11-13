@@ -28,17 +28,22 @@ public extension BitService {
         case XRP = "XRPUSD"
     }
     
-    func lookupAPIKeyInfo(completion: @escaping (Result<BybitAPIKeyInfo, BitService.Error>) -> Void) {
+    func lookupBybitAPIKeyInfo(completion: @escaping (Result<BybitAPIKeyInfo, BitService.Error>) -> Void) {
         let endpoint = BybitAPIKeyInfo.Endpoint(timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitAPIKeyInfo.self, on: completion)
     }
     
-    func lookupOrderBook(symbol: BybitSymbol, completion: @escaping (Result<BybitOrderbook, BitService.Error>) -> Void) {
+    func lookupBybitOrderBook(symbol: BybitSymbol, completion: @escaping (Result<BybitOrderbook, BitService.Error>) -> Void) {
         let endpoint = BybitOrderbook.Endpoint.init(symbol: symbol)
         service.load(endpoint, expecting: BybitOrderbook.self, on: completion)
     }
     
-    func lookupServerTime(completion: @escaping (Result<BybitServerTime, BitService.Error>) -> Void) {
+    func lookupBybitPredictedFunding(symbol: BybitSymbol, completion: @escaping (Result<BybitPredictedFunding, BitService.Error>) -> Void) {
+        let endpoint = BybitPredictedFunding.Endpoint.init(symbol: symbol, timeStamp: Date().bybitTimestamp())
+        service.load(endpoint, expecting: BybitPredictedFunding.self, on: completion)
+    }
+    
+    func lookupBybitServerTime(completion: @escaping (Result<BybitServerTime, BitService.Error>) -> Void) {
         let endpoint = BybitServerTime.Endpoint.init()
         service.load(endpoint, expecting: BybitServerTime.self, on: completion)
     }

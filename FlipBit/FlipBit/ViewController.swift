@@ -22,6 +22,7 @@ class Services {
     typealias ResponseServiceCompletion<T: Model> = (T?, Error?) -> Void
     typealias BitServiceAPILookupCompletion = (Result<BitService.BybitAPIKeyInfo, BitService.Error>) -> Void
     typealias BitServiceOrderbookLookupCompletion = (Result<BitService.BybitOrderbook, BitService.Error>) -> Void
+    typealias BitServicePredictedFundingLookupCompletion = (Result<BitService.BybitPredictedFunding, BitService.Error>) -> Void
     typealias BitServiceServerTimeLookupCompletion = (Result<BitService.BybitServerTime, BitService.Error>) -> Void
     typealias BitServiceTickersLookupCompletion = (Result<BitService.BybitTickers, BitService.Error>) -> Void
     typealias BybitAPIKeyInfo = BitService.BybitAPIKeyInfo
@@ -33,15 +34,19 @@ class Services {
     let bitService: BitService = BitService()
     
     func fetchBybitAPIKeyInfo(completion: @escaping BitServiceAPILookupCompletion) {
-        bitService.lookupAPIKeyInfo(completion: completion)
+        bitService.lookupBybitAPIKeyInfo(completion: completion)
     }
     
     func fetchBybitOrderBook(symbol: BitService.BybitSymbol, completion: @escaping BitServiceOrderbookLookupCompletion) {
-        bitService.lookupOrderBook(symbol: symbol, completion: completion)
+        bitService.lookupBybitOrderBook(symbol: symbol, completion: completion)
+    }
+    
+    func fetchBybitPredictedFunding(symbol: BitService.BybitSymbol, completion: @escaping BitServicePredictedFundingLookupCompletion) {
+        bitService.lookupBybitPredictedFunding(symbol: symbol, completion: completion)
     }
     
     func fetchBybitServerTime(completion: @escaping BitServiceServerTimeLookupCompletion) {
-        bitService.lookupServerTime(completion: completion)
+        bitService.lookupBybitServerTime(completion: completion)
     }
     
     func fetchBybitTickers(symbol: BitService.BybitSymbol, completion: @escaping BitServiceTickersLookupCompletion) {
@@ -66,7 +71,7 @@ class Services {
     
 class ViewController: UIViewController {
 
-    var tickers: BitService.BybitTickers?
+    var funding: BitService.BybitPredictedFunding?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -78,16 +83,27 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        services.fetchBybitTickers(symbol: .BTC) { result in
+        services.fetchBybitPredictedFunding(symbol: .BTC) { result in
             switch result {
             case let .success(result):
-                self.tickers = result
-                print(self.tickers)
+                self.funding = result
+                print(self.funding)
                 
             case let .failure(error):
                 print(error)
             }
         }
+        
+//        services.fetchBybitTickers(symbol: .BTC) { result in
+//            switch result {
+//            case let .success(result):
+//                self.tickers = result
+//                print(self.tickers)
+//
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
 //        services.fetchBybitServerTime { result in
 //            switch result {
 //            case let .success(result):
