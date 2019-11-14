@@ -33,16 +33,44 @@ public extension BitService {
         case Trade
     }
     
+    enum BybitFundingEvent: String, Codable {
+        case Deposit
+        case Withdraw
+        case RealisedPNL = "Realized P&L"
+        case Commission
+        case Refund
+        case Prize
+        case ExchangeOrderWithdraw
+        case ExchangeOrderDeposit
+    }
+    
     enum BybitLiquidity: String, Codable {
         case AddedLiquidity
         case RemovedLiquidity
         case Other = ""
     }
     
+    enum BybitMarginMode: Int, Codable {
+        case Isolated = 0
+        case Cross = 1
+    }
+    
+    enum BybitOrderSide: String, Codable {
+        case Buy
+        case Sell
+        case None
+    }
+    
     enum BybitOrderType: String, Codable {
         case Limit
         case Market
         case Other = ""
+    }
+    
+    enum BybitPositionStatus: String, Codable {
+        case ADL
+        case Liq
+        case Normal
     }
     
     enum BybitSymbol: String, Codable {
@@ -62,22 +90,6 @@ public extension BitService {
         case Expire
     }
     
-    enum BybitFundingEvent: String, Codable {
-        case Deposit
-        case Withdraw
-        case RealisedPNL = "Realized P&L"
-        case Commission
-        case Refund
-        case Prize
-        case ExchangeOrderWithdraw
-        case ExchangeOrderDeposit
-    }
-    
-    enum BybitOrderSide: String, Codable {
-        case Buy
-        case Sell
-    }
-    
     func lookupBybitAPIKeyInfo(completion: @escaping (Result<BybitAPIKeyInfo, BitService.Error>) -> Void) {
         let endpoint = BybitAPIKeyInfo.Endpoint(timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitAPIKeyInfo.self, on: completion)
@@ -86,6 +98,11 @@ public extension BitService {
     func lookupBybitOrderBook(symbol: BybitSymbol, completion: @escaping (Result<BybitOrderbook, BitService.Error>) -> Void) {
         let endpoint = BybitOrderbook.Endpoint.init(symbol: symbol)
         service.load(endpoint, expecting: BybitOrderbook.self, on: completion)
+    }
+    
+    func lookupBybitPosition(completion: @escaping (Result<BybitPositionList, BitService.Error>) -> Void) {
+        let endpoint = BybitPositionList.Endpoint.init(timeStamp: Date().bybitTimestamp())
+        service.load(endpoint, expecting: BybitPositionList.self, on: completion)
     }
     
     func lookupBybitPredictedFunding(symbol: BybitSymbol, completion: @escaping (Result<BybitPredictedFunding, BitService.Error>) -> Void) {
