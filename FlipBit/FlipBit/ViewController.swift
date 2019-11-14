@@ -25,6 +25,7 @@ class Services {
     typealias BitServicePositionLookupCompletion = (Result<BitService.BybitPositionList, BitService.Error>) -> Void
     typealias BitServicePredictedFundingLookupCompletion = (Result<BitService.BybitPredictedFunding, BitService.Error>) -> Void
     typealias BitServicePreviousFundingLookupCompletion = (Result<BitService.BybitPreviousFundingFee, BitService.Error>) -> Void
+    typealias BitServicePreviousFundingRateLookupCompletion = (Result<BitService.BybitPreviousFundingRate, BitService.Error>) -> Void
     typealias BitServiceServerTimeLookupCompletion = (Result<BitService.BybitServerTime, BitService.Error>) -> Void
     typealias BitServiceTickersLookupCompletion = (Result<BitService.BybitTickers, BitService.Error>) -> Void
     typealias BitServiceTradeRecordLookupCompletion = (Result<BitService.BybitTradeRecords, BitService.Error>) -> Void
@@ -56,6 +57,10 @@ class Services {
     
     func fetchBybitPreviousFunding(symbol: BitService.BybitSymbol, completion: @escaping BitServicePreviousFundingLookupCompletion) {
         bitService.lookupBybitPreviousFunding(symbol: symbol, completion: completion)
+    }
+    
+    func fetchBybitPreviousFundingRate(symbol: BitService.BybitSymbol, completion: @escaping BitServicePreviousFundingRateLookupCompletion) {
+        bitService.lookupBybitPreviousFundingRate(symbol: symbol, completion: completion)
     }
     
     func fetchBybitServerTime(completion: @escaping BitServiceServerTimeLookupCompletion) {
@@ -96,7 +101,7 @@ class Services {
     
 class ViewController: UIViewController {
 
-    var position: BitService.BybitPositionList?
+    var previousRate: BitService.BybitPreviousFundingRate?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -108,17 +113,28 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        
-        services.fetchBybitPosition { result in
+  
+        services.fetchBybitPreviousFundingRate(symbol: .BTC) { result in
             switch result {
             case let .success(result):
-                self.position = result
-                print(self.position)
+                self.previousRate = result
+                print(self.previousRate)
                 
             case let .failure(error):
                 print(error)
             }
         }
+        
+//        services.fetchBybitPosition { result in
+//            switch result {
+//            case let .success(result):
+//                self.position = result
+//                print(self.position)
+//
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
         
 //        services.fetchBybitTradeRecords(symbol: .BTC, pageNumber: 1) { result in
 //            switch result {

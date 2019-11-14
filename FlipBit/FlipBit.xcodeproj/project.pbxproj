@@ -56,6 +56,8 @@
 		06470E292377C8CD00419238 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E282377C8CD00419238 /* Constants.swift */; };
 		06490F81237CF81C00C37ED4 /* BitService+BBPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F80237CF81C00C37ED4 /* BitService+BBPosition.swift */; };
 		06490F83237D04D100C37ED4 /* BBPosition+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */; };
+		06490F85237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */; };
+		06490F87237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F86237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +146,8 @@
 		06470E282377C8CD00419238 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		06490F80237CF81C00C37ED4 /* BitService+BBPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBPosition.swift"; sourceTree = "<group>"; };
 		06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBPosition+Endpoint.swift"; sourceTree = "<group>"; };
+		06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBPreviousFundingRate.swift"; sourceTree = "<group>"; };
+		06490F86237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBPreviousFundingRate+Endpoint.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -341,6 +345,7 @@
 				060D96E7237B7E2E0040598A /* BBPredictedFunding+Endpoint.swift */,
 				06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */,
 				060D96E9237B82910040598A /* BBPreviousFundingFee+Endpoint.swift */,
+				06490F86237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift */,
 				060D96E3237B70A70040598A /* BBServerTime+Endpoint.swift */,
 				060D96E5237B78AF0040598A /* BBTickers+Endpoint.swift */,
 				060D96F5237BC6900040598A /* BBTradeRecord+Endpoint.swift */,
@@ -383,6 +388,7 @@
 				06490F80237CF81C00C37ED4 /* BitService+BBPosition.swift */,
 				06470E182377C7C600419238 /* BitService+BBPredictedFunding.swift */,
 				06470E1A2377C7E600419238 /* BitService+BBPreviousFundingFee.swift */,
+				06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */,
 				06470E1C2377C80700419238 /* BitService+BBServerTime.swift */,
 				06470E1E2377C82100419238 /* BitService+BBTickers.swift */,
 				060D96F3237BBC480040598A /* BitService+BBTradeRecord.swift */,
@@ -564,6 +570,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06470DF82377C2C700419238 /* Double+Additions.swift in Sources */,
+				06490F85237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift in Sources */,
 				06470E0E2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift in Sources */,
 				06470DEB2377C1F400419238 /* DataConvertible.swift in Sources */,
 				06470DFA2377C2DE00419238 /* Optional+Additions.swift in Sources */,
@@ -605,6 +612,7 @@
 				06470DF42377C29800419238 /* Date+Additions.swift in Sources */,
 				060D96EC237B95720040598A /* BitService+BBWalletFundRecord.swift in Sources */,
 				06470E1B2377C7E600419238 /* BitService+BBPreviousFundingFee.swift in Sources */,
+				06490F87237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

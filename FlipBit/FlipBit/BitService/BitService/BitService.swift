@@ -115,6 +115,11 @@ public extension BitService {
         service.load(endpoint, expecting: BybitPreviousFundingFee.self, on: completion)
     }
     
+    func lookupBybitPreviousFundingRate(symbol: BybitSymbol, completion: @escaping (Result<BybitPreviousFundingRate, BitService.Error>) -> Void) {
+        let endpoint = BybitPreviousFundingRate.Endpoint.init(symbol: symbol, timeStamp: Date().bybitTimestamp())
+        service.load(endpoint, expecting: BybitPreviousFundingRate.self, on: completion)
+    }
+    
     func lookupBybitServerTime(completion: @escaping (Result<BybitServerTime, BitService.Error>) -> Void) {
         let endpoint = BybitServerTime.Endpoint.init()
         service.load(endpoint, expecting: BybitServerTime.self, on: completion)
