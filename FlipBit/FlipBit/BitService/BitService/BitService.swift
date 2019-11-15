@@ -69,6 +69,15 @@ public extension BitService {
         case Other = ""
     }
     
+    enum BybitOrderStatus: String, Codable {
+        case Created
+        case New
+        case PartiallyFilled
+        case Filled
+        case Cancelled
+        case Rejected
+    }
+    
     enum BybitOrderType: String, Codable {
         case Limit
         case Market

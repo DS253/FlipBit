@@ -46,7 +46,7 @@ public extension BitService {
         /// The liquidity movement.
         let liquidityIndex: BitService.BybitLiquidity
         
-        /// Leave quantity.
+        /// The remaining order quantity.
         let leaveQuantity: Int
         
         /// The number of fills for the order.

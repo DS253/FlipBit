@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0609A22B237E8C190009BAB6 /* BBOrderCreate+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0609A22A237E8C190009BAB6 /* BBOrderCreate+Endpoint.swift */; };
 		060D96E2237B68A80040598A /* BBOrderBook+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96E1237B68A80040598A /* BBOrderBook+Endpoint.swift */; };
 		060D96E4237B70A70040598A /* BBServerTime+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96E3237B70A70040598A /* BBServerTime+Endpoint.swift */; };
 		060D96E6237B78AF0040598A /* BBTickers+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96E5237B78AF0040598A /* BBTickers+Endpoint.swift */; };
@@ -93,6 +94,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0609A22A237E8C190009BAB6 /* BBOrderCreate+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBOrderCreate+Endpoint.swift"; sourceTree = "<group>"; };
 		060D96E1237B68A80040598A /* BBOrderBook+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBOrderBook+Endpoint.swift"; sourceTree = "<group>"; };
 		060D96E3237B70A70040598A /* BBServerTime+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBServerTime+Endpoint.swift"; sourceTree = "<group>"; };
 		060D96E5237B78AF0040598A /* BBTickers+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBTickers+Endpoint.swift"; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 			children = (
 				06470E0D2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift */,
 				060D96E1237B68A80040598A /* BBOrderBook+Endpoint.swift */,
+				0609A22A237E8C190009BAB6 /* BBOrderCreate+Endpoint.swift */,
 				060D96E7237B7E2E0040598A /* BBPredictedFunding+Endpoint.swift */,
 				06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */,
 				060D96E9237B82910040598A /* BBPreviousFundingFee+Endpoint.swift */,
@@ -579,6 +582,7 @@
 				06470DFA2377C2DE00419238 /* Optional+Additions.swift in Sources */,
 				455A1F3B237E2825005969B9 /* BitService+BBOrder.swift in Sources */,
 				06470E222377C85500419238 /* BitService+Response.swift in Sources */,
+				0609A22B237E8C190009BAB6 /* BBOrderCreate+Endpoint.swift in Sources */,
 				060D96F0237BAC770040598A /* BitService+BBWithdrawalRecord.swift in Sources */,
 				060D96F6237BC6900040598A /* BBTradeRecord+Endpoint.swift in Sources */,
 				06470E292377C8CD00419238 /* Constants.swift in Sources */,
