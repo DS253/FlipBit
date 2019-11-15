@@ -23,10 +23,7 @@ internal extension Date {
     
     /// Returns a string of the expected timestamp in seconds
     func bybitTimestamp() -> String {
-        let requiredDigits = 13
-        let separatedTime = String(NSDate().timeIntervalSince1970).components(separatedBy: ".")
-        let expectedTime = separatedTime[0]
-        let partialSeconds = separatedTime[1]
-        return expectedTime + String(partialSeconds.prefix(requiredDigits - expectedTime.count))
+        let secondsConverted = String(NSDate().timeIntervalSince1970 * 1000).components(separatedBy: ".")
+        return secondsConverted[0]
     }
 }
