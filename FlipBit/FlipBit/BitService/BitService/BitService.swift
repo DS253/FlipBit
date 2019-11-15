@@ -60,6 +60,14 @@ public extension BitService {
         case Sell
         case None
     }
+
+    enum BybitOrderTimeInForce: String, Codable {
+        case GoodTillCancel
+        case ImmediateOrCancel
+        case FillOrKill
+        case PostOnly
+        case Other = ""
+    }
     
     enum BybitOrderType: String, Codable {
         case Limit
