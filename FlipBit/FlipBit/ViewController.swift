@@ -101,7 +101,7 @@ class Services {
     
 class ViewController: UIViewController {
 
-    var predictedFunding: BitService.BybitPredictedFunding?
+    var previousFunding: BitService.BybitPreviousFundingFee?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -113,30 +113,51 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        
-        services.fetchBybitPredictedFunding(symbol: .BTC) { result in
+        services.fetchBybitPreviousFunding(symbol: .BTC) { result in
             switch result {
             case let .success(result):
-                self.predictedFunding = result
+                self.previousFunding = result
 
                 guard
-                    let funding = self.predictedFunding
+                    let previous = self.previousFunding
                 else { return }
-                print(funding.fundingRate)
-                print(funding.fundingFee)
-                print("Return Code: \(funding.metaData.returnCode)")
-                print("Return Message: \(funding.metaData.returnMessage)")
-                print("External Code Error: \(funding.metaData.externalCodeError)")
-                print("Exit Info: \(funding.metaData.exitInfo)")
-                print("Time of Response: \(funding.metaData.timeNow)")
-                print("Rate Limit: \(funding.metaData.rateLimit)")
-                print("Rate Limit Status: \(funding.metaData.rateLimitStatus)")
-                print("Rate Limit Reset Time: \(funding.metaData.rateLimitResetTime)")
+                print(previous.feeData)
+                print("Return Code: \(previous.metaData.returnCode)")
+                print("Return Message: \(previous.metaData.returnMessage)")
+                print("External Code Error: \(previous.metaData.externalCodeError)")
+                print("Exit Info: \(previous.metaData.exitInfo)")
+                print("Time of Response: \(previous.metaData.timeNow)")
+                print("Rate Limit: \(previous.metaData.rateLimit)")
+                print("Rate Limit Status: \(previous.metaData.rateLimitStatus)")
+                print("Rate Limit Reset Time: \(previous.metaData.rateLimitResetTime)")
 
             case let .failure(error):
                 print(error)
             }
         }
+//        services.fetchBybitPredictedFunding(symbol: .BTC) { result in
+//            switch result {
+//            case let .success(result):
+//                self.predictedFunding = result
+//
+//                guard
+//                    let funding = self.predictedFunding
+//                else { return }
+//                print(funding.fundingRate)
+//                print(funding.fundingFee)
+//                print("Return Code: \(funding.metaData.returnCode)")
+//                print("Return Message: \(funding.metaData.returnMessage)")
+//                print("External Code Error: \(funding.metaData.externalCodeError)")
+//                print("Exit Info: \(funding.metaData.exitInfo)")
+//                print("Time of Response: \(funding.metaData.timeNow)")
+//                print("Rate Limit: \(funding.metaData.rateLimit)")
+//                print("Rate Limit Status: \(funding.metaData.rateLimitStatus)")
+//                print("Rate Limit Reset Time: \(funding.metaData.rateLimitResetTime)")
+//
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
 //        services.fetchBybitPreviousFundingRate(symbol: .BTC) { result in
 //            switch result {
 //            case let .success(result):
@@ -321,21 +342,6 @@ class ViewController: UIViewController {
 //                    print(error)
 //            }
 //        }
-        
-
-//        services.fetchBybitPreviousFunding(symbol: .BTC) { result in
-//            switch result {
-//            case let .success(result):
-//                self.previousFunding = result
-//                print(self.previousFunding)
-//
-//            case let .failure(error):
-//                print(error)
-//            }
-//        }
-
-
-
     }
 }
 
