@@ -86,46 +86,32 @@ extension BitService.BybitWalletFundingEvent: Model {
 
 public extension BitService {
     struct BybitWalletRecords {
-        let returnCode: Int
-        let response: BybitWalletRecords.Response
-        let exitCode: String
-        let exitInfo: String?
-        let time: String
-        let records: [BitService.BybitWalletFundingEvent]
 
-        enum Response: String, Decodable {
-            case ok
-            case failure
-        }
+        /// Array of WalletFundingEvents
+        let records: [BitService.BybitWalletFundingEvent]?
+
+        /// Server data about the response.
+        let metaData: BitService.BybitResponseMetaData
     }
 }
 
 extension BitService.BybitWalletRecords: Model {
     /// List of top level coding keys.
     private enum CodingKeys: String, CodingKey {
-        case exit = "ext_code"
-        case info = "ext_info"
-        case response = "ret_msg"
-        case returnCode = "ret_code"
         case result
-        case time = "time_now"
         case data
     }
     
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        self.returnCode = try values.decode(Int.self, forKey: .returnCode)
-        self.exitCode = try values.decode(String.self, forKey: .exit)
-        self.exitInfo = try values.decodeIfPresent(String.self, forKey: .info)
-        self.time = try values.decode(String.self, forKey: .time)
-        self.response = try values.decode(Response.self, forKey: .response)
+        self.metaData = try BitService.BybitResponseMetaData(from: decoder)
         
         let dictionary = try values.nestedContainer(keyedBy: CodingKeys.self, forKey: .result)
-        self.records = try dictionary.decode([BitService.BybitWalletFundingEvent].self, forKey: .data)
+        self.records = try dictionary.decodeIfPresent([BitService.BybitWalletFundingEvent].self, forKey: .data)
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(records, forKey: .data)
+        try container.encodeIfPresent(records, forKey: .data)
     }
 }

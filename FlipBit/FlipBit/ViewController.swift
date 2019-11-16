@@ -101,8 +101,7 @@ class Services {
     
 class ViewController: UIViewController {
 
-    var previousRate: BitService.BybitPreviousFundingRate?
-    var apiKey: BitService.BybitAPIKeyInfo?
+    var walletRecords: BitService.BybitWalletRecords?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -114,30 +113,49 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
+          services.fetchBybitWalletRecords(currency: .BTC, pageNumber: 1) { result in
+              switch result {
+              case let .success(result):
+                  self.walletRecords = result
+                  guard
+                      let wallet = self.walletRecords
+                      else { return }
+                  print(wallet.records)
+                  print(wallet.metaData.returnCode)
+                  print(wallet.metaData.returnMessage)
+                  print(wallet.metaData.externalCodeError)
+                  print(wallet.metaData.exitInfo)
+                  print(wallet.metaData.timeNow)
+                  case let .failure(error):
+                      print(error)
   
-        services.fetchBybitAPIKeyInfo { result in
-            switch result {
-            case let .success(result):
-                self.apiKey = result
-                guard
-                    let key = self.apiKey
-                    else { return }
-                print(key.apiKey)
-                print(key.userID)
-                print(key.ipAddresses)
-                print(key.note)
-                print(key.permissions)
-                print(key.timeCreated)
-                print(key.isReadOnly)
-                print(key.metaData.returnCode)
-                print(key.metaData.returnMessage)
-                print(key.metaData.externalCodeError)
-                print(key.metaData.exitInfo)
-                print(key.metaData.timeNow)
-                case let .failure(error):
-                    print(error)
-            }
-        }
+              case let .failure(error):
+                  print(error)
+              }
+          }
+//        services.fetchBybitAPIKeyInfo { result in
+//            switch result {
+//            case let .success(result):
+//                self.apiKey = result
+//                guard
+//                    let key = self.apiKey
+//                    else { return }
+//                print(key.apiKey)
+//                print(key.userID)
+//                print(key.ipAddresses)
+//                print(key.note)
+//                print(key.permissions)
+//                print(key.timeCreated)
+//                print(key.isReadOnly)
+//                print(key.metaData.returnCode)
+//                print(key.metaData.returnMessage)
+//                print(key.metaData.externalCodeError)
+//                print(key.metaData.exitInfo)
+//                print(key.metaData.timeNow)
+//                case let .failure(error):
+//                    print(error)
+//            }
+//        }
         
 //        services.fetchBybitPreviousFundingRate(symbol: .BTC) { result in
 //            switch result {
@@ -181,16 +199,7 @@ class ViewController: UIViewController {
 //                print(error)
 //            }
 //        }
-//        services.fetchBybitWalletRecords(currency: .BTC, pageNumber: 3) { result in
-//            switch result {
-//            case let .success(result):
-//                self.walletRecords = result
-//                print(self.walletRecords)
-//
-//            case let .failure(error):
-//                print(error)
-//            }
-//        }
+
 //        services.fetchBybitPreviousFunding(symbol: .BTC) { result in
 //            switch result {
 //            case let .success(result):
@@ -240,15 +249,6 @@ class ViewController: UIViewController {
 //                case let .success(result):
 //                    self.orderbook = result
 //                    print(self.orderbook)
-//                case let .failure(error):
-//                    print(error)
-//            }
-//        }
-//        services.fetchBybitAPIKeyInfo { result in
-//            switch result {
-//                case let .success(result):
-//                    self.apiKey = result
-//                    print(self.apiKey)
 //                case let .failure(error):
 //                    print(error)
 //            }

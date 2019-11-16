@@ -22,7 +22,7 @@ extension BitService.BybitWalletRecords {
         }
 
         internal func path() throws -> NetQuilt.URLPath {
-            return try NetQuilt.URLPath("/open-api/wallet/withdraw/list")
+            return try NetQuilt.URLPath("/open-api/wallet/fund/records")
         }
         
         var signature: String {
