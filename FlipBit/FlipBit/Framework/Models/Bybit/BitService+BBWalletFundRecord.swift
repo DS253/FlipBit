@@ -10,6 +10,38 @@ import Foundation
 import NetQuilt
 
 public extension BitService {
+    struct BybitWalletRecords {
+
+        /// An array of WalletFundingEvents.
+        let records: [BitService.BybitWalletFundingEvent]?
+
+        /// Server data about the response.
+        let metaData: BitService.BybitResponseMetaData
+    }
+}
+
+extension BitService.BybitWalletRecords: Model {
+    /// List of top level coding keys.
+    private enum CodingKeys: String, CodingKey {
+        case result
+        case data
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.metaData = try BitService.BybitResponseMetaData(from: decoder)
+        
+        let dictionary = try values.nestedContainer(keyedBy: CodingKeys.self, forKey: .result)
+        self.records = try dictionary.decodeIfPresent([BitService.BybitWalletFundingEvent].self, forKey: .data)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(records, forKey: .data)
+    }
+}
+
+public extension BitService {
     /// A type that represents a wallet funding event.
     struct BybitWalletFundingEvent {
         
@@ -81,37 +113,5 @@ extension BitService.BybitWalletFundingEvent: Model {
         try container.encode(address, forKey: .address)
         try container.encode(balance, forKey: .balance)
         try container.encode(timeOfEvent, forKey: .timeOfEvent)
-    }
-}
-
-public extension BitService {
-    struct BybitWalletRecords {
-
-        /// Array of WalletFundingEvents
-        let records: [BitService.BybitWalletFundingEvent]?
-
-        /// Server data about the response.
-        let metaData: BitService.BybitResponseMetaData
-    }
-}
-
-extension BitService.BybitWalletRecords: Model {
-    /// List of top level coding keys.
-    private enum CodingKeys: String, CodingKey {
-        case result
-        case data
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        self.metaData = try BitService.BybitResponseMetaData(from: decoder)
-        
-        let dictionary = try values.nestedContainer(keyedBy: CodingKeys.self, forKey: .result)
-        self.records = try dictionary.decodeIfPresent([BitService.BybitWalletFundingEvent].self, forKey: .data)
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encodeIfPresent(records, forKey: .data)
     }
 }

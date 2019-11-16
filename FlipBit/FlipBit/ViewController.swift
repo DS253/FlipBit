@@ -101,7 +101,7 @@ class Services {
     
 class ViewController: UIViewController {
 
-    var walletRecords: BitService.BybitWalletRecords?
+    var withdrawRecords: BitService.BybitWithdrawalRecords?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -113,26 +113,41 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-          services.fetchBybitWalletRecords(currency: .BTC, pageNumber: 1) { result in
-              switch result {
-              case let .success(result):
-                  self.walletRecords = result
-                  guard
-                      let wallet = self.walletRecords
-                      else { return }
-                  print(wallet.records)
-                  print(wallet.metaData.returnCode)
-                  print(wallet.metaData.returnMessage)
-                  print(wallet.metaData.externalCodeError)
-                  print(wallet.metaData.exitInfo)
-                  print(wallet.metaData.timeNow)
-                  case let .failure(error):
-                      print(error)
-  
-              case let .failure(error):
-                  print(error)
-              }
-          }
+        services.fetchBybitWithdrawRecords(currency: .BTC, pageNumber: 1) { result in
+            switch result {
+            case let .success(result):
+                self.withdrawRecords = result
+                guard
+                    let records = self.withdrawRecords
+                    else { return }
+                print(records)
+                print(records.metaData.returnCode)
+                print(records.metaData.returnMessage)
+                print(records.metaData.externalCodeError)
+                print(records.metaData.exitInfo)
+                print(records.metaData.timeNow)
+
+            case let .failure(error):
+                print(error)
+            }
+        }
+//          services.fetchBybitWalletRecords(currency: .BTC, pageNumber: 1) { result in
+//              switch result {
+//              case let .success(result):
+//                  self.walletRecords = result
+//                  guard
+//                      let wallet = self.walletRecords
+//                      else { return }
+//                  print(wallet.records)
+//                  print(wallet.metaData.returnCode)
+//                  print(wallet.metaData.returnMessage)
+//                  print(wallet.metaData.externalCodeError)
+//                  print(wallet.metaData.exitInfo)
+//                  print(wallet.metaData.timeNow)
+//                  case let .failure(error):
+//                      print(error)
+//              }
+//          }
 //        services.fetchBybitAPIKeyInfo { result in
 //            switch result {
 //            case let .success(result):

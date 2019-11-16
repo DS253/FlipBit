@@ -10,6 +10,48 @@ import Foundation
 import NetQuilt
 
 public extension BitService {
+    struct BybitWithdrawalRecords {
+        
+        /// An array of WithdrawalEvents.
+        let records: [BitService.BybitWithdrawalEvent]
+        
+        /// The current page of records returned.
+        let currentPage: Int
+        
+        /// The last page.
+        let lastPage: Int
+        
+        /// Server data about the response.
+        let metaData: BitService.BybitResponseMetaData
+    }
+}
+
+extension BitService.BybitWithdrawalRecords: Model {
+    /// List of top level coding keys.
+    private enum CodingKeys: String, CodingKey {
+        case result
+        case data
+        case currentPage = "current_page"
+        case lastPage = "last_page"
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.metaData = try BitService.BybitResponseMetaData(from: decoder)
+        
+        let dictionary = try values.nestedContainer(keyedBy: CodingKeys.self, forKey: .result)
+        self.records = try dictionary.decode([BitService.BybitWithdrawalEvent].self, forKey: .data)
+        self.currentPage = try dictionary.decode(Int.self, forKey: .currentPage)
+        self.lastPage = try dictionary.decode(Int.self, forKey: .lastPage)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(records, forKey: .data)
+    }
+}
+
+public extension BitService {
     /// A type that represents a wallet withdrawal event.
     struct BybitWithdrawalEvent {
         
@@ -87,51 +129,5 @@ extension BitService.BybitWithdrawalEvent: Model {
         try container.encode(transactionID, forKey: .transactionID)
         try container.encode(timeSubmitted, forKey: .timeSubmitted)
         try container.encode(timeUpdated, forKey: .timeUpdated)
-    }
-}
-
-public extension BitService {
-    struct BybitWithdrawalRecords {
-        let returnCode: Int
-        let response: BybitWithdrawalRecords.Response
-        let exitCode: String
-        let exitInfo: String?
-        let time: String
-        let records: [BitService.BybitWithdrawalEvent]
-        
-        enum Response: String, Decodable {
-            case ok
-            case failure
-        }
-    }
-}
-
-extension BitService.BybitWithdrawalRecords: Model {
-    /// List of top level coding keys.
-    private enum CodingKeys: String, CodingKey {
-        case exit = "ext_code"
-        case info = "ext_info"
-        case response = "ret_msg"
-        case returnCode = "ret_code"
-        case result
-        case time = "time_now"
-        case data
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        self.returnCode = try values.decode(Int.self, forKey: .returnCode)
-        self.exitCode = try values.decode(String.self, forKey: .exit)
-        self.exitInfo = try values.decodeIfPresent(String.self, forKey: .info)
-        self.time = try values.decode(String.self, forKey: .time)
-        self.response = try values.decode(Response.self, forKey: .response)
-        
-        let dictionary = try values.nestedContainer(keyedBy: CodingKeys.self, forKey: .result)
-        self.records = try dictionary.decode([BitService.BybitWithdrawalEvent].self, forKey: .data)
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(records, forKey: .data)
     }
 }
