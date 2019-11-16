@@ -10,10 +10,39 @@ import Foundation
 import NetQuilt
 
 public extension BitService {
+    struct BybitPositionList {
+        
+        /// An array of current positions.
+        let positions: [BitService.BybitPosition]
+        
+        /// Server data about the response.
+        let metaData: BitService.BybitResponseMetaData
+    }
+}
+
+extension BitService.BybitPositionList: Model {
+    /// List of top level coding keys.
+    private enum CodingKeys: String, CodingKey {
+        case result
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.metaData = try BitService.BybitResponseMetaData(from: decoder)
+        self.positions = try values.decode([BitService.BybitPosition].self, forKey: .result)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(positions, forKey: .result)
+    }
+}
+
+public extension BitService {
     /// A type that represents a trading event.
     struct BybitPosition {
         
-        /// The position ID
+        /// The position ID.
         let positionID: Int
         
         /// The user's ID.
@@ -213,48 +242,5 @@ extension BitService.BybitPosition: Model {
         try container.encode(positionSequence, forKey: .positionSequence)
         try container.encode(dateCreated, forKey: .dateCreated)
         try container.encode(dateUpdated, forKey: .dateUpdated)
-    }
-}
-
-public extension BitService {
-    struct BybitPositionList {
-        let returnCode: Int
-        let response: BybitPositionList.Response
-        let exitCode: String
-        let exitInfo: String?
-        let time: String
-        let positions: [BitService.BybitPosition]
-        
-        enum Response: String, Decodable {
-            case ok
-            case failure
-        }
-    }
-}
-
-extension BitService.BybitPositionList: Model {
-    /// List of top level coding keys.
-    private enum CodingKeys: String, CodingKey {
-        case exit = "ext_code"
-        case info = "ext_info"
-        case response = "ret_msg"
-        case returnCode = "ret_code"
-        case result
-        case time = "time_now"
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        self.returnCode = try values.decode(Int.self, forKey: .returnCode)
-        self.exitCode = try values.decode(String.self, forKey: .exit)
-        self.exitInfo = try values.decodeIfPresent(String.self, forKey: .info)
-        self.time = try values.decode(String.self, forKey: .time)
-        self.response = try values.decode(Response.self, forKey: .response)
-        self.positions = try values.decode([BitService.BybitPosition].self, forKey: .result)
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(positions, forKey: .result)
     }
 }

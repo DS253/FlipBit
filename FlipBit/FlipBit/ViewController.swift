@@ -101,7 +101,7 @@ class Services {
     
 class ViewController: UIViewController {
 
-    var tradeRecords: BitService.BybitTradeRecords?
+    var positions: BitService.BybitPositionList?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -113,27 +113,48 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        services.fetchBybitTradeRecords(symbol: .BTC, pageNumber: 1) { result in
+        services.fetchBybitPosition { result in
             switch result {
             case let .success(result):
-                self.tradeRecords = result
+                self.positions = result
                 guard
-                    let tradeRecord = self.tradeRecords
+                    let positions = self.positions
                 else { return }
-                print(tradeRecord.records)
-                print("Return Code: \(tradeRecord.metaData.returnCode)")
-                print("Return Message: \(tradeRecord.metaData.returnMessage)")
-                print("External Code Error: \(tradeRecord.metaData.externalCodeError)")
-                print("Exit Info: \(tradeRecord.metaData.exitInfo)")
-                print("Time of Response: \(tradeRecord.metaData.timeNow)")
-                print("Rate Limit: \(tradeRecord.metaData.rateLimit)")
-                print("Rate Limit Status: \(tradeRecord.metaData.rateLimitStatus)")
-                print("Rate Limit Reset Time: \(tradeRecord.metaData.rateLimitResetTime)")
+                print(positions.positions)
+                print("Return Code: \(positions.metaData.returnCode)")
+                print("Return Message: \(positions.metaData.returnMessage)")
+                print("External Code Error: \(positions.metaData.externalCodeError)")
+                print("Exit Info: \(positions.metaData.exitInfo)")
+                print("Time of Response: \(positions.metaData.timeNow)")
+                print("Rate Limit: \(positions.metaData.rateLimit)")
+                print("Rate Limit Status: \(positions.metaData.rateLimitStatus)")
+                print("Rate Limit Reset Time: \(positions.metaData.rateLimitResetTime)")
 
             case let .failure(error):
                 print(error)
             }
         }
+//        services.fetchBybitTradeRecords(symbol: .BTC, pageNumber: 1) { result in
+//            switch result {
+//            case let .success(result):
+//                self.tradeRecords = result
+//                guard
+//                    let tradeRecord = self.tradeRecords
+//                else { return }
+//                print(tradeRecord.records)
+//                print("Return Code: \(tradeRecord.metaData.returnCode)")
+//                print("Return Message: \(tradeRecord.metaData.returnMessage)")
+//                print("External Code Error: \(tradeRecord.metaData.externalCodeError)")
+//                print("Exit Info: \(tradeRecord.metaData.exitInfo)")
+//                print("Time of Response: \(tradeRecord.metaData.timeNow)")
+//                print("Rate Limit: \(tradeRecord.metaData.rateLimit)")
+//                print("Rate Limit Status: \(tradeRecord.metaData.rateLimitStatus)")
+//                print("Rate Limit Reset Time: \(tradeRecord.metaData.rateLimitResetTime)")
+//
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
 //        services.fetchBybitOrderBook(symbol: .XRP) { result in
 //            switch result {
 //                case let .success(result):
@@ -221,19 +242,6 @@ class ViewController: UIViewController {
 //                print(error)
 //            }
 //        }
-        
-//        services.fetchBybitPosition { result in
-//            switch result {
-//            case let .success(result):
-//                self.position = result
-//                print(self.position)
-//
-//            case let .failure(error):
-//                print(error)
-//            }
-//        }
-        
-
 //        services.fetchBybitPreviousFunding(symbol: .BTC) { result in
 //            switch result {
 //            case let .success(result):
