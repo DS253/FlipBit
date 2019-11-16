@@ -10,6 +10,35 @@ import Foundation
 import NetQuilt
 
 public extension BitService {
+    struct BybitPreviousFundingRate {
+        
+        /// Details of the previous funding rate.
+        let rateData: BitService.BybitPreviousFundingRateData
+        
+        /// Server data about the response.
+        let metaData: BitService.BybitResponseMetaData
+    }
+}
+
+extension BitService.BybitPreviousFundingRate: Model {
+    /// List of top level coding keys.
+    private enum CodingKeys: String, CodingKey {
+        case result
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.metaData = try BitService.BybitResponseMetaData(from: decoder)
+        self.rateData = try values.decode(BitService.BybitPreviousFundingRateData.self, forKey: .result)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(rateData, forKey: .result)
+    }
+}
+
+public extension BitService {
     struct BybitPreviousFundingRateData {
         
         /// The symbol of the order in which the fee occurred.
@@ -18,7 +47,7 @@ public extension BitService {
         /// The funding rate. When the funding rate is positive, longs pay shorts. When it is negative, shorts pay longs.
         let fundingRate: String
         
-        /// The date of the funding rate generation
+        /// The date of the funding rate generation.
         let fundingRateDate: Int
     }
 }
@@ -40,52 +69,8 @@ extension BitService.BybitPreviousFundingRateData: Model {
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
         try container.encode(symbol, forKey: .symbol)
         try container.encode(fundingRate, forKey: .fundingRate)
         try container.encode(fundingRateDate, forKey: .fundingRateDate)
-    }
-}
-
-public extension BitService {
-    struct BybitPreviousFundingRate {
-        
-        let returnCode: Int
-        let response: BybitPreviousFundingRate.Response
-        let exitCode: String
-        let time: String
-        let rateData: BitService.BybitPreviousFundingRateData
-        
-        enum Response: String, Decodable {
-            case ok
-            case failure
-        }
-    }
-}
-
-extension BitService.BybitPreviousFundingRate: Model {
-    /// List of top level coding keys.
-    private enum CodingKeys: String, CodingKey {
-        case exit = "ext_code"
-        case info = "ext_info"
-        case response = "ret_msg"
-        case returnCode = "ret_code"
-        case result
-        case time = "time_now"
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        
-        self.returnCode = try values.decode(Int.self, forKey: .returnCode)
-        self.exitCode = try values.decode(String.self, forKey: .exit)
-        self.time = try values.decode(String.self, forKey: .time)
-        self.response = try values.decode(Response.self, forKey: .response)
-        self.rateData = try values.decode(BitService.BybitPreviousFundingRateData.self, forKey: .result)
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(rateData, forKey: .result)
     }
 }
