@@ -27,7 +27,7 @@ class Services {
     typealias BitServicePreviousFundingLookupCompletion = (Result<BitService.BybitPreviousFundingFee, BitService.Error>) -> Void
     typealias BitServicePreviousFundingRateLookupCompletion = (Result<BitService.BybitPreviousFundingRate, BitService.Error>) -> Void
     typealias BitServiceServerTimeLookupCompletion = (Result<BitService.BybitServerTime, BitService.Error>) -> Void
-    typealias BitServiceTickersLookupCompletion = (Result<BitService.BybitTickers, BitService.Error>) -> Void
+    typealias BitServiceTickersLookupCompletion = (Result<BitService.BybitTickerList, BitService.Error>) -> Void
     typealias BitServiceTradeRecordLookupCompletion = (Result<BitService.BybitTradeRecords, BitService.Error>) -> Void
     typealias BitServiceWalletRecordLookupCompletion = (Result<BitService.BybitWalletRecords, BitService.Error>) -> Void
     typealias BitServiceWithdrawRecordLookupCompletion = (Result<BitService.BybitWithdrawalRecords, BitService.Error>) -> Void
@@ -101,7 +101,7 @@ class Services {
     
 class ViewController: UIViewController {
 
-    var positions: BitService.BybitPositionList?
+    var tickers: BitService.BybitTickerList?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -113,27 +113,50 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        services.fetchBybitPosition { result in
+        
+        services.fetchBybitTickers(symbol: .BTC) { result in
             switch result {
             case let .success(result):
-                self.positions = result
+                self.tickers = result
+                
                 guard
-                    let positions = self.positions
+                    let tickers = self.tickers
                 else { return }
-                print(positions.positions)
-                print("Return Code: \(positions.metaData.returnCode)")
-                print("Return Message: \(positions.metaData.returnMessage)")
-                print("External Code Error: \(positions.metaData.externalCodeError)")
-                print("Exit Info: \(positions.metaData.exitInfo)")
-                print("Time of Response: \(positions.metaData.timeNow)")
-                print("Rate Limit: \(positions.metaData.rateLimit)")
-                print("Rate Limit Status: \(positions.metaData.rateLimitStatus)")
-                print("Rate Limit Reset Time: \(positions.metaData.rateLimitResetTime)")
+                print(tickers.tickers)
+                print("Return Code: \(tickers.metaData.returnCode)")
+                print("Return Message: \(tickers.metaData.returnMessage)")
+                print("External Code Error: \(tickers.metaData.externalCodeError)")
+                print("Exit Info: \(tickers.metaData.exitInfo)")
+                print("Time of Response: \(tickers.metaData.timeNow)")
+                print("Rate Limit: \(tickers.metaData.rateLimit)")
+                print("Rate Limit Status: \(tickers.metaData.rateLimitStatus)")
+                print("Rate Limit Reset Time: \(tickers.metaData.rateLimitResetTime)")
 
             case let .failure(error):
                 print(error)
             }
         }
+//        services.fetchBybitPosition { result in
+//            switch result {
+//            case let .success(result):
+//                self.positions = result
+//                guard
+//                    let positions = self.positions
+//                else { return }
+//                print(positions.positions)
+//                print("Return Code: \(positions.metaData.returnCode)")
+//                print("Return Message: \(positions.metaData.returnMessage)")
+//                print("External Code Error: \(positions.metaData.externalCodeError)")
+//                print("Exit Info: \(positions.metaData.exitInfo)")
+//                print("Time of Response: \(positions.metaData.timeNow)")
+//                print("Rate Limit: \(positions.metaData.rateLimit)")
+//                print("Rate Limit Status: \(positions.metaData.rateLimitStatus)")
+//                print("Rate Limit Reset Time: \(positions.metaData.rateLimitResetTime)")
+//
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
 //        services.fetchBybitTradeRecords(symbol: .BTC, pageNumber: 1) { result in
 //            switch result {
 //            case let .success(result):
@@ -257,17 +280,6 @@ class ViewController: UIViewController {
 //            case let .success(result):
 //                self.funding = result
 //                print(self.funding)
-//
-//            case let .failure(error):
-//                print(error)
-//            }
-//        }
-        
-//        services.fetchBybitTickers(symbol: .BTC) { result in
-//            switch result {
-//            case let .success(result):
-//                self.tickers = result
-//                print(self.tickers)
 //
 //            case let .failure(error):
 //                print(error)

@@ -9,7 +9,7 @@
 import Foundation
 import NetQuilt
 
-extension BitService.BybitTickers {
+extension BitService.BybitTickerList {
     
     struct Endpoint: Requestable {
         
