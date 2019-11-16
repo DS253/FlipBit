@@ -101,7 +101,7 @@ class Services {
     
 class ViewController: UIViewController {
 
-    var withdrawRecords: BitService.BybitWithdrawalRecords?
+    var orderBook: BitService.BybitOrderbook?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -113,24 +113,43 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        services.fetchBybitWithdrawRecords(currency: .BTC, pageNumber: 1) { result in
+        
+        services.fetchBybitOrderBook(symbol: .XRP) { result in
             switch result {
-            case let .success(result):
-                self.withdrawRecords = result
-                guard
-                    let records = self.withdrawRecords
-                    else { return }
-                print(records)
-                print(records.metaData.returnCode)
-                print(records.metaData.returnMessage)
-                print(records.metaData.externalCodeError)
-                print(records.metaData.exitInfo)
-                print(records.metaData.timeNow)
-
-            case let .failure(error):
-                print(error)
+                case let .success(result):
+                    self.orderBook = result
+                    guard
+                        let orderBook = self.orderBook
+                        else { return }
+                    print(orderBook.book)
+                    print(orderBook.metaData.returnCode)
+                    print(orderBook.metaData.returnMessage)
+                    print(orderBook.metaData.externalCodeError)
+                    print(orderBook.metaData.exitInfo)
+                    print(orderBook.metaData.timeNow)
+                case let .failure(error):
+                    print(error)
             }
         }
+        
+//        services.fetchBybitWithdrawRecords(currency: .BTC, pageNumber: 1) { result in
+//            switch result {
+//            case let .success(result):
+//                self.withdrawRecords = result
+//                guard
+//                    let records = self.withdrawRecords
+//                    else { return }
+//                print(records)
+//                print(records.metaData.returnCode)
+//                print(records.metaData.returnMessage)
+//                print(records.metaData.externalCodeError)
+//                print(records.metaData.exitInfo)
+//                print(records.metaData.timeNow)
+//
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
 //          services.fetchBybitWalletRecords(currency: .BTC, pageNumber: 1) { result in
 //              switch result {
 //              case let .success(result):
@@ -259,15 +278,7 @@ class ViewController: UIViewController {
 //                print(error)
 //            }
 //        }
-//        services.fetchBybitOrderBook(symbol: .XRP) { result in
-//            switch result {
-//                case let .success(result):
-//                    self.orderbook = result
-//                    print(self.orderbook)
-//                case let .failure(error):
-//                    print(error)
-//            }
-//        }
+
     }
 }
 

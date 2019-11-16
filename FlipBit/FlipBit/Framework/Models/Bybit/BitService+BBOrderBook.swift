@@ -10,6 +10,36 @@ import Foundation
 import NetQuilt
 
 public extension BitService {
+    
+    struct BybitOrderbook {
+        
+        /// An array of BookItems.
+        let book: [BitService.BybitBookItem]
+        
+        /// Server data about the response.
+        let metaData: BitService.BybitResponseMetaData
+    }
+}
+
+extension BitService.BybitOrderbook: Model {
+    /// List of top level coding keys.
+    private enum CodingKeys: String, CodingKey {
+        case result
+    }
+
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.metaData = try BitService.BybitResponseMetaData(from: decoder)
+        self.book = try values.decode([BitService.BybitBookItem].self, forKey: .result)
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(book, forKey: .result)
+    }
+}
+
+public extension BitService {
     /// A type that represents a single order of the Bybit OrderBook.
     struct BybitBookItem {
         
@@ -51,50 +81,5 @@ extension BitService.BybitBookItem: Model {
         try container.encode(price, forKey: .price)
         try container.encode(size, forKey: .size)
         try container.encode(side, forKey: .side)
-    }
-}
-
-public extension BitService {
-    
-    struct BybitOrderbook {
-        let returnCode: Int
-        let response: BybitOrderbook.Response
-        let exitCode: String
-        let exitInfo: String
-        let time: String
-        let book: [BitService.BybitBookItem]
-
-        enum Response: String, Decodable {
-            case OK
-            case failure
-        }
-    }
-}
-
-extension BitService.BybitOrderbook: Model {
-    /// List of top level coding keys.
-    private enum CodingKeys: String, CodingKey {
-        case exit = "ext_code"
-        case info = "ext_info"
-        case response = "ret_msg"
-        case returnCode = "ret_code"
-        case result
-        case time = "time_now"
-    }
-
-    public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        self.returnCode = try values.decode(Int.self, forKey: .returnCode)
-        self.exitCode = try values.decode(String.self, forKey: .exit)
-        self.exitInfo = try values.decode(String.self, forKey: .info)
-        self.time = try values.decode(String.self, forKey: .time)
-        self.response = try values.decode(Response.self, forKey: .response)
-
-        self.book = try values.decode([BitService.BybitBookItem].self, forKey: .result)
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(book, forKey: .result)
     }
 }
