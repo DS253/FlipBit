@@ -26,6 +26,15 @@ public extension BitService {
         
         /// The time of the response.
         let timeNow: String?
+        
+        /// The limit on number of calls to Bybit's API.
+        let rateLimit: Int?
+        
+        /// The remaining number of calls before reaching the rate limit.
+        let rateLimitStatus: Int?
+        
+        /// The amount of time before the rate limit is reset.
+        let rateLimitResetTime: Int?
     }
 }
 
@@ -37,6 +46,9 @@ extension BitService.BybitResponseMetaData: Model {
         case message = "ret_msg"
         case returnCode = "ret_code"
         case time = "time_now"
+        case rateLimit = "rate_limit"
+        case rateLimitStatus = "rate_limit_status"
+        case rateLimitResetTime = "rate_limit_reset_ms"
     }
     
     public init(from decoder: Decoder) throws {
@@ -47,6 +59,9 @@ extension BitService.BybitResponseMetaData: Model {
         self.externalCodeError = try values.decodeIfPresent(String.self, forKey: .externalError)
         self.exitInfo = try values.decodeIfPresent(String.self, forKey: .info)
         self.timeNow = try values.decodeIfPresent(String.self, forKey: .time)
+        self.rateLimit = try values.decodeIfPresent(Int.self, forKey: .rateLimit)
+        self.rateLimitStatus = try values.decodeIfPresent(Int.self, forKey: .rateLimitStatus)
+        self.rateLimitResetTime = try values.decodeIfPresent(Int.self, forKey: .rateLimitResetTime)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -57,6 +72,9 @@ extension BitService.BybitResponseMetaData: Model {
         try container.encodeIfPresent(externalCodeError, forKey: .externalError)
         try container.encodeIfPresent(exitInfo, forKey: .info)
         try container.encodeIfPresent(timeNow, forKey: .time)
+        try container.encodeIfPresent(rateLimit, forKey: .rateLimit)
+        try container.encodeIfPresent(rateLimitStatus, forKey: .rateLimitStatus)
+        try container.encodeIfPresent(rateLimitResetTime, forKey: .rateLimitResetTime)
     }
     
     func success() -> Bool {
