@@ -102,6 +102,7 @@ class Services {
 class ViewController: UIViewController {
 
     var previousRate: BitService.BybitPreviousFundingRate?
+    var apiKey: BitService.BybitAPIKeyInfo?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -114,16 +115,40 @@ class ViewController: UIViewController {
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
   
-        services.fetchBybitPreviousFundingRate(symbol: .BTC) { result in
+        services.fetchBybitAPIKeyInfo { result in
             switch result {
             case let .success(result):
-                self.previousRate = result
-                print(self.previousRate)
-                
-            case let .failure(error):
-                print(error)
+                self.apiKey = result
+                guard
+                    let key = self.apiKey
+                    else { return }
+                print(key.apiKey)
+                print(key.userID)
+                print(key.ipAddresses)
+                print(key.note)
+                print(key.permissions)
+                print(key.timeCreated)
+                print(key.isReadOnly)
+                print(key.metaData.returnCode)
+                print(key.metaData.returnMessage)
+                print(key.metaData.externalCodeError)
+                print(key.metaData.exitInfo)
+                print(key.metaData.timeNow)
+                case let .failure(error):
+                    print(error)
             }
         }
+        
+//        services.fetchBybitPreviousFundingRate(symbol: .BTC) { result in
+//            switch result {
+//            case let .success(result):
+//                self.previousRate = result
+//                print(self.previousRate)
+//
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
         
 //        services.fetchBybitPosition { result in
 //            switch result {

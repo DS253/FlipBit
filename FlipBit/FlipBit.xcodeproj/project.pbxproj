@@ -59,6 +59,7 @@
 		06490F83237D04D100C37ED4 /* BBPosition+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */; };
 		06490F85237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */; };
 		06490F87237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F86237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift */; };
+		064EA948238091CE00570CEE /* BitService+BBResponseMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064EA947238091CE00570CEE /* BitService+BBResponseMetaData.swift */; };
 		455A1F3B237E2825005969B9 /* BitService+BBOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */; };
 /* End PBXBuildFile section */
 
@@ -151,6 +152,7 @@
 		06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBPosition+Endpoint.swift"; sourceTree = "<group>"; };
 		06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBPreviousFundingRate.swift"; sourceTree = "<group>"; };
 		06490F86237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBPreviousFundingRate+Endpoint.swift"; sourceTree = "<group>"; };
+		064EA947238091CE00570CEE /* BitService+BBResponseMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBResponseMetaData.swift"; sourceTree = "<group>"; };
 		455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBOrder.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -395,6 +397,7 @@
 				06470E182377C7C600419238 /* BitService+BBPredictedFunding.swift */,
 				06470E1A2377C7E600419238 /* BitService+BBPreviousFundingFee.swift */,
 				06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */,
+				064EA947238091CE00570CEE /* BitService+BBResponseMetaData.swift */,
 				06470E1C2377C80700419238 /* BitService+BBServerTime.swift */,
 				06470E1E2377C82100419238 /* BitService+BBTickers.swift */,
 				060D96F3237BBC480040598A /* BitService+BBTradeRecord.swift */,
@@ -616,6 +619,7 @@
 				06470E102377C69700419238 /* BitService+Error.swift in Sources */,
 				06470DF22377C28100419238 /* Bundle+Additions.swift in Sources */,
 				06470DF02377C24B00419238 /* Requestable+Additions.swift in Sources */,
+				064EA948238091CE00570CEE /* BitService+BBResponseMetaData.swift in Sources */,
 				06470E1D2377C80700419238 /* BitService+BBServerTime.swift in Sources */,
 				06470DF42377C29800419238 /* Date+Additions.swift in Sources */,
 				060D96EC237B95720040598A /* BitService+BBWalletFundRecord.swift in Sources */,

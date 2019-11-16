@@ -34,24 +34,15 @@ public extension BitService {
         /// The read only flag.
         let isReadOnly: Bool
         
-        let response: BybitAPIKeyInfo.Response
-
-        enum Response: String, Decodable {
-            case ok
-            case failure
-        }
+        /// Server data about the response.
+        let metaData: BitService.BybitResponseMetaData
     }
 }
 
 extension BitService.BybitAPIKeyInfo: Model {
     /// List of top level coding keys.
     private enum CodingKeys: String, CodingKey {
-        case exit = "ext_code"
-        case info = "ext_info"
-        case response = "ret_msg"
-        case returnCode = "ret_code"
         case result
-        case time = "time_now"
     }
     
     private enum ResultKeys: String, CodingKey {
@@ -66,7 +57,7 @@ extension BitService.BybitAPIKeyInfo: Model {
     
     public init(from decoder: Decoder) throws {
         let results = try decoder.container(keyedBy: CodingKeys.self)
-        self.response = try results.decode(Response.self, forKey: .response)
+        self.metaData = try BitService.BybitResponseMetaData(from: decoder)
 
         var array = try results.nestedUnkeyedContainer(forKey: .result)
         let data = try array.nestedContainer(keyedBy: ResultKeys.self)
