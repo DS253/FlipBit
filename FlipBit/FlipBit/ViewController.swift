@@ -101,7 +101,7 @@ class Services {
     
 class ViewController: UIViewController {
 
-    var tickers: BitService.BybitTickerList?
+    var time: BitService.BybitServerTime?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -113,29 +113,50 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        
-        services.fetchBybitTickers(symbol: .BTC) { result in
+        services.fetchBybitServerTime { result in
             switch result {
             case let .success(result):
-                self.tickers = result
-                
-                guard
-                    let tickers = self.tickers
-                else { return }
-                print(tickers.tickers)
-                print("Return Code: \(tickers.metaData.returnCode)")
-                print("Return Message: \(tickers.metaData.returnMessage)")
-                print("External Code Error: \(tickers.metaData.externalCodeError)")
-                print("Exit Info: \(tickers.metaData.exitInfo)")
-                print("Time of Response: \(tickers.metaData.timeNow)")
-                print("Rate Limit: \(tickers.metaData.rateLimit)")
-                print("Rate Limit Status: \(tickers.metaData.rateLimitStatus)")
-                print("Rate Limit Reset Time: \(tickers.metaData.rateLimitResetTime)")
+            self.time = result
+
+            guard
+                let time = self.time
+            else { return }
+            print(time.time)
+            print("Return Code: \(time.metaData.returnCode)")
+            print("Return Message: \(time.metaData.returnMessage)")
+            print("External Code Error: \(time.metaData.externalCodeError)")
+            print("Exit Info: \(time.metaData.exitInfo)")
+            print("Time of Response: \(time.metaData.timeNow)")
+            print("Rate Limit: \(time.metaData.rateLimit)")
+            print("Rate Limit Status: \(time.metaData.rateLimitStatus)")
+            print("Rate Limit Reset Time: \(time.metaData.rateLimitResetTime)")
 
             case let .failure(error):
                 print(error)
             }
         }
+//        services.fetchBybitTickers(symbol: .BTC) { result in
+//            switch result {
+//            case let .success(result):
+//                self.tickers = result
+//
+//                guard
+//                    let tickers = self.tickers
+//                else { return }
+//                print(tickers.tickers)
+//                print("Return Code: \(tickers.metaData.returnCode)")
+//                print("Return Message: \(tickers.metaData.returnMessage)")
+//                print("External Code Error: \(tickers.metaData.externalCodeError)")
+//                print("Exit Info: \(tickers.metaData.exitInfo)")
+//                print("Time of Response: \(tickers.metaData.timeNow)")
+//                print("Rate Limit: \(tickers.metaData.rateLimit)")
+//                print("Rate Limit Status: \(tickers.metaData.rateLimitStatus)")
+//                print("Rate Limit Reset Time: \(tickers.metaData.rateLimitResetTime)")
+//
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
 //        services.fetchBybitPosition { result in
 //            switch result {
 //            case let .success(result):
@@ -285,19 +306,7 @@ class ViewController: UIViewController {
 //                print(error)
 //            }
 //        }
-//        services.fetchBybitServerTime { result in
-//            switch result {
-//            case let .success(result):
-//                self.time = result
-//                print(self.time)
-//                guard let op = self.time else { return }
-//                let seconds = Double(op.time)
-//                print(seconds?.convertSecondsToDate())
-//
-//            case let .failure(error):
-//                print(error)
-//            }
-//        }
+
 
     }
 }
