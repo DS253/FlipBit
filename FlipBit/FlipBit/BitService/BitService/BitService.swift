@@ -181,4 +181,9 @@ public extension BitService {
         let endpoint = BybitCancelledOrder.Endpoint.init(orderID: orderID, orderLinkID: orderLinkID, timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitCancelledOrder.self, on: completion)
     }
+    
+    func postBybitUpdateActiveOrder(orderID: String, symbol: BitService.BybitSymbol, quantity: Int? = nil, price: Double? = nil, completion: @escaping (Result<BybitActiveOrderUpdate, BitService.Error>) -> Void) {
+        let endpoint = BybitActiveOrderUpdate.Endpoint.init(orderID: orderID, symbol: symbol, quantity: quantity, price: price, timeStamp: Date().bybitTimestamp())
+        service.load(endpoint, expecting: BybitActiveOrderUpdate.self, on: completion)
+    }
 }

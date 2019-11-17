@@ -25,6 +25,7 @@ class Services {
     typealias BitServiceOrderbookLookupCompletion = (Result<BitService.BybitOrderbook, BitService.Error>) -> Void
     typealias BitServiceOrderCreateCompletion = (Result<BitService.BybitOrderResponse, BitService.Error>) -> Void
     typealias BitServiceActiveOrderCancelCompletion = (Result<BitService.BybitCancelledOrder, BitService.Error>) -> Void
+    typealias BitServiceActiveOrderUpdateCompletion = (Result<BitService.BybitActiveOrderUpdate, BitService.Error>) -> Void
     typealias BitServicePositionLookupCompletion = (Result<BitService.BybitPositionList, BitService.Error>) -> Void
     typealias BitServicePredictedFundingLookupCompletion = (Result<BitService.BybitPredictedFunding, BitService.Error>) -> Void
     typealias BitServicePreviousFundingLookupCompletion = (Result<BitService.BybitPreviousFundingFee, BitService.Error>) -> Void
@@ -98,6 +99,10 @@ class Services {
         bitService.postBybitCancelActiveOrder(orderID: orderID, orderLinkID: orderLinkID, completion: completion)
     }
     
+    func updateBybitActiveOrder(orderID: String, symbol: BitService.BybitSymbol, quantity: Int? = nil, price: Double? = nil, completion: @escaping BitServiceActiveOrderUpdateCompletion) {
+        bitService.postBybitUpdateActiveOrder(orderID: orderID, symbol: symbol, quantity: quantity, price: price, completion: completion)
+    }
+    
     private func load<Endpoint: Requestable, Expecting: Model>(endpoint: Endpoint, completion: ResponseServiceCompletion<Expecting>? = nil) {
 
         api.load(endpoint).execute(expecting: Expecting.self) { [weak self] result in
@@ -116,6 +121,7 @@ class Services {
     
 class ViewController: UIViewController {
 
+    var updateOrderResponse: BitService.BybitActiveOrderUpdate?
     var cancelOrderResponse: BitService.BybitCancelledOrder?
     var previousFunding: BitService.BybitPreviousFundingFee?
     var orderResponse: BitService.BybitOrderResponse?
@@ -131,21 +137,33 @@ class ViewController: UIViewController {
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
         
-        services.cancelBybitActiveOrder(orderLinkID: "lsdflsfdlsdf") { result in
+        services.updateBybitActiveOrder(orderID: "35ef0ac0-7014-4050-ad1a-c93276d0f7cd", symbol: .BTC, quantity: 9000, price: 500) { result in
             switch result {
             case let .success(result):
-                self.cancelOrderResponse = result
-                guard let order = self.cancelOrderResponse else { return }
-                print(order.details)
-                print(order.lastExecutionPrice)
-                print(order.lastExecutionTime)
-                print(order.totalExecutionFee)
-                print(order.totalExecutionValue)
+                self.updateOrderResponse = result
+                guard let order = self.updateOrderResponse else { return }
+                print(order.metaData)
             case let .failure(error):
                 print(error)
             }
 
         }
+        
+//        services.cancelBybitActiveOrder(orderLinkID: "lsdflsfdlsdf") { result in
+//            switch result {
+//            case let .success(result):
+//                self.cancelOrderResponse = result
+//                guard let order = self.cancelOrderResponse else { return }
+//                print(order.details)
+//                print(order.lastExecutionPrice)
+//                print(order.lastExecutionTime)
+//                print(order.totalExecutionFee)
+//                print(order.totalExecutionValue)
+//            case let .failure(error):
+//                print(error)
+//            }
+//
+//        }
 //        services.fetchBybitActiveOrderList(symbol: .BTC, pageNumber: 1) { result in
 //            switch result {
 //            case let .success(result):

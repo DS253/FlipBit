@@ -1,8 +1,8 @@
 //
-//  BBOrderCreate+Endpoint.swift
+//  BBActiveOrderCreate+Endpoint.swift
 //  FlipBit
 //
-//  Created by Daniel Stewart on 11/14/19.
+//  Created by Daniel Stewart on 11/17/19.
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
