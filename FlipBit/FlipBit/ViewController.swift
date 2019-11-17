@@ -22,6 +22,7 @@ class Services {
     typealias ResponseServiceCompletion<T: Model> = (T?, Error?) -> Void
     typealias BitServiceAPILookupCompletion = (Result<BitService.BybitAPIKeyInfo, BitService.Error>) -> Void
     typealias BitServiceOrderbookLookupCompletion = (Result<BitService.BybitOrderbook, BitService.Error>) -> Void
+    typealias BitServiceOrderCreateCompletion = (Result<BitService.BybitOrderResponse, BitService.Error>) -> Void
     typealias BitServicePositionLookupCompletion = (Result<BitService.BybitPositionList, BitService.Error>) -> Void
     typealias BitServicePredictedFundingLookupCompletion = (Result<BitService.BybitPredictedFunding, BitService.Error>) -> Void
     typealias BitServicePreviousFundingLookupCompletion = (Result<BitService.BybitPreviousFundingFee, BitService.Error>) -> Void
@@ -83,6 +84,10 @@ class Services {
         bitService.lookupBybitWithdrawRecord(currency: currency, pageNumber: pageNumber, completion: completion)
     }
     
+    func createBybitOrder(side: BitService.BybitOrderSide, symbol: BitService.BybitSymbol, orderType: BitService.BybitOrderType, quantity: Int, timeInForce: BitService.BybitOrderTimeInForce, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkID: String? = nil, completion: @escaping BitServiceOrderCreateCompletion) {
+        bitService.postBybitCreateOrder(side: side, symbol: symbol, orderType: orderType, quantity: quantity, timeInForce: timeInForce, price: price, takeProfit: takeProfit, stopLoss: stopLoss, reduceOnly: reduceOnly, closeOnTrigger: closeOnTrigger, orderLinkID: orderLinkID, completion: completion)
+    }
+    
     private func load<Endpoint: Requestable, Expecting: Model>(endpoint: Endpoint, completion: ResponseServiceCompletion<Expecting>? = nil) {
 
         api.load(endpoint).execute(expecting: Expecting.self) { [weak self] result in
@@ -102,6 +107,7 @@ class Services {
 class ViewController: UIViewController {
 
     var previousFunding: BitService.BybitPreviousFundingFee?
+    var orderResponse: BitService.BybitOrderResponse?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -110,31 +116,41 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        services.fetchBybitPreviousFunding(symbol: .BTC) { result in
+        services.createBybitOrder(side: .Buy, symbol: .BTC, orderType: .Limit, quantity: 10000, timeInForce: .GoodTillCancel, price: 7000) { result in
             switch result {
             case let .success(result):
-                self.previousFunding = result
-
-                guard
-                    let previous = self.previousFunding
-                else { return }
-                print(previous.feeData)
-                print("Return Code: \(previous.metaData.returnCode)")
-                print("Return Message: \(previous.metaData.returnMessage)")
-                print("External Code Error: \(previous.metaData.externalCodeError)")
-                print("Exit Info: \(previous.metaData.exitInfo)")
-                print("Time of Response: \(previous.metaData.timeNow)")
-                print("Rate Limit: \(previous.metaData.rateLimit)")
-                print("Rate Limit Status: \(previous.metaData.rateLimitStatus)")
-                print("Rate Limit Reset Time: \(previous.metaData.rateLimitResetTime)")
-
+                self.orderResponse = result
+                guard let order = self.orderResponse else { return }
+                print("UserID: \(order.orderData?.userID)")
             case let .failure(error):
                 print(error)
             }
+            
         }
+//        services.fetchBybitPreviousFunding(symbol: .BTC) { result in
+//            switch result {
+//            case let .success(result):
+//                self.previousFunding = result
+//
+//                guard
+//                    let previous = self.previousFunding
+//                else { return }
+//                print(previous.feeData)
+//                print("Return Code: \(previous.metaData.returnCode)")
+//                print("Return Message: \(previous.metaData.returnMessage)")
+//                print("External Code Error: \(previous.metaData.externalCodeError)")
+//                print("Exit Info: \(previous.metaData.exitInfo)")
+//                print("Time of Response: \(previous.metaData.timeNow)")
+//                print("Rate Limit: \(previous.metaData.rateLimit)")
+//                print("Rate Limit Status: \(previous.metaData.rateLimitStatus)")
+//                print("Rate Limit Reset Time: \(previous.metaData.rateLimitResetTime)")
+//
+//            case let .failure(error):
+//                print(error)
+//            }
+//        }
 //        services.fetchBybitPredictedFunding(symbol: .BTC) { result in
 //            switch result {
 //            case let .success(result):

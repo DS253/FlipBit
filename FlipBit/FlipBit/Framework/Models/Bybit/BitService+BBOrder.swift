@@ -10,6 +10,35 @@ import Foundation
 import NetQuilt
 
 public extension BitService {
+    struct BybitOrderResponse {
+
+        /// Details of the of the order.
+        let orderData: BitService.BybitOrder?
+        
+        /// Server data about the response.
+        let metaData: BitService.BybitResponseMetaData
+    }
+}
+
+extension BitService.BybitOrderResponse: Model {
+    /// List of top level coding keys.
+    private enum CodingKeys: String, CodingKey {
+        case result
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        self.metaData = try BitService.BybitResponseMetaData(from: decoder)
+        self.orderData = try values.decodeIfPresent(BitService.BybitOrder.self, forKey: .result)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(orderData, forKey: .result)
+    }
+}
+
+public extension BitService {
     /// A type that represents the API Key information for the Bybit account.
     struct BybitOrder {
 
@@ -41,16 +70,16 @@ public extension BitService {
         let leaveQuantity: Int
         
         /// The remaining order value.
-        let leaveValues: String
+        let leaveValues: Double
         
         /// The Accumulated execution quantity.
-        let executionQuantity: Int
+        let executionQuantity: Int?
         
         /// The reason for rejection.
-        let rejectReason: String
+        let rejectReason: String?
         
         /// The customized order ID, maximum length 36 characters.
-        let orderLinkID: String
+        let orderLinkID: String?
         
         /// The date the position was created.
         let dateCreated: String
@@ -66,7 +95,7 @@ public extension BitService {
 extension BitService.BybitOrder: Model {
     /// List of top level coding keys.
     private enum CodingKeys: String, CodingKey {
-        case userID = "user_ID"
+        case userID = "user_id"
         case symbol
         case side
         case orderType = "order_type"
@@ -95,10 +124,10 @@ extension BitService.BybitOrder: Model {
         self.timeInForce = try results.decode(BitService.BybitOrderTimeInForce.self, forKey: .timeInForce)
         self.orderStatus = try results.decode(BitService.BybitOrderStatus.self, forKey: .orderStatus)
         self.leaveQuantity = try results.decode(Int.self, forKey: .leaveQuantity)
-        self.leaveValues = try results.decode(String.self, forKey: .leaveValues)
-        self.executionQuantity = try results.decode(Int.self, forKey: .executionQuantity)
-        self.rejectReason = try results.decode(String.self, forKey: .rejectReason)
-        self.orderLinkID = try results.decode(String.self, forKey: .orderLinkID)
+        self.leaveValues = try results.decode(Double.self, forKey: .leaveValues)
+        self.executionQuantity = try results.decodeIfPresent(Int.self, forKey: .executionQuantity)
+        self.rejectReason = try results.decodeIfPresent(String.self, forKey: .rejectReason)
+        self.orderLinkID = try results.decodeIfPresent(String.self, forKey: .orderLinkID)
         self.dateCreated = try results.decode(String.self, forKey: .dateCreated)
         self.dateUpdated = try results.decode(String.self, forKey: .dateUpdated)
         self.orderID = try results.decode(String.self, forKey: .orderID)
@@ -116,55 +145,11 @@ extension BitService.BybitOrder: Model {
         try container.encode(orderStatus, forKey: .orderStatus)
         try container.encode(leaveQuantity, forKey: .leaveQuantity)
         try container.encode(leaveValues, forKey: .leaveValues)
-        try container.encode(executionQuantity, forKey: .executionQuantity)
-        try container.encode(rejectReason, forKey: .rejectReason)
-        try container.encode(orderLinkID, forKey: .orderLinkID)
+        try container.encodeIfPresent(executionQuantity, forKey: .executionQuantity)
+        try container.encodeIfPresent(rejectReason, forKey: .rejectReason)
+        try container.encodeIfPresent(orderLinkID, forKey: .orderLinkID)
         try container.encode(dateCreated, forKey: .dateCreated)
         try container.encode(dateUpdated, forKey: .dateUpdated)
         try container.encode(orderID, forKey: .orderID)
-    }
-}
-
-public extension BitService {
-    struct BybitOrderResponse {
-        let returnCode: Int
-        let response: BybitOrderResponse.Response
-        let exitCode: String
-        let exitInfo: String?
-        let time: String
-        let orderData: BitService.BybitOrder
-        
-        enum Response: String, Decodable {
-            case OK
-            case failure
-        }
-    }
-}
-
-extension BitService.BybitOrderResponse: Model {
-    /// List of top level coding keys.
-    private enum CodingKeys: String, CodingKey {
-        case exit = "ext_code"
-        case info = "ext_info"
-        case response = "ret_msg"
-        case returnCode = "ret_code"
-        case result
-        case time = "time_now"
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        self.returnCode = try values.decode(Int.self, forKey: .returnCode)
-        self.exitCode = try values.decode(String.self, forKey: .exit)
-        self.exitInfo = try values.decodeIfPresent(String.self, forKey: .info)
-        self.time = try values.decode(String.self, forKey: .time)
-        self.response = try values.decode(Response.self, forKey: .response)
-    
-        self.orderData = try values.decode(BitService.BybitOrder.self, forKey: .result)
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(orderData, forKey: .result)
     }
 }

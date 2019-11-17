@@ -161,4 +161,13 @@ public extension BitService {
         let endpoint = BybitWithdrawalRecords.Endpoint.init(currency: currency, pageNumber: pageNumber, timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitWithdrawalRecords.self, on: completion)
     }
+    
+    func postBybitCreateOrder(side: BitService.BybitOrderSide, symbol: BitService.BybitSymbol, orderType: BitService.BybitOrderType, quantity: Int,
+                              timeInForce: BitService.BybitOrderTimeInForce, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil,
+                              reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkID: String? = nil, completion: @escaping (Result<BybitOrderResponse, BitService.Error>) -> Void) {
+        let endpoint = BybitOrder.Endpoint.init(side: side, symbol: symbol, orderType: orderType, quantity: quantity, timeInForce: timeInForce,
+                                                price: price, takeProfit: takeProfit, stopLoss: stopLoss, reduceOnly: reduceOnly, closeOnTrigger: closeOnTrigger,
+                                                orderLinkID: orderLinkID, timeStamp: Date().bybitTimestamp())
+        service.load(endpoint, expecting: BybitOrderResponse.self, on: completion)
+    }
 }

@@ -59,9 +59,14 @@ extension BitService.BybitResponseMetaData: Model {
         self.externalCodeError = try values.decodeIfPresent(String.self, forKey: .externalError)
         self.exitInfo = try values.decodeIfPresent(String.self, forKey: .info)
         self.timeNow = try values.decodeIfPresent(String.self, forKey: .time)
-        self.rateLimit = try values.decodeIfPresent(Int.self, forKey: .rateLimit)
         self.rateLimitStatus = try values.decodeIfPresent(Int.self, forKey: .rateLimitStatus)
         self.rateLimitResetTime = try values.decodeIfPresent(Int.self, forKey: .rateLimitResetTime)
+        
+        if let rate = try? values.decodeIfPresent(String.self, forKey: .rateLimit) {
+            self.rateLimit = Int(rate)
+        } else {
+            self.rateLimit = try values.decodeIfPresent(Int.self, forKey: .rateLimit)
+        }
     }
     
     public func encode(to encoder: Encoder) throws {
