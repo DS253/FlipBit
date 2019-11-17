@@ -36,6 +36,7 @@ extension BitService.BybitTickerList: Model {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(tickers, forKey: .result)
+        try metaData.encode(to: encoder)
     }
 }
 
