@@ -39,7 +39,7 @@ extension BitService.BybitOrderResponse: Model {
 }
 
 public extension BitService {
-    /// A type that represents the API Key information for the Bybit account.
+    /// A type that represents the details of a Bybit order.
     struct BybitOrder {
 
         /// The user's ID.
@@ -70,7 +70,7 @@ public extension BitService {
         let leaveQuantity: Int
         
         /// The remaining order value.
-        let leaveValues: Double
+        let leaveValues: Double?
         
         /// The Accumulated execution quantity.
         let executionQuantity: Int?
@@ -124,7 +124,7 @@ extension BitService.BybitOrder: Model {
         self.timeInForce = try results.decode(BitService.BybitOrderTimeInForce.self, forKey: .timeInForce)
         self.orderStatus = try results.decode(BitService.BybitOrderStatus.self, forKey: .orderStatus)
         self.leaveQuantity = try results.decode(Int.self, forKey: .leaveQuantity)
-        self.leaveValues = try results.decode(Double.self, forKey: .leaveValues)
+        self.leaveValues = try results.decodeIfPresent(Double.self, forKey: .leaveValues)
         self.executionQuantity = try results.decodeIfPresent(Int.self, forKey: .executionQuantity)
         self.rejectReason = try results.decodeIfPresent(String.self, forKey: .rejectReason)
         self.orderLinkID = try results.decodeIfPresent(String.self, forKey: .orderLinkID)
@@ -144,7 +144,7 @@ extension BitService.BybitOrder: Model {
         try container.encode(timeInForce, forKey: .timeInForce)
         try container.encode(orderStatus, forKey: .orderStatus)
         try container.encode(leaveQuantity, forKey: .leaveQuantity)
-        try container.encode(leaveValues, forKey: .leaveValues)
+        try container.encodeIfPresent(leaveValues, forKey: .leaveValues)
         try container.encodeIfPresent(executionQuantity, forKey: .executionQuantity)
         try container.encodeIfPresent(rejectReason, forKey: .rejectReason)
         try container.encodeIfPresent(orderLinkID, forKey: .orderLinkID)

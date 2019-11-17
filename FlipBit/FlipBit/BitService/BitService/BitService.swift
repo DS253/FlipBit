@@ -76,6 +76,7 @@ public extension BitService {
         case Filled
         case Cancelled
         case Rejected
+        case NotActive
     }
     
     enum BybitOrderType: String, Codable {
@@ -110,6 +111,11 @@ public extension BitService {
     func lookupBybitAPIKeyInfo(completion: @escaping (Result<BybitAPIKeyInfo, BitService.Error>) -> Void) {
         let endpoint = BybitAPIKeyInfo.Endpoint(timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitAPIKeyInfo.self, on: completion)
+    }
+    
+    func lookupBybitActiveOrders(symbol: BitService.BybitSymbol, pageNumber: Int, orderStatus: BitService.BybitOrderStatus?, completion: @escaping (Result<BybitActiveOrderList, BitService.Error>) -> Void) {
+        let endpoint = BybitActiveOrderList.Endpoint(symbol: symbol, pageNumber: pageNumber, orderStatus: orderStatus, timeStamp: Date().bybitTimestamp())
+        service.load(endpoint, expecting: BybitActiveOrderList.self, on: completion)
     }
     
     func lookupBybitOrderBook(symbol: BybitSymbol, completion: @escaping (Result<BybitOrderbook, BitService.Error>) -> Void) {

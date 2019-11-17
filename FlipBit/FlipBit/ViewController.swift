@@ -21,6 +21,7 @@ class Services {
     typealias StandardServiceCompletion = (Error?) -> Void
     typealias ResponseServiceCompletion<T: Model> = (T?, Error?) -> Void
     typealias BitServiceAPILookupCompletion = (Result<BitService.BybitAPIKeyInfo, BitService.Error>) -> Void
+    typealias BitServiceActiveOrderLookupCompletion = (Result<BitService.BybitActiveOrderList, BitService.Error>) -> Void
     typealias BitServiceOrderbookLookupCompletion = (Result<BitService.BybitOrderbook, BitService.Error>) -> Void
     typealias BitServiceOrderCreateCompletion = (Result<BitService.BybitOrderResponse, BitService.Error>) -> Void
     typealias BitServicePositionLookupCompletion = (Result<BitService.BybitPositionList, BitService.Error>) -> Void
@@ -42,6 +43,10 @@ class Services {
     
     func fetchBybitAPIKeyInfo(completion: @escaping BitServiceAPILookupCompletion) {
         bitService.lookupBybitAPIKeyInfo(completion: completion)
+    }
+    
+    func fetchBybitActiveOrderList(symbol: BitService.BybitSymbol, pageNumber: Int, orderStatus: BitService.BybitOrderStatus? = nil, completion: @escaping BitServiceActiveOrderLookupCompletion) {
+        bitService.lookupBybitActiveOrders(symbol: symbol, pageNumber: pageNumber, orderStatus: orderStatus, completion: completion)
     }
     
     func fetchBybitOrderBook(symbol: BitService.BybitSymbol, completion: @escaping BitServiceOrderbookLookupCompletion) {
@@ -108,6 +113,7 @@ class ViewController: UIViewController {
 
     var previousFunding: BitService.BybitPreviousFundingFee?
     var orderResponse: BitService.BybitOrderResponse?
+    var orderList: BitService.BybitActiveOrderList?
     
     @IBOutlet weak var executeButton: UIButton!
     
@@ -118,17 +124,28 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        services.createBybitOrder(side: .Buy, symbol: .BTC, orderType: .Limit, quantity: 10000, timeInForce: .GoodTillCancel, price: 7000) { result in
+        services.fetchBybitActiveOrderList(symbol: .BTC, pageNumber: 1) { result in
             switch result {
             case let .success(result):
-                self.orderResponse = result
-                guard let order = self.orderResponse else { return }
-                print("UserID: \(order.orderData?.userID)")
+                self.orderList = result
+                guard let order = self.orderList else { return }
+                print(order.activeOrders)
             case let .failure(error):
                 print(error)
             }
             
         }
+//        services.createBybitOrder(side: .Buy, symbol: .BTC, orderType: .Limit, quantity: 10000, timeInForce: .GoodTillCancel, price: 7000) { result in
+//            switch result {
+//            case let .success(result):
+//                self.orderResponse = result
+//                guard let order = self.orderResponse else { return }
+//                print("UserID: \(order.orderData?.userID)")
+//            case let .failure(error):
+//                print(error)
+//            }
+//
+//        }
 //        services.fetchBybitPreviousFunding(symbol: .BTC) { result in
 //            switch result {
 //            case let .success(result):
