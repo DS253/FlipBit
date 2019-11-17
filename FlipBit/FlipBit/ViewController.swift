@@ -24,6 +24,7 @@ class Services {
     typealias BitServiceActiveOrderLookupCompletion = (Result<BitService.BybitActiveOrderList, BitService.Error>) -> Void
     typealias BitServiceOrderbookLookupCompletion = (Result<BitService.BybitOrderbook, BitService.Error>) -> Void
     typealias BitServiceOrderCreateCompletion = (Result<BitService.BybitOrderResponse, BitService.Error>) -> Void
+    typealias BitServiceActiveOrderCancelCompletion = (Result<BitService.BybitCancelledOrder, BitService.Error>) -> Void
     typealias BitServicePositionLookupCompletion = (Result<BitService.BybitPositionList, BitService.Error>) -> Void
     typealias BitServicePredictedFundingLookupCompletion = (Result<BitService.BybitPredictedFunding, BitService.Error>) -> Void
     typealias BitServicePreviousFundingLookupCompletion = (Result<BitService.BybitPreviousFundingFee, BitService.Error>) -> Void
@@ -89,8 +90,12 @@ class Services {
         bitService.lookupBybitWithdrawRecord(currency: currency, pageNumber: pageNumber, completion: completion)
     }
     
-    func createBybitOrder(side: BitService.BybitOrderSide, symbol: BitService.BybitSymbol, orderType: BitService.BybitOrderType, quantity: Int, timeInForce: BitService.BybitOrderTimeInForce, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkID: String? = nil, completion: @escaping BitServiceOrderCreateCompletion) {
-        bitService.postBybitCreateOrder(side: side, symbol: symbol, orderType: orderType, quantity: quantity, timeInForce: timeInForce, price: price, takeProfit: takeProfit, stopLoss: stopLoss, reduceOnly: reduceOnly, closeOnTrigger: closeOnTrigger, orderLinkID: orderLinkID, completion: completion)
+    func createBybitActiveOrder(side: BitService.BybitOrderSide, symbol: BitService.BybitSymbol, orderType: BitService.BybitOrderType, quantity: Int, timeInForce: BitService.BybitOrderTimeInForce, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkID: String? = nil, completion: @escaping BitServiceOrderCreateCompletion) {
+        bitService.postBybitCreateActiveOrder(side: side, symbol: symbol, orderType: orderType, quantity: quantity, timeInForce: timeInForce, price: price, takeProfit: takeProfit, stopLoss: stopLoss, reduceOnly: reduceOnly, closeOnTrigger: closeOnTrigger, orderLinkID: orderLinkID, completion: completion)
+    }
+    
+    func cancelBybitActiveOrder(orderID: String? = nil, orderLinkID: String? = nil, completion: @escaping BitServiceActiveOrderCancelCompletion) {
+        bitService.postBybitCancelActiveOrder(orderID: orderID, orderLinkID: orderLinkID, completion: completion)
     }
     
     private func load<Endpoint: Requestable, Expecting: Model>(endpoint: Endpoint, completion: ResponseServiceCompletion<Expecting>? = nil) {
@@ -111,6 +116,7 @@ class Services {
     
 class ViewController: UIViewController {
 
+    var cancelOrderResponse: BitService.BybitCancelledOrder?
     var previousFunding: BitService.BybitPreviousFundingFee?
     var orderResponse: BitService.BybitOrderResponse?
     var orderList: BitService.BybitActiveOrderList?
@@ -124,18 +130,34 @@ class ViewController: UIViewController {
 
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
-        services.fetchBybitActiveOrderList(symbol: .BTC, pageNumber: 1) { result in
+        
+        services.cancelBybitActiveOrder(orderLinkID: "lsdflsfdlsdf") { result in
             switch result {
             case let .success(result):
-                self.orderList = result
-                guard let order = self.orderList else { return }
-                print(order.activeOrders)
+                self.cancelOrderResponse = result
+                guard let order = self.cancelOrderResponse else { return }
+                print(order.details)
+                print(order.lastExecutionPrice)
+                print(order.lastExecutionTime)
+                print(order.totalExecutionFee)
+                print(order.totalExecutionValue)
             case let .failure(error):
                 print(error)
             }
-            
+
         }
-//        services.createBybitOrder(side: .Buy, symbol: .BTC, orderType: .Limit, quantity: 10000, timeInForce: .GoodTillCancel, price: 7000) { result in
+//        services.fetchBybitActiveOrderList(symbol: .BTC, pageNumber: 1) { result in
+//            switch result {
+//            case let .success(result):
+//                self.orderList = result
+//                guard let order = self.orderList else { return }
+//                print(order.activeOrders)
+//            case let .failure(error):
+//                print(error)
+//            }
+//
+//        }
+//        services.createBybitActiveOrder(side: .Buy, symbol: .BTC, orderType: .Limit, quantity: 10000, timeInForce: .GoodTillCancel, price: 7000) { result in
 //            switch result {
 //            case let .success(result):
 //                self.orderResponse = result
