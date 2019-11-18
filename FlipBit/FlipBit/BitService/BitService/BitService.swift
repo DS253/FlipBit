@@ -123,6 +123,11 @@ public extension BitService {
         service.load(endpoint, expecting: BybitLeverageStatus.self, on: completion)
     }
     
+    func postBybitLeverageUpdate(symbol: BitService.BybitSymbol, leverage: String, completion: @escaping (Result<BybitLeverageUpdate, BitService.Error>) -> Void) {
+        let endpoint = BybitLeverageUpdate.Endpoint.init(symbol: symbol, leverage: leverage, timeStamp: Date().bybitTimestamp())
+        service.load(endpoint, expecting: BybitLeverageUpdate.self, on: completion)
+    }
+    
     func lookupBybitOrderBook(symbol: BybitSymbol, completion: @escaping (Result<BybitOrderbook, BitService.Error>) -> Void) {
         let endpoint = BybitOrderbook.Endpoint.init(symbol: symbol)
         service.load(endpoint, expecting: BybitOrderbook.self, on: completion)

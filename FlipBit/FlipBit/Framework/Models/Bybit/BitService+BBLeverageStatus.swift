@@ -65,5 +65,6 @@ extension BitService.BybitLeverageStatus: Model {
         try container.encode(ethLeverage, forKey: .eth)
         try container.encode(eosLeverage, forKey: .eos)
         try container.encode(xrpLeverage, forKey: .xrp)
+        try metaData.encode(to: encoder)
     }
 }

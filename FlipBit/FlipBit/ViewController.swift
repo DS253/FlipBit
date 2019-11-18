@@ -27,6 +27,7 @@ class Services {
     typealias BitServiceActiveOrderCancelCompletion = (Result<BitService.BybitCancelledOrder, BitService.Error>) -> Void
     typealias BitServiceActiveOrderUpdateCompletion = (Result<BitService.BybitActiveOrderUpdate, BitService.Error>) -> Void
     typealias BitServiceLeverageLookupCompletion = (Result<BitService.BybitLeverageStatus, BitService.Error>) -> Void
+    typealias BitServiceLeverageUpdateCompletion = (Result<BitService.BybitLeverageUpdate, BitService.Error>) -> Void
     typealias BitServicePositionLookupCompletion = (Result<BitService.BybitPositionList, BitService.Error>) -> Void
     typealias BitServicePredictedFundingLookupCompletion = (Result<BitService.BybitPredictedFunding, BitService.Error>) -> Void
     typealias BitServicePreviousFundingLookupCompletion = (Result<BitService.BybitPreviousFundingFee, BitService.Error>) -> Void
@@ -54,6 +55,10 @@ class Services {
     
     func fetchBybitLeverageStatus(completion: @escaping BitServiceLeverageLookupCompletion) {
         bitService.lookupBybitLeverage(completion: completion)
+    }
+    
+    func updateBybitLeverage(symbol: BitService.BybitSymbol, leverage: String, completion: @escaping BitServiceLeverageUpdateCompletion) {
+        bitService.postBybitLeverageUpdate(symbol: symbol, leverage: leverage, completion: completion)
     }
     
     func fetchBybitOrderBook(symbol: BitService.BybitSymbol, completion: @escaping BitServiceOrderbookLookupCompletion) {
@@ -127,6 +132,7 @@ class Services {
 class ViewController: UIViewController {
 
     var leverageStatus: BitService.BybitLeverageStatus?
+    var leverageUpdate: BitService.BybitLeverageUpdate?
     var updateOrderResponse: BitService.BybitActiveOrderUpdate?
     var cancelOrderResponse: BitService.BybitCancelledOrder?
     var previousFunding: BitService.BybitPreviousFundingFee?
@@ -143,21 +149,32 @@ class ViewController: UIViewController {
     @IBAction func executeAction() {
         services.api.cancelAllSessionTasks()
         
-        services.fetchBybitLeverageStatus { result in
+        services.updateBybitLeverage(symbol: .BTC, leverage: "25") { result in
             switch result {
             case let .success(result):
-                self.leverageStatus = result
-                guard let leverage = self.leverageStatus else { return }
-                print(leverage.btcLeverage)
-                print(leverage.ethLeverage)
-                print(leverage.eosLeverage)
-                print(leverage.xrpLeverage)
+                self.leverageUpdate = result
+                guard let leverage = self.leverageUpdate else { return }
                 print(leverage.metaData)
             case let.failure(error):
                 print(error)
             }
             
         }
+//        services.fetchBybitLeverageStatus { result in
+//            switch result {
+//            case let .success(result):
+//                self.leverageStatus = result
+//                guard let leverage = self.leverageStatus else { return }
+//                print(leverage.btcLeverage)
+//                print(leverage.ethLeverage)
+//                print(leverage.eosLeverage)
+//                print(leverage.xrpLeverage)
+//                print(leverage.metaData)
+//            case let.failure(error):
+//                print(error)
+//            }
+//
+//        }
 //        services.updateBybitActiveOrder(orderID: "35ef0ac0-7014-4050-ad1a-c93276d0f7cd", symbol: .BTC, quantity: 9000, price: 500) { result in
 //            switch result {
 //            case let .success(result):
