@@ -1,11 +1,12 @@
 //
-//  ViewController.swift
+//  SandBoxViewController.swift
 //  FlipBit
 //
-//  Created by Daniel Stewart on 11/9/19.
+//  Created by Daniel Stewart on 11/18/19.
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Foundation
 import NetQuilt
 import UIKit
 
@@ -129,7 +130,7 @@ class Services {
     }
 }
     
-class ViewController: UIViewController {
+class SandBoxViewController: UIViewController {
 
     var leverageStatus: BitService.BybitLeverageStatus?
     var leverageUpdate: BitService.BybitLeverageUpdate?
@@ -165,7 +166,7 @@ class ViewController: UIViewController {
     @objc func executeAction() {
         services.api.cancelAllSessionTasks()
         
-        services.updateBybitLeverage(symbol: .BTC, leverage: "25") { result in
+        services.updateBybitLeverage(symbol: .BTC, leverage: "10") { result in
             switch result {
             case let .success(result):
                 self.leverageUpdate = result

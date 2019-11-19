@@ -18,6 +18,7 @@
 		060D96F2237BB2B30040598A /* BBWithdrawalRecord+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96F1237BB2B30040598A /* BBWithdrawalRecord+Endpoint.swift */; };
 		060D96F4237BBC480040598A /* BitService+BBTradeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96F3237BBC480040598A /* BitService+BBTradeRecord.swift */; };
 		060D96F6237BC6900040598A /* BBTradeRecord+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96F5237BC6900040598A /* BBTradeRecord+Endpoint.swift */; };
+		062895CE2383A1CC0076AA27 /* SandBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895CD2383A1CC0076AA27 /* SandBoxViewController.swift */; };
 		06433BC42381E3B600480EC1 /* BitService+BBCancelOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BC32381E3B600480EC1 /* BitService+BBCancelOrder.swift */; };
 		06433BC62381E45A00480EC1 /* BBActiveOrderCancel+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BC52381E45A00480EC1 /* BBActiveOrderCancel+Endpoint.swift */; };
 		06433BC82381FAB900480EC1 /* BBActiveOrderCreate+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BC72381FAB900480EC1 /* BBActiveOrderCreate+Endpoint.swift */; };
@@ -29,7 +30,6 @@
 		06433BDE23826A9A00480EC1 /* BitService+BBLeverageUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BDD23826A9A00480EC1 /* BitService+BBLeverageUpdate.swift */; };
 		06470DA82377B6D500419238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DA72377B6D500419238 /* AppDelegate.swift */; };
 		06470DAA2377B6D500419238 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DA92377B6D500419238 /* SceneDelegate.swift */; };
-		06470DAC2377B6D500419238 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DAB2377B6D500419238 /* ViewController.swift */; };
 		06470DB12377B6D500419238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 06470DB02377B6D500419238 /* Assets.xcassets */; };
 		06470DB42377B6D500419238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06470DB22377B6D500419238 /* LaunchScreen.storyboard */; };
 		06470DBF2377B6D500419238 /* FlipBitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DBE2377B6D500419238 /* FlipBitTests.swift */; };
@@ -115,6 +115,7 @@
 		060D96F1237BB2B30040598A /* BBWithdrawalRecord+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBWithdrawalRecord+Endpoint.swift"; sourceTree = "<group>"; };
 		060D96F3237BBC480040598A /* BitService+BBTradeRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBTradeRecord.swift"; sourceTree = "<group>"; };
 		060D96F5237BC6900040598A /* BBTradeRecord+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBTradeRecord+Endpoint.swift"; sourceTree = "<group>"; };
+		062895CD2383A1CC0076AA27 /* SandBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandBoxViewController.swift; sourceTree = "<group>"; };
 		06433BC32381E3B600480EC1 /* BitService+BBCancelOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBCancelOrder.swift"; sourceTree = "<group>"; };
 		06433BC52381E45A00480EC1 /* BBActiveOrderCancel+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBActiveOrderCancel+Endpoint.swift"; sourceTree = "<group>"; };
 		06433BC72381FAB900480EC1 /* BBActiveOrderCreate+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBActiveOrderCreate+Endpoint.swift"; sourceTree = "<group>"; };
@@ -127,7 +128,6 @@
 		06470DA42377B6D500419238 /* FlipBit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipBit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06470DA72377B6D500419238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		06470DA92377B6D500419238 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		06470DAB2377B6D500419238 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		06470DB02377B6D500419238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		06470DB32377B6D500419238 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		06470DB52377B6D500419238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -200,6 +200,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		062895CC2383A1B40076AA27 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				062895CD2383A1CC0076AA27 /* SandBoxViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		06470D9B2377B6D400419238 = {
 			isa = PBXGroup;
 			children = (
@@ -224,12 +232,12 @@
 		06470DA62377B6D500419238 /* FlipBit */ = {
 			isa = PBXGroup;
 			children = (
+				062895CC2383A1B40076AA27 /* Controllers */,
 				06470E272377C8C100419238 /* Global */,
 				06470DE62377C1BE00419238 /* BitService */,
 				06470DFF2377C32A00419238 /* Framework */,
 				06470DA72377B6D500419238 /* AppDelegate.swift */,
 				06470DA92377B6D500419238 /* SceneDelegate.swift */,
-				06470DAB2377B6D500419238 /* ViewController.swift */,
 				06470DB02377B6D500419238 /* Assets.xcassets */,
 				06470DB22377B6D500419238 /* LaunchScreen.storyboard */,
 				06470DB52377B6D500419238 /* Info.plist */,
@@ -614,8 +622,8 @@
 				060D96F0237BAC770040598A /* BitService+BBWithdrawalRecord.swift in Sources */,
 				06433BDC23826A6400480EC1 /* BBLeverageUpdate+Endpoint.swift in Sources */,
 				060D96F6237BC6900040598A /* BBTradeRecord+Endpoint.swift in Sources */,
+				062895CE2383A1CC0076AA27 /* SandBoxViewController.swift in Sources */,
 				06470E292377C8CD00419238 /* Constants.swift in Sources */,
-				06470DAC2377B6D500419238 /* ViewController.swift in Sources */,
 				060D96EE237B9D8B0040598A /* BBWalletFundRecord+Endpoint.swift in Sources */,
 				060D96E8237B7E2E0040598A /* BBPredictedFunding+Endpoint.swift in Sources */,
 				06433BDE23826A9A00480EC1 /* BitService+BBLeverageUpdate.swift in Sources */,
