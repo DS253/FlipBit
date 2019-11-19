@@ -130,7 +130,7 @@ class Services {
     }
 }
     
-class SandBoxViewController: UIViewController {
+class SandBoxViewController: ViewController {
 
     var leverageStatus: BitService.BybitLeverageStatus?
     var leverageUpdate: BitService.BybitLeverageUpdate?
@@ -150,13 +150,18 @@ class SandBoxViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.view.addSubview(executeButton)
+    override func setup() {
+        super.setup()
+        view.backgroundColor = .white
+    }
+    
+    override func setupSubviews() {
+        view.addSubview(executeButton)
+    }
+    
+    override func setupConstraints() {
         executeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         executeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         executeButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
