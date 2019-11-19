@@ -139,14 +139,30 @@ class ViewController: UIViewController {
     var orderResponse: BitService.BybitOrderResponse?
     var orderList: BitService.BybitActiveOrderList?
     
-    @IBOutlet weak var executeButton: UIButton!
+    private lazy var executeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Execute", for: .normal)
+        button.addTarget(self, action: #selector(executeAction), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         // Do any additional setup after loading the view.
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.view.addSubview(executeButton)
+        executeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        executeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        executeButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        executeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
 
-    @IBAction func executeAction() {
+    @objc func executeAction() {
         services.api.cancelAllSessionTasks()
         
         services.updateBybitLeverage(symbol: .BTC, leverage: "25") { result in
