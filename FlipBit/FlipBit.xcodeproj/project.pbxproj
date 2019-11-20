@@ -77,6 +77,7 @@
 		069CFA8D2384D9F400B46BCF /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		069CFA902384E45900B46BCF /* BybitOrderBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA8F2384E45900B46BCF /* BybitOrderBook.swift */; };
 		069CFA932384E77A00B46BCF /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA922384E77A00B46BCF /* Services.swift */; };
+		069CFA962384ED7E00B46BCF /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA952384ED7E00B46BCF /* Dimensions.swift */; };
 		455A1F3B237E2825005969B9 /* BitService+BBOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */; };
 /* End PBXBuildFile section */
 
@@ -187,6 +188,7 @@
 		069CFA8B2384D9F400B46BCF /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		069CFA8F2384E45900B46BCF /* BybitOrderBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitOrderBook.swift; sourceTree = "<group>"; };
 		069CFA922384E77A00B46BCF /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		069CFA952384ED7E00B46BCF /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
 		455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBOrder.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -284,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				069CFA8F2384E45900B46BCF /* BybitOrderBook.swift */,
+				069CFA942384ED6300B46BCF /* Constants */,
 				062895CC2383A1B40076AA27 /* Controllers */,
 				06470E272377C8C100419238 /* Global */,
 				069CFA912384E73500B46BCF /* Services */,
@@ -522,6 +525,14 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		069CFA942384ED6300B46BCF /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				069CFA952384ED7E00B46BCF /* Dimensions.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -682,6 +693,7 @@
 				06490F85237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift in Sources */,
 				06470E0E2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift in Sources */,
 				06470DEB2377C1F400419238 /* DataConvertible.swift in Sources */,
+				069CFA962384ED7E00B46BCF /* Dimensions.swift in Sources */,
 				06470DFA2377C2DE00419238 /* Optional+Additions.swift in Sources */,
 				455A1F3B237E2825005969B9 /* BitService+BBOrder.swift in Sources */,
 				06470E222377C85500419238 /* BitService+Response.swift in Sources */,
