@@ -73,6 +73,10 @@
 		064EA948238091CE00570CEE /* BitService+BBResponseMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064EA947238091CE00570CEE /* BitService+BBResponseMetaData.swift */; };
 		06746EB42381404E00F14521 /* BitService+BBActiveOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06746EB32381404E00F14521 /* BitService+BBActiveOrder.swift */; };
 		06746EB62381480300F14521 /* BBActiveOrder+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */; };
+		069CFA8C2384D9F400B46BCF /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; };
+		069CFA8D2384D9F400B46BCF /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		069CFA902384E45900B46BCF /* BybitOrderBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA8F2384E45900B46BCF /* BybitOrderBook.swift */; };
+		069CFA932384E77A00B46BCF /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA922384E77A00B46BCF /* Services.swift */; };
 		455A1F3B237E2825005969B9 /* BitService+BBOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +105,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				06470DE12377BBBF00419238 /* NetQuilt.framework in Embed Frameworks */,
+				069CFA8D2384D9F400B46BCF /* Starscream.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,6 +184,9 @@
 		064EA947238091CE00570CEE /* BitService+BBResponseMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBResponseMetaData.swift"; sourceTree = "<group>"; };
 		06746EB32381404E00F14521 /* BitService+BBActiveOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBActiveOrder.swift"; sourceTree = "<group>"; };
 		06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBActiveOrder+Endpoint.swift"; sourceTree = "<group>"; };
+		069CFA8B2384D9F400B46BCF /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
+		069CFA8F2384E45900B46BCF /* BybitOrderBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitOrderBook.swift; sourceTree = "<group>"; };
+		069CFA922384E77A00B46BCF /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBOrder.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06470DE02377BBBF00419238 /* NetQuilt.framework in Frameworks */,
+				069CFA8C2384D9F400B46BCF /* Starscream.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,8 +283,10 @@
 		06470DA62377B6D500419238 /* FlipBit */ = {
 			isa = PBXGroup;
 			children = (
+				069CFA8F2384E45900B46BCF /* BybitOrderBook.swift */,
 				062895CC2383A1B40076AA27 /* Controllers */,
 				06470E272377C8C100419238 /* Global */,
+				069CFA912384E73500B46BCF /* Services */,
 				062895D72383A7300076AA27 /* Views */,
 				06470DE62377C1BE00419238 /* BitService */,
 				06470DFF2377C32A00419238 /* Framework */,
@@ -309,6 +320,7 @@
 		06470DD72377B78100419238 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				069CFA8B2384D9F400B46BCF /* Starscream.framework */,
 				06470DDD2377B7CE00419238 /* NetQuilt.framework */,
 			);
 			name = Frameworks;
@@ -502,6 +514,14 @@
 			path = Global;
 			sourceTree = "<group>";
 		};
+		069CFA912384E73500B46BCF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				069CFA922384E77A00B46BCF /* Services.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -639,11 +659,13 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/NetQuilt.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/NetQuilt.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
@@ -680,6 +702,7 @@
 				06490F81237CF81C00C37ED4 /* BitService+BBPosition.swift in Sources */,
 				06470DA82377B6D500419238 /* AppDelegate.swift in Sources */,
 				06470E062377C39400419238 /* BitService+Environment.swift in Sources */,
+				069CFA902384E45900B46BCF /* BybitOrderBook.swift in Sources */,
 				06470E1F2377C82100419238 /* BitService+BBTickers.swift in Sources */,
 				06433BD023820AFD00480EC1 /* BitService+BBLeverageStatus.swift in Sources */,
 				06490F83237D04D100C37ED4 /* BBPosition+Endpoint.swift in Sources */,
@@ -707,6 +730,7 @@
 				06433BCC2381FD1E00480EC1 /* BBActiveOrderUpdate+Endpoint.swift in Sources */,
 				06470E242377C87300419238 /* BitService+Service.swift in Sources */,
 				06470E102377C69700419238 /* BitService+Error.swift in Sources */,
+				069CFA932384E77A00B46BCF /* Services.swift in Sources */,
 				06470DF22377C28100419238 /* Bundle+Additions.swift in Sources */,
 				06470DF02377C24B00419238 /* Requestable+Additions.swift in Sources */,
 				064EA948238091CE00570CEE /* BitService+BBResponseMetaData.swift in Sources */,

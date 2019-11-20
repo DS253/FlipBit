@@ -1,0 +1,10 @@
+{
+  "commitish" : "3.1.1",
+  "iOS" : [
+    {
+      "name" : "Starscream",
+      "hash" : "780be57fc802bf834e5434b767c1ed44f66b840b88ab14d522a037b63e028feb",
+      "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
+    }
+  ]
+}

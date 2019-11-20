@@ -8,137 +8,11 @@
 
 import Foundation
 import NetQuilt
+import Starscream
 import UIKit
 
-typealias Service = NetQuilt
-typealias ServiceError = NetQuiltError
-
-let services: Services = {
-    Services()
-}()
-
-class Services {
-    
-    typealias StandardServiceCompletion = (Error?) -> Void
-    typealias ResponseServiceCompletion<T: Model> = (T?, Error?) -> Void
-    typealias BitServiceAPILookupCompletion = (Result<BitService.BybitAPIKeyInfo, BitService.Error>) -> Void
-    typealias BitServiceActiveOrderLookupCompletion = (Result<BitService.BybitActiveOrderList, BitService.Error>) -> Void
-    typealias BitServiceOrderbookLookupCompletion = (Result<BitService.BybitOrderbook, BitService.Error>) -> Void
-    typealias BitServiceOrderCreateCompletion = (Result<BitService.BybitOrderResponse, BitService.Error>) -> Void
-    typealias BitServiceActiveOrderCancelCompletion = (Result<BitService.BybitCancelledOrder, BitService.Error>) -> Void
-    typealias BitServiceActiveOrderUpdateCompletion = (Result<BitService.BybitActiveOrderUpdate, BitService.Error>) -> Void
-    typealias BitServiceLeverageLookupCompletion = (Result<BitService.BybitLeverageStatus, BitService.Error>) -> Void
-    typealias BitServiceLeverageUpdateCompletion = (Result<BitService.BybitLeverageUpdate, BitService.Error>) -> Void
-    typealias BitServicePositionLookupCompletion = (Result<BitService.BybitPositionList, BitService.Error>) -> Void
-    typealias BitServicePredictedFundingLookupCompletion = (Result<BitService.BybitPredictedFunding, BitService.Error>) -> Void
-    typealias BitServicePreviousFundingLookupCompletion = (Result<BitService.BybitPreviousFundingFee, BitService.Error>) -> Void
-    typealias BitServicePreviousFundingRateLookupCompletion = (Result<BitService.BybitPreviousFundingRate, BitService.Error>) -> Void
-    typealias BitServiceServerTimeLookupCompletion = (Result<BitService.BybitServerTime, BitService.Error>) -> Void
-    typealias BitServiceTickersLookupCompletion = (Result<BitService.BybitTickerList, BitService.Error>) -> Void
-    typealias BitServiceTradeRecordLookupCompletion = (Result<BitService.BybitTradeRecords, BitService.Error>) -> Void
-    typealias BitServiceWalletRecordLookupCompletion = (Result<BitService.BybitWalletRecords, BitService.Error>) -> Void
-    typealias BitServiceWithdrawRecordLookupCompletion = (Result<BitService.BybitWithdrawalRecords, BitService.Error>) -> Void
-    typealias BybitAPIKeyInfo = BitService.BybitAPIKeyInfo
-    
-    let api: Service = {
-        Service(sessionConfiguration: Service.NetSessionConfiguration())
-    }()
-    
-    let bitService: BitService = BitService()
-    
-    func fetchBybitAPIKeyInfo(completion: @escaping BitServiceAPILookupCompletion) {
-        bitService.lookupBybitAPIKeyInfo(completion: completion)
-    }
-    
-    func fetchBybitActiveOrderList(symbol: BitService.BybitSymbol, pageNumber: Int, orderStatus: BitService.BybitOrderStatus? = nil, completion: @escaping BitServiceActiveOrderLookupCompletion) {
-        bitService.lookupBybitActiveOrders(symbol: symbol, pageNumber: pageNumber, orderStatus: orderStatus, completion: completion)
-    }
-    
-    func fetchBybitLeverageStatus(completion: @escaping BitServiceLeverageLookupCompletion) {
-        bitService.lookupBybitLeverage(completion: completion)
-    }
-    
-    func updateBybitLeverage(symbol: BitService.BybitSymbol, leverage: String, completion: @escaping BitServiceLeverageUpdateCompletion) {
-        bitService.postBybitLeverageUpdate(symbol: symbol, leverage: leverage, completion: completion)
-    }
-    
-    func fetchBybitOrderBook(symbol: BitService.BybitSymbol, completion: @escaping BitServiceOrderbookLookupCompletion) {
-        bitService.lookupBybitOrderBook(symbol: symbol, completion: completion)
-    }
-    
-    func fetchBybitPosition(completion: @escaping BitServicePositionLookupCompletion) {
-        bitService.lookupBybitPosition(completion: completion)
-    }
-    
-    func fetchBybitPredictedFunding(symbol: BitService.BybitSymbol, completion: @escaping BitServicePredictedFundingLookupCompletion) {
-        bitService.lookupBybitPredictedFunding(symbol: symbol, completion: completion)
-    }
-    
-    func fetchBybitPreviousFunding(symbol: BitService.BybitSymbol, completion: @escaping BitServicePreviousFundingLookupCompletion) {
-        bitService.lookupBybitPreviousFunding(symbol: symbol, completion: completion)
-    }
-    
-    func fetchBybitPreviousFundingRate(symbol: BitService.BybitSymbol, completion: @escaping BitServicePreviousFundingRateLookupCompletion) {
-        bitService.lookupBybitPreviousFundingRate(symbol: symbol, completion: completion)
-    }
-    
-    func fetchBybitServerTime(completion: @escaping BitServiceServerTimeLookupCompletion) {
-        bitService.lookupBybitServerTime(completion: completion)
-    }
-    
-    func fetchBybitTradeRecords(symbol: BitService.BybitSymbol, pageNumber: Int, completion: @escaping BitServiceTradeRecordLookupCompletion) {
-        bitService.lookupBybitTradeRecords(symbol: symbol, pageNumber: pageNumber, completion: completion)
-    }
-    
-    func fetchBybitTickers(symbol: BitService.BybitSymbol, completion: @escaping BitServiceTickersLookupCompletion) {
-        bitService.lookupBybitTickers(symbol: symbol, completion: completion)
-    }
-    
-    func fetchBybitWalletRecords(currency: BitService.Currency, pageNumber: Int, completion: @escaping BitServiceWalletRecordLookupCompletion) {
-        bitService.lookupBybitWalletRecord(currency: currency, pageNumber: pageNumber, completion: completion)
-    }
-    
-    func fetchBybitWithdrawRecords(currency: BitService.Currency, pageNumber: Int, completion: @escaping BitServiceWithdrawRecordLookupCompletion) {
-        bitService.lookupBybitWithdrawRecord(currency: currency, pageNumber: pageNumber, completion: completion)
-    }
-    
-    func createBybitActiveOrder(side: BitService.BybitOrderSide, symbol: BitService.BybitSymbol, orderType: BitService.BybitOrderType, quantity: Int, timeInForce: BitService.BybitOrderTimeInForce, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkID: String? = nil, completion: @escaping BitServiceOrderCreateCompletion) {
-        bitService.postBybitCreateActiveOrder(side: side, symbol: symbol, orderType: orderType, quantity: quantity, timeInForce: timeInForce, price: price, takeProfit: takeProfit, stopLoss: stopLoss, reduceOnly: reduceOnly, closeOnTrigger: closeOnTrigger, orderLinkID: orderLinkID, completion: completion)
-    }
-    
-    func cancelBybitActiveOrder(orderID: String? = nil, orderLinkID: String? = nil, completion: @escaping BitServiceActiveOrderCancelCompletion) {
-        bitService.postBybitCancelActiveOrder(orderID: orderID, orderLinkID: orderLinkID, completion: completion)
-    }
-    
-    func updateBybitActiveOrder(orderID: String, symbol: BitService.BybitSymbol, quantity: Int? = nil, price: Double? = nil, completion: @escaping BitServiceActiveOrderUpdateCompletion) {
-        bitService.postBybitUpdateActiveOrder(orderID: orderID, symbol: symbol, quantity: quantity, price: price, completion: completion)
-    }
-    
-    private func load<Endpoint: Requestable, Expecting: Model>(endpoint: Endpoint, completion: ResponseServiceCompletion<Expecting>? = nil) {
-
-        api.load(endpoint).execute(expecting: Expecting.self) { [weak self] result in
-
-            switch result {
-            case let .success(result):
-                completion?(result, nil)
-
-            case let .failure(error):
-                print("Failure")
-                completion?(nil, error)
-            }
-        }
-    }
-}
-    
-class SandBoxViewController: ViewController {
-
-    var leverageStatus: BitService.BybitLeverageStatus?
-    var leverageUpdate: BitService.BybitLeverageUpdate?
-    var updateOrderResponse: BitService.BybitActiveOrderUpdate?
-    var cancelOrderResponse: BitService.BybitCancelledOrder?
-    var previousFunding: BitService.BybitPreviousFundingFee?
-    var orderResponse: BitService.BybitOrderResponse?
-    var orderList: BitService.BybitActiveOrderList?
+class SandBoxViewController: ViewController, WebSocketDelegate {
+    var socket: WebSocket!
     
     private lazy var executeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -150,38 +24,175 @@ class SandBoxViewController: ViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        var request = URLRequest(url: URL(string: "wss://stream.bybit.com/realtime")!)
+        request.timeoutInterval = 5
+        socket = WebSocket(request: request)
+        socket.delegate = self
+        socket.connect()
     }
     
     override func setup() {
         super.setup()
         view.backgroundColor = .white
     }
-    
+
     override func setupSubviews() {
         view.addSubview(executeButton)
     }
-    
+
     override func setupConstraints() {
         executeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         executeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         executeButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         executeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
+    
+     // MARK: Websocket Delegate Methods.
+     
+     func websocketDidConnect(socket: WebSocketClient) {
+         print("websocket is connected")
+     }
+     
+     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+         if let e = error as? WSError {
+             print("websocket is disconnected: \(e.message)")
+         } else if let e = error {
+             print("websocket is disconnected: \(e.localizedDescription)")
+         } else {
+              print("websocket disconnected")
+         }
+     }
+     
+     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+         //print("Received text: \(text)")
+         
+         guard
+             let data = text.data(using: String.Encoding.utf8)
+             else {
+                 print("NOOOOOO")
+                 return
+         }
+         
+         guard
+         let anyobject = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)),
+             let dictionary = anyobject as? Dictionary<String, Any>
+             else { return }
+         
+         if (dictionary["data"] as? [Dictionary<String, Any>]) != nil {
+             let snapshot = dictionary.parseSnapshot()
+             print("Topic: \(snapshot.topic)")
+             print("Type: \(snapshot.type)")
+             print("Timestamp: \(snapshot.timestamp)")
+             print("CrossSequence: \(snapshot.crossSequence)")
+             print(snapshot.book)
+         } else if (dictionary["data"] as? Dictionary<String, Any>) != nil {
+             let update = dictionary.parseBookUpdate()
+             print("Topic: \(update.topic)")
+             print("Type: \(update.type)")
+             print("TransactionTime: \(update.transactionTime)")
+             print("CrossSequence: \(update.crossSequence)")
+             print("Deletes: \(update.deletes)")
+             print("Updates: \(update.updates)")
+             print("Inserts: \(update.inserts)")
+         }
+         
+         if dictionary.keys.contains("success") {
+             let response = parseSocketResponse(dictionary: dictionary)
+             print("Success: \(response.success)")
+             print("Message: \(response.message)")
+             print("Connection ID: \(response.connectionID)")
+             print("Operations: \(response.operation)")
+             print("Arguments: \(response.arguments)")
+         }
+     }
+     
+     struct SocketResponse {
+         var success: Bool?
+         var message: String?
+         var connectionID: String?
+         var operation: String?
+         var arguments: [String]?
+     }
+         
+     func parseSocketResponse(dictionary: Dictionary<String, Any>) -> SocketResponse {
 
+         var response = SocketResponse()
+         response.success = dictionary["success"] as? Bool
+         response.message = dictionary["ret_msg"] as? String
+         response.connectionID = dictionary["conn_id"] as? String
+         guard
+             let request = dictionary["request"] as? [String: Any]
+             else { return response }
+         response.operation = request["op"] as? String
+         response.arguments = request["args"] as? [String]
+
+         return response
+     }
+     
+     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
+         print("Received data: \(data.count)")
+     }
+     
+     // MARK: Write Text Action
+     
     @objc func executeAction() {
-        services.api.cancelAllSessionTasks()
-        
-        services.updateBybitLeverage(symbol: .BTC, leverage: "10") { result in
-            switch result {
-            case let .success(result):
-                self.leverageUpdate = result
-                guard let leverage = self.leverageUpdate else { return }
-                print(leverage.metaData)
-            case let.failure(error):
-                print(error)
-            }
-            
-        }
+    //     socket.write(string: "hello there!")
+         socket.write(string: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
+     }
+}
+    
+//class SandBoxViewController: ViewController {
+//
+//    var leverageStatus: BitService.BybitLeverageStatus?
+//    var leverageUpdate: BitService.BybitLeverageUpdate?
+//    var updateOrderResponse: BitService.BybitActiveOrderUpdate?
+//    var cancelOrderResponse: BitService.BybitCancelledOrder?
+//    var previousFunding: BitService.BybitPreviousFundingFee?
+//    var orderResponse: BitService.BybitOrderResponse?
+//    var orderList: BitService.BybitActiveOrderList?
+//
+//    private lazy var executeButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.setTitle("Execute", for: .normal)
+//        button.addTarget(self, action: #selector(executeAction), for: .touchUpInside)
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        return button
+//    }()
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//    }
+//
+//    override func setup() {
+//        super.setup()
+//        view.backgroundColor = .white
+//    }
+//
+//    override func setupSubviews() {
+//        view.addSubview(executeButton)
+//    }
+//
+//    override func setupConstraints() {
+//        executeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+//        executeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+//        executeButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+//        executeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+//    }
+//
+//    @objc func executeAction() {
+//        services.api.cancelAllSessionTasks()
+//
+//        services.updateBybitLeverage(symbol: .BTC, leverage: "10") { result in
+//            switch result {
+//            case let .success(result):
+//                self.leverageUpdate = result
+//                guard let leverage = self.leverageUpdate else { return }
+//                print(leverage.metaData)
+//            case let.failure(error):
+//                print(error)
+//            }
+//
+//        }
 //        services.fetchBybitLeverageStatus { result in
 //            switch result {
 //            case let .success(result):
@@ -208,7 +219,7 @@ class SandBoxViewController: ViewController {
 //            }
 //
 //        }
-        
+//
 //        services.cancelBybitActiveOrder(orderLinkID: "lsdflsfdlsdf") { result in
 //            switch result {
 //            case let .success(result):
@@ -416,7 +427,7 @@ class SandBoxViewController: ViewController {
 //                    print(error)
 //            }
 //        }
-        
+//
 //        services.fetchBybitWithdrawRecords(currency: .BTC, pageNumber: 1) { result in
 //            switch result {
 //            case let .success(result):
@@ -475,6 +486,6 @@ class SandBoxViewController: ViewController {
 //                    print(error)
 //            }
 //        }
-    }
-}
-
+//    }
+//}
+//
