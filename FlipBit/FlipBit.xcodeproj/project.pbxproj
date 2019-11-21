@@ -89,6 +89,7 @@
 		45B3D948238607E80004DF76 /* UIFont+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D947238607E80004DF76 /* UIFont+Additions.swift */; };
 		45B3D94A23860A810004DF76 /* UILabel+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D94923860A810004DF76 /* UILabel+Additions.swift */; };
 		45B3D94D23874B3A0004DF76 /* BybitTradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D94C23874B3A0004DF76 /* BybitTradeViewController.swift */; };
+		45B3D94F23874DCC0004DF76 /* BybitBookOrderObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D94E23874DCC0004DF76 /* BybitBookOrderObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,6 +211,7 @@
 		45B3D947238607E80004DF76 /* UIFont+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Additions.swift"; sourceTree = "<group>"; };
 		45B3D94923860A810004DF76 /* UILabel+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Additions.swift"; sourceTree = "<group>"; };
 		45B3D94C23874B3A0004DF76 /* BybitTradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeViewController.swift; sourceTree = "<group>"; };
+		45B3D94E23874DCC0004DF76 /* BybitBookOrderObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitBookOrderObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +316,7 @@
 				062895CC2383A1B40076AA27 /* Controllers */,
 				45B3D935238604290004DF76 /* Extensions */,
 				06470E272377C8C100419238 /* Global */,
+				45B3D95023874DD10004DF76 /* Observers */,
 				069CFA912384E73500B46BCF /* Services */,
 				062895D72383A7300076AA27 /* Views */,
 				06470DE62377C1BE00419238 /* BitService */,
@@ -619,6 +622,14 @@
 			path = Bybit;
 			sourceTree = "<group>";
 		};
+		45B3D95023874DD10004DF76 /* Observers */ = {
+			isa = PBXGroup;
+			children = (
+				45B3D94E23874DCC0004DF76 /* BybitBookOrderObserver.swift */,
+			);
+			path = Observers;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -845,6 +856,7 @@
 				06470E1D2377C80700419238 /* BitService+BBServerTime.swift in Sources */,
 				06470DF42377C29800419238 /* Date+Additions.swift in Sources */,
 				060D96EC237B95720040598A /* BitService+BBWalletFundRecord.swift in Sources */,
+				45B3D94F23874DCC0004DF76 /* BybitBookOrderObserver.swift in Sources */,
 				06470E1B2377C7E600419238 /* BitService+BBPreviousFundingFee.swift in Sources */,
 				06746EB62381480300F14521 /* BBActiveOrder+Endpoint.swift in Sources */,
 				062895D12383A3920076AA27 /* ViewSetup.swift in Sources */,
