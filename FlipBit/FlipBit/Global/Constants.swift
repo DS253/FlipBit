@@ -12,8 +12,12 @@ import NetQuilt
 let theAPIKey = "tjLNabTKzKmtlvE6Qs"
 let secret = "JiT2BnTVwhTjifzfWqPkQV8Q0Mbprnbr7ZRW"
 
-/// Global Application instance.
-internal let application = BitService.Application()
+typealias View = BaseView
+typealias ViewController = BaseViewController
 
-/// Global Service instance.
-internal let service = BitService.Service()
+struct Constant {
+
+    // MARK: - Miscellaneous
+
+    static let tableViewReloadDataAnimationKey = "UITableViewReloadDataAnimationKey"
+}
