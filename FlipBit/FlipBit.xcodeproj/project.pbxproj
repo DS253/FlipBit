@@ -88,6 +88,7 @@
 		45B3D9452386075A0004DF76 /* ScrollStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D9442386075A0004DF76 /* ScrollStackView.swift */; };
 		45B3D948238607E80004DF76 /* UIFont+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D947238607E80004DF76 /* UIFont+Additions.swift */; };
 		45B3D94A23860A810004DF76 /* UILabel+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D94923860A810004DF76 /* UILabel+Additions.swift */; };
+		45B3D94D23874B3A0004DF76 /* BybitTradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D94C23874B3A0004DF76 /* BybitTradeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +209,7 @@
 		45B3D9442386075A0004DF76 /* ScrollStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollStackView.swift; sourceTree = "<group>"; };
 		45B3D947238607E80004DF76 /* UIFont+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Additions.swift"; sourceTree = "<group>"; };
 		45B3D94923860A810004DF76 /* UILabel+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Additions.swift"; sourceTree = "<group>"; };
+		45B3D94C23874B3A0004DF76 /* BybitTradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				062895D22383A4320076AA27 /* Base Classes */,
+				45B3D94B23874B2A0004DF76 /* Bybit */,
 				062895CF2383A37E0076AA27 /* Protocols */,
 				062895CD2383A1CC0076AA27 /* SandBoxViewController.swift */,
 			);
@@ -608,6 +611,14 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		45B3D94B23874B2A0004DF76 /* Bybit */ = {
+			isa = PBXGroup;
+			children = (
+				45B3D94C23874B3A0004DF76 /* BybitTradeViewController.swift */,
+			);
+			path = Bybit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -790,6 +801,7 @@
 				06470DF62377C2B000419238 /* DateFormatter+Additions.swift in Sources */,
 				06490F81237CF81C00C37ED4 /* BitService+BBPosition.swift in Sources */,
 				45B3D942238606950004DF76 /* TimeInterval+Additions.swift in Sources */,
+				45B3D94D23874B3A0004DF76 /* BybitTradeViewController.swift in Sources */,
 				06470DA82377B6D500419238 /* AppDelegate.swift in Sources */,
 				06470E062377C39400419238 /* BitService+Environment.swift in Sources */,
 				069CFA902384E45900B46BCF /* BybitOrderBook.swift in Sources */,
