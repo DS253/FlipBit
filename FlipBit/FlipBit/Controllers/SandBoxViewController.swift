@@ -11,8 +11,26 @@ import NetQuilt
 import Starscream
 import UIKit
 
-class SandBoxViewController: ViewController, WebSocketDelegate {
-    var socket: WebSocket!
+class SandBoxViewController: ViewController, SocketObserverDelegate {
+    func observer(observer: WebSocketDelegate, didWriteToSocket: String) {
+        print("Observer has written to the web socket")
+    }
+    
+    func observerFailedToConnect() {
+        print("Observer has failed to connect to the web socket")
+    }
+    
+    func observerDidConnect(observer: WebSocketDelegate) {
+        print("Observer has connected to the web socket")
+    }
+    
+    func observerDidReceiveMessage(observer: WebSocketDelegate, didReceiveMessage: String) {
+        print("Observer has received messages from the web socket")
+    }
+    
+    func observerFailedToDecode(observer: WebSocketDelegate) {
+        print("Observer failed to decode the response from the web socket")
+    }
     
     private lazy var executeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -24,15 +42,11 @@ class SandBoxViewController: ViewController, WebSocketDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var request = URLRequest(url: URL(string: "wss://stream.bybit.com/realtime")!)
-        request.timeoutInterval = 5
-        socket = WebSocket(request: request)
-        socket.delegate = self
-        socket.connect()
     }
     
     override func setup() {
         super.setup()
+        bookObserver.delegate = self
         view.backgroundColor = .white
     }
 
@@ -47,70 +61,11 @@ class SandBoxViewController: ViewController, WebSocketDelegate {
         executeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
-     // MARK: Websocket Delegate Methods.
-     
-     func websocketDidConnect(socket: WebSocketClient) {
-         print("websocket is connected")
-     }
-     
-     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-         if let e = error as? WSError {
-             print("websocket is disconnected: \(e.message)")
-         } else if let e = error {
-             print("websocket is disconnected: \(e.localizedDescription)")
-         } else {
-              print("websocket disconnected")
-         }
-     }
-     
-     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-         //print("Received text: \(text)")
-         
-         guard
-             let data = text.data(using: String.Encoding.utf8)
-             else {
-                 print("NOOOOOO")
-                 return
-         }
-         
-         guard
-         let anyobject = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)),
-             let dictionary = anyobject as? Dictionary<String, Any>
-             else { return }
-         
-         if (dictionary["data"] as? [Dictionary<String, Any>]) != nil {
-            let decoder = JSONDecoder()
-            let snapshot = try? decoder.decode(BookOrderSnapshot.self, from: data)
-            print(snapshot)
-         }
-         else if (dictionary["data"] as? Dictionary<String, Any>) != nil {
-            let decoder = JSONDecoder()
-//            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            let bookUpdate = try? decoder.decode(BookUpdate.self, from: data)
-            print(bookUpdate?.topic)
-            print(bookUpdate?.type)
-            print(bookUpdate?.crossSequence)
-            print(bookUpdate?.timestamp)
-            print(bookUpdate?.delete)
-            print(bookUpdate?.update)
-            print(bookUpdate?.insert)
-         }
-         
-         if dictionary.keys.contains("success") {
-            let response = try? JSONDecoder().decode(BybitSocketResponse.self, from: data)
-            print(response)
-         }
-     }
-     
-     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-         print("Received data: \(data.count)")
-     }
-     
-     // MARK: Write Text Action
+    // MARK: Write Text Action
      
     @objc func executeAction() {
     //     socket.write(string: "hello there!")
-         socket.write(string: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
+         bookObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
      }
 }
     

@@ -9,19 +9,15 @@
 import Foundation
 import Starscream
 
-internal protocol SocketObserverDelegate: class {
-    func observer(observer: WebSocketDelegate, didWriteToSocket: String)
-    func observerFailedToConnect()
-    func socketObserver(observer: WebSocketDelegate, didConnectToSocket: Bool)
-    func observerDidConnect(observer: WebSocketDelegate)
-    func observerDidReceiveMessage(observer: WebSocketDelegate, didReceiveMessage: String)
-}
-
 class BybitBookOrderObserver: WebSocketDelegate {
-
+    
     var socket: WebSocket?
     weak var delegate: SocketObserverDelegate?
-    var snapshot: BookOrderSnapshot?
+    
+    var response: Bybit.SocketResponse?
+    var snapshot: Bybit.BookOrderSnapshot?
+    var buyBook: [Bybit.BookOrder?]?
+    var sellBook: [Bybit.BookOrder?]?
     
     init(url: URLRequest?) {
         if let urlRequest = url {
@@ -39,7 +35,7 @@ class BybitBookOrderObserver: WebSocketDelegate {
         guard let bybitSocket = socket else { return }
         bybitSocket.write(string: topic)
         delegate?.observer(observer: self, didWriteToSocket: topic)
-//        bybitSocket.write(string: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
+        //        bybitSocket.write(string: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
         print("socket did write")
     }
     
@@ -47,7 +43,7 @@ class BybitBookOrderObserver: WebSocketDelegate {
     
     func websocketDidConnect(socket: WebSocketClient) {
         print("websocket is connected")
-        delegate?.socketObserver(observer: self, didConnectToSocket: true)
+        delegate?.observerDidConnect(observer: self)
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
@@ -56,43 +52,69 @@ class BybitBookOrderObserver: WebSocketDelegate {
         } else if let e = error {
             print("websocket is disconnected: \(e.localizedDescription)")
         } else {
-             print("websocket disconnected")
+            print("websocket disconnected")
         }
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        delegate?.observerDidReceiveMessage(observer: self, didReceiveMessage: text)
+        let encodedData = convertToData(text)
+        let responseType = determineBookOrderResponseType(encodedData)
+        
         guard
-            let data = text.data(using: String.Encoding.utf8)
+            let data = encodedData,
+            responseType != .DecodingFailure
             else {
-                print("NOOOOOO")
+                print("Failed to decode Bybit BookOrder Response")
                 return
         }
-
-        guard
-            let anyobject = try? JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0)),
-            let dictionary = anyobject as? Dictionary<String, Any>
-            else { return }
-
-        if (dictionary["data"] as? [Dictionary<String, Any>]) != nil {
-            snapshot = try? JSONDecoder().decode(BookOrderSnapshot.self, from: data)
-            print(snapshot)
-        } else if (dictionary["data"] as? Dictionary<String, Any>) != nil {
-//            decoder.keyDecodingStrategy = .convertFromSnakeCase
-            let bookUpdate = try? JSONDecoder().decode(BookUpdate.self, from: data)
-            print(bookUpdate?.topic)
-            print(bookUpdate?.type)
-            print(bookUpdate?.crossSequence)
-            print(bookUpdate?.timestamp)
-            print(bookUpdate?.delete)
-            print(bookUpdate?.update)
-            print(bookUpdate?.insert)
+        
+        switch responseType {
+        case .Snapshot:
+            if let firstSnapshot = try? Bybit.BookOrderSnapshot(from: data) {
+                snapshot = firstSnapshot
+                sortBookOrders(snapshot?.book?.filter { $0.side == Bybit.Side.Buy }, side: Bybit.Side.Buy)
+                sortBookOrders(snapshot?.book?.filter { $0.side == Bybit.Side.Sell }, side: Bybit.Side.Sell)
+            } else {
+                print("Failed to decode Bybit BookOrder Snapshot")
+                delegate?.observerFailedToDecode(observer: self)
+            }
+        case .Update:
+            if let bookUpdate = try? Bybit.BookUpdate(from: data) {
+                updateBookOrders(bookUpdate.update?.filter { $0.side == Bybit.Side.Buy }, side: .Buy)
+                updateBookOrders(bookUpdate.update?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
+            } else {
+                print("Failed to decode Bybit BookOrder Update")
+                delegate?.observerFailedToDecode(observer: self)
+            }
+        case .Delete:
+            if let bookUpdate = try? Bybit.BookUpdate(from: data) {
+                deleteBookOrders(bookUpdate.delete?.filter { $0.side == Bybit.Side.Buy }, side: .Buy)
+                deleteBookOrders(bookUpdate.delete?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
+            } else {
+                print("Failed to decode Bybit BookOrder Update")
+                delegate?.observerFailedToDecode(observer: self)
+            }
+        case .Insert:
+            if let bookUpdate = try? Bybit.BookUpdate(from: data) {
+                insertBookOrders(bookUpdate.insert?.filter { $0.side == Bybit.Side.Buy }, side: .Buy)
+                insertBookOrders(bookUpdate.insert?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
+            } else {
+                print("Failed to decode Bybit BookOrder Update")
+                delegate?.observerFailedToDecode(observer: self)
+            }
+        case .SocketResponse:
+            if let socketResponse = try? Bybit.SocketResponse(from: data) {
+                response = socketResponse
+            } else {
+                print("Failed to decode Bybit BookOrder SocketResponse")
+                delegate?.observerFailedToDecode(observer: self)
+            }
+        default:
+            print("Decoding BookOrder Response Failed")
+            delegate?.observerFailedToDecode(observer: self)
         }
-        if dictionary.keys.contains("success") {
-            let response = try? JSONDecoder().decode(BybitSocketResponse.self, from: data)
-            print(response)
-        }
-}
+        delegate?.observerDidReceiveMessage(observer: self, didReceiveMessage: text)
+    }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
         print("Received data: \(data.count)")

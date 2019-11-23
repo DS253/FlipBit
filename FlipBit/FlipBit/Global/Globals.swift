@@ -18,3 +18,9 @@ internal let service = BitService.Service()
 internal func wait(_ time: DispatchTimeInterval, completion: @escaping (() -> Void)) {
     DispatchQueue.main.asyncAfter(deadline: .now() + time, execute: completion)
 }
+
+internal let bookObserver: BybitBookOrderObserver = {
+    var request = URLRequest(url: URL(string: "wss://stream-testnet.bybit.com/realtime")!)
+    request.timeoutInterval = 5
+    return BybitBookOrderObserver(url: request)
+}()

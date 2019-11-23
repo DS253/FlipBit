@@ -113,18 +113,18 @@ class Services {
         bitService.postBybitUpdateActiveOrder(orderID: orderID, symbol: symbol, quantity: quantity, price: price, completion: completion)
     }
     
-    private func load<Endpoint: Requestable, Expecting: Model>(endpoint: Endpoint, completion: ResponseServiceCompletion<Expecting>? = nil) {
-
-        api.load(endpoint).execute(expecting: Expecting.self) { [weak self] result in
-
-            switch result {
-            case let .success(result):
-                completion?(result, nil)
-
-            case let .failure(error):
-                print("Failure")
-                completion?(nil, error)
-            }
-        }
-    }
+//    private func load<Endpoint: Requestable, Expecting: Model>(endpoint: Endpoint, completion: ResponseServiceCompletion<Expecting>? = nil) {
+//
+//        api.load(endpoint).execute(expecting: Expecting.self) { [weak self] result in
+//
+//            switch result {
+//            case let .success(result):
+//                completion?(result, nil)
+//
+//            case let .failure(error):
+//                print("Failure")
+//                completion?(nil, error)
+//            }
+//        }
+//    }
 }
