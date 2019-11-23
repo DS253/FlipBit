@@ -79,54 +79,27 @@ class SandBoxViewController: ViewController, WebSocketDelegate {
              else { return }
          
          if (dictionary["data"] as? [Dictionary<String, Any>]) != nil {
-             let snapshot = dictionary.parseSnapshot()
-             print("Topic: \(snapshot.topic)")
-             print("Type: \(snapshot.type)")
-             print("Timestamp: \(snapshot.timestamp)")
-             print("CrossSequence: \(snapshot.crossSequence)")
-             print(snapshot.book)
-         } else if (dictionary["data"] as? Dictionary<String, Any>) != nil {
-             let update = dictionary.parseBookUpdate()
-             print("Topic: \(update.topic)")
-             print("Type: \(update.type)")
-             print("TransactionTime: \(update.transactionTime)")
-             print("CrossSequence: \(update.crossSequence)")
-             print("Deletes: \(update.deletes)")
-             print("Updates: \(update.updates)")
-             print("Inserts: \(update.inserts)")
+            let decoder = JSONDecoder()
+            let snapshot = try? decoder.decode(BookOrderSnapshot.self, from: data)
+            print(snapshot)
+         }
+         else if (dictionary["data"] as? Dictionary<String, Any>) != nil {
+            let decoder = JSONDecoder()
+//            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            let bookUpdate = try? decoder.decode(BookUpdate.self, from: data)
+            print(bookUpdate?.topic)
+            print(bookUpdate?.type)
+            print(bookUpdate?.crossSequence)
+            print(bookUpdate?.timestamp)
+            print(bookUpdate?.delete)
+            print(bookUpdate?.update)
+            print(bookUpdate?.insert)
          }
          
          if dictionary.keys.contains("success") {
-             let response = parseSocketResponse(dictionary: dictionary)
-             print("Success: \(response.success)")
-             print("Message: \(response.message)")
-             print("Connection ID: \(response.connectionID)")
-             print("Operations: \(response.operation)")
-             print("Arguments: \(response.arguments)")
+            let response = try? JSONDecoder().decode(BybitSocketResponse.self, from: data)
+            print(response)
          }
-     }
-     
-     struct SocketResponse {
-         var success: Bool?
-         var message: String?
-         var connectionID: String?
-         var operation: String?
-         var arguments: [String]?
-     }
-         
-     func parseSocketResponse(dictionary: Dictionary<String, Any>) -> SocketResponse {
-
-         var response = SocketResponse()
-         response.success = dictionary["success"] as? Bool
-         response.message = dictionary["ret_msg"] as? String
-         response.connectionID = dictionary["conn_id"] as? String
-         guard
-             let request = dictionary["request"] as? [String: Any]
-             else { return response }
-         response.operation = request["op"] as? String
-         response.arguments = request["args"] as? [String]
-
-         return response
      }
      
      func websocketDidReceiveData(socket: WebSocketClient, data: Data) {

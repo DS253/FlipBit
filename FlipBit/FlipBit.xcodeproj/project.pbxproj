@@ -90,6 +90,7 @@
 		45B3D94A23860A810004DF76 /* UILabel+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D94923860A810004DF76 /* UILabel+Additions.swift */; };
 		45B3D94D23874B3A0004DF76 /* BybitTradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D94C23874B3A0004DF76 /* BybitTradeViewController.swift */; };
 		45B3D94F23874DCC0004DF76 /* BybitBookOrderObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D94E23874DCC0004DF76 /* BybitBookOrderObserver.swift */; };
+		45B3D9522388AD640004DF76 /* BybitSocketResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D9512388AD640004DF76 /* BybitSocketResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +213,7 @@
 		45B3D94923860A810004DF76 /* UILabel+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Additions.swift"; sourceTree = "<group>"; };
 		45B3D94C23874B3A0004DF76 /* BybitTradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeViewController.swift; sourceTree = "<group>"; };
 		45B3D94E23874DCC0004DF76 /* BybitBookOrderObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitBookOrderObserver.swift; sourceTree = "<group>"; };
+		45B3D9512388AD640004DF76 /* BybitSocketResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitSocketResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,11 +313,11 @@
 		06470DA62377B6D500419238 /* FlipBit */ = {
 			isa = PBXGroup;
 			children = (
-				069CFA8F2384E45900B46BCF /* BybitOrderBook.swift */,
 				069CFA942384ED6300B46BCF /* Constants */,
 				062895CC2383A1B40076AA27 /* Controllers */,
 				45B3D935238604290004DF76 /* Extensions */,
 				06470E272377C8C100419238 /* Global */,
+				45B3D9532388B13F0004DF76 /* Models */,
 				45B3D95023874DD10004DF76 /* Observers */,
 				069CFA912384E73500B46BCF /* Services */,
 				062895D72383A7300076AA27 /* Views */,
@@ -630,6 +632,23 @@
 			path = Observers;
 			sourceTree = "<group>";
 		};
+		45B3D9532388B13F0004DF76 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				45B3D9552388B1580004DF76 /* Bybit */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		45B3D9552388B1580004DF76 /* Bybit */ = {
+			isa = PBXGroup;
+			children = (
+				069CFA8F2384E45900B46BCF /* BybitOrderBook.swift */,
+				45B3D9512388AD640004DF76 /* BybitSocketResponse.swift */,
+			);
+			path = Bybit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -852,6 +871,7 @@
 				06470DF02377C24B00419238 /* Requestable+Additions.swift in Sources */,
 				45B3D93F238605D90004DF76 /* UITableView+Additions.swift in Sources */,
 				064EA948238091CE00570CEE /* BitService+BBResponseMetaData.swift in Sources */,
+				45B3D9522388AD640004DF76 /* BybitSocketResponse.swift in Sources */,
 				45B3D948238607E80004DF76 /* UIFont+Additions.swift in Sources */,
 				06470E1D2377C80700419238 /* BitService+BBServerTime.swift in Sources */,
 				06470DF42377C29800419238 /* Date+Additions.swift in Sources */,
