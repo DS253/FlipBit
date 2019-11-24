@@ -135,8 +135,12 @@ class BaseTableViewController: BaseViewController {
         view.addSubview(tableView)
         view.addSubview(optionsView)
         optionsView.addSublayer(optionsViewGradient)
+        
+        setupTableView()
     }
 
+    func setupTableView() { }
+    
     override func setupConstraints() {
         super.setupConstraints()
 

@@ -37,12 +37,14 @@ extension BybitBookOrderObserver {
                     buyBook?[index] = order
                 }
             }
+            delegate?.observerDidReceiveMessage(observer: self, didReceiveMessage: "")
         case .Sell:
             for order in markedOrders {
                 if let index = sellBook?.firstIndex(where: { $0?.id == order?.id }) {
                     sellBook?[index] = order
                 }
             }
+            delegate?.observerDidReceiveMessage(observer: self, didReceiveMessage: "")
         }
     }
     
@@ -53,12 +55,15 @@ extension BybitBookOrderObserver {
             for order in markedOrders {
                 if let index = buyBook?.firstIndex(where: { $0?.id == order?.id }) {
                     buyBook?.remove(at: index)
+                    delegate?.observerDidReceiveMessage(observer: self, didReceiveMessage: "")
                 }
             }
+            delegate?.observerDidReceiveMessage(observer: self, didReceiveMessage: "")
         case .Sell:
             for order in markedOrders {
                 if let index = sellBook?.firstIndex(where: { $0?.id == order?.id}) {
                     sellBook?.remove(at: index)
+                    delegate?.observerDidReceiveMessage(observer: self, didReceiveMessage: "")
                 }
             }
         }

@@ -74,30 +74,20 @@ class BybitBookOrderObserver: WebSocketDelegate {
                 snapshot = firstSnapshot
                 sortBookOrders(snapshot?.book?.filter { $0.side == Bybit.Side.Buy }, side: Bybit.Side.Buy)
                 sortBookOrders(snapshot?.book?.filter { $0.side == Bybit.Side.Sell }, side: Bybit.Side.Sell)
+                delegate?.observerDidReceiveMessage(observer: self, didReceiveMessage: text)
             } else {
                 print("Failed to decode Bybit BookOrder Snapshot")
                 delegate?.observerFailedToDecode(observer: self)
             }
-        case .Update:
+        case .Update, .Delete, .Insert:
             if let bookUpdate = try? Bybit.BookUpdate(from: data) {
                 updateBookOrders(bookUpdate.update?.filter { $0.side == Bybit.Side.Buy }, side: .Buy)
                 updateBookOrders(bookUpdate.update?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
-            } else {
-                print("Failed to decode Bybit BookOrder Update")
-                delegate?.observerFailedToDecode(observer: self)
-            }
-        case .Delete:
-            if let bookUpdate = try? Bybit.BookUpdate(from: data) {
                 deleteBookOrders(bookUpdate.delete?.filter { $0.side == Bybit.Side.Buy }, side: .Buy)
                 deleteBookOrders(bookUpdate.delete?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
-            } else {
-                print("Failed to decode Bybit BookOrder Update")
-                delegate?.observerFailedToDecode(observer: self)
-            }
-        case .Insert:
-            if let bookUpdate = try? Bybit.BookUpdate(from: data) {
                 insertBookOrders(bookUpdate.insert?.filter { $0.side == Bybit.Side.Buy }, side: .Buy)
                 insertBookOrders(bookUpdate.insert?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
+                delegate?.observerDidReceiveMessage(observer: self, didReceiveMessage: text)
             } else {
                 print("Failed to decode Bybit BookOrder Update")
                 delegate?.observerFailedToDecode(observer: self)
@@ -113,7 +103,6 @@ class BybitBookOrderObserver: WebSocketDelegate {
             print("Decoding BookOrder Response Failed")
             delegate?.observerFailedToDecode(observer: self)
         }
-        delegate?.observerDidReceiveMessage(observer: self, didReceiveMessage: text)
     }
     
     func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
