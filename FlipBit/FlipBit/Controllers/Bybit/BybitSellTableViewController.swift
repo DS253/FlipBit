@@ -9,7 +9,11 @@
 import Starscream
 import UIKit
 
-class BybitSellTableViewController: BaseTableViewController, SocketObserverDelegate {
+protocol BybitSellOrderObserver: class {
+    func observerUpdatedSellBook()
+}
+
+class BybitSellTableViewController: BaseTableViewController, SocketObserverDelegate, BybitSellOrderObserver {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,7 @@ class BybitSellTableViewController: BaseTableViewController, SocketObserverDeleg
     override func setup() {
         super.setup()
         bookObserver.delegate = self
+        bookObserver.sellbookDelegate = self
         view.backgroundColor = .white
     }
     
@@ -31,7 +36,7 @@ class BybitSellTableViewController: BaseTableViewController, SocketObserverDeleg
     
     override func setupTableView() {
         super.setupTableView()
-        tableView.register(BybitTradeCell.self, forCellReuseIdentifier: BybitTradeCell.id)
+        tableView.register(BybitBookOrderSellCell.self, forCellReuseIdentifier: BybitBookOrderSellCell.id)
     }
     
     func observer(observer: WebSocketDelegate, didWriteToSocket: String) {
@@ -56,26 +61,23 @@ class BybitSellTableViewController: BaseTableViewController, SocketObserverDeleg
         print("Observer failed to decode the response from the web socket")
     }
     
+    func observerUpdatedSellBook() {
+        tableView.reloadData()
+    }
+    
     // MARK: - UITableViewDataSource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bookObserver.sellBook?.count ?? 0
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> BybitTradeCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> BybitBookOrderSellCell {
         guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: BybitTradeCell.id, for: indexPath) as? BybitTradeCell
-            else { return BybitTradeCell() }
+            let cell = tableView.dequeueReusableCell(withIdentifier: BybitBookOrderSellCell.id, for: indexPath) as? BybitBookOrderSellCell,
+            let order = bookObserver.sellBook?[indexPath.row]
+            else { return BybitBookOrderSellCell() }
         
-        guard
+        cell.configure(with: order, multiplier: bookObserver.returnPercentageOfSellOrder(size: order.size ?? 0))
 
-            let sellPrice = bookObserver.sellBook?[indexPath.row]?.price,
-            let sellSize = bookObserver.sellBook?[indexPath.row]?.size
-            
-            else { return BybitTradeCell() }
-        
-        cell.textLabel?.text = "\(sellPrice)" + "    \(sellSize)"
-        
-        
         return cell
     }
 }

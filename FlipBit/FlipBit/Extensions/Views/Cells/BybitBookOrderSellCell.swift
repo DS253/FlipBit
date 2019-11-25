@@ -1,5 +1,5 @@
 //
-//  BybitBookOrderBuyCell.swift
+//  BybitBookOrderSellCell.swift
 //  FlipBit
 //
 //  Created by Daniel Stewart on 11/24/19.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-class BybitBookOrderBuyCell: UITableViewCell {
+class BybitBookOrderSellCell: UITableViewCell {
     
     var bookOrder: Bybit.BookOrder?
     
     private let priceLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.footnote.bold
-        label.textColor = UIColor.Bybit.orderbookGreen
-        label.textAlignment = .right
+        label.textColor = UIColor.Bybit.orderbookRed
+        label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         return label
@@ -33,7 +33,7 @@ class BybitBookOrderBuyCell: UITableViewCell {
     
     private let quantityColorView: View = {
         let view = View()
-        view.backgroundColor = UIColor.Bybit.orderbookGreen.withAlphaComponent(0.2)
+        view.backgroundColor = UIColor.Bybit.orderbookRed.withAlphaComponent(0.2)
         return view
     }()
     
@@ -70,23 +70,23 @@ class BybitBookOrderBuyCell: UITableViewCell {
         NSLayoutConstraint.activate([
             quantityColorView.topAnchor.constraint(equalTo: topAnchor),
             quantityColorView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            quantityColorView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: Dimensions.Space.margin8),
+            quantityColorView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: -Dimensions.Space.margin8),
             colorWidthConstraint,
             
             quantityLabel.topAnchor.constraint(equalTo: topAnchor),
             quantityLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            quantityLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            quantityLabel.trailingAnchor.constraint(equalTo: centerXAnchor),
+            quantityLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            quantityLabel.leadingAnchor.constraint(equalTo: centerXAnchor),
             
             priceLabel.topAnchor.constraint(equalTo: topAnchor),
             priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            priceLabel.leadingAnchor.constraint(equalTo: centerXAnchor),
-            priceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin16),
+            priceLabel.trailingAnchor.constraint(equalTo: centerXAnchor),
+            priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin16),
         ])
     }
 }
 
-extension BybitBookOrderBuyCell {
+extension BybitBookOrderSellCell {
     
     func configure(with order: Bybit.BookOrder, multiplier: Double) {
         self.bookOrder = order

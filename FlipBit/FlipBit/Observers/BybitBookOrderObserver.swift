@@ -13,6 +13,8 @@ class BybitBookOrderObserver: WebSocketDelegate {
     
     var socket: WebSocket?
     weak var delegate: SocketObserverDelegate?
+    weak var buybookDelegate: BybitBuyOrderObserver?
+    weak var sellbookDelegate: BybitSellOrderObserver?
     
     var response: Bybit.SocketResponse?
     var snapshot: Bybit.BookOrderSnapshot?
@@ -74,7 +76,6 @@ class BybitBookOrderObserver: WebSocketDelegate {
                 snapshot = firstSnapshot
                 sortBookOrders(snapshot?.book?.filter { $0.side == Bybit.Side.Buy }, side: Bybit.Side.Buy)
                 sortBookOrders(snapshot?.book?.filter { $0.side == Bybit.Side.Sell }, side: Bybit.Side.Sell)
-                delegate?.observerDidReceiveMessage(observer: self)
             } else {
                 print("Failed to decode Bybit BookOrder Snapshot")
                 delegate?.observerFailedToDecode(observer: self)
@@ -82,11 +83,14 @@ class BybitBookOrderObserver: WebSocketDelegate {
         case .Update, .Delete, .Insert:
             if let bookUpdate = try? Bybit.BookUpdate(from: data) {
                 updateBookOrders(bookUpdate.update?.filter { $0.side == Bybit.Side.Buy }, side: .Buy)
-                updateBookOrders(bookUpdate.update?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
                 deleteBookOrders(bookUpdate.delete?.filter { $0.side == Bybit.Side.Buy }, side: .Buy)
-                deleteBookOrders(bookUpdate.delete?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
                 insertBookOrders(bookUpdate.insert?.filter { $0.side == Bybit.Side.Buy }, side: .Buy)
+                buybookDelegate?.observerUpdatedBuyBook()
+                
+                updateBookOrders(bookUpdate.update?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
+                deleteBookOrders(bookUpdate.delete?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
                 insertBookOrders(bookUpdate.insert?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
+                sellbookDelegate?.observerUpdatedSellBook()
             } else {
                 print("Failed to decode Bybit BookOrder Update")
                 delegate?.observerFailedToDecode(observer: self)

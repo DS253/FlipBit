@@ -40,14 +40,15 @@ extension BybitBookOrderObserver {
                     hasOrder = true
                 }
             }
-            if hasOrder { delegate?.observerDidReceiveMessage(observer: self) }
+            if hasOrder { buybookDelegate?.observerUpdatedBuyBook() }
         case .Sell:
             for order in markedOrders {
                 if let index = sellBook?.firstIndex(where: { $0?.id == order?.id }) {
                     sellBook?[index] = order
+                    hasOrder = true
                 }
             }
-            delegate?.observerDidReceiveMessage(observer: self)
+            if hasOrder { sellbookDelegate?.observerUpdatedSellBook() }
         }
     }
     
@@ -59,35 +60,33 @@ extension BybitBookOrderObserver {
             for order in markedOrders {
                 if let index = buyBook?.firstIndex(where: { $0?.id == order?.id }) {
                     buyBook?.remove(at: index)
-                    delegate?.observerDidReceiveMessage(observer: self)
                     hasOrder = true
                 }
             }
-            if hasOrder { delegate?.observerDidReceiveMessage(observer: self) }
+            if hasOrder { buybookDelegate?.observerUpdatedBuyBook() }
         case .Sell:
             for order in markedOrders {
                 if let index = sellBook?.firstIndex(where: { $0?.id == order?.id}) {
                     sellBook?.remove(at: index)
-                    delegate?.observerDidReceiveMessage(observer: self)
                     hasOrder = true
                 }
             }
-            if hasOrder { delegate?.observerDidReceiveMessage(observer: self) }
+            if hasOrder { sellbookDelegate?.observerUpdatedSellBook() }
         }
     }
     
     func insertBookOrders(_ orders: [Bybit.BookOrder?]?, side: Bybit.Side) {
         guard let markedOrders = orders else { return }
-        
         switch side {
         case .Buy:
             buyBook?.append(contentsOf: markedOrders)
             sortBookOrders(buyBook, side: Bybit.Side.Buy)
+            if !markedOrders.isEmpty { buybookDelegate?.observerUpdatedBuyBook() }
         case .Sell:
             sellBook?.append(contentsOf: markedOrders)
             sortBookOrders(sellBook, side: Bybit.Side.Sell)
+            if !markedOrders.isEmpty { sellbookDelegate?.observerUpdatedSellBook() }
         }
-        if !markedOrders.isEmpty { delegate?.observerDidReceiveMessage(observer: self) }
     }
 }
 
@@ -111,8 +110,31 @@ extension BybitBookOrderObserver {
         return size
     }
     
+    func findLargestSellOrder() -> Int {
+        guard let sellBook = sellBook else { return 0 }
+        let max = sellBook.max(by: { (a, b) -> Bool in
+            guard
+                let first = a,
+                let second = b,
+                let firstSize = first.size,
+                let secondSize = second.size
+                else { return false }
+            return firstSize < secondSize
+        })
+        guard
+            let maxElement = max,
+            let size = maxElement?.size
+            else { return 0 }
+        return size
+    }
+    
     func returnPercentageOfBuyOrder(size: Int) -> Double {
         let largestOrder = Double(findLargestBuyOrder())
+        return Double(size) / largestOrder
+    }
+    
+    func returnPercentageOfSellOrder(size: Int) -> Double {
+        let largestOrder = Double(findLargestSellOrder())
         return Double(size) / largestOrder
     }
 }

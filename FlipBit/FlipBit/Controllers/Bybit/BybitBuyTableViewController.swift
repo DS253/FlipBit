@@ -9,7 +9,11 @@
 import Starscream
 import UIKit
 
-class BybitBuyTableViewController: BaseTableViewController, SocketObserverDelegate {
+protocol BybitBuyOrderObserver: class {
+    func observerUpdatedBuyBook()
+}
+
+class BybitBuyTableViewController: BaseTableViewController, SocketObserverDelegate, BybitBuyOrderObserver {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,7 @@ class BybitBuyTableViewController: BaseTableViewController, SocketObserverDelega
     override func setup() {
         super.setup()
         bookObserver.delegate = self
+        bookObserver.buybookDelegate = self
         view.backgroundColor = .white
     }
     
@@ -54,6 +59,10 @@ class BybitBuyTableViewController: BaseTableViewController, SocketObserverDelega
     
     func observerFailedToDecode(observer: WebSocketDelegate) {
         print("Observer failed to decode the response from the web socket")
+    }
+    
+    func observerUpdatedBuyBook() {
+        tableView.reloadData()
     }
     
     // MARK: - UITableViewDataSource Methods
