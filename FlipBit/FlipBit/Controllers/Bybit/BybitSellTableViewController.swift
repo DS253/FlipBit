@@ -13,7 +13,7 @@ protocol BybitSellOrderObserver: class {
     func observerUpdatedSellBook()
 }
 
-class BybitSellTableViewController: BaseTableViewController, SocketObserverDelegate, BybitSellOrderObserver {
+class BybitSellTableViewController: BaseTableViewController, BybitSellOrderObserver {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,6 @@ class BybitSellTableViewController: BaseTableViewController, SocketObserverDeleg
     
     override func setup() {
         super.setup()
-        bookObserver.delegate = self
         bookObserver.sellbookDelegate = self
         view.backgroundColor = .white
     }
@@ -39,30 +38,17 @@ class BybitSellTableViewController: BaseTableViewController, SocketObserverDeleg
         tableView.register(BybitBookOrderSellCell.self, forCellReuseIdentifier: BybitBookOrderSellCell.id)
     }
     
-    func observer(observer: WebSocketDelegate, didWriteToSocket: String) {
-        print("Observer has written to the web socket")
-    }
-    
-    func observerFailedToConnect() {
-        print("Observer has failed to connect to the web socket")
-    }
-    
-    func observerDidConnect(observer: WebSocketDelegate) {
-        print("Observer has connected to the web socket")
-        bookObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
-    }
-    
-    func observerDidReceiveMessage(observer: WebSocketDelegate) {
-//        print("Observer has received messages from the web socket")
-        tableView.reloadData()
-    }
-    
-    func observerFailedToDecode(observer: WebSocketDelegate) {
-        print("Observer failed to decode the response from the web socket")
-    }
-    
     func observerUpdatedSellBook() {
         tableView.reloadData()
+    }
+    
+    // MARK: - init Methods
+    override init(configuration: Configuration = .none) {
+        super.init(configuration: configuration)
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     // MARK: - UITableViewDataSource Methods
@@ -81,5 +67,3 @@ class BybitSellTableViewController: BaseTableViewController, SocketObserverDeleg
         return cell
     }
 }
-
-

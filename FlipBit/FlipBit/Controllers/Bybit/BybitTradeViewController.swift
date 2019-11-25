@@ -9,7 +9,25 @@
 import Starscream
 import UIKit
 
-class BybitTradeViewController: BaseTableViewController, SocketObserverDelegate {
+class BybitTradeViewController: ViewController, SocketObserverDelegate {
+    
+    private let orderbookContainer: View = {
+        let container = View()
+        container.backgroundColor = .white
+        return container
+    }()
+    
+    private lazy var buybook: BybitBuyTableViewController = {
+        let buybook = BybitBuyTableViewController()
+        buybook.view.translatesAutoresizingMaskIntoConstraints = false
+        return buybook
+    }()
+    
+    private lazy var sellbook: BybitSellTableViewController = {
+        let sellbook = BybitSellTableViewController()
+        sellbook.view.translatesAutoresizingMaskIntoConstraints = false
+        return sellbook
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +45,32 @@ class BybitTradeViewController: BaseTableViewController, SocketObserverDelegate 
     
     override func setupSubviews() {
         super.setupSubviews()
+        
+        view.addSubview(orderbookContainer)
+        orderbookContainer.addSubview(buybook.view)
+        orderbookContainer.addSubview(sellbook.view)
     }
     
-    override func setupTableView() {
-        super.setupTableView()
-        tableView.register(BybitTradeCell.self, forCellReuseIdentifier: BybitTradeCell.id)
+    override func setupConstraints() {
+        super.setupConstraints()
+        NSLayoutConstraint.activate([
+            orderbookContainer.topAnchor.constraint(equalTo: view.topAnchor),
+            orderbookContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            orderbookContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            orderbookContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            buybook.view.topAnchor.constraint(equalTo: orderbookContainer.topAnchor),
+            buybook.view.bottomAnchor.constraint(equalTo: orderbookContainer.bottomAnchor),
+            buybook.view.leadingAnchor.constraint(equalTo: orderbookContainer.leadingAnchor),
+            buybook.view.trailingAnchor.constraint(equalTo: orderbookContainer.centerXAnchor),
+            
+            sellbook.view.topAnchor.constraint(equalTo: orderbookContainer.topAnchor),
+            sellbook.view.bottomAnchor.constraint(equalTo: orderbookContainer.bottomAnchor),
+            sellbook.view.leadingAnchor.constraint(equalTo: orderbookContainer.centerXAnchor),
+            sellbook.view.trailingAnchor.constraint(equalTo: orderbookContainer.trailingAnchor)
+        ])
     }
-    
+        
     func observer(observer: WebSocketDelegate, didWriteToSocket: String) {
         print("Observer has written to the web socket")
     }
@@ -49,34 +86,9 @@ class BybitTradeViewController: BaseTableViewController, SocketObserverDelegate 
     
     func observerDidReceiveMessage(observer: WebSocketDelegate) {
 //        print("Observer has received messages from the web socket")
-        tableView.reloadData()
     }
     
     func observerFailedToDecode(observer: WebSocketDelegate) {
         print("Observer failed to decode the response from the web socket")
-    }
-    
-    // MARK: - UITableViewDataSource Methods
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bookObserver.buyBook?.count ?? 0
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> BybitTradeCell {
-        guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: BybitTradeCell.id, for: indexPath) as? BybitTradeCell
-            else { return BybitTradeCell() }
-        
-        guard
-            let price = bookObserver.buyBook?[indexPath.row]?.price,
-            let size = bookObserver.buyBook?[indexPath.row]?.size,
-            let sellPrice = bookObserver.sellBook?[indexPath.row]?.price,
-            let sellSize = bookObserver.sellBook?[indexPath.row]?.size
-            
-            else { return BybitTradeCell() }
-        
-        cell.textLabel?.text = "\(size)" + "  \(price)" + "    \(sellPrice)" + "       \(sellSize)"
-        
-        
-        return cell
     }
 }
