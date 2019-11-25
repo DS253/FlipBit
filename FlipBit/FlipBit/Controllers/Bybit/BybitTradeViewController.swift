@@ -40,6 +40,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     override func setup() {
         super.setup()
         bookObserver.delegate = self
+        symbolObserver.delegate = self
         view.backgroundColor = .white
     }
     
@@ -81,7 +82,8 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     
     func observerDidConnect(observer: WebSocketDelegate) {
         print("Observer has connected to the web socket")
-        bookObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
+      //  bookObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
+        symbolObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"instrument.BTCUSD\"]}")
     }
     
     func observerDidReceiveMessage(observer: WebSocketDelegate) {

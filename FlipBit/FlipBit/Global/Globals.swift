@@ -24,3 +24,9 @@ internal let bookObserver: BybitBookOrderObserver = {
     request.timeoutInterval = 5
     return BybitBookOrderObserver(url: request)
 }()
+
+internal let symbolObserver: BybitSymbolInfoObserver = {
+    var request = URLRequest(url: URL(string: "wss://stream-testnet.bybit.com/realtime")!)
+    request.timeoutInterval = 5
+    return BybitSymbolInfoObserver(url: request)
+}()
