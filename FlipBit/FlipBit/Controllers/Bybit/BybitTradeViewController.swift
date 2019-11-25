@@ -83,7 +83,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     func observerDidConnect(observer: WebSocketDelegate) {
         print("Observer has connected to the web socket")
       //  bookObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
-        symbolObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"instrument.BTCUSD\"]}")
+        symbolObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"instrument_info.100ms.BTCUSD\"]}")
     }
     
     func observerDidReceiveMessage(observer: WebSocketDelegate) {

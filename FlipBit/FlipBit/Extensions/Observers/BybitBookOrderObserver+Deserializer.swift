@@ -9,9 +9,6 @@
 import Foundation
 
 extension BybitBookOrderObserver {
-    func convertToData(_ text: String) -> Data? {
-        return text.data(using: String.Encoding.utf8)
-    }
     
     func determineBookOrderResponseType(_ data: Data?) -> Bybit.BookOrderResponseResult {
         guard

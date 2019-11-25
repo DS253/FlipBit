@@ -88,6 +88,7 @@
 		065F6016238B550C008B5B89 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065F6015238B550C008B5B89 /* UIColor+Additions.swift */; };
 		065F6018238B5F61008B5B89 /* BybitBookOrderSellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065F6017238B5F61008B5B89 /* BybitBookOrderSellCell.swift */; };
 		065F601D238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065F601C238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift */; };
+		065F601F238BCD60008B5B89 /* BybitObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065F601E238BCD5F008B5B89 /* BybitObserver.swift */; };
 		06746EB42381404E00F14521 /* BitService+BBActiveOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06746EB32381404E00F14521 /* BitService+BBActiveOrder.swift */; };
 		06746EB62381480300F14521 /* BBActiveOrder+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */; };
 		069CFA8C2384D9F400B46BCF /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; };
@@ -227,6 +228,7 @@
 		065F6015238B550C008B5B89 /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		065F6017238B5F61008B5B89 /* BybitBookOrderSellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitBookOrderSellCell.swift; sourceTree = "<group>"; };
 		065F601C238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitSymbolInfoObserver.swift; sourceTree = "<group>"; };
+		065F601E238BCD5F008B5B89 /* BybitObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitObserver.swift; sourceTree = "<group>"; };
 		06746EB32381404E00F14521 /* BitService+BBActiveOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBActiveOrder.swift"; sourceTree = "<group>"; };
 		06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBActiveOrder+Endpoint.swift"; sourceTree = "<group>"; };
 		069CFA8B2384D9F400B46BCF /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
@@ -648,6 +650,7 @@
 			children = (
 				45B3D94E23874DCC0004DF76 /* BybitBookOrderObserver.swift */,
 				065F601C238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift */,
+				065F601E238BCD5F008B5B89 /* BybitObserver.swift */,
 			);
 			path = Observers;
 			sourceTree = "<group>";
@@ -962,6 +965,7 @@
 				06470DAA2377B6D500419238 /* SceneDelegate.swift in Sources */,
 				064131242389F69200B795D5 /* BybitTradeCell.swift in Sources */,
 				06433BCE2381FFD100480EC1 /* BitService+BBActiveOrderUpdate.swift in Sources */,
+				065F601F238BCD60008B5B89 /* BybitObserver.swift in Sources */,
 				06470E192377C7C600419238 /* BitService+BBPredictedFunding.swift in Sources */,
 				06433BC82381FAB900480EC1 /* BBActiveOrderCreate+Endpoint.swift in Sources */,
 				062895D42383A4510076AA27 /* BaseViewController.swift in Sources */,
