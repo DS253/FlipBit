@@ -74,7 +74,7 @@ class BybitBookOrderObserver: WebSocketDelegate {
                 snapshot = firstSnapshot
                 sortBookOrders(snapshot?.book?.filter { $0.side == Bybit.Side.Buy }, side: Bybit.Side.Buy)
                 sortBookOrders(snapshot?.book?.filter { $0.side == Bybit.Side.Sell }, side: Bybit.Side.Sell)
-                delegate?.observerDidReceiveMessage(observer: self, didReceiveMessage: text)
+                delegate?.observerDidReceiveMessage(observer: self)
             } else {
                 print("Failed to decode Bybit BookOrder Snapshot")
                 delegate?.observerFailedToDecode(observer: self)
@@ -87,7 +87,6 @@ class BybitBookOrderObserver: WebSocketDelegate {
                 deleteBookOrders(bookUpdate.delete?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
                 insertBookOrders(bookUpdate.insert?.filter { $0.side == Bybit.Side.Buy }, side: .Buy)
                 insertBookOrders(bookUpdate.insert?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
-                delegate?.observerDidReceiveMessage(observer: self, didReceiveMessage: text)
             } else {
                 print("Failed to decode Bybit BookOrder Update")
                 delegate?.observerFailedToDecode(observer: self)

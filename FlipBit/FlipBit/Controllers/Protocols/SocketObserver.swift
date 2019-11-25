@@ -13,6 +13,6 @@ protocol SocketObserverDelegate: class {
     func observer(observer: WebSocketDelegate, didWriteToSocket: String)
     func observerFailedToConnect()
     func observerDidConnect(observer: WebSocketDelegate)
-    func observerDidReceiveMessage(observer: WebSocketDelegate, didReceiveMessage: String)
+    func observerDidReceiveMessage(observer: WebSocketDelegate)
     func observerFailedToDecode(observer: WebSocketDelegate)
 }

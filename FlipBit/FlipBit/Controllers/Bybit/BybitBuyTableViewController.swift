@@ -1,15 +1,15 @@
 //
-//  BybitTradeViewController.swift
+//  BybitBuyTableViewController.swift
 //  FlipBit
 //
-//  Created by Daniel Stewart on 11/21/19.
+//  Created by Daniel Stewart on 11/24/19.
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
 import Starscream
 import UIKit
 
-class BybitTradeViewController: BaseTableViewController, SocketObserverDelegate {
+class BybitBuyTableViewController: BaseTableViewController, SocketObserverDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +31,7 @@ class BybitTradeViewController: BaseTableViewController, SocketObserverDelegate 
     
     override func setupTableView() {
         super.setupTableView()
-        tableView.register(BybitTradeCell.self, forCellReuseIdentifier: BybitTradeCell.id)
+        tableView.register(BybitBookOrderBuyCell.self, forCellReuseIdentifier: BybitBookOrderBuyCell.id)
     }
     
     func observer(observer: WebSocketDelegate, didWriteToSocket: String) {
@@ -61,22 +61,14 @@ class BybitTradeViewController: BaseTableViewController, SocketObserverDelegate 
         return bookObserver.buyBook?.count ?? 0
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> BybitTradeCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> BybitBookOrderBuyCell {
         guard
-            let cell = tableView.dequeueReusableCell(withIdentifier: BybitTradeCell.id, for: indexPath) as? BybitTradeCell
-            else { return BybitTradeCell() }
+            let cell = tableView.dequeueReusableCell(withIdentifier: BybitBookOrderBuyCell.id, for: indexPath) as? BybitBookOrderBuyCell,
+            let order = bookObserver.buyBook?[indexPath.row]
+            else { return BybitBookOrderBuyCell() }
         
-        guard
-            let price = bookObserver.buyBook?[indexPath.row]?.price,
-            let size = bookObserver.buyBook?[indexPath.row]?.size,
-            let sellPrice = bookObserver.sellBook?[indexPath.row]?.price,
-            let sellSize = bookObserver.sellBook?[indexPath.row]?.size
-            
-            else { return BybitTradeCell() }
-        
-        cell.textLabel?.text = "\(size)" + "  \(price)" + "    \(sellPrice)" + "       \(sellSize)"
-        
-        
+        cell.configure(with: order, multiplier: bookObserver.returnPercentageOfBuyOrder(size: order.size ?? 0))
+
         return cell
     }
 }

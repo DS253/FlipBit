@@ -1,15 +1,15 @@
 //
-//  BybitTradeViewController.swift
+//  BybitSellTableViewController.swift
 //  FlipBit
 //
-//  Created by Daniel Stewart on 11/21/19.
+//  Created by Daniel Stewart on 11/24/19.
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
 import Starscream
 import UIKit
 
-class BybitTradeViewController: BaseTableViewController, SocketObserverDelegate {
+class BybitSellTableViewController: BaseTableViewController, SocketObserverDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +58,7 @@ class BybitTradeViewController: BaseTableViewController, SocketObserverDelegate 
     
     // MARK: - UITableViewDataSource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bookObserver.buyBook?.count ?? 0
+        return bookObserver.sellBook?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> BybitTradeCell {
@@ -67,16 +67,17 @@ class BybitTradeViewController: BaseTableViewController, SocketObserverDelegate 
             else { return BybitTradeCell() }
         
         guard
-            let price = bookObserver.buyBook?[indexPath.row]?.price,
-            let size = bookObserver.buyBook?[indexPath.row]?.size,
+
             let sellPrice = bookObserver.sellBook?[indexPath.row]?.price,
             let sellSize = bookObserver.sellBook?[indexPath.row]?.size
             
             else { return BybitTradeCell() }
         
-        cell.textLabel?.text = "\(size)" + "  \(price)" + "    \(sellPrice)" + "       \(sellSize)"
+        cell.textLabel?.text = "\(sellPrice)" + "    \(sellSize)"
         
         
         return cell
     }
 }
+
+

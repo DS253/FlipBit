@@ -18,7 +18,7 @@ extension Bybit {
         var insert: [BookOrder]?
         var transactionTime: Int?
         var metadata: Metadata?
-
+        
         enum CodingKeys: String, CodingKey {
             case topic
             case type
@@ -28,13 +28,13 @@ extension Bybit {
             case transactionTime = "transactTimeE6"
             case data
         }
-
+        
         init(from decoder: Decoder) throws {
             let values = try decoder.container(keyedBy: CodingKeys.self)
             topic = try values.decodeIfPresent(Topic.self, forKey: .topic)
             type = try values.decodeIfPresent(FormatType.self, forKey: .type)
             metadata = try Metadata(from: decoder)
-
+            
             let dictionary = try values.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
             delete = try dictionary.decodeIfPresent([BookOrder].self, forKey: .delete)
             update = try dictionary.decodeIfPresent([BookOrder].self, forKey: .update)
@@ -52,7 +52,7 @@ extension Bybit {
             transactionTime = bookUpdate.transactionTime
             metadata = bookUpdate.metadata
         }
-
+        
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encodeIfPresent(topic, forKey: .topic)

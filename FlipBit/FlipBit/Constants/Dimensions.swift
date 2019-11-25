@@ -20,9 +20,6 @@ struct Dimensions {
 
 extension Dimensions.Space {
     
-    /// Default space as per Apple HIG.
-    static let defaultSpace: CGFloat = 8.0
-    
     /// Default space between labels top space (top / bottom).
     static let labels: CGFloat = 4.0
 
@@ -31,7 +28,7 @@ extension Dimensions.Space {
     /// Space between labels contained in a table cell
     static let margin2: CGFloat = 2.0
     
-    /// Space between "cells" in an SSRPageTableView
+    /// Default space as per Apple HIG.
     static let margin8: CGFloat = 8.0
     
     static let margin10: CGFloat = 10.0

@@ -24,7 +24,7 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
         print("Observer has connected to the web socket")
     }
     
-    func observerDidReceiveMessage(observer: WebSocketDelegate, didReceiveMessage: String) {
+    func observerDidReceiveMessage(observer: WebSocketDelegate) {
         print("Observer has received messages from the web socket")
     }
     
