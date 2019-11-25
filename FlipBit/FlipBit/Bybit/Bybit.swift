@@ -24,6 +24,14 @@ public extension Bybit {
         case UnknownResponse
     }
     
+    enum SymbolInfoResponseResult {
+        case Snapshot
+        case Update
+        case SocketResponse
+        case DecodingFailure
+        case UnknownResponse
+    }
+    
     enum FormatType: String, Codable {
         case Snapshot = "snapshot"
         case Update = "delta"

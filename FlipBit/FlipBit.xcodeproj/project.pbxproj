@@ -89,6 +89,8 @@
 		065F6018238B5F61008B5B89 /* BybitBookOrderSellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065F6017238B5F61008B5B89 /* BybitBookOrderSellCell.swift */; };
 		065F601D238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065F601C238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift */; };
 		065F601F238BCD60008B5B89 /* BybitObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065F601E238BCD5F008B5B89 /* BybitObserver.swift */; };
+		065F6024238C5DBB008B5B89 /* Bybit+SymbolInfoSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065F6023238C5DBB008B5B89 /* Bybit+SymbolInfoSnapshot.swift */; };
+		065F6026238C5DFD008B5B89 /* Bybit+SymbolInfoUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065F6025238C5DFD008B5B89 /* Bybit+SymbolInfoUpdate.swift */; };
 		06746EB42381404E00F14521 /* BitService+BBActiveOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06746EB32381404E00F14521 /* BitService+BBActiveOrder.swift */; };
 		06746EB62381480300F14521 /* BBActiveOrder+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */; };
 		069CFA8C2384D9F400B46BCF /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; };
@@ -229,6 +231,8 @@
 		065F6017238B5F61008B5B89 /* BybitBookOrderSellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitBookOrderSellCell.swift; sourceTree = "<group>"; };
 		065F601C238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitSymbolInfoObserver.swift; sourceTree = "<group>"; };
 		065F601E238BCD5F008B5B89 /* BybitObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitObserver.swift; sourceTree = "<group>"; };
+		065F6023238C5DBB008B5B89 /* Bybit+SymbolInfoSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+SymbolInfoSnapshot.swift"; sourceTree = "<group>"; };
+		065F6025238C5DFD008B5B89 /* Bybit+SymbolInfoUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+SymbolInfoUpdate.swift"; sourceTree = "<group>"; };
 		06746EB32381404E00F14521 /* BitService+BBActiveOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBActiveOrder.swift"; sourceTree = "<group>"; };
 		06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBActiveOrder+Endpoint.swift"; sourceTree = "<group>"; };
 		069CFA8B2384D9F400B46BCF /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
@@ -615,6 +619,7 @@
 				064D3D8B2389A74B00B34173 /* BookOrder */,
 				064D3D912389AD2700B34173 /* Metadata */,
 				064D3D8E2389A8B500B34173 /* Response */,
+				065F6020238C5A9A008B5B89 /* SymbolInfo */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -653,6 +658,15 @@
 				065F601E238BCD5F008B5B89 /* BybitObserver.swift */,
 			);
 			path = Observers;
+			sourceTree = "<group>";
+		};
+		065F6020238C5A9A008B5B89 /* SymbolInfo */ = {
+			isa = PBXGroup;
+			children = (
+				065F6023238C5DBB008B5B89 /* Bybit+SymbolInfoSnapshot.swift */,
+				065F6025238C5DFD008B5B89 /* Bybit+SymbolInfoUpdate.swift */,
+			);
+			path = SymbolInfo;
 			sourceTree = "<group>";
 		};
 		069CFA912384E73500B46BCF /* Services */ = {
@@ -908,6 +922,7 @@
 				06470E0E2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift in Sources */,
 				064D3D882389A69700B34173 /* Bybit+BookOrder.swift in Sources */,
 				064D3D932389AD3D00B34173 /* Bybit+Metadata.swift in Sources */,
+				065F6026238C5DFD008B5B89 /* Bybit+SymbolInfoUpdate.swift in Sources */,
 				06470DEB2377C1F400419238 /* DataConvertible.swift in Sources */,
 				065F601D238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift in Sources */,
 				064D3D852389A55200B34173 /* Bybit.swift in Sources */,
@@ -933,6 +948,7 @@
 				060D96F4237BBC480040598A /* BitService+BBTradeRecord.swift in Sources */,
 				064131212389ED5400B795D5 /* SocketObserver.swift in Sources */,
 				06470E042377C37800419238 /* BitService+Configuration.swift in Sources */,
+				065F6024238C5DBB008B5B89 /* Bybit+SymbolInfoSnapshot.swift in Sources */,
 				06746EB42381404E00F14521 /* BitService+BBActiveOrder.swift in Sources */,
 				06470E132377C6C600419238 /* BitService+BBAPIKeyInfo.swift in Sources */,
 				06470DF62377C2B000419238 /* DateFormatter+Additions.swift in Sources */,
