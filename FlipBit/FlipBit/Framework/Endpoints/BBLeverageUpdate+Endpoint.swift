@@ -14,7 +14,7 @@ extension BitService.BybitLeverageUpdate {
     struct Endpoint: Requestable {
         
         var leverage: String
-        var symbol: BitService.BybitSymbol
+        var symbol: Bybit.Symbol
         var timestamp: String
         
         internal func baseURL() throws -> NetQuilt.BaseURL {
@@ -43,7 +43,7 @@ extension BitService.BybitLeverageUpdate {
                     NetQuilt.QueryItem(name: "sign", value: signature)]
         }
         
-        init(symbol: BitService.BybitSymbol, leverage: String, timeStamp: String) {
+        init(symbol: Bybit.Symbol, leverage: String, timeStamp: String) {
             self.symbol = symbol
             self.leverage = leverage
             self.timestamp = timeStamp

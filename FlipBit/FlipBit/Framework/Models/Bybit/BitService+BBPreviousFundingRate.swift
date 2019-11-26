@@ -42,7 +42,7 @@ public extension BitService {
     struct BybitPreviousFundingRateData {
         
         /// The symbol of the order in which the fee occurred.
-        let symbol: BitService.BybitSymbol
+        let symbol: Bybit.Symbol
         
         /// The funding rate. When the funding rate is positive, longs pay shorts. When it is negative, shorts pay longs.
         let fundingRate: String
@@ -62,7 +62,7 @@ extension BitService.BybitPreviousFundingRateData: Model {
     
     public init(from decoder: Decoder) throws {
         let results = try decoder.container(keyedBy: CodingKeys.self)
-        self.symbol = try results.decode(BitService.BybitSymbol.self, forKey: .symbol)
+        self.symbol = try results.decode(Bybit.Symbol.self, forKey: .symbol)
         self.fundingRate = try results.decode(String.self, forKey: .fundingRate)
         self.fundingRateDate = try results.decode(Int.self, forKey: .fundingRateDate)
     }

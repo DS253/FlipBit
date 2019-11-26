@@ -13,7 +13,7 @@ extension Bybit {
     struct SymbolInfoSnapshot: Codable {
         var topic: Topic?
         var type: FormatType?
-        var symbol: [BookOrder]?
+        var symbol: SymbolInfo?
         var metadata: Metadata?
         
         
@@ -25,10 +25,18 @@ extension Bybit {
         
         init(from decoder: Decoder) throws {
             let values = try decoder.container(keyedBy: CodingKeys.self)
-            symbol = try values.decodeIfPresent([BookOrder].self, forKey: .symbol)
+            symbol = try values.decodeIfPresent(SymbolInfo.self, forKey: .symbol)
             topic = try values.decodeIfPresent(Topic.self, forKey: .topic)
             type = try values.decodeIfPresent(FormatType.self, forKey: .type)
             metadata = try Metadata(from: decoder)
+        }
+
+        init(from data: Data) throws {
+            let snapshot = try JSONDecoder().decode(SymbolInfoSnapshot.self, from: data)
+            topic = snapshot.topic
+            type = snapshot.type
+            symbol = snapshot.symbol
+            metadata = snapshot.metadata
         }
         
         func encode(to encoder: Encoder) throws {

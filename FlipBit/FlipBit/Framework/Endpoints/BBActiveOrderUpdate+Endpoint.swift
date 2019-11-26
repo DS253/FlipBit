@@ -14,7 +14,7 @@ extension BitService.BybitActiveOrderUpdate {
     struct Endpoint: Requestable {
         
         var orderID: String
-        var symbol: BitService.BybitSymbol
+        var symbol: Bybit.Symbol
         var quantity: Int?
         var price: Double?
         var timestamp: String
@@ -59,7 +59,7 @@ extension BitService.BybitActiveOrderUpdate {
             return queryItems
         }
         
-        init(orderID: String, symbol: BitService.BybitSymbol, quantity: Int? = nil, price: Double? = nil, timeStamp: String) {
+        init(orderID: String, symbol: Bybit.Symbol, quantity: Int? = nil, price: Double? = nil, timeStamp: String) {
             self.orderID = orderID
             self.symbol = symbol
             self.quantity = quantity

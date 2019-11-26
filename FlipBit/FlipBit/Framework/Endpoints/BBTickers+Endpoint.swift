@@ -13,7 +13,7 @@ extension BitService.BybitTickerList {
     
     struct Endpoint: Requestable {
         
-        var symbol: BitService.BybitSymbol
+        var symbol: Bybit.Symbol
 
         internal func baseURL() throws -> NetQuilt.BaseURL {
             return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
@@ -27,7 +27,7 @@ extension BitService.BybitTickerList {
             return [NetQuilt.QueryItem(name: "symbol", value: self.symbol.rawValue)]
         }
         
-        init(symbol: BitService.BybitSymbol) {
+        init(symbol: Bybit.Symbol) {
             self.symbol = symbol
         }
     }

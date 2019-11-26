@@ -44,7 +44,7 @@ public extension BitService {
     struct BybitBookItem {
         
         /// The symbol of the order.
-        let symbol: BitService.BybitSymbol
+        let symbol: Bybit.Symbol
         
         /// The price the order will be triggered at.
         let price: String
@@ -68,7 +68,7 @@ extension BitService.BybitBookItem: Model {
 
     public init(from decoder: Decoder) throws {
         let results = try decoder.container(keyedBy: CodingKeys.self)
-        self.symbol = try results.decode(BitService.BybitSymbol.self, forKey: .symbol)
+        self.symbol = try results.decode(Bybit.Symbol.self, forKey: .symbol)
         self.price = try results.decode(String.self, forKey: .price)
         self.size = try results.decode(Int.self, forKey: .size)
         self.side = try results.decode(BitService.BybitOrderSide.self, forKey: .side)

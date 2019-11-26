@@ -13,7 +13,7 @@ extension BitService.BybitTradeRecords {
     
     struct Endpoint: Requestable {
         
-        var symbol: BitService.BybitSymbol
+        var symbol: Bybit.Symbol
         var pageNumber: Int
         var timestamp: String
         
@@ -39,7 +39,7 @@ extension BitService.BybitTradeRecords {
                     NetQuilt.QueryItem(name: "sign", value: signature)]
         }
         
-        init(symbol: BitService.BybitSymbol, pageNumber: Int, timeStamp: String) {
+        init(symbol: Bybit.Symbol, pageNumber: Int, timeStamp: String) {
             self.symbol = symbol
             self.pageNumber = pageNumber
             self.timestamp = timeStamp

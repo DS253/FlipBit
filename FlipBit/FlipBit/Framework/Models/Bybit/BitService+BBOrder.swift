@@ -46,7 +46,7 @@ public extension BitService {
         let userID: Int
         
         /// The contract type.
-        let symbol: BitService.BybitSymbol
+        let symbol: Bybit.Symbol
         
         /// The side of the order.
         let side: BitService.BybitOrderSide
@@ -116,7 +116,7 @@ extension BitService.BybitOrder: Model {
     public init(from decoder: Decoder) throws {
         let results = try decoder.container(keyedBy: CodingKeys.self)
         self.userID = try results.decode(Int.self, forKey: .userID)
-        self.symbol = try results.decode(BitService.BybitSymbol.self, forKey: .symbol)
+        self.symbol = try results.decode(Bybit.Symbol.self, forKey: .symbol)
         self.side = try results.decode(BitService.BybitOrderSide.self, forKey: .side)
         self.orderType = try results.decode(BitService.BybitOrderType.self, forKey: .orderType)
         self.price = try results.decode(Double.self, forKey: .price)

@@ -48,7 +48,15 @@ public extension Bybit {
         case EOS = "EOSUSD"
         case XRP = "XRPUSD"
     }
-    
+
+    /// The most recent directional change in price.
+    enum TickDirection: String, Codable {
+        case PlusTick
+        case ZeroPlusTick
+        case MinusTick
+        case ZeroMinusTick
+    }
+
     enum Topic: String, Codable {
         case OrderBook = "orderBookL2_25.BTCUSD"
     }

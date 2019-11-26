@@ -14,7 +14,7 @@ extension BitService.BybitOrder {
     struct Endpoint: Requestable {
         
         var side: BitService.BybitOrderSide
-        var symbol: BitService.BybitSymbol
+        var symbol: Bybit.Symbol
         var orderType: BitService.BybitOrderType
         var quantity: Int
         var timeInForce: BitService.BybitOrderTimeInForce
@@ -87,7 +87,7 @@ extension BitService.BybitOrder {
             return queryItems
         }
         
-        init(side: BitService.BybitOrderSide, symbol: BitService.BybitSymbol, orderType: BitService.BybitOrderType, quantity: Int, timeInForce: BitService.BybitOrderTimeInForce,
+        init(side: BitService.BybitOrderSide, symbol: Bybit.Symbol, orderType: BitService.BybitOrderType, quantity: Int, timeInForce: BitService.BybitOrderTimeInForce,
              price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkID: String? = nil, timeStamp: String) {
             self.quantity = quantity
             self.side = side

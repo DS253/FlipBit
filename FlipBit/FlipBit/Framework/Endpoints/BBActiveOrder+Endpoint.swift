@@ -13,7 +13,7 @@ extension BitService.BybitActiveOrderList {
     
     struct Endpoint: Requestable {
         
-        var symbol: BitService.BybitSymbol
+        var symbol: Bybit.Symbol
         var pageNumber: Int
         var timestamp: String
         var orderStatus: BitService.BybitOrderStatus?
@@ -50,7 +50,7 @@ extension BitService.BybitActiveOrderList {
             return queryItems
         }
         
-        init(symbol: BitService.BybitSymbol, pageNumber: Int, orderStatus: BitService.BybitOrderStatus? = nil, timeStamp: String) {
+        init(symbol: Bybit.Symbol, pageNumber: Int, orderStatus: BitService.BybitOrderStatus? = nil, timeStamp: String) {
             self.symbol = symbol
             self.pageNumber = pageNumber
             self.orderStatus = orderStatus

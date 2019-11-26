@@ -31,9 +31,18 @@ class BybitSymbolInfoObserver: BybitObserver {
                 return
         }
         
-        switch responseType {
-            
-        }
+//        switch responseType {
+//        case .Snapshot:
+//            if let firstSnapshot = try? Bybit.SymbolInfoSnapshot(from: data) {
+//                snapshot = firstSnapshot
+//            }
+//        }
+
+//        case Snapshot
+//        case Update
+//        case SocketResponse
+//        case DecodingFailure
+//        case UnknownResponse
     }
     
     func determineSymbolInfoResponseType(_ data: Data?) -> Bybit.SymbolInfoResponseResult {
@@ -51,17 +60,13 @@ class BybitSymbolInfoObserver: BybitObserver {
         if dictionary["type"] as? String == Bybit.FormatType.Update.rawValue {
             guard
                 let bookUpdate = try? Bybit.BookUpdate(from: response),
-                let update = bookUpdate.update,
-                let delete = bookUpdate.delete,
-                let insert = bookUpdate.insert
+                let update = bookUpdate.update
                 else { return .DecodingFailure }
+
             if !update.isEmpty { return .Update }
-            else if !delete.isEmpty { return .Delete }
-            else if !insert.isEmpty { return .Insert }
             else { return .UnknownResponse }
         }
-        
-        
+
         if dictionary.keys.contains("success") {
             return .SocketResponse
         }

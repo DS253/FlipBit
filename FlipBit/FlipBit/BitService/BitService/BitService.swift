@@ -90,14 +90,7 @@ public extension BitService {
         case Liq
         case Normal
     }
-    
-    enum BybitSymbol: String, Codable {
-        case BTC = "BTCUSD"
-        case ETH = "ETHUSD"
-        case EOS = "EOSUSD"
-        case XRP = "XRPUSD"
-    }
-    
+
     enum BybitWithdrawalStatus: String, Codable {
         case ToBeConfirmed
         case UnderReview
@@ -113,7 +106,7 @@ public extension BitService {
         service.load(endpoint, expecting: BybitAPIKeyInfo.self, on: completion)
     }
     
-    func lookupBybitActiveOrders(symbol: BitService.BybitSymbol, pageNumber: Int, orderStatus: BitService.BybitOrderStatus?, completion: @escaping (Result<BybitActiveOrderList, BitService.Error>) -> Void) {
+    func lookupBybitActiveOrders(symbol: Bybit.Symbol, pageNumber: Int, orderStatus: BitService.BybitOrderStatus?, completion: @escaping (Result<BybitActiveOrderList, BitService.Error>) -> Void) {
         let endpoint = BybitActiveOrderList.Endpoint(symbol: symbol, pageNumber: pageNumber, orderStatus: orderStatus, timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitActiveOrderList.self, on: completion)
     }
@@ -123,12 +116,12 @@ public extension BitService {
         service.load(endpoint, expecting: BybitLeverageStatus.self, on: completion)
     }
     
-    func postBybitLeverageUpdate(symbol: BitService.BybitSymbol, leverage: String, completion: @escaping (Result<BybitLeverageUpdate, BitService.Error>) -> Void) {
+    func postBybitLeverageUpdate(symbol: Bybit.Symbol, leverage: String, completion: @escaping (Result<BybitLeverageUpdate, BitService.Error>) -> Void) {
         let endpoint = BybitLeverageUpdate.Endpoint.init(symbol: symbol, leverage: leverage, timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitLeverageUpdate.self, on: completion)
     }
     
-    func lookupBybitOrderBook(symbol: BybitSymbol, completion: @escaping (Result<BybitOrderbook, BitService.Error>) -> Void) {
+    func lookupBybitOrderBook(symbol: Bybit.Symbol, completion: @escaping (Result<BybitOrderbook, BitService.Error>) -> Void) {
         let endpoint = BybitOrderbook.Endpoint.init(symbol: symbol)
         service.load(endpoint, expecting: BybitOrderbook.self, on: completion)
     }
@@ -138,17 +131,17 @@ public extension BitService {
         service.load(endpoint, expecting: BybitPositionList.self, on: completion)
     }
     
-    func lookupBybitPredictedFunding(symbol: BybitSymbol, completion: @escaping (Result<BybitPredictedFunding, BitService.Error>) -> Void) {
+    func lookupBybitPredictedFunding(symbol: Bybit.Symbol, completion: @escaping (Result<BybitPredictedFunding, BitService.Error>) -> Void) {
         let endpoint = BybitPredictedFunding.Endpoint.init(symbol: symbol, timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitPredictedFunding.self, on: completion)
     }
     
-    func lookupBybitPreviousFunding(symbol: BybitSymbol, completion: @escaping (Result<BybitPreviousFundingFee, BitService.Error>) -> Void) {
+    func lookupBybitPreviousFunding(symbol: Bybit.Symbol, completion: @escaping (Result<BybitPreviousFundingFee, BitService.Error>) -> Void) {
         let endpoint = BybitPreviousFundingFee.Endpoint.init(symbol: symbol, timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitPreviousFundingFee.self, on: completion)
     }
     
-    func lookupBybitPreviousFundingRate(symbol: BybitSymbol, completion: @escaping (Result<BybitPreviousFundingRate, BitService.Error>) -> Void) {
+    func lookupBybitPreviousFundingRate(symbol: Bybit.Symbol, completion: @escaping (Result<BybitPreviousFundingRate, BitService.Error>) -> Void) {
         let endpoint = BybitPreviousFundingRate.Endpoint.init(symbol: symbol, timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitPreviousFundingRate.self, on: completion)
     }
@@ -158,12 +151,12 @@ public extension BitService {
         service.load(endpoint, expecting: BybitServerTime.self, on: completion)
     }
     
-    func lookupBybitTickers(symbol: BybitSymbol, completion: @escaping (Result<BybitTickerList, BitService.Error>) -> Void) {
+    func lookupBybitTickers(symbol: Bybit.Symbol, completion: @escaping (Result<BybitTickerList, BitService.Error>) -> Void) {
         let endpoint = BybitTickerList.Endpoint.init(symbol: symbol)
         service.load(endpoint, expecting: BybitTickerList.self, on: completion)
     }
     
-    func lookupBybitTradeRecords(symbol: BybitSymbol, pageNumber: Int, completion: @escaping (Result<BybitTradeRecords, BitService.Error>) -> Void) {
+    func lookupBybitTradeRecords(symbol: Bybit.Symbol, pageNumber: Int, completion: @escaping (Result<BybitTradeRecords, BitService.Error>) -> Void) {
         let endpoint = BybitTradeRecords.Endpoint.init(symbol: symbol, pageNumber: pageNumber, timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitTradeRecords.self, on: completion)
     }
@@ -178,7 +171,7 @@ public extension BitService {
         service.load(endpoint, expecting: BybitWithdrawalRecords.self, on: completion)
     }
     
-    func postBybitCreateActiveOrder(side: BitService.BybitOrderSide, symbol: BitService.BybitSymbol, orderType: BitService.BybitOrderType, quantity: Int,
+    func postBybitCreateActiveOrder(side: BitService.BybitOrderSide, symbol: Bybit.Symbol, orderType: BitService.BybitOrderType, quantity: Int,
                               timeInForce: BitService.BybitOrderTimeInForce, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil,
                               reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkID: String? = nil, completion: @escaping (Result<BybitOrderResponse, BitService.Error>) -> Void) {
         let endpoint = BybitOrder.Endpoint.init(side: side, symbol: symbol, orderType: orderType, quantity: quantity, timeInForce: timeInForce,
@@ -192,7 +185,7 @@ public extension BitService {
         service.load(endpoint, expecting: BybitCancelledOrder.self, on: completion)
     }
     
-    func postBybitUpdateActiveOrder(orderID: String, symbol: BitService.BybitSymbol, quantity: Int? = nil, price: Double? = nil, completion: @escaping (Result<BybitActiveOrderUpdate, BitService.Error>) -> Void) {
+    func postBybitUpdateActiveOrder(orderID: String, symbol: Bybit.Symbol, quantity: Int? = nil, price: Double? = nil, completion: @escaping (Result<BybitActiveOrderUpdate, BitService.Error>) -> Void) {
         let endpoint = BybitActiveOrderUpdate.Endpoint.init(orderID: orderID, symbol: symbol, quantity: quantity, price: price, timeStamp: Date().bybitTimestamp())
         service.load(endpoint, expecting: BybitActiveOrderUpdate.self, on: completion)
     }

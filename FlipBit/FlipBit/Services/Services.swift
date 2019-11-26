@@ -49,7 +49,7 @@ class Services {
         bitService.lookupBybitAPIKeyInfo(completion: completion)
     }
     
-    func fetchBybitActiveOrderList(symbol: BitService.BybitSymbol, pageNumber: Int, orderStatus: BitService.BybitOrderStatus? = nil, completion: @escaping BitServiceActiveOrderLookupCompletion) {
+    func fetchBybitActiveOrderList(symbol: Bybit.Symbol, pageNumber: Int, orderStatus: BitService.BybitOrderStatus? = nil, completion: @escaping BitServiceActiveOrderLookupCompletion) {
         bitService.lookupBybitActiveOrders(symbol: symbol, pageNumber: pageNumber, orderStatus: orderStatus, completion: completion)
     }
     
@@ -57,11 +57,11 @@ class Services {
         bitService.lookupBybitLeverage(completion: completion)
     }
     
-    func updateBybitLeverage(symbol: BitService.BybitSymbol, leverage: String, completion: @escaping BitServiceLeverageUpdateCompletion) {
+    func updateBybitLeverage(symbol: Bybit.Symbol, leverage: String, completion: @escaping BitServiceLeverageUpdateCompletion) {
         bitService.postBybitLeverageUpdate(symbol: symbol, leverage: leverage, completion: completion)
     }
     
-    func fetchBybitOrderBook(symbol: BitService.BybitSymbol, completion: @escaping BitServiceOrderbookLookupCompletion) {
+    func fetchBybitOrderBook(symbol: Bybit.Symbol, completion: @escaping BitServiceOrderbookLookupCompletion) {
         bitService.lookupBybitOrderBook(symbol: symbol, completion: completion)
     }
     
@@ -69,15 +69,15 @@ class Services {
         bitService.lookupBybitPosition(completion: completion)
     }
     
-    func fetchBybitPredictedFunding(symbol: BitService.BybitSymbol, completion: @escaping BitServicePredictedFundingLookupCompletion) {
+    func fetchBybitPredictedFunding(symbol: Bybit.Symbol, completion: @escaping BitServicePredictedFundingLookupCompletion) {
         bitService.lookupBybitPredictedFunding(symbol: symbol, completion: completion)
     }
     
-    func fetchBybitPreviousFunding(symbol: BitService.BybitSymbol, completion: @escaping BitServicePreviousFundingLookupCompletion) {
+    func fetchBybitPreviousFunding(symbol: Bybit.Symbol, completion: @escaping BitServicePreviousFundingLookupCompletion) {
         bitService.lookupBybitPreviousFunding(symbol: symbol, completion: completion)
     }
     
-    func fetchBybitPreviousFundingRate(symbol: BitService.BybitSymbol, completion: @escaping BitServicePreviousFundingRateLookupCompletion) {
+    func fetchBybitPreviousFundingRate(symbol: Bybit.Symbol, completion: @escaping BitServicePreviousFundingRateLookupCompletion) {
         bitService.lookupBybitPreviousFundingRate(symbol: symbol, completion: completion)
     }
     
@@ -85,11 +85,11 @@ class Services {
         bitService.lookupBybitServerTime(completion: completion)
     }
     
-    func fetchBybitTradeRecords(symbol: BitService.BybitSymbol, pageNumber: Int, completion: @escaping BitServiceTradeRecordLookupCompletion) {
+    func fetchBybitTradeRecords(symbol: Bybit.Symbol, pageNumber: Int, completion: @escaping BitServiceTradeRecordLookupCompletion) {
         bitService.lookupBybitTradeRecords(symbol: symbol, pageNumber: pageNumber, completion: completion)
     }
     
-    func fetchBybitTickers(symbol: BitService.BybitSymbol, completion: @escaping BitServiceTickersLookupCompletion) {
+    func fetchBybitTickers(symbol: Bybit.Symbol, completion: @escaping BitServiceTickersLookupCompletion) {
         bitService.lookupBybitTickers(symbol: symbol, completion: completion)
     }
     
@@ -101,7 +101,7 @@ class Services {
         bitService.lookupBybitWithdrawRecord(currency: currency, pageNumber: pageNumber, completion: completion)
     }
     
-    func createBybitActiveOrder(side: BitService.BybitOrderSide, symbol: BitService.BybitSymbol, orderType: BitService.BybitOrderType, quantity: Int, timeInForce: BitService.BybitOrderTimeInForce, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkID: String? = nil, completion: @escaping BitServiceOrderCreateCompletion) {
+    func createBybitActiveOrder(side: BitService.BybitOrderSide, symbol: Bybit.Symbol, orderType: BitService.BybitOrderType, quantity: Int, timeInForce: BitService.BybitOrderTimeInForce, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil, reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkID: String? = nil, completion: @escaping BitServiceOrderCreateCompletion) {
         bitService.postBybitCreateActiveOrder(side: side, symbol: symbol, orderType: orderType, quantity: quantity, timeInForce: timeInForce, price: price, takeProfit: takeProfit, stopLoss: stopLoss, reduceOnly: reduceOnly, closeOnTrigger: closeOnTrigger, orderLinkID: orderLinkID, completion: completion)
     }
     
@@ -109,7 +109,7 @@ class Services {
         bitService.postBybitCancelActiveOrder(orderID: orderID, orderLinkID: orderLinkID, completion: completion)
     }
     
-    func updateBybitActiveOrder(orderID: String, symbol: BitService.BybitSymbol, quantity: Int? = nil, price: Double? = nil, completion: @escaping BitServiceActiveOrderUpdateCompletion) {
+    func updateBybitActiveOrder(orderID: String, symbol: Bybit.Symbol, quantity: Int? = nil, price: Double? = nil, completion: @escaping BitServiceActiveOrderUpdateCompletion) {
         bitService.postBybitUpdateActiveOrder(orderID: orderID, symbol: symbol, quantity: quantity, price: price, completion: completion)
     }
     

@@ -42,7 +42,7 @@ public extension BitService {
     struct BybitPreviousFundingFeeData {
         
         /// The symbol of the order in which the fee occurred.
-        let symbol: BitService.BybitSymbol
+        let symbol: Bybit.Symbol
         
         /// The side of the order in which the fee occurred.
         let side: BybitOrderSide
@@ -74,7 +74,7 @@ extension BitService.BybitPreviousFundingFeeData: Model {
     
     public init(from decoder: Decoder) throws {
         let results = try decoder.container(keyedBy: CodingKeys.self)
-        self.symbol = try results.decode(BitService.BybitSymbol.self, forKey: .symbol)
+        self.symbol = try results.decode(Bybit.Symbol.self, forKey: .symbol)
         self.size = try results.decode(Int.self, forKey: .size)
         self.side = try results.decode(BitService.BybitOrderSide.self, forKey: .side)
         self.fundingRate = try results.decode(Double.self, forKey: .fundingRate)

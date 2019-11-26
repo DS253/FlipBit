@@ -8,22 +8,22 @@
 
 import Foundation
 
-extension Bybit {
-    /// A type that represent a `SymbolInfoUpdate` object returned from the Bybit API
-    struct SymbolInfoUpdate: Codable {
-        var id: Int?
-        var symbol: Bybit.Symbol?
-        var lastPrice: Int?
-        
-        enum CodingKeys: String, CodingKey {
-            case topic
-            case type
-            case delete
-            case update
-            case insert
-            case transactionTime = "transactTimeE6"
-            case data
-        }
+//extension Bybit {
+//    /// A type that represent a `SymbolInfoUpdate` object returned from the Bybit API
+//    struct SymbolInfoUpdate: Codable {
+//
+//        var symbol: Bybit.Symbol?
+//        var metadata: Bybit.Metadata
+//
+//        enum CodingKeys: String, CodingKey {
+//            case topic
+//            case type
+//            case delete
+//            case update
+//            case insert
+//            case transactionTime = "transactTimeE6"
+//            case data
+//        }
 //        
 //        init(from decoder: Decoder) throws {
 //            let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -60,4 +60,4 @@ extension Bybit {
 //            try metadata.encode(to: encoder)
 //        }
 //    }
-}
+//}

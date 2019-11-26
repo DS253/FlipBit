@@ -45,7 +45,7 @@ public extension BitService {
     struct BybitTickerItem {
         
         /// The symbol of the ticker.
-        let symbol: BitService.BybitSymbol
+        let symbol: Bybit.Symbol
         
         /// The highest bid price.
         let bidPrice: String
@@ -57,7 +57,7 @@ public extension BitService {
         let lastPrice: String
         
         /// The direction price has moved.
-        let lastTickDirection: BybitTickerItem.TickDirection
+        let lastTickDirection: Bybit.TickDirection
         
         /// The price 24 hours ago.
         let prevPrice24H: String
@@ -107,19 +107,11 @@ public extension BitService {
         /// The predicted funding rate.
         let predictedFundingRate: String
         
-        /// The time the next funding rate change will occur.
+        /// The time the next funding fee settlement will occur.
         let nextFundingTime: String
         
-        /// The number of hours until the next funding rate will occur.
+        /// The number of hours until the next funding fee is settled.
         let fundingRateCountdown: Int
-        
-        /// The most recent directional change in price.
-        enum TickDirection: String, Codable {
-            case PlusTick
-            case ZeroPlusTick
-            case MinusTick
-            case ZeroMinusTick
-        }
     }
 }
 
@@ -154,11 +146,11 @@ extension BitService.BybitTickerItem: Model {
     public init(from decoder: Decoder) throws {
         let data = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.symbol = try data.decode(BitService.BybitSymbol.self, forKey: .symbol)
+        self.symbol = try data.decode(Bybit.Symbol.self, forKey: .symbol)
         self.bidPrice = try data.decode(String.self, forKey: .bidPrice)
         self.askPrice = try data.decode(String.self, forKey: .askPrice)
         self.lastPrice = try data.decode(String.self, forKey: .lastPrice)
-        self.lastTickDirection = try data.decode(TickDirection.self, forKey: .lastTickDirection)
+        self.lastTickDirection = try data.decode(Bybit.TickDirection.self, forKey: .lastTickDirection)
         self.prevPrice24H = try data.decode(String.self, forKey: .prevPrice24)
         self.prevPcnt24H = try data.decode(String.self, forKey: .prevPcnt24)
         self.highPrice24H = try data.decode(String.self, forKey: .highPrice24)

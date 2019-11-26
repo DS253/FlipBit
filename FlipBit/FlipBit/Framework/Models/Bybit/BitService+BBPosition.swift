@@ -52,7 +52,7 @@ public extension BitService {
         let riskID: Int
         
         /// The contract type.
-        let symbol: BitService.BybitSymbol
+        let symbol: Bybit.Symbol
         
         /// The side of the order.
         let side: BitService.BybitOrderSide
@@ -178,7 +178,7 @@ extension BitService.BybitPosition: Model {
         self.positionID = try results.decode(Int.self, forKey: .positionID)
         self.userID = try results.decode(Int.self, forKey: .userID)
         self.riskID = try results.decode(Int.self, forKey: .riskID)
-        self.symbol = try results.decode(BitService.BybitSymbol.self, forKey: .symbol)
+        self.symbol = try results.decode(Bybit.Symbol.self, forKey: .symbol)
         self.side = try results.decode(BitService.BybitOrderSide.self, forKey: .side)
         self.size = try results.decode(Int.self, forKey: .size)
         self.value = try results.decode(Int.self, forKey: .value)

@@ -13,7 +13,7 @@ extension BitService.BybitPreviousFundingFee {
     
     struct Endpoint: Requestable {
         
-        var symbol: BitService.BybitSymbol
+        var symbol: Bybit.Symbol
         var timestamp: String
         
         internal func baseURL() throws -> NetQuilt.BaseURL {
@@ -37,7 +37,7 @@ extension BitService.BybitPreviousFundingFee {
                     NetQuilt.QueryItem(name: "sign", value: signature)]
         }
         
-        init(symbol: BitService.BybitSymbol, timeStamp: String) {
+        init(symbol: Bybit.Symbol, timeStamp: String) {
             self.symbol = symbol
             self.timestamp = timeStamp
         }

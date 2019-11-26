@@ -100,7 +100,7 @@ public extension BitService {
         let side: BitService.BybitOrderSide
         
         /// The symbol of the order.
-        let symbol: BitService.BybitSymbol
+        let symbol: Bybit.Symbol
         
         /// The user's ID.
         let userID: Int
@@ -152,7 +152,7 @@ extension BitService.BybitTradeEvent: Model {
         self.orderQuantity = try results.decode(Int.self, forKey: .orderQuantity)
         self.orderType = try results.decode(BitService.BybitOrderType.self, forKey: .orderType)
         self.side = try results.decode(BitService.BybitOrderSide.self, forKey: .side)
-        self.symbol = try results.decode(BitService.BybitSymbol.self, forKey: .symbol)
+        self.symbol = try results.decode(Bybit.Symbol.self, forKey: .symbol)
         self.userID = try results.decode(Int.self, forKey: .userID)
     }
     
