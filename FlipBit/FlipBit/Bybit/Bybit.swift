@@ -59,5 +59,6 @@ public extension Bybit {
 
     enum Topic: String, Codable {
         case OrderBook = "orderBookL2_25.BTCUSD"
+        case SymbolInfo = "instrument_info.100ms.BTCUSD"
     }
 }

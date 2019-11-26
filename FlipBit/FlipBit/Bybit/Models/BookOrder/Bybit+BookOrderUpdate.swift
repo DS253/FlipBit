@@ -11,6 +11,7 @@ import Foundation
 extension Bybit {
     /// A type that represent a `BookUpdate` object returned from the Bybit API
     struct BookUpdate: Codable {
+        
         var topic: Topic?
         var type: FormatType?
         var delete: [BookOrder]?

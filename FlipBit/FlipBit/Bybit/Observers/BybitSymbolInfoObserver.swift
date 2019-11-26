@@ -11,15 +11,11 @@ import Starscream
 
 class BybitSymbolInfoObserver: BybitObserver {
     
-    var snapshot: Bybit.SymbolInfoSnapshot?
-
-//    var buyBook: [Bybit.BookOrder?]?
-//    var sellBook: [Bybit.BookOrder?]?
+    var symbolInfo: Bybit.SymbolInfo?
     
     // MARK: Websocket Delegate Methods.
     
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print(text)
         let encodedData = convertToData(text)
         let responseType = determineSymbolInfoResponseType(encodedData)
         
@@ -27,50 +23,39 @@ class BybitSymbolInfoObserver: BybitObserver {
             let data = encodedData,
             responseType != .DecodingFailure
             else {
-                print("Failed to decode Bybit BookOrder Response")
+                print("Failed to decode Bybit SymbolInfo Response")
                 return
         }
         
-//        switch responseType {
-//        case .Snapshot:
-//            if let firstSnapshot = try? Bybit.SymbolInfoSnapshot(from: data) {
-//                snapshot = firstSnapshot
-//            }
-//        }
-
-//        case Snapshot
-//        case Update
-//        case SocketResponse
-//        case DecodingFailure
-//        case UnknownResponse
-    }
-    
-    func determineSymbolInfoResponseType(_ data: Data?) -> Bybit.SymbolInfoResponseResult {
-        guard
-            let response = data,
-            let dictionary = try? JSONSerialization.jsonObject(with: response, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? Dictionary<String, Any>
-            else {
-                return .UnknownResponse
-        }
-        
-        if dictionary["type"] as? String == Bybit.FormatType.Snapshot.rawValue {
-            return .Snapshot
-        }
-        
-        if dictionary["type"] as? String == Bybit.FormatType.Update.rawValue {
+        switch responseType {
+        case .Snapshot:
+            if let firstSnapshot = try? Bybit.SymbolInfoSnapshot(from: data) {
+                symbolInfo = firstSnapshot.symbol
+            } else {
+                print("Failed to decode Bybit SymbolInfo Snapshot")
+                delegate?.observerFailedToDecode(observer: self)
+            }
+        case .Update:
             guard
-                let bookUpdate = try? Bybit.BookUpdate(from: response),
-                let update = bookUpdate.update
-                else { return .DecodingFailure }
-
-            if !update.isEmpty { return .Update }
-            else { return .UnknownResponse }
+                let update = try? Bybit.SymbolInfoUpdate(from: data),
+                let allSymbols = update.symbols,
+                let updatedSymbol = allSymbols.first
+                else {
+                    print("Failed to decode Bybit SymbolInfo Update")
+                    delegate?.observerFailedToDecode(observer: self)
+                    return
+            }
+            symbolInfo?.updateSymbolInfo(newSymbol: updatedSymbol)
+        case .SocketResponse:
+            if let socketResponse = try? Bybit.SocketResponse(from: data) {
+                response = socketResponse
+            } else {
+                print("Failed to decode Bybit SymbolInfo SocketResponse")
+                delegate?.observerFailedToDecode(observer: self)
+            }
+        default:
+            print("Decoding SymbolInfo Response Failed")
+            delegate?.observerFailedToDecode(observer: self)
         }
-
-        if dictionary.keys.contains("success") {
-            return .SocketResponse
-        }
-        
-        return .UnknownResponse
     }
 }
