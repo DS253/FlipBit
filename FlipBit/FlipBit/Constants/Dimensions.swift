@@ -20,13 +20,13 @@ struct Dimensions {
 
 extension Dimensions.Space {
     
-    /// Default space between labels top space (top / bottom).
-    static let labels: CGFloat = 4.0
-
     static let margin1: CGFloat = 1.0
 
     /// Space between labels contained in a table cell
     static let margin2: CGFloat = 2.0
+    
+    /// Default space between labels top space (top / bottom).
+    static let margin4: CGFloat = 4.0
     
     /// Default space as per Apple HIG.
     static let margin8: CGFloat = 8.0
@@ -57,15 +57,12 @@ extension Dimensions.Space {
     /// Default space between major UI elements.
     static let margin28: CGFloat = 28.0
 
-    /// Space between views in Assign Printers spoke.
     static let margin32: CGFloat = 32.0
     
-    /// Default space between headline labels
     static let margin40: CGFloat = 40.0
     
     static let margin42: CGFloat = 42.0
 
-    /// Default space between headline labels
     static let margin48: CGFloat = 48.0
 
     /// Default height of table header

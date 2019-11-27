@@ -56,18 +56,18 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         super.setupConstraints()
         NSLayoutConstraint.activate([
             orderbookContainer.topAnchor.constraint(equalTo: view.topAnchor),
-            orderbookContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            orderbookContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            orderbookContainer.bottomAnchor.constraint(equalTo: view.centerYAnchor),
+            orderbookContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor),
             orderbookContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             buybook.view.topAnchor.constraint(equalTo: orderbookContainer.topAnchor),
-            buybook.view.bottomAnchor.constraint(equalTo: orderbookContainer.bottomAnchor),
+            buybook.view.bottomAnchor.constraint(equalTo: orderbookContainer.centerYAnchor),
             buybook.view.leadingAnchor.constraint(equalTo: orderbookContainer.leadingAnchor),
-            buybook.view.trailingAnchor.constraint(equalTo: orderbookContainer.centerXAnchor),
-            
-            sellbook.view.topAnchor.constraint(equalTo: orderbookContainer.topAnchor),
+            buybook.view.trailingAnchor.constraint(equalTo: orderbookContainer.trailingAnchor),
+
+            sellbook.view.topAnchor.constraint(equalTo: orderbookContainer.centerYAnchor),
             sellbook.view.bottomAnchor.constraint(equalTo: orderbookContainer.bottomAnchor),
-            sellbook.view.leadingAnchor.constraint(equalTo: orderbookContainer.centerXAnchor),
+            sellbook.view.leadingAnchor.constraint(equalTo: orderbookContainer.leadingAnchor),
             sellbook.view.trailingAnchor.constraint(equalTo: orderbookContainer.trailingAnchor)
         ])
     }
