@@ -53,7 +53,7 @@ class BybitSellTableViewController: BaseTableViewController, BybitSellOrderObser
     
     // MARK: - UITableViewDataSource Methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return bookObserver.sellBook?.count ?? 0
+        return 5
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> BybitBookOrderSellCell {

@@ -104,6 +104,9 @@ extension BybitBookOrderBuyCell {
         
         colorWidthConstraint = quantityColorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: CGFloat(multiplier))
         colorWidthConstraint.isActive = true
-        layoutSubviews()
+        
+        UIView.animate(withDuration: 0.6) {
+            self.layoutSubviews()
+        }
     }
 }

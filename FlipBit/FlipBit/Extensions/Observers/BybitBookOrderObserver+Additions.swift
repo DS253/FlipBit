@@ -91,28 +91,10 @@ extension BybitBookOrderObserver {
 }
 
 extension BybitBookOrderObserver {
-    
-    func findLargestBuyOrder() -> Int {
-        guard let buyBook = buyBook else { return 0 }
-        let max = buyBook.max(by: { (a, b) -> Bool in
-            guard
-                let first = a,
-                let second = b,
-                let firstSize = first.size,
-                let secondSize = second.size
-                else { return false }
-            return firstSize < secondSize
-        })
-        guard
-            let maxElement = max,
-            let size = maxElement?.size
-            else { return 0 }
-        return size
-    }
-    
-    func findLargestSellOrder() -> Int {
-        guard let sellBook = sellBook else { return 0 }
-        let max = sellBook.max(by: { (a, b) -> Bool in
+        
+    func findLargestOrder(orders: [Bybit.BookOrder?]?) -> Int {
+        guard let books = orders?[0..<5] else { return 0 }
+        let max = books.max(by: { (a, b) -> Bool in
             guard
                 let first = a,
                 let second = b,
@@ -129,12 +111,12 @@ extension BybitBookOrderObserver {
     }
     
     func returnPercentageOfBuyOrder(size: Int) -> Double {
-        let largestOrder = Double(findLargestBuyOrder())
+        let largestOrder = Double(findLargestOrder(orders: buyBook))
         return Double(size) / largestOrder
     }
     
     func returnPercentageOfSellOrder(size: Int) -> Double {
-        let largestOrder = Double(findLargestSellOrder())
+        let largestOrder = Double(findLargestOrder(orders: sellBook))
         return Double(size) / largestOrder
     }
 }

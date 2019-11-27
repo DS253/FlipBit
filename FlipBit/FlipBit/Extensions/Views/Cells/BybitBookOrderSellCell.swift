@@ -84,6 +84,7 @@ class BybitBookOrderSellCell: UITableViewCell {
             priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin16),
         ])
     }
+//    override func a
 }
 
 extension BybitBookOrderSellCell {
@@ -104,6 +105,9 @@ extension BybitBookOrderSellCell {
         
         colorWidthConstraint = quantityColorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: CGFloat(multiplier))
         colorWidthConstraint.isActive = true
-        layoutSubviews()
+        
+        UIView.animate(withDuration: 0.6) {
+            self.layoutSubviews()
+        }
     }
 }
