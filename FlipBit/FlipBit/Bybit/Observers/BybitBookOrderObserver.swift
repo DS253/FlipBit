@@ -14,7 +14,6 @@ class BybitBookOrderObserver: BybitObserver {
     weak var buybookDelegate: BybitBuyOrderObserver?
     weak var sellbookDelegate: BybitSellOrderObserver?
     
-    
     var snapshot: Bybit.BookOrderSnapshot?
     var buyBook: [Bybit.BookOrder?]?
     var sellBook: [Bybit.BookOrder?]?
@@ -38,7 +37,9 @@ class BybitBookOrderObserver: BybitObserver {
             if let firstSnapshot = try? Bybit.BookOrderSnapshot(from: data) {
                 snapshot = firstSnapshot
                 sortBookOrders(snapshot?.book?.filter { $0.side == Bybit.Side.Buy }, side: Bybit.Side.Buy)
+                buybookDelegate?.observerUpdatedBuyBook()
                 sortBookOrders(snapshot?.book?.filter { $0.side == Bybit.Side.Sell }, side: Bybit.Side.Sell)
+                sellbookDelegate?.observerUpdatedSellBook()
             } else {
                 print("Failed to decode Bybit BookOrder Snapshot")
                 delegate?.observerFailedToDecode(observer: self)

@@ -80,6 +80,8 @@
 		06490F83237D04D100C37ED4 /* BBPosition+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */; };
 		06490F85237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */; };
 		06490F87237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F86237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift */; };
+		064AD9DE238F224A00A7AA3E /* SymbolInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */; };
+		064AD9E0238F402800A7AA3E /* Int+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064AD9DF238F402800A7AA3E /* Int+Additions.swift */; };
 		064D3D852389A55200B34173 /* Bybit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D3D842389A55200B34173 /* Bybit.swift */; };
 		064D3D882389A69700B34173 /* Bybit+BookOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D3D872389A69700B34173 /* Bybit+BookOrder.swift */; };
 		064D3D8A2389A6E700B34173 /* Bybit+BookOrderSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D3D892389A6E700B34173 /* Bybit+BookOrderSnapshot.swift */; };
@@ -226,6 +228,8 @@
 		06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBPosition+Endpoint.swift"; sourceTree = "<group>"; };
 		06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBPreviousFundingRate.swift"; sourceTree = "<group>"; };
 		06490F86237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBPreviousFundingRate+Endpoint.swift"; sourceTree = "<group>"; };
+		064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolInfoHeaderView.swift; sourceTree = "<group>"; };
+		064AD9DF238F402800A7AA3E /* Int+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Additions.swift"; sourceTree = "<group>"; };
 		064D3D842389A55200B34173 /* Bybit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bybit.swift; sourceTree = "<group>"; };
 		064D3D872389A69700B34173 /* Bybit+BookOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+BookOrder.swift"; sourceTree = "<group>"; };
 		064D3D892389A6E700B34173 /* Bybit+BookOrderSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+BookOrderSnapshot.swift"; sourceTree = "<group>"; };
@@ -739,6 +743,7 @@
 		45B3D940238606790004DF76 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				064AD9DF238F402800A7AA3E /* Int+Additions.swift */,
 				45B3D941238606950004DF76 /* TimeInterval+Additions.swift */,
 			);
 			path = Foundation;
@@ -748,6 +753,7 @@
 			isa = PBXGroup;
 			children = (
 				45B3D9442386075A0004DF76 /* ScrollStackView.swift */,
+				064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -1002,6 +1008,7 @@
 				062895DA2383A77C0076AA27 /* BaseView.swift in Sources */,
 				06433BC62381E45A00480EC1 /* BBActiveOrderCancel+Endpoint.swift in Sources */,
 				06470DAA2377B6D500419238 /* SceneDelegate.swift in Sources */,
+				064AD9E0238F402800A7AA3E /* Int+Additions.swift in Sources */,
 				064131242389F69200B795D5 /* BybitTradeCell.swift in Sources */,
 				06433BCE2381FFD100480EC1 /* BitService+BBActiveOrderUpdate.swift in Sources */,
 				065F601F238BCD60008B5B89 /* BybitObserver.swift in Sources */,
@@ -1022,6 +1029,7 @@
 				45B3D93F238605D90004DF76 /* UITableView+Additions.swift in Sources */,
 				064EA948238091CE00570CEE /* BitService+BBResponseMetaData.swift in Sources */,
 				45B3D948238607E80004DF76 /* UIFont+Additions.swift in Sources */,
+				064AD9DE238F224A00A7AA3E /* SymbolInfoHeaderView.swift in Sources */,
 				06470E1D2377C80700419238 /* BitService+BBServerTime.swift in Sources */,
 				06470DF42377C29800419238 /* Date+Additions.swift in Sources */,
 				0641312A238A80C000B795D5 /* BybitSellTableViewController.swift in Sources */,

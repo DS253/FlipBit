@@ -12,6 +12,8 @@ class BybitBookOrderCell: UITableViewCell {
     
     var bookOrders: Bybit.BookOrder?
     
+    private var isAnimating: Bool = false
+    
     private lazy var priceLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.footnote.bold
@@ -25,6 +27,7 @@ class BybitBookOrderCell: UITableViewCell {
     private let quantityLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.footnote
+        label.textColor = UIColor.Bybit.white
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
@@ -56,6 +59,7 @@ class BybitBookOrderCell: UITableViewCell {
     // MARK: - Setup Methods
     
     func setup() {
+        backgroundColor = UIColor.Bybit.themeBlack
         selectionStyle = .none
         clipsToBounds = true
     }
@@ -109,8 +113,14 @@ extension BybitBookOrderCell {
         colorWidthConstraint = quantityColorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: CGFloat(multiplier))
         colorWidthConstraint.isActive = true
         
-        UIView.animate(withDuration: 0.6) {
-            self.layoutSubviews()
+        if !isAnimating {
+            self.isAnimating = true
+            UIView.animate(withDuration: 0.6, animations: {
+                self.layoutSubviews()
+            }, completion: { _ in
+                self.isAnimating = false
+                self.layoutSubviews()
+            })
         }
     }
 }

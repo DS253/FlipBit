@@ -26,7 +26,8 @@ class BybitBuyTableViewController: BaseTableViewController, BybitBuyOrderObserve
     override func setup() {
         super.setup()
         bookObserver.buybookDelegate = self
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.Bybit.themeBlack
+        tableView.backgroundColor = UIColor.Bybit.themeBlack
     }
     
     override func setupSubviews() {
@@ -36,6 +37,7 @@ class BybitBuyTableViewController: BaseTableViewController, BybitBuyOrderObserve
     override func setupTableView() {
         super.setupTableView()
         tableView.register(BybitBookOrderBuyCell.self, forCellReuseIdentifier: BybitBookOrderBuyCell.id)
+        tableView.isScrollEnabled = false
     }
     
     func observerUpdatedBuyBook() {

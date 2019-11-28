@@ -9,11 +9,22 @@
 import Starscream
 import UIKit
 
+protocol BybitSymbolObserver: class {
+    func observerUpdatedSymbol()
+}
+
 class BybitTradeViewController: ViewController, SocketObserverDelegate {
+    
+    private lazy var symbolInfoView: SymbolInfoHeaderView = {
+        let symbolInfoView = SymbolInfoHeaderView()
+        symbolObserver.symbolInfoDelegate = symbolInfoView
+        symbolInfoView.configureView()
+        return symbolInfoView
+    }()
     
     private let orderbookContainer: View = {
         let container = View()
-        container.backgroundColor = .white
+        container.backgroundColor = UIColor.Bybit.themeBlack
         return container
     }()
     
@@ -41,12 +52,13 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         super.setup()
         bookObserver.delegate = self
         symbolObserver.delegate = self
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.Bybit.themeBlack
     }
     
     override func setupSubviews() {
         super.setupSubviews()
         
+        view.addSubview(symbolInfoView)
         view.addSubview(orderbookContainer)
         orderbookContainer.addSubview(buybook.view)
         orderbookContainer.addSubview(sellbook.view)
@@ -55,8 +67,13 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     override func setupConstraints() {
         super.setupConstraints()
         NSLayoutConstraint.activate([
-            orderbookContainer.topAnchor.constraint(equalTo: view.topAnchor),
-            orderbookContainer.bottomAnchor.constraint(equalTo: view.centerYAnchor),
+            
+            symbolInfoView.topAnchor.constraint(equalTo: view.topAnchor),
+            symbolInfoView.bottomAnchor.constraint(equalTo: orderbookContainer.topAnchor),
+            symbolInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            symbolInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            orderbookContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             orderbookContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor),
             orderbookContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
