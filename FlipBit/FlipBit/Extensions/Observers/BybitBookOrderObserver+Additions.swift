@@ -40,7 +40,7 @@ extension BybitBookOrderObserver {
                     hasOrder = true
                 }
             }
-            if hasOrder { buybookDelegate?.observerUpdatedBuyBook() }
+            if hasOrder { NotificationCenter.default.post(name: .buyBookObserverUpdate, object: nil) }
         case .Sell:
             for order in markedOrders {
                 if let index = sellBook?.firstIndex(where: { $0?.id == order?.id }) {
@@ -48,7 +48,7 @@ extension BybitBookOrderObserver {
                     hasOrder = true
                 }
             }
-            if hasOrder { sellbookDelegate?.observerUpdatedSellBook() }
+            if hasOrder { NotificationCenter.default.post(name: .sellBookObserverUpdate, object: nil) }
         }
     }
     
@@ -63,7 +63,7 @@ extension BybitBookOrderObserver {
                     hasOrder = true
                 }
             }
-            if hasOrder { buybookDelegate?.observerUpdatedBuyBook() }
+            if hasOrder { NotificationCenter.default.post(name: .buyBookObserverUpdate, object: nil) }
         case .Sell:
             for order in markedOrders {
                 if let index = sellBook?.firstIndex(where: { $0?.id == order?.id}) {
@@ -71,7 +71,7 @@ extension BybitBookOrderObserver {
                     hasOrder = true
                 }
             }
-            if hasOrder { sellbookDelegate?.observerUpdatedSellBook() }
+            if hasOrder { NotificationCenter.default.post(name: .sellBookObserverUpdate, object: nil) }
         }
     }
     
@@ -81,11 +81,11 @@ extension BybitBookOrderObserver {
         case .Buy:
             buyBook?.append(contentsOf: markedOrders)
             sortBookOrders(buyBook, side: Bybit.Side.Buy)
-            if !markedOrders.isEmpty { buybookDelegate?.observerUpdatedBuyBook() }
+            if !markedOrders.isEmpty { NotificationCenter.default.post(name: .buyBookObserverUpdate, object: nil) }
         case .Sell:
             sellBook?.append(contentsOf: markedOrders)
             sortBookOrders(sellBook, side: Bybit.Side.Sell)
-            if !markedOrders.isEmpty { sellbookDelegate?.observerUpdatedSellBook() }
+            if !markedOrders.isEmpty { NotificationCenter.default.post(name: .sellBookObserverUpdate, object: nil) }
         }
     }
 }

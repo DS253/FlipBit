@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SymbolInfoHeaderView: View, BybitSymbolObserver {
+class SymbolInfoHeaderView: View {
     
     private let dataStackView: UIStackView = {
         let stackView = UIStackView()
@@ -30,8 +30,13 @@ class SymbolInfoHeaderView: View, BybitSymbolObserver {
         UILabel(font: UIFont.footnote.bold, textColor: UIColor.Bybit.markPriceOrange)
     }()
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .symbolObserverUpdate, object: nil)
+    }
+    
     override func setup() {
         super.setup()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSymbolInfo(notification:)), name: .symbolObserverUpdate, object: nil)
     }
     
     override func setupSubviews() {
@@ -78,22 +83,8 @@ class SymbolInfoHeaderView: View, BybitSymbolObserver {
             markPriceLabel.text = String(mark)
         }
     }
-    
-    func observerUpdatedSymbol() {
-        guard let newInfo = symbolObserver.symbolInfo else { return }
-        if let symbolName = newInfo.symbol {
-            symbolNameLabel.text = symbolName.rawValue
-        }
-        if let lastPrice = newInfo.lastPrice?.formatBybitPriceString() {
-            lastTradedPriceLabel.text = lastPrice
-        }
         
-        if let mark = newInfo.markPrice?.formatBybitPriceString() {
-            markPriceLabel.text = String(mark)
-        }
-    }
-    
-    func updateSymbolInfo(notification: NSNotification) {
+    @objc func updateSymbolInfo(notification: NSNotification) {
         guard let newInfo = symbolObserver.symbolInfo else { return }
         if let symbolName = newInfo.symbol {
             symbolNameLabel.text = symbolName.rawValue

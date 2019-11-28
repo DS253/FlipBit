@@ -17,7 +17,6 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     
     private lazy var symbolInfoView: SymbolInfoHeaderView = {
         let symbolInfoView = SymbolInfoHeaderView()
-        symbolObserver.symbolInfoDelegate = symbolInfoView
         symbolInfoView.configureView()
         return symbolInfoView
     }()

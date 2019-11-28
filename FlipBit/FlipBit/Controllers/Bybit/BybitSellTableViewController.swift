@@ -9,11 +9,7 @@
 import Starscream
 import UIKit
 
-protocol BybitSellOrderObserver: class {
-    func observerUpdatedSellBook()
-}
-
-class BybitSellTableViewController: BaseTableViewController, BybitSellOrderObserver {
+class BybitSellTableViewController: BaseTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +19,19 @@ class BybitSellTableViewController: BaseTableViewController, BybitSellOrderObser
         super.viewWillAppear(animated)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .sellBookObserverUpdate, object: nil)
+    }
+    
     override func setup() {
         super.setup()
-        bookObserver.sellbookDelegate = self
-        view.backgroundColor = UIColor.Bybit.themeBlack
-        tableView.backgroundColor = UIColor.Bybit.themeBlack
+        NotificationCenter.default.addObserver(self, selector: #selector(observerUpdatedSellBook(notification:)), name: .sellBookObserverUpdate, object: nil)
     }
     
     override func setupSubviews() {
         super.setupSubviews()
+        view.backgroundColor = UIColor.Bybit.themeBlack
+        tableView.backgroundColor = UIColor.Bybit.themeBlack
     }
     
     override func setupTableView() {
@@ -40,7 +40,7 @@ class BybitSellTableViewController: BaseTableViewController, BybitSellOrderObser
         tableView.isScrollEnabled = false
     }
     
-    func observerUpdatedSellBook() {
+    @objc func observerUpdatedSellBook(notification: NSNotification) {
         tableView.reloadData()
     }
     

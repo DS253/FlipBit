@@ -11,8 +11,6 @@ import Starscream
 
 class BybitSymbolInfoObserver: BybitObserver {
     
-    weak var symbolInfoDelegate: BybitSymbolObserver?
-    
     var symbolInfo: Bybit.SymbolInfo?
     
     // MARK: Websocket Delegate Methods.
@@ -33,7 +31,7 @@ class BybitSymbolInfoObserver: BybitObserver {
         case .Snapshot:
             if let firstSnapshot = try? Bybit.SymbolInfoSnapshot(from: data) {
                 symbolInfo = firstSnapshot.symbol
-                symbolInfoDelegate?.observerUpdatedSymbol()
+                NotificationCenter.default.post(name: .symbolObserverUpdate, object: nil)
             } else {
                 print("Failed to decode Bybit SymbolInfo Snapshot")
                 delegate?.observerFailedToDecode(observer: self)
@@ -49,7 +47,7 @@ class BybitSymbolInfoObserver: BybitObserver {
                     return
             }
             symbolInfo?.updateSymbolInfo(newSymbol: updatedSymbol)
-            symbolInfoDelegate?.observerUpdatedSymbol()
+            NotificationCenter.default.post(name: .symbolObserverUpdate, object: nil)
         case .SocketResponse:
             if let socketResponse = try? Bybit.SocketResponse(from: data) {
                 response = socketResponse

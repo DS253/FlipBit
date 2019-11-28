@@ -82,6 +82,7 @@
 		06490F87237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F86237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift */; };
 		064AD9DE238F224A00A7AA3E /* SymbolInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */; };
 		064AD9E0238F402800A7AA3E /* Int+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064AD9DF238F402800A7AA3E /* Int+Additions.swift */; };
+		064AD9E2238F500A00A7AA3E /* Notification+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064AD9E1238F500A00A7AA3E /* Notification+Names.swift */; };
 		064D3D852389A55200B34173 /* Bybit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D3D842389A55200B34173 /* Bybit.swift */; };
 		064D3D882389A69700B34173 /* Bybit+BookOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D3D872389A69700B34173 /* Bybit+BookOrder.swift */; };
 		064D3D8A2389A6E700B34173 /* Bybit+BookOrderSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D3D892389A6E700B34173 /* Bybit+BookOrderSnapshot.swift */; };
@@ -230,6 +231,7 @@
 		06490F86237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBPreviousFundingRate+Endpoint.swift"; sourceTree = "<group>"; };
 		064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolInfoHeaderView.swift; sourceTree = "<group>"; };
 		064AD9DF238F402800A7AA3E /* Int+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Additions.swift"; sourceTree = "<group>"; };
+		064AD9E1238F500A00A7AA3E /* Notification+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Names.swift"; sourceTree = "<group>"; };
 		064D3D842389A55200B34173 /* Bybit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bybit.swift; sourceTree = "<group>"; };
 		064D3D872389A69700B34173 /* Bybit+BookOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+BookOrder.swift"; sourceTree = "<group>"; };
 		064D3D892389A6E700B34173 /* Bybit+BookOrderSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+BookOrderSnapshot.swift"; sourceTree = "<group>"; };
@@ -744,6 +746,7 @@
 			isa = PBXGroup;
 			children = (
 				064AD9DF238F402800A7AA3E /* Int+Additions.swift */,
+				064AD9E1238F500A00A7AA3E /* Notification+Names.swift */,
 				45B3D941238606950004DF76 /* TimeInterval+Additions.swift */,
 			);
 			path = Foundation;
@@ -963,6 +966,7 @@
 				060D96F0237BAC770040598A /* BitService+BBWithdrawalRecord.swift in Sources */,
 				062895D62383A6A40076AA27 /* Globals.swift in Sources */,
 				06433BDC23826A6400480EC1 /* BBLeverageUpdate+Endpoint.swift in Sources */,
+				064AD9E2238F500A00A7AA3E /* Notification+Names.swift in Sources */,
 				060D96F6237BC6900040598A /* BBTradeRecord+Endpoint.swift in Sources */,
 				45237FB1238C9D19005FC176 /* Bybit+SymbolInfo.swift in Sources */,
 				065F6016238B550C008B5B89 /* UIColor+Additions.swift in Sources */,
