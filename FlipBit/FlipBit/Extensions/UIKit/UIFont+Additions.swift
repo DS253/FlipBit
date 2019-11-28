@@ -67,6 +67,11 @@ extension UIFont {
     public static var footnote: UIFont {
         return UIFont.preferredFont(forTextStyle: .footnote)
     }
+    
+    /// Recommended **Caption2** font with size 11.0, **regular** weight as per Apple HIGs.
+    public static var caption: UIFont {
+        return UIFont.preferredFont(forTextStyle: .caption2)
+    }
 
     /// Method for setting weight for a given font size.
     ///

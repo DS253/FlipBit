@@ -18,7 +18,7 @@ extension Bybit {
         var symbol: Bybit.Symbol?
         
         /// The price which the most recent transaction occurred at.
-        var lastPrice: Int?
+        var lastPrice: String?
         
         /// The direction price has moved.
         var tickDirection: Bybit.TickDirection?
@@ -30,10 +30,10 @@ extension Bybit {
         var prevPcnt24H: Int?
         
         /// The highest the price has reached the last 24 hours.
-        var highPrice24H: Int?
+        var highPrice24H: String?
         
         /// The lowest the price has reached the last 24 hours.
-        var lowPrice24H: Int?
+        var lowPrice24H: String?
         
         /// The price 1 hour ago.
         var prevPrice1H: Int?
@@ -42,7 +42,7 @@ extension Bybit {
         var prevPcnt1H: Int?
         
         /// The Mark price - real-time spot price on the major exchanges.
-        var markPrice: Int?
+        var markPrice: String?
         
         /// The current index price.
         var indexPrice: Int?
@@ -57,7 +57,7 @@ extension Bybit {
         var totalTurnover: Int?
         
         /// The number of coins turned over in the last 24 hours.
-        var turnover24H: Int?
+        var turnover24H: String?
         
         /// Total turned over in USD.
         var totalVolume: Int?
@@ -115,20 +115,25 @@ extension Bybit {
             let results = try decoder.container(keyedBy: CodingKeys.self)
             self.id = try results.decodeIfPresent(Int.self, forKey: .id)
             self.symbol = try results.decodeIfPresent(Bybit.Symbol.self, forKey: .symbol)
-            self.lastPrice = try results.decodeIfPresent(Int.self, forKey: .lastPrice)
+            let lastPriceInt = try results.decodeIfPresent(Int.self, forKey: .lastPrice)
+            self.lastPrice = lastPriceInt?.formatPriceString(notation: 4)
             self.tickDirection = try results.decodeIfPresent(Bybit.TickDirection.self, forKey: .tick)
             self.prevPrice24H = try results.decodeIfPresent(Int.self, forKey: .prevPrice24H)
             self.prevPcnt24H = try results.decodeIfPresent(Int.self, forKey: .prevPcnt24H)
-            self.highPrice24H = try results.decodeIfPresent(Int.self, forKey: .highPrice24H)
-            self.lowPrice24H = try results.decodeIfPresent(Int.self, forKey: .lowPrice24H)
+            let priceHigh24 = try results.decodeIfPresent(Int.self, forKey: .highPrice24H)
+            self.highPrice24H = priceHigh24?.formatPriceString(notation: 4)
+            let lowPrice24 = try results.decodeIfPresent(Int.self, forKey: .lowPrice24H)
+            self.lowPrice24H = lowPrice24?.formatPriceString(notation: 4)
             self.prevPrice1H = try results.decodeIfPresent(Int.self, forKey: .prevPrice1H)
             self.prevPcnt1H = try results.decodeIfPresent(Int.self, forKey: .prevPcnt1H)
-            self.markPrice = try results.decodeIfPresent(Int.self, forKey: .markPrice)
+            let mark = try results.decodeIfPresent(Int.self, forKey: .markPrice)
+            self.markPrice = mark?.formatPriceString(notation: 4)
             self.indexPrice = try results.decodeIfPresent(Int.self, forKey: .indexPrice)
             self.openInterest = try results.decodeIfPresent(Int.self, forKey: .openInterest)
             self.openValue = try results.decodeIfPresent(Int.self, forKey: .openValue)
             self.totalTurnover = try results.decodeIfPresent(Int.self, forKey: .totalTurnover)
-            self.turnover24H = try results.decodeIfPresent(Int.self, forKey: .turnover24H)
+            let turnover24 = try results.decodeIfPresent(Int.self, forKey: .turnover24H)
+            self.turnover24H = turnover24?.formatWithKNotation(notation: 8)
             self.totalVolume = try results.decodeIfPresent(Int.self, forKey: .totalVolume)
             self.volume24H = try results.decodeIfPresent(Int.self, forKey: .volume24H)
             self.fundingRate = try results.decodeIfPresent(Int.self, forKey: .fundingRate)

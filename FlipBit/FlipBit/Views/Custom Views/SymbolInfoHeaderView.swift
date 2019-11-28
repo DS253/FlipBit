@@ -10,12 +10,58 @@ import Foundation
 import UIKit
 
 class SymbolInfoHeaderView: View {
+        
+    private let titleStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
+    }()
     
     private let dataStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
+    }()
+    
+    private lazy var dayHighTitleLabel: UILabel = {
+        let dayHighLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray)
+        dayHighLabel.textAlignment = .right
+        dayHighLabel.text = Constant.dayHighTitle
+        return dayHighLabel
+    }()
+    
+    private lazy var dayHighDataLabel: UILabel = {
+        let dayHighLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.white)
+        dayHighLabel.textAlignment = .left
+        return dayHighLabel
+    }()
+    
+    private lazy var dayLowTitleLabel: UILabel = {
+        let dayLowLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray)
+        dayLowLabel.textAlignment = .right
+        dayLowLabel.text = Constant.dayLowTitle
+        return dayLowLabel
+    }()
+    
+    private lazy var dayLowDataLabel: UILabel = {
+        let dayLowLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.white)
+        dayLowLabel.textAlignment = .left
+        return dayLowLabel
+    }()
+    
+    private lazy var dayTurnoverTitleLabel: UILabel = {
+        let dayTurnoverLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray)
+        dayTurnoverLabel.textAlignment = .right
+        dayTurnoverLabel.text = Constant.dayTurnoverTitle
+        return dayTurnoverLabel
+    }()
+    
+    private lazy var dayTurnoverDataLabel: UILabel = {
+        let dayTurnoverDataLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.white)
+        dayTurnoverDataLabel.textAlignment = .left
+        return dayTurnoverDataLabel
     }()
     
     private lazy var symbolNameLabel: UILabel = {
@@ -43,9 +89,17 @@ class SymbolInfoHeaderView: View {
         super.setupSubviews()
         addSubview(symbolNameLabel)
         addSubview(lastTradedPriceLabel)
-        addSubview(dataStackView)
+        addSubview(markPriceLabel)
         
-        dataStackView.addArrangedSubview(markPriceLabel)
+        addSubview(titleStackView)
+        titleStackView.addArrangedSubview(dayHighTitleLabel)
+        titleStackView.addArrangedSubview(dayLowTitleLabel)
+        titleStackView.addArrangedSubview(dayTurnoverTitleLabel)
+        
+        addSubview(dataStackView)
+        dataStackView.addArrangedSubview(dayHighDataLabel)
+        dataStackView.addArrangedSubview(dayLowDataLabel)
+        dataStackView.addArrangedSubview(dayTurnoverDataLabel)
     }
     
     override func setupConstraints() {
@@ -53,48 +107,48 @@ class SymbolInfoHeaderView: View {
         
         NSLayoutConstraint.activate([
             
-            dataStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            dataStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            dataStackView.leadingAnchor.constraint(equalTo: centerXAnchor),
-            dataStackView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
             symbolNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             symbolNameLabel.bottomAnchor.constraint(equalTo: centerYAnchor),
-            symbolNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            symbolNameLabel.trailingAnchor.constraint(equalTo: centerXAnchor),
+            symbolNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
             
             lastTradedPriceLabel.topAnchor.constraint(equalTo: centerYAnchor),
-            lastTradedPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            lastTradedPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            lastTradedPriceLabel.trailingAnchor.constraint(equalTo: centerXAnchor)
+            lastTradedPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
+            
+            markPriceLabel.topAnchor.constraint(equalTo: lastTradedPriceLabel.bottomAnchor),
+            markPriceLabel.leadingAnchor.constraint(equalTo: lastTradedPriceLabel.centerXAnchor),
+            
+            titleStackView.topAnchor.constraint(equalTo: lastTradedPriceLabel.topAnchor),
+            titleStackView.leadingAnchor.constraint(equalTo: centerXAnchor),
+            
+            dataStackView.topAnchor.constraint(equalTo: titleStackView.topAnchor),
+            dataStackView.leadingAnchor.constraint(equalTo: titleStackView.trailingAnchor, constant: Dimensions.Space.margin8),
+            dataStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin8)
         ])
     }
     
     func configureView() {
         guard let newInfo = symbolObserver.symbolInfo else { return }
         if let symbolName = newInfo.symbol {
-            symbolNameLabel.text = symbolName.rawValue
+            symbolNameLabel.text = symbolName.rawValue }
+        if let lastPrice = newInfo.lastPrice {
+            lastTradedPriceLabel.text = lastPrice
+            lastTradedPriceLabel.textColor = Bybit().tickColor
         }
-        if let lastPrice = newInfo.lastPrice, let stringPrice = lastPrice.formatBybitPriceString() {
-            
-            lastTradedPriceLabel.text = stringPrice
+        if let markPrice = newInfo.markPrice {
+            markPriceLabel.text = markPrice
         }
-        if let mark = newInfo.markPrice {
-            markPriceLabel.text = String(mark)
+        if let dayHighPrice = newInfo.highPrice24H {
+            dayHighDataLabel.text = dayHighPrice
+        }
+        if let dayLowPrice = newInfo.lowPrice24H {
+            dayLowDataLabel.text = dayLowPrice
+        }
+        if let dayTurnover = newInfo.turnover24H {
+            dayTurnoverDataLabel.text = dayTurnover
         }
     }
         
     @objc func updateSymbolInfo(notification: NSNotification) {
-        guard let newInfo = symbolObserver.symbolInfo else { return }
-        if let symbolName = newInfo.symbol {
-            symbolNameLabel.text = symbolName.rawValue
-        }
-        if let lastPrice = newInfo.lastPrice?.formatBybitPriceString() {
-            lastTradedPriceLabel.text = lastPrice
-        }
-        
-        if let mark = newInfo.markPrice?.formatBybitPriceString() {
-            markPriceLabel.text = String(mark)
-        }
+        configureView()
     }
 }

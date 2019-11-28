@@ -9,18 +9,33 @@
 import Foundation
 
 extension Int {
-    func formatBybitPriceString() -> String? {
-        guard
-            let books = bookObserver.buyBook,
-            let book = books.first,
-            let price = book?.price
-            else { return nil }
-        let priceString = String(self)
-        let priceCount = price.count - 1
-        let startIndex = priceString.index(priceString.startIndex, offsetBy: 0)
-        let endIndex = priceString.index(priceString.startIndex, offsetBy: priceCount)
-        var result = String(priceString[startIndex..<endIndex])
-        result.insert(".", at: result.index(result.endIndex, offsetBy: -2))
-        return result
+    
+    func formatPriceString(notation: Int) -> String? {
+        let value = pow(10, notation) as NSNumber
+        let processedNumber = Double(self)/value.doubleValue
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        formatter.roundingMode = .up
+        
+        guard let string = formatter.string(from: NSNumber(value: processedNumber)) else { return nil }
+        return string.replacingOccurrences(of: ",", with: "")
+    }
+    
+    func formatWithKNotation(notation: Int) -> String? {
+        let value = pow(10, notation) as NSNumber
+        let processedNumber = Double(self)/value.doubleValue / 1000
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.minimumFractionDigits = 2
+        formatter.maximumFractionDigits = 2
+        formatter.roundingMode = .up
+        
+        guard var string = formatter.string(from: NSNumber(value: processedNumber)) else { return nil }
+        string.append("K")
+        return string.replacingOccurrences(of: ",", with: "")
     }
 }

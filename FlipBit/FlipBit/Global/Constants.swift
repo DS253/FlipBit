@@ -16,6 +16,11 @@ typealias View = BaseView
 typealias ViewController = BaseViewController
 
 struct Constant {
+    
+    // MARK: - Symbol Info
+    static let dayHighTitle = "24h High"
+    static let dayLowTitle = "24h Low"
+    static let dayTurnoverTitle = "24h Turnover"
 
     // MARK: - Miscellaneous
 

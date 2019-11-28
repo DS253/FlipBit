@@ -119,7 +119,6 @@ extension BybitBookOrderCell {
                 self.layoutSubviews()
             }, completion: { _ in
                 self.isAnimating = false
-                self.layoutSubviews()
             })
         }
     }

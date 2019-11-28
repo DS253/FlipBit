@@ -7,9 +7,19 @@
 //
 
 import Foundation
+import UIKit
 
 public struct Bybit {
-    
+    var tickColor: UIColor = {
+        switch symbolObserver.symbolInfo?.tickDirection {
+        case .PlusTick, .ZeroPlusTick:
+            return UIColor.Bybit.orderbookGreen
+        case .MinusTick, .ZeroMinusTick:
+            return UIColor.Bybit.orderbookRed
+        default:
+            return UIColor.Bybit.orderbookGreen
+        }
+    }()
 }
 
 public extension Bybit {
