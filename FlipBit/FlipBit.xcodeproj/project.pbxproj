@@ -23,13 +23,15 @@
 		062895D42383A4510076AA27 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D32383A4510076AA27 /* BaseViewController.swift */; };
 		062895D62383A6A40076AA27 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D52383A6A40076AA27 /* Globals.swift */; };
 		062895DA2383A77C0076AA27 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D92383A77C0076AA27 /* BaseView.swift */; };
+		062E276C2391B7D800AF0C7D /* OrderBookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276B2391B7D800AF0C7D /* OrderBookRow.swift */; };
+		062E276E2391C01700AF0C7D /* OrderBookBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276D2391C01700AF0C7D /* OrderBookBaseView.swift */; };
+		062E27702391C17100AF0C7D /* BuyOrderBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */; };
+		062E27732391C3C800AF0C7D /* SellOrderBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E27722391C3C800AF0C7D /* SellOrderBookView.swift */; };
 		0641311D2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0641311C2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift */; };
 		0641311F2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0641311E2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift */; };
 		064131212389ED5400B795D5 /* SocketObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064131202389ED5400B795D5 /* SocketObserver.swift */; };
 		064131242389F69200B795D5 /* BybitTradeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064131232389F69200B795D5 /* BybitTradeCell.swift */; };
 		064131262389F6FC00B795D5 /* UIResponder+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064131252389F6FC00B795D5 /* UIResponder+Additions.swift */; };
-		06413128238A7F9B00B795D5 /* BybitBuyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06413127238A7F9A00B795D5 /* BybitBuyTableViewController.swift */; };
-		0641312A238A80C000B795D5 /* BybitSellTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06413129238A80C000B795D5 /* BybitSellTableViewController.swift */; };
 		06433BC42381E3B600480EC1 /* BitService+BBCancelOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BC32381E3B600480EC1 /* BitService+BBCancelOrder.swift */; };
 		06433BC62381E45A00480EC1 /* BBActiveOrderCancel+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BC52381E45A00480EC1 /* BBActiveOrderCancel+Endpoint.swift */; };
 		06433BC82381FAB900480EC1 /* BBActiveOrderCreate+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BC72381FAB900480EC1 /* BBActiveOrderCreate+Endpoint.swift */; };
@@ -169,13 +171,15 @@
 		062895D32383A4510076AA27 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		062895D52383A6A40076AA27 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		062895D92383A77C0076AA27 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		062E276B2391B7D800AF0C7D /* OrderBookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookRow.swift; sourceTree = "<group>"; };
+		062E276D2391C01700AF0C7D /* OrderBookBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookBaseView.swift; sourceTree = "<group>"; };
+		062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyOrderBookView.swift; sourceTree = "<group>"; };
+		062E27722391C3C800AF0C7D /* SellOrderBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellOrderBookView.swift; sourceTree = "<group>"; };
 		0641311C2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitBookOrderObserver+Additions.swift"; sourceTree = "<group>"; };
 		0641311E2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitBookOrderObserver+Deserializer.swift"; sourceTree = "<group>"; };
 		064131202389ED5400B795D5 /* SocketObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketObserver.swift; sourceTree = "<group>"; };
 		064131232389F69200B795D5 /* BybitTradeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeCell.swift; sourceTree = "<group>"; };
 		064131252389F6FC00B795D5 /* UIResponder+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Additions.swift"; sourceTree = "<group>"; };
-		06413127238A7F9A00B795D5 /* BybitBuyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitBuyTableViewController.swift; sourceTree = "<group>"; };
-		06413129238A80C000B795D5 /* BybitSellTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitSellTableViewController.swift; sourceTree = "<group>"; };
 		06433BC32381E3B600480EC1 /* BitService+BBCancelOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBCancelOrder.swift"; sourceTree = "<group>"; };
 		06433BC52381E45A00480EC1 /* BBActiveOrderCancel+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBActiveOrderCancel+Endpoint.swift"; sourceTree = "<group>"; };
 		06433BC72381FAB900480EC1 /* BBActiveOrderCreate+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBActiveOrderCreate+Endpoint.swift"; sourceTree = "<group>"; };
@@ -340,8 +344,18 @@
 			children = (
 				45B3D938238604BA0004DF76 /* BaseTableHeaderView.swift */,
 				062895D92383A77C0076AA27 /* BaseView.swift */,
+				062E276D2391C01700AF0C7D /* OrderBookBaseView.swift */,
 			);
 			path = "Base Classes";
+			sourceTree = "<group>";
+		};
+		062E27712391C3B700AF0C7D /* OrderBook */ = {
+			isa = PBXGroup;
+			children = (
+				062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */,
+				062E27722391C3C800AF0C7D /* SellOrderBookView.swift */,
+			);
+			path = OrderBook;
 			sourceTree = "<group>";
 		};
 		0641311B2389D4F100B795D5 /* Observers */ = {
@@ -744,6 +758,7 @@
 				45B3D94923860A810004DF76 /* UILabel+Additions.swift */,
 				45B3D93E238605D90004DF76 /* UITableView+Additions.swift */,
 				45B3D93C2386052C0004DF76 /* UIView+Additions.swift */,
+				062E276B2391B7D800AF0C7D /* OrderBookRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -761,6 +776,7 @@
 		45B3D943238607480004DF76 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				062E27712391C3B700AF0C7D /* OrderBook */,
 				45B3D9442386075A0004DF76 /* ScrollStackView.swift */,
 				064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */,
 			);
@@ -781,8 +797,6 @@
 			isa = PBXGroup;
 			children = (
 				45B3D94C23874B3A0004DF76 /* BybitTradeViewController.swift */,
-				06413127238A7F9A00B795D5 /* BybitBuyTableViewController.swift */,
-				06413129238A80C000B795D5 /* BybitSellTableViewController.swift */,
 			);
 			path = Bybit;
 			sourceTree = "<group>";
@@ -961,12 +975,12 @@
 				06470DEB2377C1F400419238 /* DataConvertible.swift in Sources */,
 				065F601D238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift in Sources */,
 				064D3D852389A55200B34173 /* Bybit.swift in Sources */,
+				062E276C2391B7D800AF0C7D /* OrderBookRow.swift in Sources */,
 				064D3D8A2389A6E700B34173 /* Bybit+BookOrderSnapshot.swift in Sources */,
 				069CFA962384ED7E00B46BCF /* Dimensions.swift in Sources */,
 				06470DFA2377C2DE00419238 /* Optional+Additions.swift in Sources */,
 				45B3D939238604BA0004DF76 /* BaseTableHeaderView.swift in Sources */,
 				455A1F3B237E2825005969B9 /* BitService+BBOrder.swift in Sources */,
-				06413128238A7F9B00B795D5 /* BybitBuyTableViewController.swift in Sources */,
 				06470E222377C85500419238 /* BitService+Response.swift in Sources */,
 				065F6014238B370C008B5B89 /* BybitBookOrderBuyCell.swift in Sources */,
 				060D96F0237BAC770040598A /* BitService+BBWithdrawalRecord.swift in Sources */,
@@ -990,8 +1004,10 @@
 				065F6024238C5DBB008B5B89 /* Bybit+SymbolInfoSnapshot.swift in Sources */,
 				06746EB42381404E00F14521 /* BitService+BBActiveOrder.swift in Sources */,
 				06470E132377C6C600419238 /* BitService+BBAPIKeyInfo.swift in Sources */,
+				062E276E2391C01700AF0C7D /* OrderBookBaseView.swift in Sources */,
 				06470DF62377C2B000419238 /* DateFormatter+Additions.swift in Sources */,
 				06490F81237CF81C00C37ED4 /* BitService+BBPosition.swift in Sources */,
+				062E27732391C3C800AF0C7D /* SellOrderBookView.swift in Sources */,
 				45B3D942238606950004DF76 /* TimeInterval+Additions.swift in Sources */,
 				45B3D94D23874B3A0004DF76 /* BybitTradeViewController.swift in Sources */,
 				06470DA82377B6D500419238 /* AppDelegate.swift in Sources */,
@@ -1031,6 +1047,7 @@
 				06470E262377C8BD00419238 /* Constants+Endpoints.swift in Sources */,
 				060D96E6237B78AF0040598A /* BBTickers+Endpoint.swift in Sources */,
 				06433BCC2381FD1E00480EC1 /* BBActiveOrderUpdate+Endpoint.swift in Sources */,
+				062E27702391C17100AF0C7D /* BuyOrderBookView.swift in Sources */,
 				06470E242377C87300419238 /* BitService+Service.swift in Sources */,
 				06470E102377C69700419238 /* BitService+Error.swift in Sources */,
 				069CFA932384E77A00B46BCF /* Services.swift in Sources */,
@@ -1044,7 +1061,6 @@
 				064AD9DE238F224A00A7AA3E /* SymbolInfoHeaderView.swift in Sources */,
 				06470E1D2377C80700419238 /* BitService+BBServerTime.swift in Sources */,
 				06470DF42377C29800419238 /* Date+Additions.swift in Sources */,
-				0641312A238A80C000B795D5 /* BybitSellTableViewController.swift in Sources */,
 				060D96EC237B95720040598A /* BitService+BBWalletFundRecord.swift in Sources */,
 				45B3D94F23874DCC0004DF76 /* BybitBookOrderObserver.swift in Sources */,
 				064131262389F6FC00B795D5 /* UIResponder+Additions.swift in Sources */,

@@ -27,16 +27,14 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         return container
     }()
     
-    private lazy var buybook: BybitBuyTableViewController = {
-        let buybook = BybitBuyTableViewController()
-        buybook.view.translatesAutoresizingMaskIntoConstraints = false
-        return buybook
+    private lazy var buybook: BuyOrderBookView = {
+        BuyOrderBookView()
     }()
     
-    private lazy var sellbook: BybitSellTableViewController = {
-        let sellbook = BybitSellTableViewController()
-        sellbook.view.translatesAutoresizingMaskIntoConstraints = false
-        return sellbook
+    private lazy var sellbook: SellOrderBookView = {
+        let sellView = SellOrderBookView()
+        sellView.configureViewForSellBook()
+        return sellView
     }()
     
     override func viewDidLoad() {
@@ -59,8 +57,8 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         
         view.addSubview(symbolInfoView)
         view.addSubview(orderbookContainer)
-        orderbookContainer.addSubview(buybook.view)
-        orderbookContainer.addSubview(sellbook.view)
+        orderbookContainer.addSubview(buybook)
+        orderbookContainer.addSubview(sellbook)
     }
     
     override func setupConstraints() {
@@ -72,19 +70,19 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             symbolInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             symbolInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            orderbookContainer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            orderbookContainer.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor),
             orderbookContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor),
             orderbookContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            buybook.view.topAnchor.constraint(equalTo: orderbookContainer.topAnchor),
-            buybook.view.bottomAnchor.constraint(equalTo: orderbookContainer.centerYAnchor),
-            buybook.view.leadingAnchor.constraint(equalTo: orderbookContainer.leadingAnchor),
-            buybook.view.trailingAnchor.constraint(equalTo: orderbookContainer.trailingAnchor),
+            buybook.topAnchor.constraint(equalTo: orderbookContainer.topAnchor),
+            buybook.bottomAnchor.constraint(equalTo: orderbookContainer.centerYAnchor),
+            buybook.leadingAnchor.constraint(equalTo: orderbookContainer.leadingAnchor),
+            buybook.trailingAnchor.constraint(equalTo: orderbookContainer.trailingAnchor),
 
-            sellbook.view.topAnchor.constraint(equalTo: orderbookContainer.centerYAnchor),
-            sellbook.view.bottomAnchor.constraint(equalTo: orderbookContainer.bottomAnchor),
-            sellbook.view.leadingAnchor.constraint(equalTo: orderbookContainer.leadingAnchor),
-            sellbook.view.trailingAnchor.constraint(equalTo: orderbookContainer.trailingAnchor)
+            sellbook.topAnchor.constraint(equalTo: orderbookContainer.centerYAnchor),
+            sellbook.bottomAnchor.constraint(equalTo: orderbookContainer.bottomAnchor),
+            sellbook.leadingAnchor.constraint(equalTo: orderbookContainer.leadingAnchor),
+            sellbook.trailingAnchor.constraint(equalTo: orderbookContainer.trailingAnchor)
         ])
     }
         
