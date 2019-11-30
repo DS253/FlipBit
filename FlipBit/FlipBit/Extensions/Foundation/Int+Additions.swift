@@ -18,7 +18,7 @@ extension Int {
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 2
         formatter.maximumFractionDigits = 2
-        formatter.roundingMode = .up
+        formatter.roundingMode = .halfEven
         
         guard let string = formatter.string(from: NSNumber(value: processedNumber)) else { return nil }
         return string.replacingOccurrences(of: ",", with: "")

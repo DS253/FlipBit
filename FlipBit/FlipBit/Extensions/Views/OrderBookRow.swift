@@ -39,12 +39,9 @@ class OrderBookRow: View {
     private lazy var quantityColorView: View = {
         let view = View()
         view.backgroundColor = colorTheme.withAlphaComponent(0.3)
-        return view
-    }()
-    
-    private lazy var quantityMarginView: View = {
-        let view = View()
-        view.backgroundColor = UIColor.Bybit.themeBlack
+        view.layer.cornerRadius = 7
+        view.layer.masksToBounds = true
+        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
         return view
     }()
     
@@ -74,7 +71,6 @@ class OrderBookRow: View {
     override func setupSubviews() {
         super.setupSubviews()
         addSubview(quantityColorView)
-        addSubview(quantityMarginView)
         addSubview(priceLabel)
         addSubview(quantityLabel)
     }
@@ -86,11 +82,6 @@ class OrderBookRow: View {
             quantityColorView.bottomAnchor.constraint(equalTo: bottomAnchor),
             quantityColorView.leadingAnchor.constraint(equalTo: leadingAnchor),
             colorWidthConstraint,
-            
-            quantityMarginView.topAnchor.constraint(equalTo: topAnchor),
-            quantityMarginView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            quantityMarginView.widthAnchor.constraint(equalToConstant: Dimensions.Space.margin8),
-            quantityMarginView.trailingAnchor.constraint(equalTo: trailingAnchor),
             
             quantityLabel.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin4),
             quantityLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin4),

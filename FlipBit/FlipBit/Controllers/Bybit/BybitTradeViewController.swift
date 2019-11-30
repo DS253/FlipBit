@@ -20,20 +20,35 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         symbolInfoView.configureView()
         return symbolInfoView
     }()
-    
-    private let orderbookContainer: View = {
+        
+    private let buybookContainer: View = {
         let container = View()
         container.backgroundColor = UIColor.Bybit.themeBlack
+        container.setBybitTheme()
+        return container
+    }()
+    
+    private let sellbookContainer: View = {
+        let container = View()
+        container.backgroundColor = UIColor.Bybit.themeBlack
+        container.setBybitTheme()
         return container
     }()
     
     private lazy var buybook: BuyOrderBookView = {
-        BuyOrderBookView()
+        let buyView = BuyOrderBookView()
+        buyView.layer.cornerRadius = 7
+        buyView.layer.masksToBounds = true
+        buyView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
+        return buyView
     }()
     
     private lazy var sellbook: SellOrderBookView = {
         let sellView = SellOrderBookView()
         sellView.configureViewForSellBook()
+        sellView.layer.cornerRadius = 7
+        sellView.layer.masksToBounds = true
+        sellView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
         return sellView
     }()
     
@@ -56,9 +71,10 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         super.setupSubviews()
         
         view.addSubview(symbolInfoView)
-        view.addSubview(orderbookContainer)
-        orderbookContainer.addSubview(buybook)
-        orderbookContainer.addSubview(sellbook)
+        view.addSubview(buybookContainer)
+        buybookContainer.addSubview(buybook)
+        view.addSubview(sellbookContainer)
+        sellbookContainer.addSubview(sellbook)
     }
     
     override func setupConstraints() {
@@ -66,23 +82,26 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         NSLayoutConstraint.activate([
             
             symbolInfoView.topAnchor.constraint(equalTo: view.topAnchor),
-            symbolInfoView.bottomAnchor.constraint(equalTo: orderbookContainer.topAnchor),
             symbolInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             symbolInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            orderbookContainer.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor),
-            orderbookContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor),
-            orderbookContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            buybookContainer.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Dimensions.Space.margin32),
+            buybookContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
+            buybookContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
             
-            buybook.topAnchor.constraint(equalTo: orderbookContainer.topAnchor),
-            buybook.bottomAnchor.constraint(equalTo: orderbookContainer.centerYAnchor),
-            buybook.leadingAnchor.constraint(equalTo: orderbookContainer.leadingAnchor),
-            buybook.trailingAnchor.constraint(equalTo: orderbookContainer.trailingAnchor),
+            sellbookContainer.topAnchor.constraint(equalTo: buybookContainer.bottomAnchor, constant: Dimensions.Space.margin16),
+            sellbookContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
+            sellbookContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
+            
+            buybook.topAnchor.constraint(equalTo: buybookContainer.topAnchor, constant: Dimensions.Space.margin16),
+            buybook.bottomAnchor.constraint(equalTo: buybookContainer.bottomAnchor, constant: -Dimensions.Space.margin16),
+            buybook.leadingAnchor.constraint(equalTo: buybookContainer.leadingAnchor, constant: Dimensions.Space.margin16),
+            buybook.trailingAnchor.constraint(equalTo: buybookContainer.trailingAnchor, constant: -Dimensions.Space.margin16),
 
-            sellbook.topAnchor.constraint(equalTo: orderbookContainer.centerYAnchor),
-            sellbook.bottomAnchor.constraint(equalTo: orderbookContainer.bottomAnchor),
-            sellbook.leadingAnchor.constraint(equalTo: orderbookContainer.leadingAnchor),
-            sellbook.trailingAnchor.constraint(equalTo: orderbookContainer.trailingAnchor)
+            sellbook.topAnchor.constraint(equalTo: sellbookContainer.topAnchor, constant: Dimensions.Space.margin16),
+            sellbook.bottomAnchor.constraint(equalTo: sellbookContainer.bottomAnchor, constant: -Dimensions.Space.margin16),
+            sellbook.leadingAnchor.constraint(equalTo: sellbookContainer.leadingAnchor, constant: Dimensions.Space.margin16),
+            sellbook.trailingAnchor.constraint(equalTo: sellbookContainer.trailingAnchor, constant: -Dimensions.Space.margin16)
         ])
     }
         

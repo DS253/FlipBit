@@ -27,6 +27,7 @@
 		062E276E2391C01700AF0C7D /* OrderBookBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276D2391C01700AF0C7D /* OrderBookBaseView.swift */; };
 		062E27702391C17100AF0C7D /* BuyOrderBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */; };
 		062E27732391C3C800AF0C7D /* SellOrderBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E27722391C3C800AF0C7D /* SellOrderBookView.swift */; };
+		062E27752392F9CC00AF0C7D /* BaseView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E27742392F9CC00AF0C7D /* BaseView+Additions.swift */; };
 		0641311D2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0641311C2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift */; };
 		0641311F2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0641311E2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift */; };
 		064131212389ED5400B795D5 /* SocketObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064131202389ED5400B795D5 /* SocketObserver.swift */; };
@@ -175,6 +176,7 @@
 		062E276D2391C01700AF0C7D /* OrderBookBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookBaseView.swift; sourceTree = "<group>"; };
 		062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyOrderBookView.swift; sourceTree = "<group>"; };
 		062E27722391C3C800AF0C7D /* SellOrderBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellOrderBookView.swift; sourceTree = "<group>"; };
+		062E27742392F9CC00AF0C7D /* BaseView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseView+Additions.swift"; sourceTree = "<group>"; };
 		0641311C2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitBookOrderObserver+Additions.swift"; sourceTree = "<group>"; };
 		0641311E2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitBookOrderObserver+Deserializer.swift"; sourceTree = "<group>"; };
 		064131202389ED5400B795D5 /* SocketObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketObserver.swift; sourceTree = "<group>"; };
@@ -753,6 +755,7 @@
 			isa = PBXGroup;
 			children = (
 				064131222389F68400B795D5 /* Cells */,
+				062E27742392F9CC00AF0C7D /* BaseView+Additions.swift */,
 				064AD9E5238F86AC00A7AA3E /* UIImage+Additions.swift */,
 				064AD9E3238F866C00A7AA3E /* UIImageView+Additions.swift */,
 				45B3D94923860A810004DF76 /* UILabel+Additions.swift */,
@@ -1063,6 +1066,7 @@
 				06470DF42377C29800419238 /* Date+Additions.swift in Sources */,
 				060D96EC237B95720040598A /* BitService+BBWalletFundRecord.swift in Sources */,
 				45B3D94F23874DCC0004DF76 /* BybitBookOrderObserver.swift in Sources */,
+				062E27752392F9CC00AF0C7D /* BaseView+Additions.swift in Sources */,
 				064131262389F6FC00B795D5 /* UIResponder+Additions.swift in Sources */,
 				06470E1B2377C7E600419238 /* BitService+BBPreviousFundingFee.swift in Sources */,
 				064D3D902389A8CB00B34173 /* Bybit+SocketResponse.swift in Sources */,

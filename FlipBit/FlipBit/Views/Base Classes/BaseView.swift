@@ -81,4 +81,3 @@ open class BaseView: UIView, ViewSetup {
     ///   For more information, see **Setup.swift** implementation.
     open func setupConstraints() { }
 }
-

@@ -76,6 +76,10 @@ class SymbolInfoHeaderView: View {
         UILabel(font: UIFont.footnote.bold, textColor: UIColor.Bybit.markPriceOrange)
     }()
     
+    private lazy var dayPercentageChangeLabel: UILabel = {
+        UILabel(font: UIFont.footnote.bold, textColor: UIColor.Bybit.orderbookGreen)
+    }()
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: .symbolObserverUpdate, object: nil)
     }
@@ -90,6 +94,7 @@ class SymbolInfoHeaderView: View {
         addSubview(symbolNameLabel)
         addSubview(lastTradedPriceLabel)
         addSubview(markPriceLabel)
+        addSubview(dayPercentageChangeLabel)
         
         addSubview(titleStackView)
         titleStackView.addArrangedSubview(dayHighTitleLabel)
@@ -114,8 +119,13 @@ class SymbolInfoHeaderView: View {
             lastTradedPriceLabel.topAnchor.constraint(equalTo: centerYAnchor),
             lastTradedPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
             
+            dayPercentageChangeLabel.topAnchor.constraint(equalTo: lastTradedPriceLabel.bottomAnchor),
+            dayPercentageChangeLabel.leadingAnchor.constraint(equalTo: lastTradedPriceLabel.leadingAnchor),
+            dayPercentageChangeLabel.trailingAnchor.constraint(equalTo: markPriceLabel.leadingAnchor),
+            
             markPriceLabel.topAnchor.constraint(equalTo: lastTradedPriceLabel.bottomAnchor),
             markPriceLabel.leadingAnchor.constraint(equalTo: lastTradedPriceLabel.centerXAnchor),
+            markPriceLabel.trailingAnchor.constraint(equalTo: lastTradedPriceLabel.trailingAnchor),
             
             titleStackView.topAnchor.constraint(equalTo: lastTradedPriceLabel.topAnchor),
             titleStackView.leadingAnchor.constraint(equalTo: centerXAnchor),
@@ -145,6 +155,9 @@ class SymbolInfoHeaderView: View {
         }
         if let dayTurnover = newInfo.turnover24H {
             dayTurnoverDataLabel.text = dayTurnover
+        }
+        if let dayPercentChange = newInfo.prevPcnt24H {
+            dayPercentageChangeLabel.text = "\(dayPercentChange)%"
         }
     }
         

@@ -27,7 +27,7 @@ extension Bybit {
         var prevPrice24H: Int?
         
         /// The percentage change in price the last 24 hours.
-        var prevPcnt24H: Int?
+        var prevPcnt24H: String?
         
         /// The highest the price has reached the last 24 hours.
         var highPrice24H: String?
@@ -119,7 +119,8 @@ extension Bybit {
             self.lastPrice = lastPriceInt?.formatPriceString(notation: 4)
             self.tickDirection = try results.decodeIfPresent(Bybit.TickDirection.self, forKey: .tick)
             self.prevPrice24H = try results.decodeIfPresent(Int.self, forKey: .prevPrice24H)
-            self.prevPcnt24H = try results.decodeIfPresent(Int.self, forKey: .prevPcnt24H)
+            let percent24 =  try results.decodeIfPresent(Int.self, forKey: .prevPcnt24H)
+            self.prevPcnt24H = percent24?.formatPriceString(notation: 4)
             let priceHigh24 = try results.decodeIfPresent(Int.self, forKey: .highPrice24H)
             self.highPrice24H = priceHigh24?.formatPriceString(notation: 4)
             let lowPrice24 = try results.decodeIfPresent(Int.self, forKey: .lowPrice24H)
