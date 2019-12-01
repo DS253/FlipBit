@@ -21,7 +21,6 @@ class BybitObserver: WebSocketDelegate {
             socket = WebSocket(request: urlRequest)
             socket?.delegate = self
             socket?.connect()
-            delegate?.observerDidConnect(observer: self)
         } else {
             print("The URL is invalid")
             delegate?.observerFailedToConnect()

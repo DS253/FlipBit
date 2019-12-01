@@ -158,6 +158,7 @@ class SymbolInfoHeaderView: View {
         }
         if let dayPercentChange = newInfo.prevPcnt24H {
             dayPercentageChangeLabel.text = "\(dayPercentChange)%"
+            dayPercentageChangeLabel.textColor = Bybit().percentageDifferenceColor
         }
     }
         

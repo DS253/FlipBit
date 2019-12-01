@@ -20,6 +20,13 @@ public struct Bybit {
             return UIColor.Bybit.orderbookGreen
         }
     }()
+    
+    var percentageDifferenceColor: UIColor? = {
+        if let info = symbolObserver.symbolInfo {
+            if info.prevPcnt24H ?? "0" < "0" { return UIColor.Bybit.orderbookRed }
+            return UIColor.Bybit.orderbookGreen
+        } else { return nil }
+    }()
 }
 
 public extension Bybit {
