@@ -71,15 +71,41 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         return sellView
     }()
     
+    private lazy var longButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle(Constant.long, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var shortButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setTitle(Constant.short, for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    private lazy var orderPriceTitleLabel: UILabel = {
+        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
+        label.text = Constant.orderPrice
+        return label
+    }()
+    
     private lazy var orderPriceLabel: UILabel = {
         let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
         label.text = Constant.orderPrice
         return label
     }()
     
-    private lazy var orderQuantityLabel: UILabel = {
+    private lazy var orderQuantityTitleLabel: UILabel = {
         let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
         label.text = Constant.orderQuantity
+        return label
+    }()
+    
+    private lazy var orderQuantityLabel: UILabel = {
+        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
+        label.text = Constant.orderPrice
         return label
     }()
     
@@ -140,8 +166,12 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         view.addSubview(symbolInfoView)
         view.addSubview(orderbookPanel)
         view.addSubview(percentageContainer)
+        view.addSubview(orderPriceTitleLabel)
         view.addSubview(orderPriceLabel)
+        view.addSubview(orderQuantityTitleLabel)
         view.addSubview(orderQuantityLabel)
+        view.addSubview(longButton)
+        view.addSubview(shortButton)
         
         percentageContainer.addSubview(button25)
         percentageContainer.addSubview(button50)
@@ -157,13 +187,20 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             symbolInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             symbolInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            orderPriceLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
-            orderPriceLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Dimensions.Space.margin8),
-            orderPriceLabel.bottomAnchor.constraint(equalTo: orderbookPanel.centerYAnchor, constant: -Dimensions.Space.margin16),
+            longButton.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
+            longButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
+            longButton.trailingAnchor.constraint(equalTo: shortButton.leadingAnchor),
             
-            orderQuantityLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
-            orderQuantityLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Dimensions.Space.margin8),
-            orderQuantityLabel.topAnchor.constraint(equalTo: orderbookPanel.centerYAnchor, constant: Dimensions.Space.margin16),
+            shortButton.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
+            shortButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
+            
+            orderPriceTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
+            orderPriceTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Dimensions.Space.margin8),
+            orderPriceTitleLabel.bottomAnchor.constraint(equalTo: orderbookPanel.centerYAnchor, constant: -Dimensions.Space.margin16),
+            
+            orderQuantityTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
+            orderQuantityTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Dimensions.Space.margin8),
+            orderQuantityTitleLabel.topAnchor.constraint(equalTo: orderbookPanel.centerYAnchor, constant: Dimensions.Space.margin16),
             
             orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Dimensions.Space.margin32),
             orderbookPanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
