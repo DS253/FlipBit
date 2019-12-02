@@ -12,10 +12,16 @@ import Starscream
 class BybitTradeObserver: BybitObserver {
     
     var tradeSnapshot: Bybit.TradeEventSnapshot?
-    
+    var subscribed: Bool = false
     // MARK: Websocket Delegate Methods.
     
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print(text)
+        if !subscribed {
+            writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"position\"]}")
+            subscribed = true
+        }
+        
         let encodedData = convertToData(text)
         let responseType = determineTradeEventResponseType(encodedData)
         

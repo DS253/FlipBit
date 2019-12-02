@@ -263,9 +263,20 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     
     func observerDidConnect(observer: WebSocketDelegate) {
         print("Observer has connected to the web socket")
-        bookObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
-        symbolObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"instrument_info.100ms.BTCUSD\"]}")
-        tradeObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"trade.BTCUSD\"]}")
+//        bookObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
+//        symbolObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"instrument_info.100ms.BTCUSD\"]}")
+//        tradeObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"trade.BTCUSD\"]}")
+        let apikey = theAPIKey
+        let expires = Date().bybitTimestamp()
+        print(expires)
+        let signature = "GET/realtime\(expires)".buildSignature(secretKey: secret)
+        tradeObserver.writeToSocket(topic: "{\"op\": \"auth\", \"args\": [\"\(apikey)\", \"\(expires)\", \"\(signature)\"]}")
+        
+        
+        //var signature = hex(HMAC_SHA256(secret, 'GET/realtime' + expires));
+        //api_key={api_key}&expires={expires}&signature={signature}
+        
+        //ws.send('{"op":"auth","args":["{api_key}","{expires}","{signature}"]}');
     }
     
     func observerDidReceiveMessage(observer: WebSocketDelegate) {
