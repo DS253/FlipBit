@@ -9,12 +9,18 @@
 import Foundation
 
 extension Bybit {
-    /// A type that represent a `SymbolInfoSnapshot` object returned from the Bybit API
+    /// A type that represent a `SymbolInfoSnapshot` object returned from the Bybit API.
     struct SymbolInfoSnapshot: Codable {
         
+        /// The Bybit socket topic.
         var topic: Topic?
+        
+        /// The expected type of response.
         var type: FormatType?
+        
+        /// The Symbol data.
         var symbol: SymbolInfo?
+        
         var metadata: Metadata?
         
         enum CodingKeys: String, CodingKey {

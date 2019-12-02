@@ -32,7 +32,7 @@ class BaseTableViewController: BaseViewController {
         /// and does **not** scroll with the `tableView` content.
         case fixedHeader
         
-        /// The `fixedHeader` configuration, hides the `tableHeaderView`.
+        /// The `none` configuration, hides the `tableHeaderView`.
         case none
     }
     
@@ -61,7 +61,7 @@ class BaseTableViewController: BaseViewController {
     /// The primary tableview for displaying information relating
     /// to this controller.
     public lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = #colorLiteral(red: 0.9607340693, green: 0.9608191848, blue: 0.9606630206, alpha: 1)
         tableView.rowHeight = UITableView.automaticDimension
@@ -137,8 +137,6 @@ class BaseTableViewController: BaseViewController {
         case .none:
             break
         }
-        
-        
         
         view.addSubview(tableView)
         view.addSubview(optionsView)

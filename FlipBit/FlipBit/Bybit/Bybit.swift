@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 public struct Bybit {
+    
     var tickColor: UIColor = {
         switch symbolObserver.symbolInfo?.tickDirection {
         case .PlusTick, .ZeroPlusTick:
@@ -49,6 +50,13 @@ public extension Bybit {
         case UnknownResponse
     }
     
+    enum TradeEventResponseResult {
+        case Snapshot
+        case SocketResponse
+        case UnknownResponse
+        case DecodingFailure
+    }
+    
     enum FormatType: String, Codable {
         case Snapshot = "snapshot"
         case Update = "delta"
@@ -77,5 +85,6 @@ public extension Bybit {
     enum Topic: String, Codable {
         case OrderBook = "orderBookL2_25.BTCUSD"
         case SymbolInfo = "instrument_info.100ms.BTCUSD"
+        case TradeInfo = "trade.BTCUSD"
     }
 }

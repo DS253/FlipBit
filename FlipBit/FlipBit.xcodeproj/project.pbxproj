@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060C8BEE2394614C00E50A57 /* BybitTradeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060C8BED2394614C00E50A57 /* BybitTradeObserver.swift */; };
+		060C8BF12394645700E50A57 /* Bybit+TradeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060C8BF02394645700E50A57 /* Bybit+TradeEvent.swift */; };
+		060C8BF323946C4500E50A57 /* Bybit+TradeEventSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060C8BF223946C4500E50A57 /* Bybit+TradeEventSnapshot.swift */; };
+		060C8BF523946EC900E50A57 /* BybitTradeObserver+Deserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060C8BF423946EC900E50A57 /* BybitTradeObserver+Deserializer.swift */; };
+		060C8BF723947B8900E50A57 /* BybitTradeEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060C8BF623947B8900E50A57 /* BybitTradeEventsTableViewController.swift */; };
+		060C8BF9239499E100E50A57 /* BybitTradeEventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060C8BF8239499E100E50A57 /* BybitTradeEventCell.swift */; };
 		060D96E2237B68A80040598A /* BBOrderBook+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96E1237B68A80040598A /* BBOrderBook+Endpoint.swift */; };
 		060D96E4237B70A70040598A /* BBServerTime+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96E3237B70A70040598A /* BBServerTime+Endpoint.swift */; };
 		060D96E6237B78AF0040598A /* BBTickers+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96E5237B78AF0040598A /* BBTickers+Endpoint.swift */; };
@@ -157,6 +163,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		060C8BED2394614C00E50A57 /* BybitTradeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeObserver.swift; sourceTree = "<group>"; };
+		060C8BF02394645700E50A57 /* Bybit+TradeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+TradeEvent.swift"; sourceTree = "<group>"; };
+		060C8BF223946C4500E50A57 /* Bybit+TradeEventSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+TradeEventSnapshot.swift"; sourceTree = "<group>"; };
+		060C8BF423946EC900E50A57 /* BybitTradeObserver+Deserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitTradeObserver+Deserializer.swift"; sourceTree = "<group>"; };
+		060C8BF623947B8900E50A57 /* BybitTradeEventsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeEventsTableViewController.swift; sourceTree = "<group>"; };
+		060C8BF8239499E100E50A57 /* BybitTradeEventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeEventCell.swift; sourceTree = "<group>"; };
 		060D96E1237B68A80040598A /* BBOrderBook+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBOrderBook+Endpoint.swift"; sourceTree = "<group>"; };
 		060D96E3237B70A70040598A /* BBServerTime+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBServerTime+Endpoint.swift"; sourceTree = "<group>"; };
 		060D96E5237B78AF0040598A /* BBTickers+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBTickers+Endpoint.swift"; sourceTree = "<group>"; };
@@ -305,6 +317,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		060C8BEF239463A600E50A57 /* TradeInfo */ = {
+			isa = PBXGroup;
+			children = (
+				060C8BF02394645700E50A57 /* Bybit+TradeEvent.swift */,
+				060C8BF223946C4500E50A57 /* Bybit+TradeEventSnapshot.swift */,
+			);
+			path = TradeInfo;
+			sourceTree = "<group>";
+		};
 		062895CC2383A1B40076AA27 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +390,7 @@
 				0641311C2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift */,
 				0641311E2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift */,
 				0644D1DD238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift */,
+				060C8BF423946EC900E50A57 /* BybitTradeObserver+Deserializer.swift */,
 			);
 			path = Observers;
 			sourceTree = "<group>";
@@ -380,6 +402,7 @@
 				0644D1E6238E36B2001649F1 /* BybitBookOrderCell.swift */,
 				065F6013238B370C008B5B89 /* BybitBookOrderBuyCell.swift */,
 				065F6017238B5F61008B5B89 /* BybitBookOrderSellCell.swift */,
+				060C8BF8239499E100E50A57 /* BybitTradeEventCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -667,6 +690,7 @@
 				064D3D912389AD2700B34173 /* Metadata */,
 				064D3D8E2389A8B500B34173 /* Response */,
 				065F6020238C5A9A008B5B89 /* SymbolInfo */,
+				060C8BEF239463A600E50A57 /* TradeInfo */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -702,6 +726,7 @@
 			children = (
 				45B3D94E23874DCC0004DF76 /* BybitBookOrderObserver.swift */,
 				065F601C238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift */,
+				060C8BED2394614C00E50A57 /* BybitTradeObserver.swift */,
 				065F601E238BCD5F008B5B89 /* BybitObserver.swift */,
 			);
 			path = Observers;
@@ -803,6 +828,7 @@
 			isa = PBXGroup;
 			children = (
 				45B3D94C23874B3A0004DF76 /* BybitTradeViewController.swift */,
+				060C8BF623947B8900E50A57 /* BybitTradeEventsTableViewController.swift */,
 			);
 			path = Bybit;
 			sourceTree = "<group>";
@@ -982,6 +1008,7 @@
 				065F601D238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift in Sources */,
 				064D3D852389A55200B34173 /* Bybit.swift in Sources */,
 				062E276C2391B7D800AF0C7D /* OrderBookRow.swift in Sources */,
+				060C8BF9239499E100E50A57 /* BybitTradeEventCell.swift in Sources */,
 				064D3D8A2389A6E700B34173 /* Bybit+BookOrderSnapshot.swift in Sources */,
 				069CFA962384ED7E00B46BCF /* Dimensions.swift in Sources */,
 				06470DFA2377C2DE00419238 /* Optional+Additions.swift in Sources */,
@@ -996,6 +1023,7 @@
 				064AD9E2238F500A00A7AA3E /* Notification+Names.swift in Sources */,
 				060D96F6237BC6900040598A /* BBTradeRecord+Endpoint.swift in Sources */,
 				45237FB1238C9D19005FC176 /* Bybit+SymbolInfo.swift in Sources */,
+				060C8BF723947B8900E50A57 /* BybitTradeEventsTableViewController.swift in Sources */,
 				065F6016238B550C008B5B89 /* UIColor+Additions.swift in Sources */,
 				062895CE2383A1CC0076AA27 /* SandBoxViewController.swift in Sources */,
 				0641311F2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift in Sources */,
@@ -1013,6 +1041,7 @@
 				062E276E2391C01700AF0C7D /* OrderBookBaseView.swift in Sources */,
 				06470DF62377C2B000419238 /* DateFormatter+Additions.swift in Sources */,
 				06490F81237CF81C00C37ED4 /* BitService+BBPosition.swift in Sources */,
+				060C8BF12394645700E50A57 /* Bybit+TradeEvent.swift in Sources */,
 				062E27732391C3C800AF0C7D /* SellOrderBookView.swift in Sources */,
 				45B3D942238606950004DF76 /* TimeInterval+Additions.swift in Sources */,
 				45B3D94D23874B3A0004DF76 /* BybitTradeViewController.swift in Sources */,
@@ -1041,6 +1070,7 @@
 				45B3D94A23860A810004DF76 /* UILabel+Additions.swift in Sources */,
 				062895DA2383A77C0076AA27 /* BaseView.swift in Sources */,
 				06433BC62381E45A00480EC1 /* BBActiveOrderCancel+Endpoint.swift in Sources */,
+				060C8BF323946C4500E50A57 /* Bybit+TradeEventSnapshot.swift in Sources */,
 				06470DAA2377B6D500419238 /* SceneDelegate.swift in Sources */,
 				064AD9E0238F402800A7AA3E /* Int+Additions.swift in Sources */,
 				064131242389F69200B795D5 /* BybitTradeCell.swift in Sources */,
@@ -1050,11 +1080,13 @@
 				06433BC82381FAB900480EC1 /* BBActiveOrderCreate+Endpoint.swift in Sources */,
 				062895D42383A4510076AA27 /* BaseViewController.swift in Sources */,
 				06470DE52377C19700419238 /* BitService.swift in Sources */,
+				060C8BF523946EC900E50A57 /* BybitTradeObserver+Deserializer.swift in Sources */,
 				064AD9E4238F866C00A7AA3E /* UIImageView+Additions.swift in Sources */,
 				06470E262377C8BD00419238 /* Constants+Endpoints.swift in Sources */,
 				060D96E6237B78AF0040598A /* BBTickers+Endpoint.swift in Sources */,
 				06433BCC2381FD1E00480EC1 /* BBActiveOrderUpdate+Endpoint.swift in Sources */,
 				062E27702391C17100AF0C7D /* BuyOrderBookView.swift in Sources */,
+				060C8BEE2394614C00E50A57 /* BybitTradeObserver.swift in Sources */,
 				06470E242377C87300419238 /* BitService+Service.swift in Sources */,
 				06470E102377C69700419238 /* BitService+Error.swift in Sources */,
 				069CFA932384E77A00B46BCF /* Services.swift in Sources */,

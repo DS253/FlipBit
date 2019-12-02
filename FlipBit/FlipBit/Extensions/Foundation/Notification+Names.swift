@@ -12,4 +12,5 @@ extension Notification.Name {
     static let buyBookObserverUpdate = Notification.Name("buyBookUpdated")
     static let symbolObserverUpdate = Notification.Name("symbolObserverUpdated")
     static let sellBookObserverUpdate = Notification.Name("sellBookUpdated")
+    static let tradeEventObserverUpdate = Notification.Name("tradeEventsUpdated")
 }

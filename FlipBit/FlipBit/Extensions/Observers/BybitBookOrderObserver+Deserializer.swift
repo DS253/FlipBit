@@ -35,7 +35,6 @@ extension BybitBookOrderObserver {
             else { return .UnknownResponse }
         }
         
-        
         if dictionary.keys.contains("success") {
             return .SocketResponse
         }
