@@ -16,7 +16,12 @@ class BybitBookOrderObserver: BybitObserver {
     var sellBook: [Bybit.BookOrder?]?
         
     // MARK: Websocket Delegate Methods.
-        
+
+    override func websocketDidConnect(socket: WebSocketClient) {
+        print("Subscribing to Orderbook socket")
+        writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
+    }
+
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         let encodedData = convertToData(text)
         let responseType = determineBookOrderResponseType(encodedData)

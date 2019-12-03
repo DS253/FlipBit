@@ -14,7 +14,12 @@ class BybitSymbolInfoObserver: BybitObserver {
     var symbolInfo: Bybit.SymbolInfo?
     
     // MARK: Websocket Delegate Methods.
-    
+
+    override func websocketDidConnect(socket: WebSocketClient) {
+        print("Subscribing to SymbolInfo socket")
+        writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"instrument_info.100ms.BTCUSD\"]}")
+    }
+
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         let encodedData = convertToData(text)
         let responseType = determineSymbolInfoResponseType(encodedData)

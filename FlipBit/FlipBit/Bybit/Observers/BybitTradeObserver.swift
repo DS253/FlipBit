@@ -14,6 +14,11 @@ class BybitTradeObserver: BybitObserver {
     var tradeSnapshot: Bybit.TradeEventSnapshot?
     
     // MARK: Websocket Delegate Methods.
+
+    override func websocketDidConnect(socket: WebSocketClient) {
+        print("Subscribing to Trade Events socket")
+        writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"trade.BTCUSD\"]}")
+    }
     
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         let encodedData = convertToData(text)

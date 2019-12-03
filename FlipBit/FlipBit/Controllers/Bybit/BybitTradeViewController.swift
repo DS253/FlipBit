@@ -263,13 +263,14 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     
     func observerDidConnect(observer: WebSocketDelegate) {
         print("Observer has connected to the web socket")
-        bookObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
-        symbolObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"instrument_info.100ms.BTCUSD\"]}")
-        tradeObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"trade.BTCUSD\"]}")
     }
     
     func observerDidReceiveMessage(observer: WebSocketDelegate) {
-//        print("Observer has received messages from the web socket")
+//        let apikey = theAPIKey
+//        let expires = Date().bybitTimestamp()
+//        print(expires)
+//        let signature = "GET/realtime\(expires)".buildSignature(secretKey: secret)
+//        tradeObserver.writeToSocket(topic: "{\"op\": \"auth\", \"args\": [\"\(apikey)\", \"\(expires)\", \"\(signature)\"]}")
     }
     
     func observerFailedToDecode(observer: WebSocketDelegate) {
