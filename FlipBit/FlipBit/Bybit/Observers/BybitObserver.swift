@@ -34,6 +34,10 @@ class BybitObserver: WebSocketDelegate {
         print("socket did write")
     }
     
+    func sendHeartbeatPackage() {
+        writeToSocket(topic: "{\"op\": \"ping\"}")
+    }
+    
     func websocketDidConnect(socket: WebSocketClient) {
         print("websocket is connected")
         delegate?.observerDidConnect(observer: self)

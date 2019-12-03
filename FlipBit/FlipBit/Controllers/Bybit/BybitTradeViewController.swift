@@ -109,6 +109,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         let button = UIButton(type: .custom)
         button.setTitle("25%", for: .normal)
         button.setTitleColor(UIColor.Bybit.white, for: .normal)
+        button.titleLabel?.font = .footnote
         button.addTarget(self, action: #selector(addByPercentage(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -118,6 +119,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         let button = UIButton(type: .custom)
         button.setTitle("50%", for: .normal)
         button.setTitleColor(UIColor.Bybit.white, for: .normal)
+        button.titleLabel?.font = .footnote
         button.addTarget(self, action: #selector(addByPercentage(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -127,6 +129,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         let button = UIButton(type: .custom)
         button.setTitle("75%", for: .normal)
         button.setTitleColor(UIColor.Bybit.white, for: .normal)
+        button.titleLabel?.font = .footnote
         button.addTarget(self, action: #selector(addByPercentage(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -136,20 +139,23 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         let button = UIButton(type: .custom)
         button.setTitle("100%", for: .normal)
         button.setTitleColor(UIColor.Bybit.white, for: .normal)
+        button.titleLabel?.font = .footnote
         button.addTarget(self, action: #selector(addByPercentage(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
+    private lazy var tradeHistoryContainer: View = {
+        let container = View()
+        container.backgroundColor = UIColor.Bybit.themeBlack
+        container.setBybitTheme()
+        return container
+    }()
+    
     private lazy var tradeHistoryTable: BybitTradeEventsTableViewController = {
-        let table = BybitTradeEventsTableViewController()
-        table.view.layer.cornerRadius = 14
-        table.view.layer.shadowColor = UIColor.orange.cgColor
-        table.view.layer.shadowOpacity = 1
-        table.view.layer.shadowOffset = CGSize(width: 0, height: 0)
-        table.view.layer.masksToBounds = false
-        table.view.translatesAutoresizingMaskIntoConstraints = false
-        return table
+        let tradeTable = BybitTradeEventsTableViewController()
+        tradeTable.view.translatesAutoresizingMaskIntoConstraints = false
+        return tradeTable
     }()
     
     override func viewDidLoad() {
@@ -180,7 +186,8 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         view.addSubview(orderQuantityLabel)
         view.addSubview(longButton)
         view.addSubview(shortButton)
-        view.addSubview(tradeHistoryTable.view)
+        view.addSubview(tradeHistoryContainer)
+        tradeHistoryContainer.addSubview(tradeHistoryTable.view)
         
         percentageContainer.addSubview(button25)
         percentageContainer.addSubview(button50)
@@ -246,10 +253,15 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             button100.widthAnchor.constraint(equalTo: button25.widthAnchor),
             button100.trailingAnchor.constraint(equalTo: percentageContainer.trailingAnchor, constant: -Dimensions.Space.margin4),
             
-            tradeHistoryTable.view.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Dimensions.Space.margin16),
-            tradeHistoryTable.view.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
-            tradeHistoryTable.view.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
-            tradeHistoryTable.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.Space.margin8),
+            tradeHistoryContainer.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Dimensions.Space.margin16),
+            tradeHistoryContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
+            tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
+            tradeHistoryContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.Space.margin8),
+            
+            tradeHistoryTable.view.topAnchor.constraint(equalTo: tradeHistoryContainer.topAnchor, constant: Dimensions.Space.margin4),
+            tradeHistoryTable.view.bottomAnchor.constraint(equalTo: tradeHistoryContainer.bottomAnchor, constant: -Dimensions.Space.margin4),
+            tradeHistoryTable.view.leadingAnchor.constraint(equalTo: tradeHistoryContainer.leadingAnchor, constant: Dimensions.Space.margin4),
+            tradeHistoryTable.view.trailingAnchor.constraint(equalTo: tradeHistoryContainer.trailingAnchor, constant: -Dimensions.Space.margin4)
         ])
     }
         

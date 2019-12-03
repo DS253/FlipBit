@@ -55,7 +55,7 @@ class BybitTradeObserver: BybitObserver {
     }
     
     func updateTradeEvents(newSnapshot: Bybit.TradeEventSnapshot) {
-        // If the observer does not have a `TradeEventSnapshot`, save the entire snapshot.
+        /// If the observer does not have a `TradeEventSnapshot`, save the entire snapshot.
         if tradeSnapshot == nil { tradeSnapshot = newSnapshot }
             
             // If there is a snapshot but without saved trades, save all the new trades
