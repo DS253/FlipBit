@@ -15,6 +15,18 @@ class BybitSymbolInfoObserver: BybitObserver {
     
     // MARK: Websocket Delegate Methods.
 
+    override func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        if let e = error as? WSError {
+            print("websocket is disconnected: \(e.message)")
+        } else if let e = error {
+            print("websocket is disconnected: \(e.localizedDescription)")
+        } else {
+            print("websocket disconnected")
+        }
+        print("SymbolInfoObserver sending heartbeat package")
+        sendHeartbeatPackage()
+    }
+    
     override func websocketDidConnect(socket: WebSocketClient) {
         print("Subscribing to SymbolInfo socket")
         writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"instrument_info.100ms.BTCUSD\"]}")

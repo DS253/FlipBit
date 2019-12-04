@@ -171,6 +171,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         bookObserver.delegate = self
         symbolObserver.delegate = self
         tradeObserver.delegate = self
+        positionObserver.delegate = self
         view.backgroundColor = UIColor.Bybit.themeBlack
     }
     
@@ -278,11 +279,6 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     }
     
     func observerDidReceiveMessage(observer: WebSocketDelegate) {
-//        let apikey = theAPIKey
-//        let expires = Date().bybitTimestamp()
-//        print(expires)
-//        let signature = "GET/realtime\(expires)".buildSignature(secretKey: secret)
-//        tradeObserver.writeToSocket(topic: "{\"op\": \"auth\", \"args\": [\"\(apikey)\", \"\(expires)\", \"\(signature)\"]}")
     }
     
     func observerFailedToDecode(observer: WebSocketDelegate) {

@@ -42,6 +42,13 @@ public extension Bybit {
         case UnknownResponse
     }
     
+    enum PositionResponseResult {
+        case PositionList
+        case SocketResponse
+        case DecodingFailure
+        case UnknownResponse
+    }
+    
     enum SymbolInfoResponseResult {
         case Snapshot
         case Update

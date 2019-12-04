@@ -11,6 +11,8 @@ import NetQuilt
 
 let theAPIKey = "tjLNabTKzKmtlvE6Qs"
 let secret = "JiT2BnTVwhTjifzfWqPkQV8Q0Mbprnbr7ZRW"
+//let theAPIKey = "Mqvkxv3jRP9H2ExK3h"
+//let secret = "4VDDtErgd0uLYDBwI63S27pFcHRNvBKtS9C5"
 
 typealias View = BaseView
 typealias ViewController = BaseViewController
