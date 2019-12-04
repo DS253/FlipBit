@@ -16,9 +16,17 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         symbolInfoView.configureView()
         return symbolInfoView
     }()
-        
+
     private let orderbookPanel: OrderBookPanel = {
         OrderBookPanel()
+    }()
+
+    private lazy var currentLeverageLabel: UILabel = {
+        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
+        label.backgroundColor = UIColor.Bybit.themeBlack
+        label.textAlignment = .left
+        label.text = ""
+        return label
     }()
     
     private let percentageContainer: View = {
@@ -157,9 +165,29 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         tradeTable.view.translatesAutoresizingMaskIntoConstraints = false
         return tradeTable
     }()
-    
+
+    var leverageStatus: BitService.BybitLeverageStatus?
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        services.fetchBybitLeverageStatus { result in
+            switch result {
+
+            case let .success(result):
+                self.leverageStatus = result
+                guard let leverage = self.leverageStatus else { return }
+                self.currentLeverageLabel.text = "\(leverage.btcLeverage)x"
+                print(leverage.btcLeverage)
+                print(leverage.ethLeverage)
+                print(leverage.eosLeverage)
+                print(leverage.xrpLeverage)
+                print(leverage.metaData)
+            case let.failure(error):
+                print(result)
+                print(error)
+            }
+
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -179,6 +207,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         super.setupSubviews()
         
         view.addSubview(symbolInfoView)
+        view.addSubview(currentLeverageLabel)
         view.addSubview(orderbookPanel)
         view.addSubview(percentageContainer)
         view.addSubview(orderPriceTitleLabel)
@@ -229,11 +258,15 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Dimensions.Space.margin32),
             orderbookPanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
             orderbookPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
+
+            currentLeverageLabel.bottomAnchor.constraint(equalTo: percentageContainer.topAnchor, constant: -Dimensions.Space.margin8),
+            currentLeverageLabel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
+            currentLeverageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
             
             percentageContainer.bottomAnchor.constraint(equalTo: orderbookPanel.bottomAnchor),
             percentageContainer.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
             percentageContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
-                        
+
             button25.topAnchor.constraint(equalTo: percentageContainer.topAnchor, constant: Dimensions.Space.margin4),
             button25.bottomAnchor.constraint(equalTo: percentageContainer.bottomAnchor, constant: -Dimensions.Space.margin4),
             button25.leadingAnchor.constraint(equalTo: percentageContainer.leadingAnchor, constant: Dimensions.Space.margin4),
@@ -265,7 +298,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             tradeHistoryTable.view.trailingAnchor.constraint(equalTo: tradeHistoryContainer.trailingAnchor, constant: -Dimensions.Space.margin4)
         ])
     }
-        
+
     func observer(observer: WebSocketDelegate, didWriteToSocket: String) {
         print("Observer has written to the web socket")
     }

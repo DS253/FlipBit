@@ -152,8 +152,14 @@ internal extension Date {
     }
     
     /// Returns a string of the expected timestamp in seconds
-    func bybitTimestamp() -> String {
+    func bybitSocketTimestamp() -> String {
         let seconds = (NSDate().timeIntervalSince1970 * 1000) + 1000
+        let secondsConverted = String(seconds).components(separatedBy: ".")
+        return secondsConverted[0]
+    }
+
+    func bybitTimestamp() -> String {
+        let seconds = (NSDate().timeIntervalSince1970 * 1000) - 16000
         let secondsConverted = String(seconds).components(separatedBy: ".")
         return secondsConverted[0]
     }
