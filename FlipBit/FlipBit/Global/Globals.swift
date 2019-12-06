@@ -20,7 +20,7 @@ internal func wait(_ time: DispatchTimeInterval, completion: @escaping (() -> Vo
 }
 
 internal let bookObserver: BybitBookOrderObserver = {
-    var request = URLRequest(url: URL(string: "wss://stream-testnet.bybit.com/realtime")!)
+    var request = URLRequest(url: URL(string: "wss://stream.bybit.com/realtime")!)
     request.timeoutInterval = 5
     return BybitBookOrderObserver(url: request)
 }()
