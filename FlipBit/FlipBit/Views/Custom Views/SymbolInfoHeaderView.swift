@@ -33,7 +33,7 @@ class SymbolInfoHeaderView: View {
     }()
     
     private lazy var dayHighDataLabel: UILabel = {
-        let dayHighLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.white)
+        let dayHighLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
         dayHighLabel.textAlignment = .left
         return dayHighLabel
     }()
@@ -46,7 +46,7 @@ class SymbolInfoHeaderView: View {
     }()
     
     private lazy var dayLowDataLabel: UILabel = {
-        let dayLowLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.white)
+        let dayLowLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
         dayLowLabel.textAlignment = .left
         return dayLowLabel
     }()
@@ -59,7 +59,7 @@ class SymbolInfoHeaderView: View {
     }()
     
     private lazy var dayTurnoverDataLabel: UILabel = {
-        let dayTurnoverDataLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.white)
+        let dayTurnoverDataLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
         dayTurnoverDataLabel.textAlignment = .left
         return dayTurnoverDataLabel
     }()

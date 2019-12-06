@@ -12,21 +12,21 @@ class OrderBookPanel: View {
     
     private lazy var bookHeader: View = {
         let header = View()
-        header.backgroundColor = UIColor.Bybit.themeBlack
+        header.backgroundColor = UIColor.Bybit.white
         return header
     }()
     
     private lazy var priceHeaderLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
-        label.backgroundColor = UIColor.Bybit.themeBlack
+        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
+        label.backgroundColor = UIColor.Bybit.white
         label.textAlignment = .left
         label.text = Constant.price
         return label
     }()
     
     private lazy var quantityHeaderLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
-        label.backgroundColor = UIColor.Bybit.themeBlack
+        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
+        label.backgroundColor = UIColor.Bybit.white
         label.textAlignment = .right
         label.text = Constant.quantity
         return label
@@ -57,7 +57,7 @@ class OrderBookPanel: View {
     
     override func setup() {
         super.setup()
-        backgroundColor = UIColor.Bybit.themeBlack
+        backgroundColor = UIColor.Bybit.white
         setBybitTheme()
     }
     

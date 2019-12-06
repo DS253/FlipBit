@@ -35,12 +35,12 @@ class BybitTradeEventsTableViewController: BaseTableViewController, SocketObserv
     
     override func setupSubviews() {
         super.setupSubviews()
-        view.backgroundColor = UIColor.Bybit.themeBlack
+        view.backgroundColor = UIColor.Bybit.white
     }
     
     override func setupTableView() {
         super.setupTableView()
-        tableView.backgroundColor = UIColor.Bybit.themeBlack
+        tableView.backgroundColor = UIColor.Bybit.white
         tableView.showsVerticalScrollIndicator = false
     }
     

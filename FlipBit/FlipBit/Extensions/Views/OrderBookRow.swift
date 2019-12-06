@@ -29,7 +29,7 @@ class OrderBookRow: View {
     lazy var quantityLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = font
-        label.textColor = UIColor.Bybit.white
+        label.textColor = UIColor.Bybit.themeBlack
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
@@ -64,7 +64,7 @@ class OrderBookRow: View {
     
     override func setup() {
         super.setup()
-        backgroundColor = UIColor.Bybit.themeBlack
+        backgroundColor = UIColor.Bybit.white
         clipsToBounds = true
     }
     

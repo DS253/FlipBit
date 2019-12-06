@@ -8,6 +8,13 @@
 
 import Foundation
 
+//func pushViewController(_ viewController: UIViewController, animated: Bool, completion: @escaping ()-> Void) {
+//    CATransaction.begin()
+//    CATransaction.setCompletionBlock(completion)
+//    pushViewController(viewController, animated: animated)
+//    CATransaction.commit()
+//}
+
 extension BybitBookOrderObserver {
     func sortBookOrders(_ bookOrders: [Bybit.BookOrder?]?, side: Bybit.Side) {
         switch side {
@@ -28,6 +35,14 @@ extension BybitBookOrderObserver {
         }
     }
     
+    func indexForOrder(order: Bybit.BookOrder?, orders: [Bybit.BookOrder?]?) -> Int? {
+        guard
+            let newOrders = orders,
+            let newOrder = order
+            else { return nil }
+        return newOrders.firstIndex(where: { $0?.id == newOrder.id })
+    }
+    
     func updateBookOrders(_ updatedOrders: [Bybit.BookOrder?]?, side: Bybit.Side) {
         guard let markedOrders = updatedOrders else { return }
         var hasOrder = false
@@ -35,7 +50,7 @@ extension BybitBookOrderObserver {
         switch side {
         case .Buy:
             for order in markedOrders {
-                if let index = buyBook?.firstIndex(where: { $0?.id == order?.id }) {
+                if let index = indexForOrder(order: order, orders: buyBook) {
                     buyBook?[index] = order
                     hasOrder = true
                 }
@@ -43,7 +58,7 @@ extension BybitBookOrderObserver {
             if hasOrder { NotificationCenter.default.post(name: .buyBookObserverUpdate, object: nil) }
         case .Sell:
             for order in markedOrders {
-                if let index = sellBook?.firstIndex(where: { $0?.id == order?.id }) {
+                if let index = indexForOrder(order: order, orders: sellBook) {
                     sellBook?[index] = order
                     hasOrder = true
                 }
@@ -58,7 +73,7 @@ extension BybitBookOrderObserver {
         switch side {
         case .Buy:
             for order in markedOrders {
-                if let index = buyBook?.firstIndex(where: { $0?.id == order?.id }) {
+                if let index = indexForOrder(order: order, orders: buyBook) {
                     buyBook?.remove(at: index)
                     hasOrder = true
                 }
@@ -66,7 +81,7 @@ extension BybitBookOrderObserver {
             if hasOrder { NotificationCenter.default.post(name: .buyBookObserverUpdate, object: nil) }
         case .Sell:
             for order in markedOrders {
-                if let index = sellBook?.firstIndex(where: { $0?.id == order?.id}) {
+                if let index = indexForOrder(order: order, orders: sellBook) {
                     sellBook?.remove(at: index)
                     hasOrder = true
                 }

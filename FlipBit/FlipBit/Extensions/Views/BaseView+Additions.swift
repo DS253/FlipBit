@@ -14,7 +14,7 @@ extension BaseView {
         layer.cornerRadius = 14
         layer.shadowColor = UIColor.orange.cgColor
         layer.shadowOpacity = 1
-        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowOffset = CGSize(width: -1, height: 6)
         layer.masksToBounds = false
     }
 }

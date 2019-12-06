@@ -26,7 +26,7 @@ class BybitTradeEventCell: UITableViewCell {
     private let quantityLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.footnote
-        label.textColor = UIColor.Bybit.white
+        label.textColor = UIColor.Bybit.themeBlack
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
@@ -36,7 +36,7 @@ class BybitTradeEventCell: UITableViewCell {
     private let timeLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.footnote
-        label.textColor = UIColor.Bybit.white
+        label.textColor = UIColor.Bybit.themeBlack
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
@@ -57,7 +57,7 @@ class BybitTradeEventCell: UITableViewCell {
     // MARK: - Setup Methods
     
     func setup() {
-        backgroundColor = UIColor.Bybit.themeBlack
+        backgroundColor = UIColor.Bybit.white
         selectionStyle = .none
         clipsToBounds = true
     }

@@ -59,7 +59,7 @@ class BybitBookOrderCell: UITableViewCell {
     // MARK: - Setup Methods
     
     func setup() {
-        backgroundColor = UIColor.Bybit.themeBlack
+        backgroundColor = UIColor.Bybit.white
         selectionStyle = .none
         clipsToBounds = true
     }

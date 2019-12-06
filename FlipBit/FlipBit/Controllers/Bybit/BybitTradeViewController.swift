@@ -23,28 +23,28 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     
     private let percentageContainer: View = {
         let container = View()
-        container.backgroundColor = UIColor.Bybit.themeBlack
+        container.backgroundColor = UIColor.Bybit.white
         container.setBybitTheme()
         return container
     }()
     
     private lazy var bookHeader: View = {
         let header = View()
-        header.backgroundColor = UIColor.Bybit.themeBlack
+        header.backgroundColor = UIColor.Bybit.white
         return header
     }()
     
     private lazy var priceHeaderLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
-        label.backgroundColor = UIColor.Bybit.themeBlack
+        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
+        label.backgroundColor = UIColor.Bybit.white
         label.textAlignment = .left
         label.text = Constant.price
         return label
     }()
     
     private lazy var quantityHeaderLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
-        label.backgroundColor = UIColor.Bybit.themeBlack
+        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
+        label.backgroundColor = UIColor.Bybit.white
         label.textAlignment = .right
         label.text = Constant.quantity
         return label
@@ -70,6 +70,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     private lazy var longButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle(Constant.long, for: .normal)
+        button.setTitleColor(UIColor.Bybit.themeBlack, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -77,30 +78,31 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     private lazy var shortButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle(Constant.short, for: .normal)
+        button.setTitleColor(UIColor.Bybit.themeBlack, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     private lazy var orderPriceTitleLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
+        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
         label.text = Constant.orderPrice
         return label
     }()
     
     private lazy var orderPriceLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
+        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
         label.text = "7100"
         return label
     }()
     
     private lazy var orderQuantityTitleLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
+        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
         label.text = Constant.orderQuantity
         return label
     }()
     
     private lazy var orderQuantityLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
+        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
         label.text = "10000"
         return label
     }()
@@ -108,7 +110,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     private lazy var button25: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("25%", for: .normal)
-        button.setTitleColor(UIColor.Bybit.white, for: .normal)
+        button.setTitleColor(UIColor.Bybit.themeBlack, for: .normal)
         button.titleLabel?.font = .footnote
         button.addTarget(self, action: #selector(addByPercentage(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -118,7 +120,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     private lazy var button50: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("50%", for: .normal)
-        button.setTitleColor(UIColor.Bybit.white, for: .normal)
+        button.setTitleColor(UIColor.Bybit.themeBlack, for: .normal)
         button.titleLabel?.font = .footnote
         button.addTarget(self, action: #selector(addByPercentage(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -128,7 +130,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     private lazy var button75: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("75%", for: .normal)
-        button.setTitleColor(UIColor.Bybit.white, for: .normal)
+        button.setTitleColor(UIColor.Bybit.themeBlack, for: .normal)
         button.titleLabel?.font = .footnote
         button.addTarget(self, action: #selector(addByPercentage(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -138,7 +140,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     private lazy var button100: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("100%", for: .normal)
-        button.setTitleColor(UIColor.Bybit.white, for: .normal)
+        button.setTitleColor(UIColor.Bybit.themeBlack, for: .normal)
         button.titleLabel?.font = .footnote
         button.addTarget(self, action: #selector(addByPercentage(sender:)), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -147,7 +149,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     
     private lazy var tradeHistoryContainer: View = {
         let container = View()
-        container.backgroundColor = UIColor.Bybit.themeBlack
+        container.backgroundColor = UIColor.Bybit.white
         container.setBybitTheme()
         return container
     }()
@@ -172,7 +174,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         symbolObserver.delegate = self
         tradeObserver.delegate = self
         positionObserver.delegate = self
-        view.backgroundColor = UIColor.Bybit.themeBlack
+        view.backgroundColor = UIColor.Bybit.white
     }
     
     override func setupSubviews() {
