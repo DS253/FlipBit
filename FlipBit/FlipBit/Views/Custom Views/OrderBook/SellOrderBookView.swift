@@ -25,13 +25,15 @@ class SellOrderBookView: OrderBookBaseView {
             let secondOrder = book[1],
             let thirdOrder = book[2],
             let fourthOrder = book[3],
-            let fifthOrder = book[4]
+            let fifthOrder = book[4],
+        let sixthOrder = book[5]
             else { return }
-        firstRow.configure(with: firstOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: fifthOrder.size ?? 0))
-        secondRow.configure(with: secondOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: fourthOrder.size ?? 0))
+        firstRow.configure(with: firstOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: firstOrder.size ?? 0))
+        secondRow.configure(with: secondOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: secondOrder.size ?? 0))
         thirdRow.configure(with: thirdOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: thirdOrder.size ?? 0))
-        fourthRow.configure(with: fourthOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: secondOrder.size ?? 0))
-        fifthRow.configure(with: fifthOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: firstOrder.size ?? 0))
+        fourthRow.configure(with: fourthOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: fourthOrder.size ?? 0))
+        fifthRow.configure(with: fifthOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: fifthOrder.size ?? 0))
+        sixthRow.configure(with: sixthOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: sixthOrder.size ?? 0))
     }
     
     func configureViewForSellBook() {
@@ -44,6 +46,8 @@ class SellOrderBookView: OrderBookBaseView {
         
         fifthRow.priceLabel.font = UIFont.caption.bold
         fifthRow.quantityLabel.font = UIFont.caption.bold
+        sixthRow.priceLabel.font = UIFont.caption.bold
+        sixthRow.quantityLabel.font = UIFont.caption.bold
         
     }
 }

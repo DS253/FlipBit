@@ -36,6 +36,10 @@ class OrderBookBaseView: View {
     lazy var fifthRow: OrderBookRow = {
         OrderBookRow(font: UIFont.subheadline.bold, colorTheme: colorTheme())
     }()
+    
+    lazy var sixthRow: OrderBookRow = {
+        OrderBookRow(font: UIFont.subheadline.bold, colorTheme: colorTheme())
+    }()
         
     deinit {
         NotificationCenter.default.removeObserver(self, name: notificationName(), object: nil)
@@ -54,6 +58,7 @@ class OrderBookBaseView: View {
         stackView.addArrangedSubview(thirdRow)
         stackView.addArrangedSubview(fourthRow)
         stackView.addArrangedSubview(fifthRow)
+        stackView.addArrangedSubview(sixthRow)
     }
     
     override func setupConstraints() {

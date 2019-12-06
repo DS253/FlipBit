@@ -8,13 +8,6 @@
 
 import Foundation
 
-//func pushViewController(_ viewController: UIViewController, animated: Bool, completion: @escaping ()-> Void) {
-//    CATransaction.begin()
-//    CATransaction.setCompletionBlock(completion)
-//    pushViewController(viewController, animated: animated)
-//    CATransaction.commit()
-//}
-
 extension BybitBookOrderObserver {
     func sortBookOrders(_ bookOrders: [Bybit.BookOrder?]?, side: Bybit.Side) {
         switch side {
@@ -108,7 +101,7 @@ extension BybitBookOrderObserver {
 extension BybitBookOrderObserver {
         
     func findLargestOrder(orders: [Bybit.BookOrder?]?) -> Int {
-        guard let books = orders?[0..<5] else { return 0 }
+        guard let books = orders?[0..<6] else { return 0 }
         let max = books.max(by: { (a, b) -> Bool in
             guard
                 let first = a,
