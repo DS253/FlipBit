@@ -18,23 +18,23 @@ class OrderBookBaseView: View {
     }()
     
     lazy var firstRow: OrderBookRow = {
-        OrderBookRow(font: UIFont.caption.bold, colorTheme: colorTheme())
+        OrderBookRow(font: UIFont.caption, colorTheme: colorTheme())
     }()
     
     lazy var secondRow: OrderBookRow = {
-        OrderBookRow(font: UIFont.footnote, colorTheme: colorTheme())
+        OrderBookRow(font: UIFont.caption.bold, colorTheme: colorTheme())
     }()
     
     lazy var thirdRow: OrderBookRow = {
-        OrderBookRow(font: UIFont.footnote.bold, colorTheme: colorTheme())
+        OrderBookRow(font: UIFont.footnote, colorTheme: colorTheme())
     }()
     
     lazy var fourthRow: OrderBookRow = {
-        OrderBookRow(font: UIFont.subheadline, colorTheme: colorTheme())
+        OrderBookRow(font: UIFont.footnote.bold, colorTheme: colorTheme())
     }()
     
     lazy var fifthRow: OrderBookRow = {
-        OrderBookRow(font: UIFont.subheadline.bold, colorTheme: colorTheme())
+        OrderBookRow(font: UIFont.subheadline, colorTheme: colorTheme())
     }()
     
     lazy var sixthRow: OrderBookRow = {

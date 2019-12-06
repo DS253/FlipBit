@@ -22,8 +22,8 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     }()
 
     private lazy var currentLeverageLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white)
-        label.backgroundColor = UIColor.Bybit.themeBlack
+        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
+        label.backgroundColor = UIColor.Bybit.white
         label.textAlignment = .left
         label.text = ""
         return label

@@ -115,7 +115,7 @@ extension BybitBookOrderCell {
         
         if !isAnimating {
             self.isAnimating = true
-            UIView.animate(withDuration: 0.6, animations: {
+            UIView.animate(withDuration: 0.4, animations: {
                 self.layoutSubviews()
             }, completion: { _ in
                 self.isAnimating = false

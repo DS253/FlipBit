@@ -41,13 +41,14 @@ class SellOrderBookView: OrderBookBaseView {
         firstRow.quantityLabel.font = UIFont.subheadline.bold
         secondRow.priceLabel.font = UIFont.subheadline
         secondRow.quantityLabel.font = UIFont.subheadline
+        thirdRow.priceLabel.font = UIFont.footnote.bold
+        thirdRow.quantityLabel.font = UIFont.footnote.bold
         fourthRow.priceLabel.font = UIFont.footnote
         fourthRow.quantityLabel.font = UIFont.footnote
         
         fifthRow.priceLabel.font = UIFont.caption.bold
         fifthRow.quantityLabel.font = UIFont.caption.bold
-        sixthRow.priceLabel.font = UIFont.caption.bold
-        sixthRow.quantityLabel.font = UIFont.caption.bold
-        
+        sixthRow.priceLabel.font = UIFont.caption
+        sixthRow.quantityLabel.font = UIFont.caption
     }
 }
