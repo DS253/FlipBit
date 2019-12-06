@@ -11,6 +11,6 @@ import UIKit
 class BybitBookOrderBuyCell: BybitBookOrderCell {
     
     override func cellColorTheme() -> UIColor {
-        return UIColor.Bybit.orderbookGreen
+        return UIColor.flatMintDark
     }
 }

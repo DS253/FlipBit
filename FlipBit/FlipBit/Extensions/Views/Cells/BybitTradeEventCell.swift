@@ -95,9 +95,9 @@ class BybitTradeEventCell: UITableViewCell {
             else { return }
 
         if tradeEvent.side == .Buy {
-            priceLabel.textColor = UIColor.Bybit.orderbookGreen
+            priceLabel.textColor = UIColor.flatMintDark
         } else {
-            priceLabel.textColor = UIColor.Bybit.orderbookRed
+            priceLabel.textColor = UIColor.flatRedDark
         }
         
         priceLabel.text = String(price)
