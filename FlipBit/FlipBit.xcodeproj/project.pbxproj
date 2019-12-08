@@ -40,6 +40,7 @@
 		064131212389ED5400B795D5 /* SocketObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064131202389ED5400B795D5 /* SocketObserver.swift */; };
 		064131242389F69200B795D5 /* BybitTradeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064131232389F69200B795D5 /* BybitTradeCell.swift */; };
 		064131262389F6FC00B795D5 /* UIResponder+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064131252389F6FC00B795D5 /* UIResponder+Additions.swift */; };
+		0641F84E239CD02800EF7A0B /* ValuePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0641F84D239CD02800EF7A0B /* ValuePickerView.swift */; };
 		06433BC42381E3B600480EC1 /* BitService+BBCancelOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BC32381E3B600480EC1 /* BitService+BBCancelOrder.swift */; };
 		06433BC62381E45A00480EC1 /* BBActiveOrderCancel+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BC52381E45A00480EC1 /* BBActiveOrderCancel+Endpoint.swift */; };
 		06433BC82381FAB900480EC1 /* BBActiveOrderCreate+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BC72381FAB900480EC1 /* BBActiveOrderCreate+Endpoint.swift */; };
@@ -199,6 +200,7 @@
 		064131202389ED5400B795D5 /* SocketObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketObserver.swift; sourceTree = "<group>"; };
 		064131232389F69200B795D5 /* BybitTradeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeCell.swift; sourceTree = "<group>"; };
 		064131252389F6FC00B795D5 /* UIResponder+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Additions.swift"; sourceTree = "<group>"; };
+		0641F84D239CD02800EF7A0B /* ValuePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePickerView.swift; sourceTree = "<group>"; };
 		06433BC32381E3B600480EC1 /* BitService+BBCancelOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBCancelOrder.swift"; sourceTree = "<group>"; };
 		06433BC52381E45A00480EC1 /* BBActiveOrderCancel+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBActiveOrderCancel+Endpoint.swift"; sourceTree = "<group>"; };
 		06433BC72381FAB900480EC1 /* BBActiveOrderCreate+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBActiveOrderCreate+Endpoint.swift"; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 				062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */,
 				062E27722391C3C800AF0C7D /* SellOrderBookView.swift */,
 				062E27762393590500AF0C7D /* OrderBookPanel.swift */,
+				062E276B2391B7D800AF0C7D /* OrderBookRow.swift */,
 			);
 			path = OrderBook;
 			sourceTree = "<group>";
@@ -791,8 +794,6 @@
 			children = (
 				064131222389F68400B795D5 /* Cells */,
 				062E27742392F9CC00AF0C7D /* BaseView+Additions.swift */,
-				062E276B2391B7D800AF0C7D /* OrderBookRow.swift */,
-				06F2213D239C4A0200E1BEB5 /* PercentageView.swift */,
 				06F2213F239C900800E1BEB5 /* UIButton+Additions.swift */,
 				064AD9E5238F86AC00A7AA3E /* UIImage+Additions.swift */,
 				064AD9E3238F866C00A7AA3E /* UIImageView+Additions.swift */,
@@ -817,8 +818,10 @@
 			isa = PBXGroup;
 			children = (
 				062E27712391C3B700AF0C7D /* OrderBook */,
+				06F2213D239C4A0200E1BEB5 /* PercentageView.swift */,
 				45B3D9442386075A0004DF76 /* ScrollStackView.swift */,
 				064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */,
+				0641F84D239CD02800EF7A0B /* ValuePickerView.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -1071,6 +1074,7 @@
 				060D96F2237BB2B30040598A /* BBWithdrawalRecord+Endpoint.swift in Sources */,
 				0644D1DE238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift in Sources */,
 				06470E022377C35D00419238 /* BitService+Application.swift in Sources */,
+				0641F84E239CD02800EF7A0B /* ValuePickerView.swift in Sources */,
 				062E27772393590500AF0C7D /* OrderBookPanel.swift in Sources */,
 				06433BD223820E5900480EC1 /* BBLeverageStatus+Endpoint.swift in Sources */,
 				060D96E4237B70A70040598A /* BBServerTime+Endpoint.swift in Sources */,

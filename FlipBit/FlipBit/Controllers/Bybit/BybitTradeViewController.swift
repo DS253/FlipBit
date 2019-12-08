@@ -71,21 +71,14 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         return label
     }()
     
-    private lazy var orderQuantityTitleLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
-        label.text = Constant.orderQuantity
-        return label
-    }()
-    
-    private lazy var orderQuantityLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
-        label.text = "10000"
-        return label
+    private lazy var quantityPickerView: ValuePickerView = {
+        ValuePickerView()
     }()
         
     private lazy var tradeHistoryContainer: View = {
         let container = View(backgroundColor: UIColor.Bybit.white)
         container.setBybitTheme()
+        container.addSubview(view: tradeHistoryTable.view, constant: Dimensions.Space.margin4)
         return container
     }()
     
@@ -130,13 +123,10 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         view.addSubview(percentageContainer)
         view.addSubview(orderPriceTitleLabel)
         view.addSubview(orderPriceLabel)
-        view.addSubview(orderQuantityTitleLabel)
-        view.addSubview(orderQuantityLabel)
+        view.addSubview(quantityPickerView)
         view.addSubview(longButton)
         view.addSubview(shortButton)
         view.addSubview(tradeHistoryContainer)
-        
-        tradeHistoryContainer.addSubview(tradeHistoryTable.view)
     }
     
     override func setupConstraints() {
@@ -165,13 +155,10 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             orderPriceLabel.leadingAnchor.constraint(equalTo: orderPriceTitleLabel.leadingAnchor),
             orderPriceLabel.trailingAnchor.constraint(equalTo: orderPriceTitleLabel.trailingAnchor),
             orderPriceLabel.topAnchor.constraint(equalTo: orderPriceTitleLabel.bottomAnchor),
-            
-            orderQuantityTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
-            orderQuantityTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Dimensions.Space.margin8),
-            orderQuantityTitleLabel.topAnchor.constraint(equalTo: orderbookPanel.centerYAnchor, constant: Dimensions.Space.margin16),
-            orderQuantityLabel.leadingAnchor.constraint(equalTo: orderQuantityTitleLabel.leadingAnchor),
-            orderQuantityLabel.trailingAnchor.constraint(equalTo: orderQuantityTitleLabel.trailingAnchor),
-            orderQuantityLabel.topAnchor.constraint(equalTo: orderQuantityTitleLabel.bottomAnchor),
+                        
+            quantityPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
+            quantityPickerView.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
+            quantityPickerView.bottomAnchor.constraint(equalTo: percentageContainer.topAnchor, constant: -Dimensions.Space.margin16),
             
             orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Dimensions.Space.margin24),
             orderbookPanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
@@ -184,12 +171,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             tradeHistoryContainer.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Dimensions.Space.margin16),
             tradeHistoryContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
             tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
-            tradeHistoryContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.Space.margin8),
-            
-            tradeHistoryTable.view.topAnchor.constraint(equalTo: tradeHistoryContainer.topAnchor, constant: Dimensions.Space.margin4),
-            tradeHistoryTable.view.bottomAnchor.constraint(equalTo: tradeHistoryContainer.bottomAnchor, constant: -Dimensions.Space.margin4),
-            tradeHistoryTable.view.leadingAnchor.constraint(equalTo: tradeHistoryContainer.leadingAnchor, constant: Dimensions.Space.margin4),
-            tradeHistoryTable.view.trailingAnchor.constraint(equalTo: tradeHistoryContainer.trailingAnchor, constant: -Dimensions.Space.margin4)
+            tradeHistoryContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.Space.margin8)
         ])
     }
 
