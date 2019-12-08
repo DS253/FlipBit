@@ -34,7 +34,7 @@ class OrderBookPanel: View {
     
     private lazy var separatorView: View = {
         let separator = View()
-        separator.backgroundColor = UIColor.Bybit.white
+        separator.backgroundColor = UIColor.Bybit.themeBlack
         return separator
     }()
     
@@ -46,6 +46,11 @@ class OrderBookPanel: View {
         return buyView
     }()
     
+    private lazy var lastPriceLabel: UILabel = {
+        let label = UILabel(font: UIFont.title1.bold, textColor: UIColor.flatMint)
+        return label
+    }()
+    
     private lazy var sellbook: SellOrderBookView = {
         let sellView = SellOrderBookView()
         sellView.configureViewForSellBook()
@@ -55,8 +60,13 @@ class OrderBookPanel: View {
         return sellView
     }()
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .symbolObserverUpdate, object: nil)
+    }
+    
     override func setup() {
         super.setup()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLastPrice(notification:)), name: .symbolObserverUpdate, object: nil)
         backgroundColor = UIColor.Bybit.white
         setBybitTheme()
     }
@@ -66,6 +76,7 @@ class OrderBookPanel: View {
         
         addSubview(bookHeader)
         addSubview(buybook)
+        addSubview(lastPriceLabel)
         addSubview(sellbook)
         
         bookHeader.addSubview(separatorView)
@@ -98,11 +109,23 @@ class OrderBookPanel: View {
             buybook.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: Dimensions.Space.margin4),
             buybook.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin16),
             buybook.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin16),
+            
+            lastPriceLabel.topAnchor.constraint(equalTo: buybook.bottomAnchor, constant: Dimensions.Space.margin8),
+            lastPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin16),
+            lastPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin16),
 
-            sellbook.topAnchor.constraint(equalTo: buybook.bottomAnchor, constant: Dimensions.Space.margin16),
+            sellbook.topAnchor.constraint(equalTo: lastPriceLabel.bottomAnchor, constant: Dimensions.Space.margin8),
             sellbook.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin16),
             sellbook.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin16),
             sellbook.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin16)
         ])
+    }
+    
+    @objc func updateLastPrice(notification: NSNotification) {
+        guard let newInfo = symbolObserver.symbolInfo else { return }
+        if let lastPrice = newInfo.lastPrice {
+            lastPriceLabel.text = lastPrice
+            lastPriceLabel.textColor = Bybit().tickColor
+        }
     }
 }
