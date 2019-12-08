@@ -16,11 +16,11 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         symbolInfoView.configureView()
         return symbolInfoView
     }()
-
+    
     private let orderbookPanel: OrderBookPanel = {
         OrderBookPanel()
     }()
-
+    
     private lazy var leverageContainer: View = {
         let container = View(backgroundColor: UIColor.Bybit.white)
         container.setBybitTheme()
@@ -42,7 +42,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         percentageView.configureButtonActions(viewController: self, action: #selector(addByPercentage(sender:)), event: .touchUpInside)
         return percentageView
     }()
-        
+    
     private lazy var longButton: UIButton = {
         let button = UIButton(type: .custom, title: Constant.long, textColor: UIColor.Bybit.white)
         button.titleLabel?.font = UIFont.body.bold
@@ -59,22 +59,14 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         return button
     }()
     
-    private lazy var orderPriceTitleLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
-        label.text = Constant.orderPrice
-        return label
-    }()
-    
-    private lazy var orderPriceLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
-        label.text = "7100"
-        return label
+    private lazy var pricePickerView: ValuePickerView = {
+        ValuePickerView(title: Constant.orderPrice, value: "7100")
     }()
     
     private lazy var quantityPickerView: ValuePickerView = {
-        ValuePickerView()
+        ValuePickerView(title: Constant.orderQuantity, value: "10000")
     }()
-        
+    
     private lazy var tradeHistoryContainer: View = {
         let container = View(backgroundColor: UIColor.Bybit.white)
         container.setBybitTheme()
@@ -86,14 +78,14 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         let tradeTable = BybitTradeEventsTableViewController()
         return tradeTable
     }()
-
+    
     var leverageStatus: BitService.BybitLeverageStatus?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         services.fetchBybitLeverageStatus { result in
             switch result {
-
+                
             case let .success(result):
                 self.leverageStatus = result
                 guard let leverage = self.leverageStatus else { return }
@@ -121,8 +113,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         view.addSubview(leverageContainer)
         view.addSubview(orderbookPanel)
         view.addSubview(percentageContainer)
-        view.addSubview(orderPriceTitleLabel)
-        view.addSubview(orderPriceLabel)
+        view.addSubview(pricePickerView)
         view.addSubview(quantityPickerView)
         view.addSubview(longButton)
         view.addSubview(shortButton)
@@ -148,14 +139,10 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             leverageContainer.topAnchor.constraint(equalTo: shortButton.bottomAnchor, constant: Dimensions.Space.margin8),
             leverageContainer.centerXAnchor.constraint(equalTo: percentageContainer.centerXAnchor),
             
-            orderPriceTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
-            orderPriceTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Dimensions.Space.margin8),
-            orderPriceTitleLabel.bottomAnchor.constraint(equalTo: orderbookPanel.centerYAnchor, constant: -Dimensions.Space.margin16),
+            pricePickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
+            pricePickerView.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
+            pricePickerView.bottomAnchor.constraint(equalTo: quantityPickerView.topAnchor, constant: -Dimensions.Space.margin8),
             
-            orderPriceLabel.leadingAnchor.constraint(equalTo: orderPriceTitleLabel.leadingAnchor),
-            orderPriceLabel.trailingAnchor.constraint(equalTo: orderPriceTitleLabel.trailingAnchor),
-            orderPriceLabel.topAnchor.constraint(equalTo: orderPriceTitleLabel.bottomAnchor),
-                        
             quantityPickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
             quantityPickerView.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
             quantityPickerView.bottomAnchor.constraint(equalTo: percentageContainer.topAnchor, constant: -Dimensions.Space.margin16),
@@ -163,7 +150,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Dimensions.Space.margin24),
             orderbookPanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
             orderbookPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
-
+            
             percentageContainer.bottomAnchor.constraint(equalTo: orderbookPanel.bottomAnchor),
             percentageContainer.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
             percentageContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
@@ -174,7 +161,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             tradeHistoryContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.Space.margin8)
         ])
     }
-
+    
     func observer(observer: WebSocketDelegate, didWriteToSocket: String) {
         print("Observer has written to the web socket")
     }

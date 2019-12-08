@@ -11,15 +11,12 @@ import UIKit
 class ValuePickerView: View {
     
     private lazy var titleLabel: UILabel = {
-        let label = UILabel(font: UIFont.headline, textColor: UIColor.Bybit.themeBlack)
-        label.text = Constant.orderQuantity
-        return label
+        UILabel(font: UIFont.headline, textColor: UIColor.Bybit.themeBlack)
     }()
     
     private lazy var valueLabel: UILabel = {
         let label = UILabel(font: UIFont.headline, textColor: UIColor.Bybit.themeBlack)
         label.textAlignment = .center
-        label.text = "10000"
         return label
     }()
     
@@ -38,6 +35,16 @@ class ValuePickerView: View {
         button.layer.cornerRadius = 7.0
         return button
     }()
+    
+    init(title: String, value: String) {
+        super.init()
+        titleLabel.text = title
+        valueLabel.text = value
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func setup() {
         super.setup()
@@ -75,8 +82,10 @@ class ValuePickerView: View {
             valueLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
             valueLabel.trailingAnchor.constraint(equalTo: centerXAnchor),
             valueLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
-            
-        
         ])
+    }
+    
+    func configureValueText(value: String) {
+        valueLabel.text = value
     }
 }
