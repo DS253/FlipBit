@@ -116,6 +116,8 @@
 		069CFA8D2384D9F400B46BCF /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		069CFA932384E77A00B46BCF /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA922384E77A00B46BCF /* Services.swift */; };
 		069CFA962384ED7E00B46BCF /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA952384ED7E00B46BCF /* Dimensions.swift */; };
+		06F2213E239C4A0200E1BEB5 /* PercentageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2213D239C4A0200E1BEB5 /* PercentageView.swift */; };
+		06F22140239C900800E1BEB5 /* UIButton+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2213F239C900800E1BEB5 /* UIButton+Additions.swift */; };
 		45237FB1238C9D19005FC176 /* Bybit+SymbolInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45237FB0238C9D19005FC176 /* Bybit+SymbolInfo.swift */; };
 		455A1F3B237E2825005969B9 /* BitService+BBOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */; };
 		45B3D934238603900004DF76 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D933238603900004DF76 /* BaseTableViewController.swift */; };
@@ -277,6 +279,8 @@
 		069CFA8B2384D9F400B46BCF /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		069CFA922384E77A00B46BCF /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		069CFA952384ED7E00B46BCF /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
+		06F2213D239C4A0200E1BEB5 /* PercentageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageView.swift; sourceTree = "<group>"; };
+		06F2213F239C900800E1BEB5 /* UIButton+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Additions.swift"; sourceTree = "<group>"; };
 		45237FB0238C9D19005FC176 /* Bybit+SymbolInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+SymbolInfo.swift"; sourceTree = "<group>"; };
 		455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBOrder.swift"; sourceTree = "<group>"; };
 		45B3D933238603900004DF76 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -787,12 +791,14 @@
 			children = (
 				064131222389F68400B795D5 /* Cells */,
 				062E27742392F9CC00AF0C7D /* BaseView+Additions.swift */,
+				062E276B2391B7D800AF0C7D /* OrderBookRow.swift */,
+				06F2213D239C4A0200E1BEB5 /* PercentageView.swift */,
+				06F2213F239C900800E1BEB5 /* UIButton+Additions.swift */,
 				064AD9E5238F86AC00A7AA3E /* UIImage+Additions.swift */,
 				064AD9E3238F866C00A7AA3E /* UIImageView+Additions.swift */,
 				45B3D94923860A810004DF76 /* UILabel+Additions.swift */,
 				45B3D93E238605D90004DF76 /* UITableView+Additions.swift */,
 				45B3D93C2386052C0004DF76 /* UIView+Additions.swift */,
-				062E276B2391B7D800AF0C7D /* OrderBookRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1002,6 +1008,7 @@
 				06470DF82377C2C700419238 /* Double+Additions.swift in Sources */,
 				06490F85237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift in Sources */,
 				065F6018238B5F61008B5B89 /* BybitBookOrderSellCell.swift in Sources */,
+				06F22140239C900800E1BEB5 /* UIButton+Additions.swift in Sources */,
 				45B3D934238603900004DF76 /* BaseTableViewController.swift in Sources */,
 				06470E0E2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift in Sources */,
 				064D3D882389A69700B34173 /* Bybit+BookOrder.swift in Sources */,
@@ -1109,6 +1116,7 @@
 				062E27752392F9CC00AF0C7D /* BaseView+Additions.swift in Sources */,
 				064131262389F6FC00B795D5 /* UIResponder+Additions.swift in Sources */,
 				06470E1B2377C7E600419238 /* BitService+BBPreviousFundingFee.swift in Sources */,
+				06F2213E239C4A0200E1BEB5 /* PercentageView.swift in Sources */,
 				064D3D902389A8CB00B34173 /* Bybit+SocketResponse.swift in Sources */,
 				06746EB62381480300F14521 /* BBActiveOrder+Endpoint.swift in Sources */,
 				062895D12383A3920076AA27 /* ViewSetup.swift in Sources */,

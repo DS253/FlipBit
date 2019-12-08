@@ -12,7 +12,9 @@ extension BaseView {
     
     func setBybitTheme() {
         layer.cornerRadius = 14
-        layer.shadowColor = UIColor.gray.cgColor
+        layer.borderColor = UIColor.flatNavyBlue.cgColor
+        layer.borderWidth = 1.0
+        layer.shadowColor = UIColor.flatNavyBlue.cgColor
         layer.shadowOpacity = 1
         layer.shadowOffset = CGSize(width: -1, height: 6)
         layer.masksToBounds = false

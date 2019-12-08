@@ -87,6 +87,10 @@ class SymbolInfoHeaderView: View {
     override func setup() {
         super.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(updateSymbolInfo(notification:)), name: .symbolObserverUpdate, object: nil)
+        backgroundColor = UIColor.Bybit.white
+        setBybitTheme()
+        layer.cornerRadius = 0
+        layer.shadowOffset = CGSize(width: 0, height: -1)
     }
     
     override func setupSubviews() {

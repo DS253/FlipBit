@@ -17,7 +17,6 @@ extension UILabel {
     ///         `false` to eliminate the need to repeated assign this value.
     convenience init(font: UIFont, textColor: UIColor = .black) {
         self.init()
-
         self.translatesAutoresizingMaskIntoConstraints = false
         self.textColor = textColor
         self.font = font

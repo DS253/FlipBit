@@ -39,9 +39,8 @@ open class BaseTableHeaderView: BaseView {
 
     /// UILabel - displayed banner notifying user they are on the testnet of the exchange
     var testNetBanner: View = {
-        let view = View()
+        let view = View(backgroundColor: .orange)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .orange
         view.isHidden = true
 
         let banner = UILabel(font: UIFont.body.semibold, textColor: .white)

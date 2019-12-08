@@ -15,7 +15,7 @@ class SellOrderBookView: OrderBookBaseView {
     }
     
     override func colorTheme() -> UIColor {
-        return UIColor.flatRedDark
+        return UIColor.flatWatermelonDark
     }
     
     @objc override func updateBookRows(notification: Notification) {

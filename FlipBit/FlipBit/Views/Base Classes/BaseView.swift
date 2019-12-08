@@ -39,6 +39,14 @@ open class BaseView: UIView, ViewSetup {
         self.setupSubviews()
         self.setupConstraints()
     }
+    
+    public init(backgroundColor: UIColor) {
+        super.init(frame: .zero)
+        self.setup()
+        self.setupSubviews()
+        self.setupConstraints()
+        self.backgroundColor = backgroundColor
+    }
 
     /// Creates a `BaseView` instance given the provided parameter(s).
     public required init?(coder aDecoder: NSCoder) {

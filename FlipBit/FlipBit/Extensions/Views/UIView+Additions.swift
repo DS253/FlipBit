@@ -128,5 +128,18 @@ extension UIView {
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
+    
+    /// Helper method to simplify the process of adding a subview with constraints to center the
+    /// subview in the parent.
+    ///
+    /// - Parameters:
+    ///   - view: The `View` to add as a subview.
+    ///   - constant: The space separating the subview from the parent.
+    func addSubview(view: UIView, constant: CGFloat) {
+        addSubview(view)
+        view.leadingAnchor.constraint(equalTo: leadingAnchor, constant: constant).isActive = true
+        view.topAnchor.constraint(equalTo: topAnchor, constant: constant).isActive = true
+        view.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -constant).isActive = true
+        view.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -constant).isActive = true
+    }
 }
-

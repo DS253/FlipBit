@@ -21,73 +21,41 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         OrderBookPanel()
     }()
 
-    private lazy var currentLeverageLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
-        label.backgroundColor = UIColor.Bybit.white
-        label.textAlignment = .left
-        label.text = ""
-        return label
-    }()
-    
-    private let percentageContainer: View = {
-        let container = View()
-        container.backgroundColor = UIColor.Bybit.white
+    private lazy var leverageContainer: View = {
+        let container = View(backgroundColor: UIColor.Bybit.white)
         container.setBybitTheme()
+        container.addSubview(view: currentLeverageLabel, constant: 8)
         return container
     }()
     
-    private lazy var bookHeader: View = {
-        let header = View()
-        header.backgroundColor = UIColor.Bybit.white
-        return header
-    }()
-    
-    private lazy var priceHeaderLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
-        label.backgroundColor = UIColor.Bybit.white
-        label.textAlignment = .left
-        label.text = Constant.price
+    private lazy var currentLeverageLabel: UILabel = {
+        let label = UILabel(font: UIFont.largeTitle, textColor: UIColor.Bybit.themeBlack)
+        label.font = UIFont(name: "AvenirNext-Bold", size: 52.0)
+        label.layer.cornerRadius = 14
+        label.textAlignment = .center
+        label.text = "   "
         return label
     }()
     
-    private lazy var quantityHeaderLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
-        label.backgroundColor = UIColor.Bybit.white
-        label.textAlignment = .right
-        label.text = Constant.quantity
-        return label
+    private lazy var percentageContainer: PercentageView = {
+        let percentageView = PercentageView()
+        percentageView.configureButtonActions(viewController: self, action: #selector(addByPercentage(sender:)), event: .touchUpInside)
+        return percentageView
     }()
-    
-    private lazy var buybook: BuyOrderBookView = {
-        let buyView = BuyOrderBookView()
-        buyView.layer.cornerRadius = 7
-        buyView.layer.masksToBounds = true
-        buyView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-        return buyView
-    }()
-    
-    private lazy var sellbook: SellOrderBookView = {
-        let sellView = SellOrderBookView()
-        sellView.configureViewForSellBook()
-        sellView.layer.cornerRadius = 7
-        sellView.layer.masksToBounds = true
-        sellView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
-        return sellView
-    }()
-    
+        
     private lazy var longButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle(Constant.long, for: .normal)
-        button.setTitleColor(UIColor.Bybit.themeBlack, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        let button = UIButton(type: .custom, title: Constant.long, textColor: UIColor.Bybit.white)
+        button.titleLabel?.font = UIFont.body.bold
+        button.backgroundColor = UIColor.flatMint
+        button.layer.cornerRadius = 7.0
         return button
     }()
     
     private lazy var shortButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle(Constant.short, for: .normal)
-        button.setTitleColor(UIColor.Bybit.themeBlack, for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
+        let button = UIButton(type: .custom, title: Constant.short, textColor: UIColor.Bybit.white)
+        button.titleLabel?.font = UIFont.body.bold
+        button.backgroundColor = UIColor.flatWatermelon
+        button.layer.cornerRadius = 7.0
         return button
     }()
     
@@ -114,57 +82,15 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         label.text = "10000"
         return label
     }()
-    
-    private lazy var button25: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("25%", for: .normal)
-        button.setTitleColor(UIColor.Bybit.themeBlack, for: .normal)
-        button.titleLabel?.font = .footnote
-        button.addTarget(self, action: #selector(addByPercentage(sender:)), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private lazy var button50: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("50%", for: .normal)
-        button.setTitleColor(UIColor.Bybit.themeBlack, for: .normal)
-        button.titleLabel?.font = .footnote
-        button.addTarget(self, action: #selector(addByPercentage(sender:)), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private lazy var button75: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("75%", for: .normal)
-        button.setTitleColor(UIColor.Bybit.themeBlack, for: .normal)
-        button.titleLabel?.font = .footnote
-        button.addTarget(self, action: #selector(addByPercentage(sender:)), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
-    private lazy var button100: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("100%", for: .normal)
-        button.setTitleColor(UIColor.Bybit.themeBlack, for: .normal)
-        button.titleLabel?.font = .footnote
-        button.addTarget(self, action: #selector(addByPercentage(sender:)), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
+        
     private lazy var tradeHistoryContainer: View = {
-        let container = View()
-        container.backgroundColor = UIColor.Bybit.white
+        let container = View(backgroundColor: UIColor.Bybit.white)
         container.setBybitTheme()
         return container
     }()
     
     private lazy var tradeHistoryTable: BybitTradeEventsTableViewController = {
         let tradeTable = BybitTradeEventsTableViewController()
-        tradeTable.view.translatesAutoresizingMaskIntoConstraints = false
         return tradeTable
     }()
 
@@ -179,21 +105,11 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
                 self.leverageStatus = result
                 guard let leverage = self.leverageStatus else { return }
                 self.currentLeverageLabel.text = "\(leverage.btcLeverage)x"
-                print(leverage.btcLeverage)
-                print(leverage.ethLeverage)
-                print(leverage.eosLeverage)
-                print(leverage.xrpLeverage)
-                print(leverage.metaData)
             case let.failure(error):
                 print(result)
                 print(error)
             }
-
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
     
     override func setup() {
@@ -209,7 +125,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         super.setupSubviews()
         
         view.addSubview(symbolInfoView)
-        view.addSubview(currentLeverageLabel)
+        view.addSubview(leverageContainer)
         view.addSubview(orderbookPanel)
         view.addSubview(percentageContainer)
         view.addSubview(orderPriceTitleLabel)
@@ -219,12 +135,8 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         view.addSubview(longButton)
         view.addSubview(shortButton)
         view.addSubview(tradeHistoryContainer)
-        tradeHistoryContainer.addSubview(tradeHistoryTable.view)
         
-        percentageContainer.addSubview(button25)
-        percentageContainer.addSubview(button50)
-        percentageContainer.addSubview(button75)
-        percentageContainer.addSubview(button100)
+        tradeHistoryContainer.addSubview(tradeHistoryTable.view)
     }
     
     override func setupConstraints() {
@@ -237,10 +149,14 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             
             longButton.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
             longButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
-            longButton.trailingAnchor.constraint(equalTo: shortButton.leadingAnchor),
+            longButton.trailingAnchor.constraint(equalTo: shortButton.leadingAnchor, constant: -Dimensions.Space.margin4),
             
             shortButton.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
             shortButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
+            shortButton.widthAnchor.constraint(equalTo: longButton.widthAnchor),
+            
+            leverageContainer.topAnchor.constraint(equalTo: shortButton.bottomAnchor, constant: Dimensions.Space.margin8),
+            leverageContainer.centerXAnchor.constraint(equalTo: percentageContainer.centerXAnchor),
             
             orderPriceTitleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
             orderPriceTitleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: Dimensions.Space.margin8),
@@ -257,37 +173,13 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             orderQuantityLabel.trailingAnchor.constraint(equalTo: orderQuantityTitleLabel.trailingAnchor),
             orderQuantityLabel.topAnchor.constraint(equalTo: orderQuantityTitleLabel.bottomAnchor),
             
-            orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Dimensions.Space.margin32),
+            orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Dimensions.Space.margin24),
             orderbookPanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
             orderbookPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
 
-            currentLeverageLabel.bottomAnchor.constraint(equalTo: percentageContainer.topAnchor, constant: -Dimensions.Space.margin8),
-            currentLeverageLabel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
-            currentLeverageLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
-            
             percentageContainer.bottomAnchor.constraint(equalTo: orderbookPanel.bottomAnchor),
             percentageContainer.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
             percentageContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
-
-            button25.topAnchor.constraint(equalTo: percentageContainer.topAnchor, constant: Dimensions.Space.margin4),
-            button25.bottomAnchor.constraint(equalTo: percentageContainer.bottomAnchor, constant: -Dimensions.Space.margin4),
-            button25.leadingAnchor.constraint(equalTo: percentageContainer.leadingAnchor, constant: Dimensions.Space.margin4),
-            button25.trailingAnchor.constraint(equalTo: button50.leadingAnchor),
-            
-            button50.topAnchor.constraint(equalTo: percentageContainer.topAnchor, constant: Dimensions.Space.margin4),
-            button50.bottomAnchor.constraint(equalTo: percentageContainer.bottomAnchor, constant: -Dimensions.Space.margin4),
-            button50.widthAnchor.constraint(equalTo: button25.widthAnchor),
-            button50.trailingAnchor.constraint(equalTo: button75.leadingAnchor),
-            
-            button75.topAnchor.constraint(equalTo: percentageContainer.topAnchor, constant: Dimensions.Space.margin4),
-            button75.bottomAnchor.constraint(equalTo: percentageContainer.bottomAnchor, constant: -Dimensions.Space.margin4),
-            button75.widthAnchor.constraint(equalTo: button25.widthAnchor),
-            button75.trailingAnchor.constraint(equalTo: button100.leadingAnchor),
-            
-            button100.topAnchor.constraint(equalTo: percentageContainer.topAnchor, constant: Dimensions.Space.margin4),
-            button100.bottomAnchor.constraint(equalTo: percentageContainer.bottomAnchor, constant: -Dimensions.Space.margin4),
-            button100.widthAnchor.constraint(equalTo: button25.widthAnchor),
-            button100.trailingAnchor.constraint(equalTo: percentageContainer.trailingAnchor, constant: -Dimensions.Space.margin4),
             
             tradeHistoryContainer.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Dimensions.Space.margin16),
             tradeHistoryContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
@@ -321,6 +213,6 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     }
     
     @objc func addByPercentage(sender: UIButton) {
-        print(sender.titleLabel?.text)
+        print(sender.titleLabel?.text as Any)
     }
 }
