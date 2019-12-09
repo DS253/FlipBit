@@ -58,6 +58,12 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         button.layer.cornerRadius = 7.0
         return button
     }()
+
+    private lazy var optionView: View = {
+        let view = View()
+        view.backgroundColor = UIColor.Bybit.white
+        return view
+    }()
     
     private lazy var pricePickerView: ValuePickerView = {
         ValuePickerView(title: Constant.orderPrice, value: "7100")
@@ -70,6 +76,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     private lazy var tradeHistoryContainer: View = {
         let container = View(backgroundColor: UIColor.Bybit.white)
         container.setBybitTheme()
+        container.layer.shadowOpacity = 0
         container.addSubview(view: tradeHistoryTable.view, constant: Dimensions.Space.margin4)
         return container
     }()
@@ -115,9 +122,11 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         view.addSubview(percentageContainer)
         view.addSubview(pricePickerView)
         view.addSubview(quantityPickerView)
-        view.addSubview(longButton)
-        view.addSubview(shortButton)
         view.addSubview(tradeHistoryContainer)
+        view.addSubview(optionView)
+
+        optionView.addSubview(longButton)
+        optionView.addSubview(shortButton)
     }
     
     override func setupConstraints() {
@@ -127,16 +136,8 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             symbolInfoView.topAnchor.constraint(equalTo: view.topAnchor),
             symbolInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             symbolInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            
-            longButton.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
-            longButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
-            longButton.trailingAnchor.constraint(equalTo: shortButton.leadingAnchor, constant: -Dimensions.Space.margin4),
-            
-            shortButton.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
-            shortButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
-            shortButton.widthAnchor.constraint(equalTo: longButton.widthAnchor),
-            
-            leverageContainer.topAnchor.constraint(equalTo: shortButton.bottomAnchor, constant: Dimensions.Space.margin8),
+
+            leverageContainer.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
             leverageContainer.centerXAnchor.constraint(equalTo: percentageContainer.centerXAnchor),
             
             pricePickerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
@@ -158,7 +159,21 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             tradeHistoryContainer.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Dimensions.Space.margin16),
             tradeHistoryContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
             tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
-            tradeHistoryContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.Space.margin8)
+            tradeHistoryContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.Space.margin8),
+
+            shortButton.topAnchor.constraint(equalTo: optionView.topAnchor, constant: Dimensions.Space.margin8),
+            shortButton.bottomAnchor.constraint(equalTo: optionView.bottomAnchor, constant: -Dimensions.Space.margin8),
+            shortButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
+            shortButton.trailingAnchor.constraint(equalTo: longButton.leadingAnchor, constant: -Dimensions.Space.margin4),
+
+            longButton.topAnchor.constraint(equalTo: optionView.topAnchor, constant: Dimensions.Space.margin8),
+            longButton.trailingAnchor.constraint(equalTo: optionView.trailingAnchor, constant: -Dimensions.Space.margin8),
+            longButton.bottomAnchor.constraint(equalTo: optionView.bottomAnchor, constant: -Dimensions.Space.margin8),
+            longButton.widthAnchor.constraint(equalTo: shortButton.widthAnchor),
+
+            optionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            optionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            optionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
