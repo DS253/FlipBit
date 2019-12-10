@@ -64,6 +64,18 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         view.backgroundColor = UIColor.Bybit.white
         return view
     }()
+
+    private lazy var optionsViewGradient: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.colors = [
+            UIColor.flatNavyBlue.withAlphaComponent(0.45).cgColor,
+            UIColor.flatNavyBlue.withAlphaComponent(0.0).cgColor
+        ]
+
+        return gradient
+    }()
+
+    private let optionsViewGradientHeight: CGFloat = 4.0
     
     private lazy var pricePickerView: ValuePickerView = {
         ValuePickerView(title: Constant.orderPrice, value: "7100")
@@ -103,6 +115,16 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             }
         }
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        optionsViewGradient.frame = CGRect(
+            x: .zero,
+            y: .zero,
+            width: optionView.bounds.size.width,
+            height: optionsViewGradientHeight
+        )
+    }
     
     override func setup() {
         super.setup()
@@ -125,6 +147,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         view.addSubview(tradeHistoryContainer)
         view.addSubview(optionView)
 
+        optionView.addSublayer(optionsViewGradient)
         optionView.addSubview(longButton)
         optionView.addSubview(shortButton)
     }
@@ -173,7 +196,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
 
             optionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             optionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            optionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            optionView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimensions.Space.margin16)
         ])
     }
     

@@ -90,7 +90,8 @@ class SymbolInfoHeaderView: View {
         backgroundColor = UIColor.Bybit.white
         setBybitTheme()
         layer.cornerRadius = 0
-        layer.shadowOffset = CGSize(width: 0, height: -1)
+        layer.borderWidth = 0
+        layer.shadowOffset = CGSize(width: 0, height: 0)
     }
     
     override func setupSubviews() {

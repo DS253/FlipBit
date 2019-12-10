@@ -147,7 +147,7 @@ internal extension Date {
     var hourlyFormatString: String {
         let formatter = Date.formatter
         formatter.timeZone = .current
-        formatter.dateFormat = "H:MM:ss"
+        formatter.dateFormat = "H:mm:ss"
         return formatter.string(from: self)
     }
     
