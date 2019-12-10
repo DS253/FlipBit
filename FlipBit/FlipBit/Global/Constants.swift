@@ -21,6 +21,8 @@ struct Constant {
     
     // MARK: - Common
     static let buy = "Buy"
+    static let hour = "Hour"
+    static let hours = "Hours"
     static let long = "Long"
     static let orderPrice = "Order Price USD"
     static let orderQuantity = "Order Quantity USD"
@@ -33,6 +35,8 @@ struct Constant {
     static let dayHighTitle = "24h High"
     static let dayLowTitle = "24h Low"
     static let dayTurnoverTitle = "24h Turnover"
+    static let fundingRateTitle = "Funding Rate"
+    static let nextFunding = "Next Funding"
 
     // MARK: - Miscellaneous
 

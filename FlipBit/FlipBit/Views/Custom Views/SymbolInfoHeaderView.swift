@@ -64,6 +64,19 @@ class SymbolInfoHeaderView: View {
         return dayTurnoverDataLabel
     }()
     
+    private lazy var fundingRateTitleLabel: UILabel = {
+        let fundingTitle = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray)
+        fundingTitle.textAlignment = .right
+        fundingTitle.text = Constant.fundingRateTitle
+        return fundingTitle
+    }()
+    
+    private lazy var fundingRateDataLabel: UILabel = {
+        let dayTurnoverDataLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
+        dayTurnoverDataLabel.textAlignment = .left
+        return dayTurnoverDataLabel
+    }()
+    
     private lazy var symbolNameLabel: UILabel = {
         UILabel(font: UIFont.title2.bold, textColor: UIColor.Bybit.titleGray)
     }()
@@ -105,11 +118,13 @@ class SymbolInfoHeaderView: View {
         titleStackView.addArrangedSubview(dayHighTitleLabel)
         titleStackView.addArrangedSubview(dayLowTitleLabel)
         titleStackView.addArrangedSubview(dayTurnoverTitleLabel)
+        titleStackView.addArrangedSubview(fundingRateTitleLabel)
         
         addSubview(dataStackView)
         dataStackView.addArrangedSubview(dayHighDataLabel)
         dataStackView.addArrangedSubview(dayLowDataLabel)
         dataStackView.addArrangedSubview(dayTurnoverDataLabel)
+        dataStackView.addArrangedSubview(fundingRateDataLabel)
     }
     
     override func setupConstraints() {
@@ -164,6 +179,9 @@ class SymbolInfoHeaderView: View {
         if let dayPercentChange = newInfo.prevPcnt24H {
             dayPercentageChangeLabel.text = "\(dayPercentChange)%"
             dayPercentageChangeLabel.textColor = Bybit().percentageDifferenceColor
+        }
+        if let fundingRate = newInfo.fundingRate {
+            fundingRateDataLabel.text = "\(fundingRate)%"
         }
     }
         

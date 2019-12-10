@@ -66,10 +66,10 @@ extension Bybit {
         var volume24H: Int?
         
         /// The current funding rate.
-        var fundingRate: Int?
+        var fundingRate: String?
         
         /// The predicted funding rate.
-        var predictedFundingRate: Int?
+        var predictedFundingRate: String?
         
         var crossSequence: Int?
         
@@ -137,8 +137,10 @@ extension Bybit {
             self.turnover24H = turnover24?.formatWithKNotation(notation: 8)
             self.totalVolume = try results.decodeIfPresent(Int.self, forKey: .totalVolume)
             self.volume24H = try results.decodeIfPresent(Int.self, forKey: .volume24H)
-            self.fundingRate = try results.decodeIfPresent(Int.self, forKey: .fundingRate)
-            self.predictedFundingRate = try results.decodeIfPresent(Int.self, forKey: .predictedFunding)
+            let rate = try results.decodeIfPresent(Int.self, forKey: .fundingRate)
+            self.fundingRate = rate?.formatPriceString(notation: 4)
+            let predictedRate = try results.decodeIfPresent(Int.self, forKey: .predictedFunding)
+            self.predictedFundingRate = predictedRate?.formatPriceString(notation: 6)
             self.crossSequence = try results.decodeIfPresent(Int.self, forKey: .cross)
             
             self.createdAt = try results.decodeIfPresent(String.self, forKey: .createdAt)

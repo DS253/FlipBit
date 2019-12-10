@@ -188,10 +188,12 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             shortButton.bottomAnchor.constraint(equalTo: optionView.bottomAnchor, constant: -Dimensions.Space.margin8),
             shortButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
             shortButton.trailingAnchor.constraint(equalTo: longButton.leadingAnchor, constant: -Dimensions.Space.margin4),
+            shortButton.heightAnchor.constraint(equalToConstant: Dimensions.Space.margin48),
 
             longButton.topAnchor.constraint(equalTo: optionView.topAnchor, constant: Dimensions.Space.margin8),
             longButton.trailingAnchor.constraint(equalTo: optionView.trailingAnchor, constant: -Dimensions.Space.margin8),
             longButton.bottomAnchor.constraint(equalTo: optionView.bottomAnchor, constant: -Dimensions.Space.margin8),
+            longButton.heightAnchor.constraint(equalToConstant: Dimensions.Space.margin48),
             longButton.widthAnchor.constraint(equalTo: shortButton.widthAnchor),
 
             optionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
