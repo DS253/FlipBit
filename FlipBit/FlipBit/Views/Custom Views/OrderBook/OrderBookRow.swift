@@ -100,12 +100,8 @@ extension OrderBookRow {
     
     func configure(with order: Bybit.BookOrder, multiplier: Double) {
         self.bookOrder = order
-        if let orderPrice = order.price {
-            priceLabel.text = orderPrice
-        }
-        if let orderQty = order.size {
-            quantityLabel.text = String(orderQty)
-        }
+        if let orderPrice = order.price { priceLabel.text = orderPrice }
+        if let orderQty = order.size { quantityLabel.text = String(orderQty) }
         updateQuantityColor(multiplier: multiplier)
     }
     

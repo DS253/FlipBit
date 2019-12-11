@@ -44,6 +44,7 @@ class BybitTradeEventsTableViewController: BaseTableViewController, SocketObserv
         tableView.backgroundColor = UIColor.Bybit.white
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
+        optionsBarIsHidden = true
     }
     
     func observer(observer: WebSocketDelegate, didWriteToSocket: String) {

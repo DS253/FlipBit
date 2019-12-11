@@ -88,7 +88,6 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     private lazy var tradeHistoryContainer: View = {
         let container = View(backgroundColor: UIColor.Bybit.white)
         container.setBybitTheme()
-        container.layer.shadowOpacity = 0
         container.addSubview(view: tradeHistoryTable.view, constant: Dimensions.Space.margin4)
         return container
     }()
@@ -176,8 +175,8 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             
             tradeHistoryContainer.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Dimensions.Space.margin16),
             tradeHistoryContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
-            tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
-            tradeHistoryContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Dimensions.Space.margin8),
+            tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
+            tradeHistoryContainer.bottomAnchor.constraint(equalTo: optionView.topAnchor, constant: -Dimensions.Space.margin10),
 
             shortButton.topAnchor.constraint(equalTo: optionView.topAnchor, constant: Dimensions.Space.margin8),
             shortButton.bottomAnchor.constraint(equalTo: optionView.bottomAnchor, constant: -Dimensions.Space.margin8),

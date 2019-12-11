@@ -27,17 +27,7 @@ class BybitTradeEventCell: UITableViewCell {
         let label = UILabel(frame: .zero)
         label.font = UIFont.footnote
         label.textColor = UIColor.Bybit.themeBlack
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        return label
-    }()
-    
-    private let timeLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.font = UIFont.footnote
-        label.textColor = UIColor.Bybit.themeBlack
-        label.textAlignment = .left
+        label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         return label
@@ -65,7 +55,6 @@ class BybitTradeEventCell: UITableViewCell {
     func setupSubviews() {
         addSubview(priceLabel)
         addSubview(quantityLabel)
-        addSubview(timeLabel)
     }
     
     func setupConstraints() {
@@ -77,21 +66,17 @@ class BybitTradeEventCell: UITableViewCell {
             
             quantityLabel.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin4),
             quantityLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin4),
-            quantityLabel.trailingAnchor.constraint(equalTo: timeLabel.leadingAnchor),
-            quantityLabel.widthAnchor.constraint(equalTo: priceLabel.widthAnchor),
-            
-            timeLabel.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin4),
-            timeLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin4),
-            timeLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            timeLabel.widthAnchor.constraint(equalTo: priceLabel.widthAnchor)
+            quantityLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin16),
+            quantityLabel.widthAnchor.constraint(equalTo: priceLabel.widthAnchor)
         ])
     }
-    
+}
+
+extension BybitTradeEventCell {
     func configure(tradeEvent: Bybit.TradeEvent) {
         guard
             let price = tradeEvent.price,
-            let quantity = tradeEvent.size,
-            let time = tradeEvent.timestamp
+            let quantity = tradeEvent.size
             else { return }
 
         if tradeEvent.side == .Buy {
@@ -100,10 +85,7 @@ class BybitTradeEventCell: UITableViewCell {
             priceLabel.textColor = UIColor.flatRedDark
         }
         
-        priceLabel.text = String(price)
+        priceLabel.text = String(format: "%.2f", price)
         quantityLabel.text = String(quantity)
-        
-        guard let timestamp = Date(from: time, format: .bybitDateFormat) else { return }
-        timeLabel.text = timestamp.hourlyFormatString
     }
 }

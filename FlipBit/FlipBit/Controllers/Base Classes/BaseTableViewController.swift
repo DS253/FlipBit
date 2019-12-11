@@ -139,9 +139,6 @@ class BaseTableViewController: BaseViewController {
         }
         
         view.addSubview(tableView)
-        view.addSubview(optionsView)
-        optionsView.addSublayer(optionsViewGradient)
-        
         setupTableView()
     }
     
@@ -153,11 +150,7 @@ class BaseTableViewController: BaseViewController {
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: optionsView.topAnchor),
-            
-            optionsView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            optionsView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            optionsView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
         
         NSLayoutConstraint.activate(constraints(for: configuration))
