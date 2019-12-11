@@ -33,7 +33,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         label.font = UIFont(name: "AvenirNext-Bold", size: 52.0)
         label.layer.cornerRadius = 14
         label.textAlignment = .center
-        label.text = "   "
+        label.text = " "
         return label
     }()
     

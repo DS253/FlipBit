@@ -48,6 +48,7 @@ class OrderBookPanel: View {
     
     private lazy var lastPriceLabel: UILabel = {
         let label = UILabel(font: UIFont.largeTitle.bold, textColor: UIColor.flatMint)
+        label.text = " "
         label.textAlignment = .center
         return label
     }()

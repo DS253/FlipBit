@@ -34,6 +34,7 @@ class SymbolInfoHeaderView: View {
     
     private lazy var dayHighDataLabel: UILabel = {
         let dayHighLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
+        dayHighLabel.text = " "
         dayHighLabel.textAlignment = .left
         return dayHighLabel
     }()
@@ -47,6 +48,7 @@ class SymbolInfoHeaderView: View {
     
     private lazy var dayLowDataLabel: UILabel = {
         let dayLowLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
+        dayLowLabel.text = " "
         dayLowLabel.textAlignment = .left
         return dayLowLabel
     }()
@@ -60,6 +62,7 @@ class SymbolInfoHeaderView: View {
     
     private lazy var dayTurnoverDataLabel: UILabel = {
         let dayTurnoverDataLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
+        dayTurnoverDataLabel.text = " "
         dayTurnoverDataLabel.textAlignment = .left
         return dayTurnoverDataLabel
     }()
@@ -73,24 +76,33 @@ class SymbolInfoHeaderView: View {
     
     private lazy var fundingRateDataLabel: UILabel = {
         let dayTurnoverDataLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
+        dayTurnoverDataLabel.text = " "
         dayTurnoverDataLabel.textAlignment = .left
         return dayTurnoverDataLabel
     }()
     
     private lazy var symbolNameLabel: UILabel = {
-        UILabel(font: UIFont.title2.bold, textColor: UIColor.Bybit.titleGray)
+        let symbolLabel = UILabel(font: UIFont.title2.bold, textColor: UIColor.Bybit.titleGray)
+        symbolLabel.text = " "
+        return symbolLabel
     }()
     
     private lazy var lastTradedPriceLabel: UILabel = {
-        UILabel(font: UIFont.title3.bold, textColor: UIColor.Bybit.orderbookGreen)
+        let lastPriceLabel = UILabel(font: UIFont.title3.bold, textColor: UIColor.Bybit.orderbookGreen)
+        lastPriceLabel.text = " "
+        return lastPriceLabel
     }()
     
     private lazy var markPriceLabel: UILabel = {
-        UILabel(font: UIFont.footnote.bold, textColor: UIColor.Bybit.markPriceOrange)
+        let markPriceLabel = UILabel(font: UIFont.footnote.bold, textColor: UIColor.Bybit.markPriceOrange)
+         markPriceLabel.text = " "
+        return markPriceLabel
     }()
     
     private lazy var dayPercentageChangeLabel: UILabel = {
-        UILabel(font: UIFont.footnote.bold, textColor: UIColor.Bybit.orderbookGreen)
+        let percentLabel = UILabel(font: UIFont.footnote.bold, textColor: UIColor.Bybit.orderbookGreen)
+        percentLabel.text = " "
+        return percentLabel
     }()
     
     deinit {

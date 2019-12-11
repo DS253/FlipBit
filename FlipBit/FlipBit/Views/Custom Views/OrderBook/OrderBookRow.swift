@@ -18,6 +18,7 @@ class OrderBookRow: View {
     
     lazy var priceLabel: UILabel = {
         let label = UILabel(frame: .zero)
+        label.text = " "
         label.font = font
         label.textColor = colorTheme
         label.textAlignment = .left
@@ -28,6 +29,7 @@ class OrderBookRow: View {
     
     lazy var quantityLabel: UILabel = {
         let label = UILabel(frame: .zero)
+        label.text = " "
         label.font = font
         label.textColor = UIColor.Bybit.themeBlack
         label.textAlignment = .right
