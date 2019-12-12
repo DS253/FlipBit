@@ -122,6 +122,16 @@ class OrderBookPanel: View {
             sellbook.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin16)
         ])
     }
+
+    func setPriceSelector(selector: PriceSelection) {
+        buybook.setPriceSelector(selector: selector)
+        sellbook.setPriceSelector(selector: selector)
+    }
+
+    func setQuantitySelector(selector: QuantitySelection) {
+        buybook.setQuantitySelector(selector: selector)
+        sellbook.setQuantitySelector(selector: selector)
+    }
     
     @objc func updateLastPrice(notification: NSNotification) {
         guard let newInfo = symbolObserver.symbolInfo else { return }

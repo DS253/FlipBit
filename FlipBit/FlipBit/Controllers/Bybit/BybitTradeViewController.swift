@@ -126,6 +126,8 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         symbolObserver.delegate = self
         tradeObserver.delegate = self
         positionObserver.delegate = self
+        orderbookPanel.setPriceSelector(selector: pricePickerView)
+        orderbookPanel.setQuantitySelector(selector: quantityPickerView)
         view.backgroundColor = UIColor.Bybit.white
     }
     

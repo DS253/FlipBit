@@ -9,7 +9,7 @@
 import UIKit
 
 class OrderBookBaseView: View {
-    
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -70,7 +70,25 @@ class OrderBookBaseView: View {
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
     }
-    
+
+    func setPriceSelector(selector: PriceSelection) {
+        firstRow.priceSelector = selector
+        secondRow.priceSelector = selector
+        thirdRow.priceSelector = selector
+        fourthRow.priceSelector = selector
+        fifthRow.priceSelector = selector
+        sixthRow.priceSelector = selector
+    }
+
+    func setQuantitySelector(selector: QuantitySelection) {
+        firstRow.quantitySelector = selector
+        secondRow.quantitySelector = selector
+        thirdRow.quantitySelector = selector
+        fourthRow.quantitySelector = selector
+        fifthRow.quantitySelector = selector
+        sixthRow.quantitySelector = selector
+    }
+
     func notificationName() -> Notification.Name {
         fatalError("Must be implemented by child class")
     }

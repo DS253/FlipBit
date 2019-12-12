@@ -9,7 +9,10 @@
 import UIKit
 
 class OrderBookRow: View {
-    
+
+    weak var priceSelector: PriceSelection?
+    weak var quantitySelector: QuantitySelection?
+
     var bookOrder: Bybit.BookOrder?
     var colorTheme: UIColor
     var font: UIFont
@@ -24,6 +27,8 @@ class OrderBookRow: View {
         label.textAlignment = .left
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(priceTapped)))
         return label
     }()
     
@@ -35,6 +40,8 @@ class OrderBookRow: View {
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(quantityTapped)))
         return label
     }()
     
@@ -121,5 +128,15 @@ extension OrderBookRow {
                 self.isAnimating = false
             })
         }
+    }
+
+    @objc func priceTapped() {
+        guard let price = priceLabel.text else { return }
+        priceSelector?.priceSelected(price: price)
+    }
+
+    @objc func quantityTapped() {
+        guard let quantity = quantityLabel.text else { return }
+        quantitySelector?.quantitySelected(quantity: quantity)
     }
 }
