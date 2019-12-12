@@ -92,15 +92,15 @@ class OrderBookRow: View {
             quantityColorView.leadingAnchor.constraint(equalTo: leadingAnchor),
             colorWidthConstraint,
             
-            quantityLabel.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin2),
-            quantityLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin4),
-            quantityLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            quantityLabel.leadingAnchor.constraint(equalTo: centerXAnchor),
-            
             priceLabel.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin4),
             priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin4),
             priceLabel.trailingAnchor.constraint(equalTo: centerXAnchor),
-            priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
+            priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin4),
+            
+            quantityLabel.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin2),
+            quantityLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin4),
+            quantityLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin4),
+            quantityLabel.leadingAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
 }

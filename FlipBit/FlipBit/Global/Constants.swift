@@ -35,6 +35,7 @@ struct Constant {
     static let dayHighTitle = "24h High"
     static let dayLowTitle = "24h Low"
     static let dayTurnoverTitle = "24h Turnover"
+    static let fundingCountdownTitle = "Next Funding"
     static let fundingRateTitle = "Funding Rate"
     static let nextFunding = "Next Funding"
 

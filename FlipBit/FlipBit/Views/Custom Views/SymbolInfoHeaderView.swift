@@ -81,6 +81,20 @@ class SymbolInfoHeaderView: View {
         return dayTurnoverDataLabel
     }()
     
+    private lazy var fundingCountdownTitleLabel: UILabel = {
+        let countdownTitle = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray)
+        countdownTitle.text = Constant.fundingCountdownTitle
+        countdownTitle.textAlignment = .right
+        return countdownTitle
+    }()
+    
+    private lazy var fundingCountdownDataLabel: UILabel = {
+        let dayTurnoverDataLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
+        dayTurnoverDataLabel.text = " "
+        dayTurnoverDataLabel.textAlignment = .left
+        return dayTurnoverDataLabel
+    }()
+    
     private lazy var symbolNameLabel: UILabel = {
         let symbolLabel = UILabel(font: UIFont.title2.bold, textColor: UIColor.Bybit.titleGray)
         symbolLabel.text = " "
@@ -131,12 +145,14 @@ class SymbolInfoHeaderView: View {
         titleStackView.addArrangedSubview(dayLowTitleLabel)
         titleStackView.addArrangedSubview(dayTurnoverTitleLabel)
         titleStackView.addArrangedSubview(fundingRateTitleLabel)
+        titleStackView.addArrangedSubview(fundingCountdownTitleLabel)
         
         addSubview(dataStackView)
         dataStackView.addArrangedSubview(dayHighDataLabel)
         dataStackView.addArrangedSubview(dayLowDataLabel)
         dataStackView.addArrangedSubview(dayTurnoverDataLabel)
         dataStackView.addArrangedSubview(fundingRateDataLabel)
+        dataStackView.addArrangedSubview(fundingCountdownDataLabel)
     }
     
     override func setupConstraints() {
@@ -145,26 +161,25 @@ class SymbolInfoHeaderView: View {
         NSLayoutConstraint.activate([
             
             symbolNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            symbolNameLabel.bottomAnchor.constraint(equalTo: centerYAnchor),
             symbolNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
             
-            lastTradedPriceLabel.topAnchor.constraint(equalTo: centerYAnchor),
+            lastTradedPriceLabel.topAnchor.constraint(equalTo: symbolNameLabel.bottomAnchor, constant: Dimensions.Space.margin2),
             lastTradedPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
             
-            dayPercentageChangeLabel.topAnchor.constraint(equalTo: lastTradedPriceLabel.bottomAnchor),
+            dayPercentageChangeLabel.topAnchor.constraint(equalTo: lastTradedPriceLabel.bottomAnchor, constant: Dimensions.Space.margin2),
             dayPercentageChangeLabel.leadingAnchor.constraint(equalTo: lastTradedPriceLabel.leadingAnchor),
             dayPercentageChangeLabel.trailingAnchor.constraint(equalTo: markPriceLabel.leadingAnchor),
             
-            markPriceLabel.topAnchor.constraint(equalTo: lastTradedPriceLabel.bottomAnchor),
+            markPriceLabel.topAnchor.constraint(equalTo: dayPercentageChangeLabel.topAnchor),
             markPriceLabel.leadingAnchor.constraint(equalTo: lastTradedPriceLabel.centerXAnchor),
             markPriceLabel.trailingAnchor.constraint(equalTo: lastTradedPriceLabel.trailingAnchor),
             
-            titleStackView.topAnchor.constraint(equalTo: lastTradedPriceLabel.topAnchor),
-            titleStackView.leadingAnchor.constraint(equalTo: centerXAnchor),
+            titleStackView.topAnchor.constraint(equalTo: symbolNameLabel.topAnchor),
             
             dataStackView.topAnchor.constraint(equalTo: titleStackView.topAnchor),
             dataStackView.leadingAnchor.constraint(equalTo: titleStackView.trailingAnchor, constant: Dimensions.Space.margin8),
-            dataStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin8)
+            dataStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin8),
+            dataStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin8)
         ])
     }
     
@@ -194,6 +209,10 @@ class SymbolInfoHeaderView: View {
         }
         if let fundingRate = newInfo.fundingRate {
             fundingRateDataLabel.text = "\(fundingRate)%"
+        }
+        
+        if let countdown = newInfo.countdownToFundingFee {
+            fundingCountdownDataLabel.text = "\(countdown) \((countdown == 1) ? Constant.hour : Constant.hours)"
         }
     }
         
