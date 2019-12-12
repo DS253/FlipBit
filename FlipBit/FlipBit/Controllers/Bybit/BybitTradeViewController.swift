@@ -157,7 +157,8 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             symbolInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
 
             leverageContainer.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
-            leverageContainer.centerXAnchor.constraint(equalTo: percentageContainer.centerXAnchor),
+            leverageContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
+            leverageContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
             
             pricePickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
             pricePickerView.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
@@ -167,7 +168,7 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             quantityPickerView.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
             quantityPickerView.bottomAnchor.constraint(equalTo: percentageContainer.topAnchor, constant: -Dimensions.Space.margin16),
             
-            orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Dimensions.Space.margin24),
+            orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Dimensions.Space.margin8),
             orderbookPanel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
             orderbookPanel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
             

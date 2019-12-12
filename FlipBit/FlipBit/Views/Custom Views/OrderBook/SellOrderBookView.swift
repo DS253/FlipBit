@@ -39,16 +39,15 @@ class SellOrderBookView: OrderBookBaseView {
     func configureViewForSellBook() {
         firstRow.priceLabel.font = UIFont.subheadline.bold
         firstRow.quantityLabel.font = UIFont.subheadline.bold
-        secondRow.priceLabel.font = UIFont.subheadline
-        secondRow.quantityLabel.font = UIFont.subheadline
-        thirdRow.priceLabel.font = UIFont.footnote.bold
-        thirdRow.quantityLabel.font = UIFont.footnote.bold
-        fourthRow.priceLabel.font = UIFont.footnote
-        fourthRow.quantityLabel.font = UIFont.footnote
-        
-        fifthRow.priceLabel.font = UIFont.caption.bold
-        fifthRow.quantityLabel.font = UIFont.caption.bold
-        sixthRow.priceLabel.font = UIFont.caption
-        sixthRow.quantityLabel.font = UIFont.caption
+        secondRow.priceLabel.font = UIFont.subheadline.semibold
+        secondRow.quantityLabel.font = UIFont.subheadline.semibold
+        thirdRow.priceLabel.font = UIFont.subheadline
+        thirdRow.quantityLabel.font = UIFont.subheadline
+        fourthRow.priceLabel.font = UIFont.footnote.bold
+        fourthRow.quantityLabel.font = UIFont.footnote.bold
+        fifthRow.priceLabel.font = UIFont.footnote.semibold
+        fifthRow.quantityLabel.font = UIFont.footnote.semibold
+        sixthRow.priceLabel.font = UIFont.footnote
+        sixthRow.quantityLabel.font = UIFont.footnote
     }
 }

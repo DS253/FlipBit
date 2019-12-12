@@ -115,14 +115,15 @@ extension OrderBookRow {
     }
     
     func updateQuantityColor(multiplier: Double) {
-        colorWidthConstraint.isActive = false
         
-        colorWidthConstraint = quantityColorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: CGFloat(multiplier))
-        colorWidthConstraint.isActive = true
         
         if !isAnimating {
+            colorWidthConstraint.isActive = false
+            
+            colorWidthConstraint = quantityColorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: CGFloat(multiplier))
+            colorWidthConstraint.isActive = true
             self.isAnimating = true
-            UIView.animate(withDuration: 0.6, animations: {
+            UIView.animate(withDuration: 0.4, animations: {
                 self.layoutSubviews()
             }, completion: { _ in
                 self.isAnimating = false
