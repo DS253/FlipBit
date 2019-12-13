@@ -22,18 +22,6 @@ class BybitPositionObserver: BybitObserver {
     
     // MARK: Websocket Delegate Methods.
     
-    override func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        if let e = error as? WSError {
-            print("websocket is disconnected: \(e.message)")
-        } else if let e = error {
-            print("websocket is disconnected: \(e.localizedDescription)")
-        } else {
-            print("websocket disconnected")
-        }
-        print("PositionObserver sending heartbeat package")
-        sendHeartbeatPackage()
-    }
-    
     override func websocketDidConnect(socket: WebSocketClient) {
         print("Authenticating PositionInfo socket")
         if !authenticated {
@@ -41,6 +29,8 @@ class BybitPositionObserver: BybitObserver {
             authenticated = true
         } else {
             writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"position\"]}")
+            print("PositionObserver sending heartbeat package")
+            sendHeartbeatPackage()
         }
     }
     

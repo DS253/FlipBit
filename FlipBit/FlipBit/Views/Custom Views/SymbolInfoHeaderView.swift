@@ -161,7 +161,7 @@ class SymbolInfoHeaderView: View {
         NSLayoutConstraint.activate([
             
             symbolNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            symbolNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
+            symbolNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             lastTradedPriceLabel.topAnchor.constraint(equalTo: symbolNameLabel.bottomAnchor, constant: Dimensions.Space.margin2),
             lastTradedPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),

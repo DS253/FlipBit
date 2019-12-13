@@ -14,22 +14,12 @@ class BybitTradeObserver: BybitObserver {
     var tradeSnapshot: Bybit.TradeEventSnapshot?
     
     // MARK: Websocket Delegate Methods.
-
-    override func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        if let e = error as? WSError {
-            print("websocket is disconnected: \(e.message)")
-        } else if let e = error {
-            print("websocket is disconnected: \(e.localizedDescription)")
-        } else {
-            print("websocket disconnected")
-        }
-        print("TradeObserver sending heartbeat package")
-        sendHeartbeatPackage()
-    }
     
     override func websocketDidConnect(socket: WebSocketClient) {
         print("Subscribing to Trade Events socket")
         writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"trade.BTCUSD\"]}")
+        print("TradeObserver sending heartbeat package")
+        sendHeartbeatPackage()
     }
     
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {

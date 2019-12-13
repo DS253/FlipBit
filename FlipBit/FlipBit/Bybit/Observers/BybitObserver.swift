@@ -37,6 +37,10 @@ class BybitObserver: WebSocketDelegate {
     func sendHeartbeatPackage() {
         print("Sending heartbeat package")
         writeToSocket(topic: "{\"op\": \"ping\"}")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            self.sendHeartbeatPackage()
+        }
     }
     
     func websocketDidConnect(socket: WebSocketClient) {
@@ -45,7 +49,13 @@ class BybitObserver: WebSocketDelegate {
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        fatalError("Child class must override method")
+        if let e = error as? WSError {
+            print("websocket is disconnected: \(e.message)")
+        } else if let e = error {
+            print("websocket is disconnected: \(e.localizedDescription)")
+        } else {
+            print("websocket disconnected")
+        }
     }
     
     func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
