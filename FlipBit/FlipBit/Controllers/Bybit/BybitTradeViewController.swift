@@ -43,18 +43,20 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         return percentageView
     }()
     
-    private lazy var longButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.long, textColor: UIColor.Bybit.white)
-        button.titleLabel?.font = UIFont.body.bold
-        button.backgroundColor = UIColor.flatMint
+    private lazy var buyButton: UIButton = {
+        let button = UIButton(type: .custom, title: Constant.buy, textColor: UIColor.flatMint)
+        button.titleLabel?.font = UIFont.title3.bold
+        button.layer.borderWidth = 4.0
+        button.layer.borderColor = UIColor.flatMint.cgColor
         button.layer.cornerRadius = 7.0
         return button
     }()
     
-    private lazy var shortButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.short, textColor: UIColor.Bybit.white)
-        button.titleLabel?.font = UIFont.body.bold
-        button.backgroundColor = UIColor.flatWatermelon
+    private lazy var sellButton: UIButton = {
+        let button = UIButton(type: .custom, title: Constant.sell, textColor: UIColor.flatWatermelon)
+        button.titleLabel?.font = UIFont.title3.bold
+        button.layer.borderWidth = 4.0
+        button.layer.borderColor = UIColor.flatWatermelon.cgColor
         button.layer.cornerRadius = 7.0
         return button
     }()
@@ -144,8 +146,8 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
         view.addSubview(optionView)
 
         optionView.addSublayer(optionsViewGradient)
-        optionView.addSubview(longButton)
-        optionView.addSubview(shortButton)
+        optionView.addSubview(buyButton)
+        optionView.addSubview(sellButton)
     }
     
     override func setupConstraints() {
@@ -181,17 +183,17 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
             tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
             tradeHistoryContainer.bottomAnchor.constraint(equalTo: optionView.topAnchor, constant: -Dimensions.Space.margin10),
 
-            shortButton.topAnchor.constraint(equalTo: optionView.topAnchor, constant: Dimensions.Space.margin8),
-            shortButton.bottomAnchor.constraint(equalTo: optionView.bottomAnchor, constant: -Dimensions.Space.margin8),
-            shortButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
-            shortButton.trailingAnchor.constraint(equalTo: longButton.leadingAnchor, constant: -Dimensions.Space.margin4),
-            shortButton.heightAnchor.constraint(equalToConstant: Dimensions.Space.margin48),
+            sellButton.topAnchor.constraint(equalTo: optionView.topAnchor, constant: Dimensions.Space.margin8),
+            sellButton.bottomAnchor.constraint(equalTo: optionView.bottomAnchor, constant: -Dimensions.Space.margin8),
+            sellButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
+            sellButton.trailingAnchor.constraint(equalTo: buyButton.leadingAnchor, constant: -Dimensions.Space.margin4),
+            sellButton.heightAnchor.constraint(equalToConstant: Dimensions.Space.margin48),
 
-            longButton.topAnchor.constraint(equalTo: optionView.topAnchor, constant: Dimensions.Space.margin8),
-            longButton.trailingAnchor.constraint(equalTo: optionView.trailingAnchor, constant: -Dimensions.Space.margin8),
-            longButton.bottomAnchor.constraint(equalTo: optionView.bottomAnchor, constant: -Dimensions.Space.margin8),
-            longButton.heightAnchor.constraint(equalToConstant: Dimensions.Space.margin48),
-            longButton.widthAnchor.constraint(equalTo: shortButton.widthAnchor),
+            buyButton.topAnchor.constraint(equalTo: optionView.topAnchor, constant: Dimensions.Space.margin8),
+            buyButton.trailingAnchor.constraint(equalTo: optionView.trailingAnchor, constant: -Dimensions.Space.margin8),
+            buyButton.bottomAnchor.constraint(equalTo: optionView.bottomAnchor, constant: -Dimensions.Space.margin8),
+            buyButton.heightAnchor.constraint(equalToConstant: Dimensions.Space.margin48),
+            buyButton.widthAnchor.constraint(equalTo: sellButton.widthAnchor),
 
             optionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             optionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -200,7 +202,6 @@ class BybitTradeViewController: ViewController, SocketObserverDelegate {
     }
     
     func observer(observer: WebSocketDelegate, didWriteToSocket: String) {
-        print("Observer has written to the web socket")
     }
     
     func observerFailedToConnect() {

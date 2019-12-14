@@ -20,7 +20,7 @@ internal func wait(_ time: DispatchTimeInterval, completion: @escaping (() -> Vo
 }
 
 internal let bookObserver: BybitBookOrderObserver = {
-    var request = URLRequest(url: URL(string: "wss://stream.bybit.com/realtime")!)
+    var request = URLRequest(url: URL(string: "wss://stream-testnet.bybit.com/realtime")!)
     request.timeoutInterval = 5
     return BybitBookOrderObserver(url: request)
 }()
@@ -32,15 +32,23 @@ internal let symbolObserver: BybitSymbolInfoObserver = {
 }()
 
 internal let tradeObserver: BybitTradeObserver = {
-    var request = URLRequest(url: URL(string: "wss://stream.bybit.com/realtime")!)
+    var request = URLRequest(url: URL(string: "wss://stream-testnet.bybit.com/realtime")!)
     request.timeoutInterval = 5
     return BybitTradeObserver(url: request)
 }()
 
 internal let positionObserver: BybitPositionObserver = {
-    var request = URLRequest(url: URL(string: "wss://stream.bybit.com/realtime")!)
-    request.timeoutInterval = 5
-    return BybitPositionObserver(url: request)
+    let timestamp = Date().bybitSocketTimestamp()
+    let signature = "GET/realtime\(timestamp)".buildSignature(secretKey: secret)
+    let parameter = "wss://stream-testnet.bybit.com/realtime?api_key=\(theAPIKey)&expires=\(timestamp)&signature=\(signature)"
+    let param = URL(string: parameter)
+    if let url = param {
+        var request = URLRequest(url: url)
+        request.timeoutInterval = 5
+        return BybitPositionObserver(url: request)
+    }
+    
+    return BybitPositionObserver(url: nil)
 }()
 
 //"wss://stream-testnet.bybit.com/realtime"

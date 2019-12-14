@@ -18,8 +18,7 @@ class BybitSymbolInfoObserver: BybitObserver {
     override func websocketDidConnect(socket: WebSocketClient) {
         print("Subscribing to SymbolInfo socket")
         writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"instrument_info.100ms.BTCUSD\"]}")
-        print("SymbolInfoObserver sending heartbeat package")
-        sendHeartbeatPackage()
+        sendPing()
     }
 
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {

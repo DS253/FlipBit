@@ -31,15 +31,13 @@ class BybitObserver: WebSocketDelegate {
         guard let bybitSocket = socket else { return }
         bybitSocket.write(string: topic)
         delegate?.observer(observer: self, didWriteToSocket: topic)
-        print("socket did write")
     }
     
-    func sendHeartbeatPackage() {
-        print("Sending heartbeat package")
+    func sendPing() {
         writeToSocket(topic: "{\"op\": \"ping\"}")
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
-            self.sendHeartbeatPackage()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
+            self.sendPing()
         }
     }
     

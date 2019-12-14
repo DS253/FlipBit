@@ -18,8 +18,7 @@ class BybitTradeObserver: BybitObserver {
     override func websocketDidConnect(socket: WebSocketClient) {
         print("Subscribing to Trade Events socket")
         writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"trade.BTCUSD\"]}")
-        print("TradeObserver sending heartbeat package")
-        sendHeartbeatPackage()
+        sendPing()
     }
     
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {

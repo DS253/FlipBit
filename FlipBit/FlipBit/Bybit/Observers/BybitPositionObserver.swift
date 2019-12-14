@@ -11,11 +11,9 @@ import Starscream
 
 class BybitPositionObserver: BybitObserver {
     
-    var authenticated: Bool = false
-    
     func authenticateWithSocket() {
         let apikey = theAPIKey
-        let expires = Date().bybitTimestamp()
+        let expires = Date().bybitSocketTimestamp()
         let signature = "GET/realtime\(expires)".buildSignature(secretKey: secret)
         writeToSocket(topic: "{\"op\": \"auth\", \"args\": [\"\(apikey)\", \"\(expires)\", \"\(signature)\"]}")
     }
@@ -23,19 +21,11 @@ class BybitPositionObserver: BybitObserver {
     // MARK: Websocket Delegate Methods.
     
     override func websocketDidConnect(socket: WebSocketClient) {
-        print("Authenticating PositionInfo socket")
-        if !authenticated {
-            authenticateWithSocket()
-            authenticated = true
-        } else {
-            writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"position\"]}")
-            print("PositionObserver sending heartbeat package")
-            sendHeartbeatPackage()
-        }
+        writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"position\"]}")
+        sendPing()
     }
     
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print(text)
         let encodedData = convertToData(text)
         let responseType = determinePositionResponseType(encodedData)
         
@@ -58,22 +48,14 @@ class BybitPositionObserver: BybitObserver {
                     delegate?.observerFailedToDecode(observer: self)
                     return
             }
-            if socketResponse.operation == "auth" {
-                authenticated = true
-                writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"position\"]}")
-            } else if socketResponse.operation == "subscribe" {
-                response = socketResponse
-            } else {
-                print("Decoding Position Response Failed")
-                delegate?.observerFailedToDecode(observer: self)
-            }
+            response = socketResponse
             
         default:
             print("Nothing for now")
         }
     }
     
-    func determinePositionResponseType(_ data: Data?) -> Bybit.SymbolInfoResponseResult {
+    func determinePositionResponseType(_ data: Data?) -> Bybit.PositionResponseResult {
         guard
             let response = data,
             let dictionary = try? JSONSerialization.jsonObject(with: response, options: JSONSerialization.ReadingOptions(rawValue: 0)) as? Dictionary<String, Any>
