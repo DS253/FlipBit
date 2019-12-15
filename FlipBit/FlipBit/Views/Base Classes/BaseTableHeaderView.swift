@@ -264,33 +264,7 @@ extension BaseTableHeaderView {
         /// Use this case to provide a title to both the `header` and `footer` of a `BaseTableHeaderView`.
         case both(title: String, footer: String)
     }
-
-    /// Present a *banner* to the user to provide context of some change.
-    /// The banner is presented with the specified `title` and `bannerColor`.
-    /// The banner is presented for a standard time of **3** seconds.
-    ///
-    /// - Parameters:
-    ///   - title: The title/message to present on the banner.
-    ///   - color: The color of the banner. *Default Value*: `Alaska.green`
-    public func showBanner(_ title: String, withBannerColor color: UIColor = .green) {
-        banner.backgroundColor = color
-        banner.text = title
-        banner.isHidden = false
-        bannerHeightConstraint.isActive = true
-        bannerMinimumHeightConstraint.isActive = false
-        updateLayout(animated: true)
-
-        wait(.seconds(3)) {
-            UIView.animate(withDuration: .standardAnimationTime, animations: {
-                self.bannerHeightConstraint.isActive = false
-                self.bannerMinimumHeightConstraint.isActive = true
-                self.updateLayout()
-            }, completion: { _ in
-                self.banner.isHidden = true
-            })
-        }
-    }
-
+    
     /// Add any `UIView` instance as an arranged subview to the underlying `UIStackView` instance.
     public func addTile(_ view: UIView, animated: Bool = false) {
         stackView.addArrangedSubview(view)

@@ -26,6 +26,7 @@ class BybitPositionObserver: BybitObserver {
     }
     
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
+        print(text)
         let encodedData = convertToData(text)
         let responseType = determinePositionResponseType(encodedData)
         

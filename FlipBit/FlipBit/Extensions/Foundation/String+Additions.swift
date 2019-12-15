@@ -2,7 +2,7 @@
 //  String+Additions.swift
 //  FlipBit
 //
-//  Created by Daniel Stewart on 11/9/19.
+//  Created by Daniel Stewart on 12/14/19.
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 

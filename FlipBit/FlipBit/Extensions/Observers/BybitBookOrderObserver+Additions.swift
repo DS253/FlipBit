@@ -118,6 +118,11 @@ extension BybitBookOrderObserver {
         return size
     }
     
+    func percentageOf(_ orders: [Bybit.BookOrder?]?, size: Int) -> Double {
+        let largestOrder = Double(findLargestOrder(orders: orders))
+        return Double(size) / largestOrder
+    }
+    
     func returnPercentageOfBuyOrder(size: Int) -> Double {
         let largestOrder = Double(findLargestOrder(orders: buyBook))
         return Double(size) / largestOrder

@@ -78,7 +78,7 @@ open class ScrollStackView: BaseView {
     ///
     /// - Parameters:
     ///   - views:      The views to add to the underlying `UIStackView`.
-    private func addSubviews(_ views: [UIView]?) {
+    private func addAllSubviews(_ views: [UIView]?) {
         guard let views = views else { return }
 
         /// Remove all stackView arranged subviews before assigning new ones.
@@ -101,7 +101,7 @@ extension ScrollStackView {
         self.isHidden = isHidden
         scrollView.isPagingEnabled = isPagingEnabled
 
-        addSubviews(views)
+        addAllSubviews(views)
     }
 
     /// Adds an instance of `UIView` to the underlying `UIStackView` that can scroll based

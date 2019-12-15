@@ -116,7 +116,6 @@ extension OrderBookRow {
     
     func updateQuantityColor(multiplier: Double) {
         
-        
         if !isAnimating {
             colorWidthConstraint.isActive = false
             

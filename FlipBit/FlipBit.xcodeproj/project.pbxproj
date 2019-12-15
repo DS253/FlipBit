@@ -29,6 +29,8 @@
 		062895D42383A4510076AA27 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D32383A4510076AA27 /* BaseViewController.swift */; };
 		062895D62383A6A40076AA27 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D52383A6A40076AA27 /* Globals.swift */; };
 		062895DA2383A77C0076AA27 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D92383A77C0076AA27 /* BaseView.swift */; };
+		062B825823A5AF2D008287C9 /* UIStackView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B825723A5AF2D008287C9 /* UIStackView+Additions.swift */; };
+		062B825F23A5B14D008287C9 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B825E23A5B14D008287C9 /* String+Additions.swift */; };
 		062E276C2391B7D800AF0C7D /* OrderBookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276B2391B7D800AF0C7D /* OrderBookRow.swift */; };
 		062E276E2391C01700AF0C7D /* OrderBookBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276D2391C01700AF0C7D /* OrderBookBaseView.swift */; };
 		062E27702391C17100AF0C7D /* BuyOrderBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */; };
@@ -71,7 +73,6 @@
 		06470DF82377C2C700419238 /* Double+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DF72377C2C700419238 /* Double+Additions.swift */; };
 		06470DFA2377C2DE00419238 /* Optional+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DF92377C2DE00419238 /* Optional+Additions.swift */; };
 		06470DFC2377C2FB00419238 /* Result+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DFB2377C2FB00419238 /* Result+Additions.swift */; };
-		06470DFE2377C31000419238 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DFD2377C31000419238 /* String+Additions.swift */; };
 		06470E022377C35D00419238 /* BitService+Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E012377C35D00419238 /* BitService+Application.swift */; };
 		06470E042377C37800419238 /* BitService+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E032377C37800419238 /* BitService+Configuration.swift */; };
 		06470E062377C39400419238 /* BitService+Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E052377C39400419238 /* BitService+Environment.swift */; };
@@ -189,6 +190,8 @@
 		062895D32383A4510076AA27 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		062895D52383A6A40076AA27 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
 		062895D92383A77C0076AA27 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		062B825723A5AF2D008287C9 /* UIStackView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Additions.swift"; sourceTree = "<group>"; };
+		062B825E23A5B14D008287C9 /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		062E276B2391B7D800AF0C7D /* OrderBookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookRow.swift; sourceTree = "<group>"; };
 		062E276D2391C01700AF0C7D /* OrderBookBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookBaseView.swift; sourceTree = "<group>"; };
 		062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyOrderBookView.swift; sourceTree = "<group>"; };
@@ -236,7 +239,6 @@
 		06470DF72377C2C700419238 /* Double+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Additions.swift"; sourceTree = "<group>"; };
 		06470DF92377C2DE00419238 /* Optional+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Additions.swift"; sourceTree = "<group>"; };
 		06470DFB2377C2FB00419238 /* Result+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Additions.swift"; sourceTree = "<group>"; };
-		06470DFD2377C31000419238 /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
 		06470E012377C35D00419238 /* BitService+Application.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+Application.swift"; sourceTree = "<group>"; };
 		06470E032377C37800419238 /* BitService+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+Configuration.swift"; sourceTree = "<group>"; };
 		06470E052377C39400419238 /* BitService+Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+Environment.swift"; sourceTree = "<group>"; };
@@ -563,7 +565,6 @@
 				06470DF72377C2C700419238 /* Double+Additions.swift */,
 				06470DF92377C2DE00419238 /* Optional+Additions.swift */,
 				06470DFB2377C2FB00419238 /* Result+Additions.swift */,
-				06470DFD2377C31000419238 /* String+Additions.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -798,6 +799,7 @@
 				064AD9E5238F86AC00A7AA3E /* UIImage+Additions.swift */,
 				064AD9E3238F866C00A7AA3E /* UIImageView+Additions.swift */,
 				45B3D94923860A810004DF76 /* UILabel+Additions.swift */,
+				062B825723A5AF2D008287C9 /* UIStackView+Additions.swift */,
 				45B3D93E238605D90004DF76 /* UITableView+Additions.swift */,
 				45B3D93C2386052C0004DF76 /* UIView+Additions.swift */,
 			);
@@ -809,6 +811,7 @@
 			children = (
 				064AD9DF238F402800A7AA3E /* Int+Additions.swift */,
 				064AD9E1238F500A00A7AA3E /* Notification+Names.swift */,
+				062B825E23A5B14D008287C9 /* String+Additions.swift */,
 				45B3D941238606950004DF76 /* TimeInterval+Additions.swift */,
 			);
 			path = Foundation;
@@ -1012,6 +1015,7 @@
 				06490F85237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift in Sources */,
 				065F6018238B5F61008B5B89 /* BybitBookOrderSellCell.swift in Sources */,
 				06F22140239C900800E1BEB5 /* UIButton+Additions.swift in Sources */,
+				062B825F23A5B14D008287C9 /* String+Additions.swift in Sources */,
 				45B3D934238603900004DF76 /* BaseTableViewController.swift in Sources */,
 				06470E0E2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift in Sources */,
 				064D3D882389A69700B34173 /* Bybit+BookOrder.swift in Sources */,
@@ -1058,6 +1062,7 @@
 				062E27732391C3C800AF0C7D /* SellOrderBookView.swift in Sources */,
 				45B3D942238606950004DF76 /* TimeInterval+Additions.swift in Sources */,
 				45B3D94D23874B3A0004DF76 /* BybitTradeViewController.swift in Sources */,
+				062B825823A5AF2D008287C9 /* UIStackView+Additions.swift in Sources */,
 				06470DA82377B6D500419238 /* AppDelegate.swift in Sources */,
 				06470E062377C39400419238 /* BitService+Environment.swift in Sources */,
 				45B3D93D2386052C0004DF76 /* UIView+Additions.swift in Sources */,
@@ -1078,7 +1083,6 @@
 				062E27772393590500AF0C7D /* OrderBookPanel.swift in Sources */,
 				06433BD223820E5900480EC1 /* BBLeverageStatus+Endpoint.swift in Sources */,
 				060D96E4237B70A70040598A /* BBServerTime+Endpoint.swift in Sources */,
-				06470DFE2377C31000419238 /* String+Additions.swift in Sources */,
 				45B3D9372386043B0004DF76 /* BaseTableViewController+Additions.swift in Sources */,
 				06470DFC2377C2FB00419238 /* Result+Additions.swift in Sources */,
 				45B3D94A23860A810004DF76 /* UILabel+Additions.swift in Sources */,

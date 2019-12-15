@@ -209,13 +209,6 @@ extension BaseTableViewController {
     public func configureHeader(_ headerInfo: BaseTableHeaderView.HeaderInfo) {
         self.tableHeaderView.configure(headerInfo)
     }
-    
-    /// Presents a **Banner**, with the provided `title` and specified `bannerColor`,
-    /// to the user for 3 seconds to provide information about any contextual information
-    /// changes or updates.
-    public func showBanner(_ title: String, withBannerColor color: UIColor = .green) {
-        tableHeaderView.showBanner(title, withBannerColor: color)
-    }
 }
 
 extension BaseTableViewController: BaseTableHeaderViewResizeDelegate {
@@ -228,4 +221,3 @@ extension BaseTableViewController: BaseTableHeaderViewResizeDelegate {
         tableView.setHeaderView(headerView)
     }
 }
-

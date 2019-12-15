@@ -142,4 +142,29 @@ extension UIView {
         view.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -constant).isActive = true
         view.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -constant).isActive = true
     }
+    
+    /// Adds multiple subviews at once by calling `addSubview` method.
+    ///
+    /// - Parameters:
+    ///   - views: An array of views to add.
+    func addSubviews(_ views: [UIView]) {
+        views.forEach { addSubview($0) }
+    }
+
+    /// Will animate subviews visibility in sequence.
+    ///
+    /// - Parameters:
+    ///   - subviews: An array of subviews to animate.
+    static func animateViewAlphaSequentually(_ subviews: [UIView]) {
+        for (index, aView) in subviews.enumerated() {
+            UIView.animate(
+                withDuration: Double(subviews.count) * 0.2,
+                delay: Double(index) * 0.1,
+                options: .curveEaseInOut,
+                animations: {
+                aView.alpha = 1.0
+
+            }, completion: nil)
+        }
+    }
 }

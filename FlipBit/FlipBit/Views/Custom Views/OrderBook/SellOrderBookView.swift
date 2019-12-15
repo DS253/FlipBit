@@ -10,30 +10,20 @@ import UIKit
 
 class SellOrderBookView: OrderBookBaseView {
     
+    override func orderBook() -> [Bybit.BookOrder?]? {
+        return bookObserver.sellBook
+    }
+    
+    override func allRows() -> [OrderBookRow] {
+        return [firstRow, secondRow, thirdRow, fourthRow, fifthRow,  sixthRow]
+    }
+    
     override func notificationName() -> Notification.Name {
         return .sellBookObserverUpdate
     }
     
     override func colorTheme() -> UIColor {
         return UIColor.flatWatermelonDark
-    }
-    
-    @objc override func updateBookRows(notification: Notification) {
-        guard
-            let book = bookObserver.sellBook,
-            let firstOrder = book[0],
-            let secondOrder = book[1],
-            let thirdOrder = book[2],
-            let fourthOrder = book[3],
-            let fifthOrder = book[4],
-        let sixthOrder = book[5]
-            else { return }
-        firstRow.configure(with: firstOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: firstOrder.size ?? 0))
-        secondRow.configure(with: secondOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: secondOrder.size ?? 0))
-        thirdRow.configure(with: thirdOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: thirdOrder.size ?? 0))
-        fourthRow.configure(with: fourthOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: fourthOrder.size ?? 0))
-        fifthRow.configure(with: fifthOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: fifthOrder.size ?? 0))
-        sixthRow.configure(with: sixthOrder, multiplier: bookObserver.returnPercentageOfSellOrder(size: sixthOrder.size ?? 0))
     }
     
     func configureViewForSellBook() {

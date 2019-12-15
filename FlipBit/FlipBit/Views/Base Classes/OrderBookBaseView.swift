@@ -40,7 +40,7 @@ class OrderBookBaseView: View {
     lazy var sixthRow: OrderBookRow = {
         OrderBookRow(font: UIFont.subheadline.bold, colorTheme: colorTheme())
     }()
-        
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: notificationName(), object: nil)
     }
@@ -88,6 +88,14 @@ class OrderBookBaseView: View {
         fifthRow.quantitySelector = selector
         sixthRow.quantitySelector = selector
     }
+    
+    func orderBook() -> [Bybit.BookOrder?]? {
+        fatalError("Must be implemented by child class")
+    }
+    
+    func allRows() -> [OrderBookRow] {
+        fatalError("Must be implemented by child class")
+    }
 
     func notificationName() -> Notification.Name {
         fatalError("Must be implemented by child class")
@@ -96,8 +104,37 @@ class OrderBookBaseView: View {
     func colorTheme() -> UIColor {
         fatalError("Must be implemented by child class")
     }
-
+    
     @objc func updateBookRows(notification: Notification) {
-        fatalError("Must be implemented by child class")
+        
+        guard let book = orderBook() else { return }
+        let rows = allRows()
+        if book.count >= 1 {
+            guard let firstOrder = book[0] else { return }
+            rows[0].configure(with: firstOrder, multiplier: bookObserver.percentageOf(book, size: firstOrder.size ?? 0))
+        }
+        if book.count >= 2 {
+            guard let secondOrder = book[1] else { return }
+            rows[1].configure(with: secondOrder, multiplier: bookObserver.percentageOf(book, size: secondOrder.size ?? 0))
+        }
+        
+        if book.count >= 3 {
+            guard let thirdOrder = book[2] else { return }
+            rows[2].configure(with: thirdOrder, multiplier: bookObserver.percentageOf(book, size: thirdOrder.size ?? 0))
+        }
+        
+        if book.count >= 4 {
+            guard let fourthOrder = book[3] else { return }
+            rows[3].configure(with: fourthOrder, multiplier: bookObserver.percentageOf(book, size: fourthOrder.size ?? 0))
+        }
+        if book.count >= 5 {
+            guard let fifthOrder = book[4] else { return }
+            rows[4].configure(with: fifthOrder, multiplier: bookObserver.percentageOf(book, size: fifthOrder.size ?? 0))
+        }
+        
+        if book.count >= 6 {
+            guard let sixthOrder = book[5] else { return }
+            rows[5].configure(with: sixthOrder, multiplier: bookObserver.percentageOf(book, size: sixthOrder.size ?? 0))
+        }
     }
 }
