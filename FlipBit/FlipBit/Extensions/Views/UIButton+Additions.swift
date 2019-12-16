@@ -18,8 +18,11 @@ extension UIButton {
     convenience init(type: UIButton.ButtonType = .custom, title: String, textColor: UIColor = .black) {
         self.init(type: type)
         self.setTitle(title, for: .normal)
+        self.setTitle(title, for: .highlighted)
+        self.setTitle(title, for: .selected)
         self.setTitleColor(textColor, for: .normal)
         self.translatesAutoresizingMaskIntoConstraints = false
         self.clipsToBounds = true
+        
     }
 }

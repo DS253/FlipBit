@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060073AA23A721280022F124 /* TradeFlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060073A923A721280022F124 /* TradeFlowView.swift */; };
 		060C8BEE2394614C00E50A57 /* BybitTradeObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060C8BED2394614C00E50A57 /* BybitTradeObserver.swift */; };
 		060C8BF12394645700E50A57 /* Bybit+TradeEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060C8BF02394645700E50A57 /* Bybit+TradeEvent.swift */; };
 		060C8BF323946C4500E50A57 /* Bybit+TradeEventSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060C8BF223946C4500E50A57 /* Bybit+TradeEventSnapshot.swift */; };
@@ -168,6 +169,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		060073A923A721280022F124 /* TradeFlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeFlowView.swift; sourceTree = "<group>"; };
 		060C8BED2394614C00E50A57 /* BybitTradeObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeObserver.swift; sourceTree = "<group>"; };
 		060C8BF02394645700E50A57 /* Bybit+TradeEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+TradeEvent.swift"; sourceTree = "<group>"; };
 		060C8BF223946C4500E50A57 /* Bybit+TradeEventSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+TradeEventSnapshot.swift"; sourceTree = "<group>"; };
@@ -824,6 +826,7 @@
 				06F2213D239C4A0200E1BEB5 /* PercentageView.swift */,
 				45B3D9442386075A0004DF76 /* ScrollStackView.swift */,
 				064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */,
+				060073A923A721280022F124 /* TradeFlowView.swift */,
 				0641F84D239CD02800EF7A0B /* ValuePickerView.swift */,
 			);
 			path = "Custom Views";
@@ -1034,6 +1037,7 @@
 				06470E222377C85500419238 /* BitService+Response.swift in Sources */,
 				065F6014238B370C008B5B89 /* BybitBookOrderBuyCell.swift in Sources */,
 				060D96F0237BAC770040598A /* BitService+BBWithdrawalRecord.swift in Sources */,
+				060073AA23A721280022F124 /* TradeFlowView.swift in Sources */,
 				062895D62383A6A40076AA27 /* Globals.swift in Sources */,
 				064AD9E6238F86AC00A7AA3E /* UIImage+Additions.swift in Sources */,
 				06433BDC23826A6400480EC1 /* BBLeverageUpdate+Endpoint.swift in Sources */,
