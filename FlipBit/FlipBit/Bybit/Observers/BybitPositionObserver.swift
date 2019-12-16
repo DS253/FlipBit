@@ -21,8 +21,11 @@ class BybitPositionObserver: BybitObserver {
     // MARK: Websocket Delegate Methods.
     
     override func websocketDidConnect(socket: WebSocketClient) {
+        print("Subscribing to Position socket")
+        connected = true
         writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"position\"]}")
         sendPing()
+        delegate?.observerDidConnect(observer: self)
     }
     
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {

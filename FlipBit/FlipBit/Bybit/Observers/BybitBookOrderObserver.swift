@@ -19,8 +19,10 @@ class BybitBookOrderObserver: BybitObserver {
     
     override func websocketDidConnect(socket: WebSocketClient) {
         print("Subscribing to Orderbook socket")
+        connected = true
         writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
         sendPing()
+        delegate?.observerDidConnect(observer: self)
     }
 
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {

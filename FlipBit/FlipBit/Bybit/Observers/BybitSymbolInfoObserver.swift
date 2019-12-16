@@ -17,8 +17,10 @@ class BybitSymbolInfoObserver: BybitObserver {
     
     override func websocketDidConnect(socket: WebSocketClient) {
         print("Subscribing to SymbolInfo socket")
+        connected = true
         writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"instrument_info.100ms.BTCUSD\"]}")
         sendPing()
+        delegate?.observerDidConnect(observer: self)
     }
 
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {

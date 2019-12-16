@@ -12,6 +12,7 @@ import Starscream
 class BybitObserver: WebSocketDelegate {
     
     weak var delegate: SocketObserverDelegate?
+    var connected: Bool = false
     
     var socket: WebSocket?
     var response: Bybit.SocketResponse?
@@ -25,6 +26,14 @@ class BybitObserver: WebSocketDelegate {
             print("The URL is invalid")
             delegate?.observerFailedToConnect()
         }
+    }
+    
+    func connectToSocket() {
+        if !connected { socket?.connect() }
+    }
+    
+    func disconnectFromSocket() {
+        if connected { socket?.disconnect() }
     }
     
     func writeToSocket(topic: String) {
@@ -42,11 +51,11 @@ class BybitObserver: WebSocketDelegate {
     }
     
     func websocketDidConnect(socket: WebSocketClient) {
-        print("websocket is connected")
-        delegate?.observerDidConnect(observer: self)
+        fatalError("Child class must override method")
     }
     
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
+        connected = false
         if let e = error as? WSError {
             print("websocket is disconnected: \(e.message)")
         } else if let e = error {
