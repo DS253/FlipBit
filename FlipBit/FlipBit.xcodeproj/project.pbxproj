@@ -122,6 +122,7 @@
 		06F2213E239C4A0200E1BEB5 /* PercentageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2213D239C4A0200E1BEB5 /* PercentageView.swift */; };
 		06F22140239C900800E1BEB5 /* UIButton+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2213F239C900800E1BEB5 /* UIButton+Additions.swift */; };
 		45237FB1238C9D19005FC176 /* Bybit+SymbolInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45237FB0238C9D19005FC176 /* Bybit+SymbolInfo.swift */; };
+		45436FB923AAC9A000AA141A /* BybitSymbolDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */; };
 		455A1F3B237E2825005969B9 /* BitService+BBOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */; };
 		45B3D934238603900004DF76 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D933238603900004DF76 /* BaseTableViewController.swift */; };
 		45B3D9372386043B0004DF76 /* BaseTableViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D9362386043B0004DF76 /* BaseTableViewController+Additions.swift */; };
@@ -132,7 +133,6 @@
 		45B3D9452386075A0004DF76 /* ScrollStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D9442386075A0004DF76 /* ScrollStackView.swift */; };
 		45B3D948238607E80004DF76 /* UIFont+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D947238607E80004DF76 /* UIFont+Additions.swift */; };
 		45B3D94A23860A810004DF76 /* UILabel+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D94923860A810004DF76 /* UILabel+Additions.swift */; };
-		45B3D94D23874B3A0004DF76 /* BybitTradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D94C23874B3A0004DF76 /* BybitTradeViewController.swift */; };
 		45B3D94F23874DCC0004DF76 /* BybitBookOrderObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D94E23874DCC0004DF76 /* BybitBookOrderObserver.swift */; };
 /* End PBXBuildFile section */
 
@@ -288,6 +288,7 @@
 		06F2213D239C4A0200E1BEB5 /* PercentageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageView.swift; sourceTree = "<group>"; };
 		06F2213F239C900800E1BEB5 /* UIButton+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Additions.swift"; sourceTree = "<group>"; };
 		45237FB0238C9D19005FC176 /* Bybit+SymbolInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+SymbolInfo.swift"; sourceTree = "<group>"; };
+		45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitSymbolDataViewController.swift; sourceTree = "<group>"; };
 		455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBOrder.swift"; sourceTree = "<group>"; };
 		45B3D933238603900004DF76 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		45B3D9362386043B0004DF76 /* BaseTableViewController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseTableViewController+Additions.swift"; sourceTree = "<group>"; };
@@ -298,7 +299,6 @@
 		45B3D9442386075A0004DF76 /* ScrollStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollStackView.swift; sourceTree = "<group>"; };
 		45B3D947238607E80004DF76 /* UIFont+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Additions.swift"; sourceTree = "<group>"; };
 		45B3D94923860A810004DF76 /* UILabel+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Additions.swift"; sourceTree = "<group>"; };
-		45B3D94C23874B3A0004DF76 /* BybitTradeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeViewController.swift; sourceTree = "<group>"; };
 		45B3D94E23874DCC0004DF76 /* BybitBookOrderObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitBookOrderObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -845,8 +845,8 @@
 		45B3D94B23874B2A0004DF76 /* Bybit */ = {
 			isa = PBXGroup;
 			children = (
-				45B3D94C23874B3A0004DF76 /* BybitTradeViewController.swift */,
 				060C8BF623947B8900E50A57 /* BybitTradeEventsTableViewController.swift */,
+				45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */,
 			);
 			path = Bybit;
 			sourceTree = "<group>";
@@ -1065,7 +1065,6 @@
 				060C8BF12394645700E50A57 /* Bybit+TradeEvent.swift in Sources */,
 				062E27732391C3C800AF0C7D /* SellOrderBookView.swift in Sources */,
 				45B3D942238606950004DF76 /* TimeInterval+Additions.swift in Sources */,
-				45B3D94D23874B3A0004DF76 /* BybitTradeViewController.swift in Sources */,
 				062B825823A5AF2D008287C9 /* UIStackView+Additions.swift in Sources */,
 				06470DA82377B6D500419238 /* AppDelegate.swift in Sources */,
 				06470E062377C39400419238 /* BitService+Environment.swift in Sources */,
@@ -1085,6 +1084,7 @@
 				06470E022377C35D00419238 /* BitService+Application.swift in Sources */,
 				0641F84E239CD02800EF7A0B /* ValuePickerView.swift in Sources */,
 				062E27772393590500AF0C7D /* OrderBookPanel.swift in Sources */,
+				45436FB923AAC9A000AA141A /* BybitSymbolDataViewController.swift in Sources */,
 				06433BD223820E5900480EC1 /* BBLeverageStatus+Endpoint.swift in Sources */,
 				060D96E4237B70A70040598A /* BBServerTime+Endpoint.swift in Sources */,
 				45B3D9372386043B0004DF76 /* BaseTableViewController+Additions.swift in Sources */,
