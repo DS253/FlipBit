@@ -11,6 +11,8 @@ import UIKit
 
 class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
 
+    private lazy var fullscreenActivityIndicator = ActivityIndicatorViewController()
+
     private lazy var symbolInfoView: SymbolInfoHeaderView = {
         let symbolInfoView = SymbolInfoHeaderView()
         symbolInfoView.configureView()
@@ -211,13 +213,17 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     @objc func buyButtonTapped(sender: UIButton) {
         print("Buy Button Tapped")
 
-        let tradeFlow = BybitTradeFlowViewController()
-        tradeFlow.modalPresentationStyle = .popover
-        tradeFlow.modalTransitionStyle = .crossDissolve
-        present(tradeFlow, animated: true)
+        present(fullscreenActivityIndicator, animated: true)
+
+//        let tradeFlow = BybitTradeFlowViewController()
+//        tradeFlow.modalPresentationStyle = .popover
+//        tradeFlow.modalTransitionStyle = .crossDissolve
+//        present(tradeFlow, animated: true)
     }
 
     @objc func sellButtonTapped(sender: UIButton) {
         print("Sell Button Tapped")
+
+        fullscreenActivityIndicator.dismiss(animated: true)
     }
 }
