@@ -131,6 +131,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         orderbookPanel.setPriceSelector(selector: pricePickerView)
         orderbookPanel.setQuantitySelector(selector: quantityPickerView)
         view.backgroundColor = UIColor.Bybit.white
+        tradeView.configureButtons(self, buyAction: #selector(buyButtonTapped(sender:)), sellAction: #selector(sellButtonTapped(sender:)))
     }
 
     override func setupSubviews() {
@@ -206,5 +207,17 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     @objc func addByPercentage(sender: UIButton) {
         print(sender.titleLabel?.text as Any)
     }
-}
 
+    @objc func buyButtonTapped(sender: UIButton) {
+        print("Buy Button Tapped")
+
+        let tradeFlow = BybitTradeFlowViewController()
+        tradeFlow.modalPresentationStyle = .popover
+        tradeFlow.modalTransitionStyle = .crossDissolve
+        present(tradeFlow, animated: true)
+    }
+
+    @objc func sellButtonTapped(sender: UIButton) {
+        print("Sell Button Tapped")
+    }
+}

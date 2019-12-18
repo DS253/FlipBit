@@ -26,7 +26,6 @@ class TradeFlowView: BaseView {
         button.layer.borderWidth = 4.0
         button.layer.borderColor = UIColor.flatMint.cgColor
         button.layer.cornerRadius = 7.0
-        button.addTarget(self, action: #selector(buyButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -36,7 +35,6 @@ class TradeFlowView: BaseView {
         button.layer.borderWidth = 4.0
         button.layer.borderColor = UIColor.flatWatermelon.cgColor
         button.layer.cornerRadius = 7.0
-        button.addTarget(self, action: #selector(sellButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -83,12 +81,9 @@ class TradeFlowView: BaseView {
             buyButton.widthAnchor.constraint(equalTo: sellButton.widthAnchor)
         ])
     }
-    
-    @objc func buyButtonTapped() {
-        buyButton.isSelected.toggle()
-    }
-    
-    @objc func sellButtonTapped() {
-        sellButton.isSelected.toggle()
+
+    func configureButtons(_ target: Any?, buyAction: Selector, sellAction: Selector) {
+        buyButton.addTarget(target, action: buyAction, for: .touchUpInside)
+        sellButton.addTarget(target, action: sellAction, for: .touchUpInside)
     }
 }

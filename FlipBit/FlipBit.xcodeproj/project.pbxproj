@@ -123,6 +123,7 @@
 		06F22140239C900800E1BEB5 /* UIButton+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2213F239C900800E1BEB5 /* UIButton+Additions.swift */; };
 		45237FB1238C9D19005FC176 /* Bybit+SymbolInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45237FB0238C9D19005FC176 /* Bybit+SymbolInfo.swift */; };
 		45436FB923AAC9A000AA141A /* BybitSymbolDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */; };
+		45436FBB23AACB4200AA141A /* BybitTradeFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45436FBA23AACB4200AA141A /* BybitTradeFlowViewController.swift */; };
 		455A1F3B237E2825005969B9 /* BitService+BBOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */; };
 		45B3D934238603900004DF76 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D933238603900004DF76 /* BaseTableViewController.swift */; };
 		45B3D9372386043B0004DF76 /* BaseTableViewController+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D9362386043B0004DF76 /* BaseTableViewController+Additions.swift */; };
@@ -289,6 +290,7 @@
 		06F2213F239C900800E1BEB5 /* UIButton+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Additions.swift"; sourceTree = "<group>"; };
 		45237FB0238C9D19005FC176 /* Bybit+SymbolInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+SymbolInfo.swift"; sourceTree = "<group>"; };
 		45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitSymbolDataViewController.swift; sourceTree = "<group>"; };
+		45436FBA23AACB4200AA141A /* BybitTradeFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeFlowViewController.swift; sourceTree = "<group>"; };
 		455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBOrder.swift"; sourceTree = "<group>"; };
 		45B3D933238603900004DF76 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		45B3D9362386043B0004DF76 /* BaseTableViewController+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseTableViewController+Additions.swift"; sourceTree = "<group>"; };
@@ -845,8 +847,9 @@
 		45B3D94B23874B2A0004DF76 /* Bybit */ = {
 			isa = PBXGroup;
 			children = (
-				060C8BF623947B8900E50A57 /* BybitTradeEventsTableViewController.swift */,
 				45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */,
+				060C8BF623947B8900E50A57 /* BybitTradeEventsTableViewController.swift */,
+				45436FBA23AACB4200AA141A /* BybitTradeFlowViewController.swift */,
 			);
 			path = Bybit;
 			sourceTree = "<group>";
@@ -1076,6 +1079,7 @@
 				06470E082377C3B500419238 /* BitService+Registry.swift in Sources */,
 				45B3D9452386075A0004DF76 /* ScrollStackView.swift in Sources */,
 				060D96E2237B68A80040598A /* BBOrderBook+Endpoint.swift in Sources */,
+				45436FBB23AACB4200AA141A /* BybitTradeFlowViewController.swift in Sources */,
 				06433BC42381E3B600480EC1 /* BitService+BBCancelOrder.swift in Sources */,
 				060D96EA237B82910040598A /* BBPreviousFundingFee+Endpoint.swift in Sources */,
 				06470E152377C6EF00419238 /* BitService+BBOrderBook.swift in Sources */,
