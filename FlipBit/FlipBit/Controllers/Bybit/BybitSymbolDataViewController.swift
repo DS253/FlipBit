@@ -212,8 +212,8 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
 
     @objc func buyButtonTapped(sender: UIButton) {
         print("Buy Button Tapped")
-
-        present(fullscreenActivityIndicator, animated: true)
+        let vc = BybitTradeFlowViewController()
+        present(vc, animated: true)
 
 //        let tradeFlow = BybitTradeFlowViewController()
 //        tradeFlow.modalPresentationStyle = .popover
@@ -227,3 +227,4 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         fullscreenActivityIndicator.dismiss(animated: true)
     }
 }
+

@@ -53,6 +53,7 @@
 		06433BD223820E5900480EC1 /* BBLeverageStatus+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BD123820E5900480EC1 /* BBLeverageStatus+Endpoint.swift */; };
 		06433BDC23826A6400480EC1 /* BBLeverageUpdate+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BDB23826A6400480EC1 /* BBLeverageUpdate+Endpoint.swift */; };
 		06433BDE23826A9A00480EC1 /* BitService+BBLeverageUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BDD23826A9A00480EC1 /* BitService+BBLeverageUpdate.swift */; };
+		06434EF023AB482E00E04148 /* BybitTradeFlowPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06434EEF23AB482E00E04148 /* BybitTradeFlowPresentationController.swift */; };
 		0644D1DE238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644D1DD238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift */; };
 		0644D1E1238CDAE4001649F1 /* Bybit+SymbolInfo+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644D1E0238CDAE4001649F1 /* Bybit+SymbolInfo+Additions.swift */; };
 		0644D1E7238E36B2001649F1 /* BybitBookOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644D1E6238E36B2001649F1 /* BybitBookOrderCell.swift */; };
@@ -218,6 +219,7 @@
 		06433BD123820E5900480EC1 /* BBLeverageStatus+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBLeverageStatus+Endpoint.swift"; sourceTree = "<group>"; };
 		06433BDB23826A6400480EC1 /* BBLeverageUpdate+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBLeverageUpdate+Endpoint.swift"; sourceTree = "<group>"; };
 		06433BDD23826A9A00480EC1 /* BitService+BBLeverageUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBLeverageUpdate.swift"; sourceTree = "<group>"; };
+		06434EEF23AB482E00E04148 /* BybitTradeFlowPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeFlowPresentationController.swift; sourceTree = "<group>"; };
 		0644D1DD238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitSymbolInfoObserver+Deserializer.swift"; sourceTree = "<group>"; };
 		0644D1E0238CDAE4001649F1 /* Bybit+SymbolInfo+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+SymbolInfo+Additions.swift"; sourceTree = "<group>"; };
 		0644D1E6238E36B2001649F1 /* BybitBookOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitBookOrderCell.swift; sourceTree = "<group>"; };
@@ -872,6 +874,7 @@
 				45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */,
 				060C8BF623947B8900E50A57 /* BybitTradeEventsTableViewController.swift */,
 				45436FBA23AACB4200AA141A /* BybitTradeFlowViewController.swift */,
+				06434EEF23AB482E00E04148 /* BybitTradeFlowPresentationController.swift */,
 			);
 			path = Bybit;
 			sourceTree = "<group>";
@@ -1130,6 +1133,7 @@
 				062895D42383A4510076AA27 /* BaseViewController.swift in Sources */,
 				06470DE52377C19700419238 /* BitService.swift in Sources */,
 				060C8BF523946EC900E50A57 /* BybitTradeObserver+Deserializer.swift in Sources */,
+				06434EF023AB482E00E04148 /* BybitTradeFlowPresentationController.swift in Sources */,
 				064AD9E4238F866C00A7AA3E /* UIImageView+Additions.swift in Sources */,
 				06470E262377C8BD00419238 /* Constants+Endpoints.swift in Sources */,
 				060D96E6237B78AF0040598A /* BBTickers+Endpoint.swift in Sources */,
