@@ -10,18 +10,15 @@ import UIKit
 
 class BybitTradeFlowViewController: ViewController {
     
-    private let indicator: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView()
-        indicatorView.translatesAutoresizingMaskIntoConstraints = false
-        indicatorView.hidesWhenStopped = true
-        indicatorView.style = .large
-        indicatorView.backgroundColor = .clear
-        return indicatorView
+    private let label: UILabel = {
+        let label = UILabel(font: UIFont.headline, textColor: .blue)
+        label.text = "This is a test"
+        return label
     }()
 
     init() {
         super.init(nibName: nil, bundle: nil)
-
+//        modalTransitionStyle = .crossDissolve
         modalPresentationStyle = .custom
         transitioningDelegate = self
     }
@@ -47,22 +44,22 @@ class BybitTradeFlowViewController: ViewController {
 
     override func setupSubviews() {
         super.setupSubviews()
-        
-        view.addSubview(indicator)
+        view.addSubview(label)
 
-    //    view.addSubview(dismissButton)
+        view.addSubview(dismissButton)
     }
 
     override func setupConstraints() {
         super.setupConstraints()
-        NSLayoutConstraint.activate([
-            indicator.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            indicator.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            indicator.topAnchor.constraint(equalTo: view.topAnchor),
-            indicator.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+//        NSLayoutConstraint.activate([
+//            label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            label.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            label.topAnchor.constraint(equalTo: view.topAnchor),
+//            label.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+//            
 //            dismissButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
 //            dismissButton.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+//        ])
     }
 
     @objc func dismissView() {
@@ -73,6 +70,14 @@ class BybitTradeFlowViewController: ViewController {
 extension BybitTradeFlowViewController: UIViewControllerTransitioningDelegate {
 
     func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
-        return BybitTradeFlowPresentationController(activityIndicator: indicator, presentedViewController: presented, presenting: presenting)
+        return BybitTradeFlowPresentationController(presentedViewController: presented, presenting: presenting)
+    }
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return FadeAnimationTransition()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return FadeAnimationTransition(isPresenting: false)
     }
 }

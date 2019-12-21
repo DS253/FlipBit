@@ -10,6 +10,8 @@ import UIKit
 
 class OrderBookPanel: View {
     
+    weak var priceSelector: PriceSelection?
+    
     private lazy var bookHeader: View = {
         let header = View()
         header.backgroundColor = UIColor.Bybit.white
@@ -50,6 +52,8 @@ class OrderBookPanel: View {
         let label = UILabel(font: UIFont.largeTitle.bold, textColor: UIColor.flatMint)
         label.text = " "
         label.textAlignment = .center
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(priceTapped)))
         return label
     }()
     
@@ -126,6 +130,7 @@ class OrderBookPanel: View {
     func setPriceSelector(selector: PriceSelection) {
         buybook.setPriceSelector(selector: selector)
         sellbook.setPriceSelector(selector: selector)
+        priceSelector = selector
     }
 
     func setQuantitySelector(selector: QuantitySelection) {
@@ -139,5 +144,10 @@ class OrderBookPanel: View {
             lastPriceLabel.text = lastPrice
             lastPriceLabel.textColor = Bybit().tickColor
         }
+    }
+    
+    @objc func priceTapped() {
+        guard let price = lastPriceLabel.text else { return }
+        priceSelector?.priceSelected(price: price)
     }
 }
