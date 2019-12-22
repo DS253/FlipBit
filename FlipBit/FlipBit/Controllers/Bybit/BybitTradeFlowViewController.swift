@@ -10,6 +10,12 @@ import UIKit
 
 class BybitTradeFlowViewController: ViewController {
     
+    private let backgroundView: View = {
+        let view = View()
+        view.backgroundColor = .white
+        return view
+    }()
+    
     private let label: UILabel = {
         let label = UILabel(font: UIFont.headline, textColor: .blue)
         label.text = "This is a test"
@@ -37,9 +43,17 @@ class BybitTradeFlowViewController: ViewController {
         return button
     }()
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        view.setFrameLengthByPercentage(width: 0.7, height: 0.667)
+        view.setToScreenCenter()
+    }
+    
     override func setup() {
         super.setup()
         
+        view.backgroundColor = UIColor.Bybit.white
+        view.setBybitTheme()
     }
 
     override func setupSubviews() {

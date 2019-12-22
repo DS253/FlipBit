@@ -74,6 +74,22 @@ extension UIView {
             ])
         }
     }
+    
+    /// Sets the frame's center to the UIScreen's center.
+    internal func setToScreenCenter() {
+        center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2)
+    }
+    
+    /// Adjusts the width and height of the frame by percentage in relation to the UIScreen bounds.
+    ///
+    /// - Parameters:
+    ///   - width: The percentage of the screen's width.
+    ///   - height: The percentage of the screen's height.
+    internal func setFrameLengthByPercentage(width: CGFloat, height: CGFloat) {
+        let width = UIScreen.main.bounds.width * width
+        let height = UIScreen.main.bounds.height * height
+        frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: width, height: height)
+    }
 
     // MARK: - Animation Methods
 
@@ -109,8 +125,19 @@ extension UIView {
     }
 
     // MARK: - CALayer Methods
+    
+    /// Sets the view's layer to the Bybit theme.
+    func setBybitTheme() {
+        layer.cornerRadius = 14
+        layer.borderColor = UIColor.flatNavyBlue.cgColor
+        layer.borderWidth = 1.0
+        layer.shadowColor = UIColor.flatNavyBlue.cgColor
+        layer.shadowOpacity = 1
+        layer.shadowOffset = CGSize(width: -1, height: 6)
+        layer.masksToBounds = false
+    }
 
-    /// Helper method to simplify the process of adding a `CALayer` as a sublayer
+    /// Helper method to simplify the process of adding a `CALayer` as a sublayer.
     /// to a given `UIView` instance.
     ///
     /// - Parameters:

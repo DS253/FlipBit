@@ -15,7 +15,6 @@ class BybitTradeFlowPresentationController: UIPresentationController {
         view.backgroundColor = .black
         view.alpha = 0.0
         view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
         return view
     }()
     
@@ -28,6 +27,7 @@ class BybitTradeFlowPresentationController: UIPresentationController {
         
         backgroundView.frame = UIScreen.main.bounds
         containerView?.insertSubview(backgroundView, at: 0)
+         containerView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
     }
     
     override func presentationTransitionWillBegin() {
