@@ -16,16 +16,11 @@ class TitleTextView: View {
         let field = FlipBitTextField()
         field.font = .body
         field.textColor = .black
-        field.clearButtonMode = .always
         field.borderStyle = .none
         field.backgroundColor = .white
         field.layer.borderColor = UIColor.clear.cgColor
         field.layer.borderWidth = 1
-        field.layer.cornerRadius = 2.0
-        field.autocorrectionType = .no
-        field.spellCheckingType = .no
-        field.inputAssistantItem.leadingBarButtonGroups = []
-        field.inputAssistantItem.trailingBarButtonGroups = []
+        field.layer.cornerRadius = 7.0
         return field
     }()
     

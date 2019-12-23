@@ -16,6 +16,11 @@ class FlipBitTextField: UITextField {
         super.init(frame: .zero)
         addTarget(delegate, action: #selector(setActive), for: .editingDidBegin)
         addTarget(delegate, action: #selector(setInactive), for: .editingDidEnd)
+        clearButtonMode = UITextField.ViewMode.never
+        autocorrectionType = .no
+        spellCheckingType = .no
+        inputAssistantItem.leadingBarButtonGroups = []
+        inputAssistantItem.trailingBarButtonGroups = []
     }
 
     required init?(coder: NSCoder) {

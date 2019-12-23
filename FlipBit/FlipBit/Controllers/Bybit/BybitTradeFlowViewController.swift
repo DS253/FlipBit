@@ -11,6 +11,9 @@ import UIKit
 class BybitTradeFlowViewController: ViewController {
     
     private let side: Bybit.Side
+    private lazy var colorTheme: UIColor = {
+        return (side == .Buy) ? UIColor.flatMint : UIColor.flatWatermelon
+    }()
     
     private let backgroundView: View = {
         let view = View()
@@ -19,22 +22,22 @@ class BybitTradeFlowViewController: ViewController {
     }()
     
     private lazy var limitButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.limit, textColor: (side == .Buy) ? UIColor.flatMint : UIColor.flatWatermelon)
-        button.addTarget(self, action: #selector(limitSelected(sender:)), for: .touchUpInside)
+        let button = UIButton(type: .custom, title: Constant.limit, textColor: UIColor.flatGray)
+        button.setTitleColor(colorTheme, for: .selected)
+        button.addTarget(self, action: #selector(tradeTypeButtonSelected(sender:)), for: .touchUpInside)
         button.titleLabel?.font = UIFont.body.bold
         button.layer.borderWidth = 4.0
-        button.layer.borderColor = (side == .Buy) ? UIColor.flatMint.cgColor : UIColor.flatWatermelon.cgColor
         button.layer.cornerRadius = 7.0
         button.isSelected = true
         return button
     }()
     
     private lazy var marketButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.market, textColor: (side == .Buy) ? UIColor.flatMint : UIColor.flatWatermelon)
-        button.addTarget(self, action: #selector(marketSelected(sender:)), for: .touchUpInside)
+        let button = UIButton(type: .custom, title: Constant.market, textColor: UIColor.flatGray)
+        button.setTitleColor(colorTheme, for: .selected)
+        button.addTarget(self, action: #selector(tradeTypeButtonSelected(sender:)), for: .touchUpInside)
         button.titleLabel?.font = UIFont.body.bold
         button.layer.borderWidth = 4.0
-        button.layer.borderColor = (side == .Buy) ? UIColor.flatMint.cgColor : UIColor.flatWatermelon.cgColor
         button.layer.cornerRadius = 7.0
         return button
     }()
@@ -74,6 +77,7 @@ class BybitTradeFlowViewController: ViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         view.setFrameLengthByPercentage(width: 0.7, height: 0.667)
         view.setToScreenCenter()
     }
@@ -85,9 +89,16 @@ class BybitTradeFlowViewController: ViewController {
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))
         view.backgroundColor = UIColor.Bybit.white
-        view.setBybitTheme()
-        view.layer.borderColor = (side == .Buy) ? UIColor.flatMint.cgColor : UIColor.flatWatermelon.cgColor
-        view.layer.shadowColor = (side == .Buy) ? UIColor.flatMint.cgColor : UIColor.flatWatermelon.cgColor
+        //        view.setBybitTheme()
+        view.layer.cornerRadius = 14
+        view.layer.borderColor = colorTheme.cgColor
+        view.layer.borderWidth = 1.0
+        //        view.layer.shadowColor = UIColor.flatNavyBlue.cgColor
+        //        view.layer.shadowOpacity = 1
+        //view.layer.shadowOffset = CGSize(width: -1, height: 6)
+        view.layer.masksToBounds = false
+        configureTradeTypeButtons()
+        //  view.layer.shadowColor = (side == .Buy) ? UIColor.flatMint.cgColor : UIColor.flatWatermelon.cgColor
     }
     
     override func setupSubviews() {
@@ -116,6 +127,16 @@ class BybitTradeFlowViewController: ViewController {
         ])
     }
     
+    private func configureTradeTypeButtons() {
+        if marketButton.isSelected {
+            marketButton.layer.borderColor = colorTheme.cgColor
+            limitButton.layer.borderColor = UIColor.flatGray.cgColor
+        } else {
+            limitButton.layer.borderColor = colorTheme.cgColor
+            marketButton.layer.borderColor = UIColor.flatGray.cgColor
+        }
+    }
+    
     @objc func dismissTextField() {
         priceTextView.textField.resignFirstResponder()
         quantityTextView.textField.resignFirstResponder()
@@ -125,17 +146,10 @@ class BybitTradeFlowViewController: ViewController {
         dismiss(animated: true)
     }
     
-    @objc func marketSelected(sender: Any) {
+    @objc func tradeTypeButtonSelected(sender: Any) {
         marketButton.isSelected.toggle()
         limitButton.isSelected = !marketButton.isSelected
+        configureTradeTypeButtons()
         print("marketButton")
-        print("\(marketButton.isSelected)")
-    }
-    
-    @objc func limitSelected(sender: Any) {
-        limitButton.isSelected.toggle()
-        marketButton.isSelected = !limitButton.isSelected
-        print("limitButton")
-        print("\(limitButton.isSelected)")
     }
 }
