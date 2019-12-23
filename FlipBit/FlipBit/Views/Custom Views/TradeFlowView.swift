@@ -82,8 +82,8 @@ class TradeFlowView: BaseView {
         ])
     }
 
-    func configureButtons(_ target: Any?, buyAction: Selector, sellAction: Selector) {
-        buyButton.addTarget(target, action: buyAction, for: .touchUpInside)
-        sellButton.addTarget(target, action: sellAction, for: .touchUpInside)
+    func configureButtons(_ target: Any?, action: Selector) {
+        buyButton.addTarget(target, action: action, for: .touchUpInside)
+        sellButton.addTarget(target, action: action, for: .touchUpInside)
     }
 }

@@ -13,12 +13,12 @@ protocol PriceSelection: class { func priceSelected(price: String) }
 protocol QuantitySelection: class { func quantitySelected(quantity: String) }
 
 class ValuePickerView: View, PriceSelection, QuantitySelection {
-
+    
     private lazy var titleLabel: UILabel = {
         UILabel(font: UIFont.headline, textColor: UIColor.Bybit.themeBlack)
     }()
     
-    private lazy var valueLabel: UILabel = {
+    lazy var valueLabel: UILabel = {
         let label = UILabel(font: UIFont.headline, textColor: UIColor.Bybit.themeBlack)
         label.textAlignment = .center
         return label
@@ -94,11 +94,11 @@ class ValuePickerView: View, PriceSelection, QuantitySelection {
     func configureValueText(value: String) {
         valueLabel.text = value
     }
-
+    
     func priceSelected(price: String) {
         valueLabel.text = price
     }
-
+    
     func quantitySelected(quantity: String) {
         valueLabel.text = quantity
     }

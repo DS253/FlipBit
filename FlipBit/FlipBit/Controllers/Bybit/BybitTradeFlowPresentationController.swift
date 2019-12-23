@@ -43,6 +43,6 @@ class BybitTradeFlowPresentationController: UIPresentationController {
     }
     
     @objc func dismissView() {
-        print("Tap")
+        NotificationCenter.default.post(name: .dismissFlow, object: nil)
     }
 }

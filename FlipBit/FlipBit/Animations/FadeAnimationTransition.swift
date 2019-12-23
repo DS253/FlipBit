@@ -18,7 +18,7 @@ class FadeAnimationTransition: NSObject {
     /// Indicates if the view controller is being presented or dismissed.
     private var isPresenting: Bool = false
     
-    init(isPresenting: Bool = true, duration: TimeInterval = 0.4) {
+    init(isPresenting: Bool = true, duration: TimeInterval = 0.2) {
         self.duration = duration
         self.isPresenting = isPresenting
     }
@@ -51,4 +51,3 @@ extension FadeAnimationTransition: UIViewControllerAnimatedTransitioning {
         })
     }
 }
-

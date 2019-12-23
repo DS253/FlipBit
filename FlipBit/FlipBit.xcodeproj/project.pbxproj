@@ -26,6 +26,9 @@
 		060D96F4237BBC480040598A /* BitService+BBTradeRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96F3237BBC480040598A /* BitService+BBTradeRecord.swift */; };
 		060D96F6237BC6900040598A /* BBTradeRecord+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96F5237BC6900040598A /* BBTradeRecord+Endpoint.swift */; };
 		06163D5D23AED17D0076EFC0 /* FadeAnimationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06163D5C23AED17D0076EFC0 /* FadeAnimationTransition.swift */; };
+		06163D5F23B023B60076EFC0 /* FlipBitTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06163D5E23B023B60076EFC0 /* FlipBitTextField.swift */; };
+		06163D6123B0244D0076EFC0 /* TitleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06163D6023B0244D0076EFC0 /* TitleTextView.swift */; };
+		06163D6323B026830076EFC0 /* BybitTradeFlowViewController+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06163D6223B026830076EFC0 /* BybitTradeFlowViewController+Delegates.swift */; };
 		062895CE2383A1CC0076AA27 /* SandBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895CD2383A1CC0076AA27 /* SandBoxViewController.swift */; };
 		062895D12383A3920076AA27 /* ViewSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D02383A3920076AA27 /* ViewSetup.swift */; };
 		062895D42383A4510076AA27 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D32383A4510076AA27 /* BaseViewController.swift */; };
@@ -193,6 +196,9 @@
 		060D96F3237BBC480040598A /* BitService+BBTradeRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBTradeRecord.swift"; sourceTree = "<group>"; };
 		060D96F5237BC6900040598A /* BBTradeRecord+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBTradeRecord+Endpoint.swift"; sourceTree = "<group>"; };
 		06163D5C23AED17D0076EFC0 /* FadeAnimationTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeAnimationTransition.swift; sourceTree = "<group>"; };
+		06163D5E23B023B60076EFC0 /* FlipBitTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipBitTextField.swift; sourceTree = "<group>"; };
+		06163D6023B0244D0076EFC0 /* TitleTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextView.swift; sourceTree = "<group>"; };
+		06163D6223B026830076EFC0 /* BybitTradeFlowViewController+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitTradeFlowViewController+Delegates.swift"; sourceTree = "<group>"; };
 		062895CD2383A1CC0076AA27 /* SandBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandBoxViewController.swift; sourceTree = "<group>"; };
 		062895D02383A3920076AA27 /* ViewSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetup.swift; sourceTree = "<group>"; };
 		062895D32383A4510076AA27 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -826,6 +832,7 @@
 			isa = PBXGroup;
 			children = (
 				45B3D9362386043B0004DF76 /* BaseTableViewController+Additions.swift */,
+				06163D6223B026830076EFC0 /* BybitTradeFlowViewController+Delegates.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -859,10 +866,12 @@
 		45B3D943238607480004DF76 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				06163D5E23B023B60076EFC0 /* FlipBitTextField.swift */,
 				062E27712391C3B700AF0C7D /* OrderBook */,
 				06F2213D239C4A0200E1BEB5 /* PercentageView.swift */,
 				45B3D9442386075A0004DF76 /* ScrollStackView.swift */,
 				064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */,
+				06163D6023B0244D0076EFC0 /* TitleTextView.swift */,
 				060073A923A721280022F124 /* TradeFlowView.swift */,
 				0641F84D239CD02800EF7A0B /* ValuePickerView.swift */,
 			);
@@ -1079,6 +1088,7 @@
 				060073AA23A721280022F124 /* TradeFlowView.swift in Sources */,
 				062895D62383A6A40076AA27 /* Globals.swift in Sources */,
 				064AD9E6238F86AC00A7AA3E /* UIImage+Additions.swift in Sources */,
+				06163D5F23B023B60076EFC0 /* FlipBitTextField.swift in Sources */,
 				06433BDC23826A6400480EC1 /* BBLeverageUpdate+Endpoint.swift in Sources */,
 				064AD9E2238F500A00A7AA3E /* Notification+Names.swift in Sources */,
 				060D96F6237BC6900040598A /* BBTradeRecord+Endpoint.swift in Sources */,
@@ -1133,6 +1143,7 @@
 				06470DFC2377C2FB00419238 /* Result+Additions.swift in Sources */,
 				45B3D94A23860A810004DF76 /* UILabel+Additions.swift in Sources */,
 				062895DA2383A77C0076AA27 /* BaseView.swift in Sources */,
+				06163D6323B026830076EFC0 /* BybitTradeFlowViewController+Delegates.swift in Sources */,
 				06433BC62381E45A00480EC1 /* BBActiveOrderCancel+Endpoint.swift in Sources */,
 				060C8BF323946C4500E50A57 /* Bybit+TradeEventSnapshot.swift in Sources */,
 				06470DAA2377B6D500419238 /* SceneDelegate.swift in Sources */,
@@ -1168,6 +1179,7 @@
 				06470E1D2377C80700419238 /* BitService+BBServerTime.swift in Sources */,
 				06470DF42377C29800419238 /* Date+Additions.swift in Sources */,
 				060D96EC237B95720040598A /* BitService+BBWalletFundRecord.swift in Sources */,
+				06163D6123B0244D0076EFC0 /* TitleTextView.swift in Sources */,
 				45B3D94F23874DCC0004DF76 /* BybitBookOrderObserver.swift in Sources */,
 				064131262389F6FC00B795D5 /* UIResponder+Additions.swift in Sources */,
 				06470E1B2377C7E600419238 /* BitService+BBPreviousFundingFee.swift in Sources */,

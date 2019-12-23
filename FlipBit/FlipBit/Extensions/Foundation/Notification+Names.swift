@@ -9,6 +9,7 @@
 import Foundation
 
 extension Notification.Name {
+    static let dismissFlow = Notification.Name("dismissFlow")
     static let buyBookObserverUpdate = Notification.Name("buyBookUpdated")
     static let symbolObserverUpdate = Notification.Name("symbolObserverUpdated")
     static let sellBookObserverUpdate = Notification.Name("sellBookUpdated")
