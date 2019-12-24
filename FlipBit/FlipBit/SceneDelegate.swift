@@ -23,7 +23,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let rootNavigationController = UINavigationController(rootViewController: BybitSymbolDataViewController())
             rootNavigationController.navigationBar.isHidden = true
             tabBarController.viewControllers = [rootNavigationController]
-            window.rootViewController = tabBarController
+            //window.rootViewController = tabBarController
+            window.rootViewController = BybitSymbolDataViewController()
             self.window = window
             window.makeKeyAndVisible()
         }

@@ -78,7 +78,7 @@ class BybitTradeFlowViewController: ViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-        view.setFrameLengthByPercentage(width: 0.7, height: 0.667)
+        view.setFrameLengthByPercentage(width: 0.75, height: 0.75)
         view.setToScreenCenter()
     }
     
@@ -88,17 +88,11 @@ class BybitTradeFlowViewController: ViewController {
         
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))
-        view.backgroundColor = UIColor.Bybit.white
-        //        view.setBybitTheme()
         view.layer.cornerRadius = 14
         view.layer.borderColor = colorTheme.cgColor
         view.layer.borderWidth = 1.0
-        //        view.layer.shadowColor = UIColor.flatNavyBlue.cgColor
-        //        view.layer.shadowOpacity = 1
-        //view.layer.shadowOffset = CGSize(width: -1, height: 6)
         view.layer.masksToBounds = false
         configureTradeTypeButtons()
-        //  view.layer.shadowColor = (side == .Buy) ? UIColor.flatMint.cgColor : UIColor.flatWatermelon.cgColor
     }
     
     override func setupSubviews() {
@@ -143,13 +137,19 @@ class BybitTradeFlowViewController: ViewController {
     }
     
     @objc func dismissTradeFlow(notification: NSNotification) {
-        dismiss(animated: true)
+        if priceTextView.textField.isFirstResponder {
+            priceTextView.textField.resignFirstResponder()
+        } else if quantityTextView.textField.isFirstResponder {
+            quantityTextView.textField.resignFirstResponder()
+        }
+        else {
+            dismiss(animated: true)
+        }
     }
     
     @objc func tradeTypeButtonSelected(sender: Any) {
         marketButton.isSelected.toggle()
         limitButton.isSelected = !marketButton.isSelected
         configureTradeTypeButtons()
-        print("marketButton")
     }
 }
