@@ -11,6 +11,8 @@ import UIKit
 extension UIImage {
     
     enum Name: String {
+        case minus = "minus"
+        case plus = "plus"
         case TickerArrow = "tickerArrow"
     }
     

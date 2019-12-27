@@ -29,6 +29,7 @@
 		06163D5F23B023B60076EFC0 /* FlipBitTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06163D5E23B023B60076EFC0 /* FlipBitTextField.swift */; };
 		06163D6123B0244D0076EFC0 /* TitleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06163D6023B0244D0076EFC0 /* TitleTextView.swift */; };
 		06163D6323B026830076EFC0 /* BybitTradeFlowViewController+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06163D6223B026830076EFC0 /* BybitTradeFlowViewController+Delegates.swift */; };
+		0623602A23B593820098A4EF /* Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0623602923B593820098A4EF /* Stepper.swift */; };
 		062895CE2383A1CC0076AA27 /* SandBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895CD2383A1CC0076AA27 /* SandBoxViewController.swift */; };
 		062895D12383A3920076AA27 /* ViewSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D02383A3920076AA27 /* ViewSetup.swift */; };
 		062895D42383A4510076AA27 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D32383A4510076AA27 /* BaseViewController.swift */; };
@@ -199,6 +200,7 @@
 		06163D5E23B023B60076EFC0 /* FlipBitTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipBitTextField.swift; sourceTree = "<group>"; };
 		06163D6023B0244D0076EFC0 /* TitleTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTextView.swift; sourceTree = "<group>"; };
 		06163D6223B026830076EFC0 /* BybitTradeFlowViewController+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitTradeFlowViewController+Delegates.swift"; sourceTree = "<group>"; };
+		0623602923B593820098A4EF /* Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
 		062895CD2383A1CC0076AA27 /* SandBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandBoxViewController.swift; sourceTree = "<group>"; };
 		062895D02383A3920076AA27 /* ViewSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetup.swift; sourceTree = "<group>"; };
 		062895D32383A4510076AA27 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -870,6 +872,7 @@
 				062E27712391C3B700AF0C7D /* OrderBook */,
 				06F2213D239C4A0200E1BEB5 /* PercentageView.swift */,
 				45B3D9442386075A0004DF76 /* ScrollStackView.swift */,
+				0623602923B593820098A4EF /* Stepper.swift */,
 				064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */,
 				06163D6023B0244D0076EFC0 /* TitleTextView.swift */,
 				060073A923A721280022F124 /* TradeFlowView.swift */,
@@ -1137,6 +1140,7 @@
 				0641F84E239CD02800EF7A0B /* ValuePickerView.swift in Sources */,
 				062E27772393590500AF0C7D /* OrderBookPanel.swift in Sources */,
 				45436FB923AAC9A000AA141A /* BybitSymbolDataViewController.swift in Sources */,
+				0623602A23B593820098A4EF /* Stepper.swift in Sources */,
 				06433BD223820E5900480EC1 /* BBLeverageStatus+Endpoint.swift in Sources */,
 				060D96E4237B70A70040598A /* BBServerTime+Endpoint.swift in Sources */,
 				45B3D9372386043B0004DF76 /* BaseTableViewController+Additions.swift in Sources */,

@@ -11,6 +11,9 @@ import UIKit
 class BybitTradeFlowViewController: ViewController {
     
     private let side: Bybit.Side
+    private let initialPrice: String
+    private let quantity: String
+    
     private lazy var colorTheme: UIColor = {
         return (side == .Buy) ? UIColor.flatMint : UIColor.flatWatermelon
     }()
@@ -42,10 +45,20 @@ class BybitTradeFlowViewController: ViewController {
         return button
     }()
     
+    private lazy var priceStepper: Stepper = {
+        if let price = Double(self.initialPrice) {
+            return Stepper(side: side, initialValue: price, increment: 0.5, max: 10000.0, min: 0.0)
+        }
+        return Stepper(side: side, initialValue: 0, increment: 0.5, max: 10000.0, min: 0.0)
+    }()
+    
     lazy var priceTextView: TitleTextView = {
         let textView = TitleTextView()
         textView.titleLabel.text = Constant.price
+        textView.titleLabel.textColor = colorTheme
         textView.textField.keyboardType = .numberPad
+        textView.textField.backgroundColor = .clear
+        textView.textField.textColor = colorTheme
         textView.textField.delegate = self
         return textView
     }()
@@ -53,13 +66,18 @@ class BybitTradeFlowViewController: ViewController {
     lazy var quantityTextView: TitleTextView = {
         let textView = TitleTextView()
         textView.titleLabel.text = Constant.quantity
+        textView.titleLabel.textColor = colorTheme
         textView.textField.keyboardType = .numberPad
+        textView.textField.backgroundColor = .clear
+        textView.textField.textColor = colorTheme
         textView.textField.delegate = self
         return textView
     }()
     
     init(side: Bybit.Side, price: String, quantity: String) {
         self.side = side
+        self.initialPrice = price
+        self.quantity = quantity
         super.init(nibName: nil, bundle: nil)
         priceTextView.textField.text = price
         quantityTextView.textField.text = quantity
@@ -85,7 +103,7 @@ class BybitTradeFlowViewController: ViewController {
     override func setup() {
         super.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(dismissTradeFlow(notification:)), name: .dismissFlow, object: nil)
-        
+        priceStepper.delegate = self
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))
         view.layer.cornerRadius = 14
@@ -99,6 +117,7 @@ class BybitTradeFlowViewController: ViewController {
         super.setupSubviews()
         view.addSubview(limitButton)
         view.addSubview(marketButton)
+        view.addSubview(priceStepper)
         view.addSubview(priceTextView)
         view.addSubview(quantityTextView)
     }
@@ -116,8 +135,12 @@ class BybitTradeFlowViewController: ViewController {
             
             priceTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin16),
             priceTextView.topAnchor.constraint(equalTo: limitButton.bottomAnchor, constant: Dimensions.Space.margin16),
-            quantityTextView.leadingAnchor.constraint(equalTo: priceTextView.leadingAnchor),
-            quantityTextView.topAnchor.constraint(equalTo: priceTextView.bottomAnchor, constant: Dimensions.Space.margin16)
+            
+            priceStepper.leadingAnchor.constraint(equalTo: priceTextView.leadingAnchor),
+            priceStepper.topAnchor.constraint(equalTo: priceTextView.bottomAnchor, constant: Dimensions.Space.margin16),
+            
+            quantityTextView.leadingAnchor.constraint(equalTo: priceStepper.leadingAnchor),
+            quantityTextView.topAnchor.constraint(equalTo: priceStepper.bottomAnchor, constant: Dimensions.Space.margin16)
         ])
     }
     
@@ -151,5 +174,12 @@ class BybitTradeFlowViewController: ViewController {
         marketButton.isSelected.toggle()
         limitButton.isSelected = !marketButton.isSelected
         configureTradeTypeButtons()
+    }
+}
+
+extension BybitTradeFlowViewController: StepperDelegate {
+    
+    func stepperDidUpdate(to value: Double) {
+        
     }
 }
