@@ -32,6 +32,8 @@ struct Constant {
     static let quantity = "Quantity"
     static let sell = "Sell"
     static let short = "Short"
+    static let stopLoss = "Stop Loss"
+    static let takeProfit = "Take Profit"
     
     // MARK: - Symbol Info
     static let dayHighTitle = "24h High"

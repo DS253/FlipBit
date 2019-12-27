@@ -59,6 +59,20 @@ class BybitTradeFlowViewController: ViewController {
         return Stepper(title: Constant.quantity, side: side, initialValue: 0, increment: 1.0, max: 1000000.0, min: 0.0)
     }()
     
+    private lazy var takeProfitStepper: Stepper = {
+        if let quantity = Double(self.quantity) {
+            return Stepper(title: Constant.takeProfit, side: side, initialValue: 0, increment: 1.0, max: 100000.0, min: 0.0)
+        }
+        return Stepper(title: Constant.takeProfit, side: side, initialValue: 0, increment: 1.0, max: 100000.0, min: 0.0)
+    }()
+    
+    private lazy var stopLossStepper: Stepper = {
+        if let quantity = Double(self.quantity) {
+            return Stepper(title: Constant.stopLoss, side: side, initialValue: 0, increment: 1.0, max: 100000.0, min: 0.0)
+        }
+        return Stepper(title: Constant.takeProfit, side: side, initialValue: 0, increment: 1.0, max: 100000.0, min: 0.0)
+    }()
+    
     init(side: Bybit.Side, price: String, quantity: String) {
         self.side = side
         self.initialPrice = price
@@ -88,6 +102,8 @@ class BybitTradeFlowViewController: ViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(dismissTradeFlow(notification:)), name: .dismissFlow, object: nil)
         priceStepper.textField.keyboardType = .numberPad
         quantityStepper.textField.keyboardType = .numberPad
+        takeProfitStepper.textField.keyboardType = .numberPad
+        stopLossStepper.textField.keyboardType = .numberPad
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))
         view.layer.cornerRadius = 14
@@ -103,6 +119,8 @@ class BybitTradeFlowViewController: ViewController {
         view.addSubview(marketButton)
         view.addSubview(priceStepper)
         view.addSubview(quantityStepper)
+        view.addSubview(takeProfitStepper)
+        view.addSubview(stopLossStepper)
     }
     
     override func setupConstraints() {
@@ -119,8 +137,14 @@ class BybitTradeFlowViewController: ViewController {
             priceStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             priceStepper.topAnchor.constraint(equalTo: limitButton.bottomAnchor, constant: Dimensions.Space.margin16),
             
-            quantityStepper.leadingAnchor.constraint(equalTo: priceStepper.leadingAnchor),
-            quantityStepper.topAnchor.constraint(equalTo: priceStepper.bottomAnchor, constant: Dimensions.Space.margin16)
+            quantityStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            quantityStepper.topAnchor.constraint(equalTo: priceStepper.bottomAnchor, constant: Dimensions.Space.margin16),
+            
+            takeProfitStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            takeProfitStepper.topAnchor.constraint(equalTo: quantityStepper.bottomAnchor, constant: Dimensions.Space.margin16),
+            
+            stopLossStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stopLossStepper.topAnchor.constraint(equalTo: takeProfitStepper.bottomAnchor, constant: Dimensions.Space.margin16)
         ])
     }
     
@@ -137,6 +161,8 @@ class BybitTradeFlowViewController: ViewController {
     @objc func dismissTextField() {
         priceStepper.textField.resignFirstResponder()
         quantityStepper.textField.resignFirstResponder()
+        takeProfitStepper.textField.resignFirstResponder()
+        stopLossStepper.textField.resignFirstResponder()
     }
     
     @objc func dismissTradeFlow(notification: NSNotification) {
@@ -144,8 +170,11 @@ class BybitTradeFlowViewController: ViewController {
             priceStepper.textField.resignFirstResponder()
         } else if quantityStepper.textField.isFirstResponder {
             quantityStepper.textField.resignFirstResponder()
-        }
-        else {
+        } else if takeProfitStepper.textField.isFirstResponder {
+            takeProfitStepper.textField.resignFirstResponder()
+        } else if stopLossStepper.textField.isFirstResponder {
+            stopLossStepper.textField.resignFirstResponder()
+        } else {
             dismiss(animated: true)
         }
     }

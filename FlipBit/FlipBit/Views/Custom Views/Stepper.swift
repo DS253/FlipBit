@@ -67,8 +67,8 @@ class Stepper: View {
         button.setImage(UIImage(name: .minus), for: .normal)
         button.setImage(UIImage(name: .minus), for: .disabled)
         button.tintColor = colorTheme
+        button.adjustsImageWhenHighlighted = false
         button.addTarget(self, action: #selector(decrementerTapped), for: .touchUpInside)
-        
         return button
     }()
     
@@ -80,7 +80,6 @@ class Stepper: View {
         button.tintColor = colorTheme
         button.adjustsImageWhenHighlighted = false
         button.addTarget(self, action: #selector(incrementerTapped), for: .touchUpInside)
-        
         return button
     }()
     
