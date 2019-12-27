@@ -28,50 +28,35 @@ class BybitTradeFlowViewController: ViewController {
         let button = UIButton(type: .custom, title: Constant.limit, textColor: UIColor.flatGray)
         button.setTitleColor(colorTheme, for: .selected)
         button.addTarget(self, action: #selector(tradeTypeButtonSelected(sender:)), for: .touchUpInside)
-        button.titleLabel?.font = UIFont.body.bold
-        button.layer.borderWidth = 4.0
+        button.titleLabel?.font = UIFont.body
+        button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
         button.isSelected = true
         return button
     }()
     
     private lazy var marketButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.market, textColor: UIColor.flatGray)
+        let button = UIButton(type: .custom, title: Constant.market, textColor: UIColor.Bybit.white)
         button.setTitleColor(colorTheme, for: .selected)
         button.addTarget(self, action: #selector(tradeTypeButtonSelected(sender:)), for: .touchUpInside)
-        button.titleLabel?.font = UIFont.body.bold
-        button.layer.borderWidth = 4.0
+        button.titleLabel?.font = UIFont.body
+        button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
         return button
     }()
     
     private lazy var priceStepper: Stepper = {
         if let price = Double(self.initialPrice) {
-            return Stepper(side: side, initialValue: price, increment: 0.5, max: 10000.0, min: 0.0)
+            return Stepper(title: Constant.price, side: side, initialValue: price, increment: 0.5, max: 10000.0, min: 0.0)
         }
-        return Stepper(side: side, initialValue: 0, increment: 0.5, max: 10000.0, min: 0.0)
+        return Stepper(title: Constant.price, side: side, initialValue: 0, increment: 0.5, max: 10000.0, min: 0.0)
     }()
     
-    lazy var priceTextView: TitleTextView = {
-        let textView = TitleTextView()
-        textView.titleLabel.text = Constant.price
-        textView.titleLabel.textColor = colorTheme
-        textView.textField.keyboardType = .numberPad
-        textView.textField.backgroundColor = .clear
-        textView.textField.textColor = colorTheme
-        textView.textField.delegate = self
-        return textView
-    }()
-    
-    lazy var quantityTextView: TitleTextView = {
-        let textView = TitleTextView()
-        textView.titleLabel.text = Constant.quantity
-        textView.titleLabel.textColor = colorTheme
-        textView.textField.keyboardType = .numberPad
-        textView.textField.backgroundColor = .clear
-        textView.textField.textColor = colorTheme
-        textView.textField.delegate = self
-        return textView
+    private lazy var quantityStepper: Stepper = {
+        if let quantity = Double(self.quantity) {
+            return Stepper(title: Constant.quantity, side: side, initialValue: quantity, increment: 1.0, max: 1000000.0, min: 0.0)
+        }
+        return Stepper(title: Constant.quantity, side: side, initialValue: 0, increment: 1.0, max: 1000000.0, min: 0.0)
     }()
     
     init(side: Bybit.Side, price: String, quantity: String) {
@@ -79,8 +64,6 @@ class BybitTradeFlowViewController: ViewController {
         self.initialPrice = price
         self.quantity = quantity
         super.init(nibName: nil, bundle: nil)
-        priceTextView.textField.text = price
-        quantityTextView.textField.text = quantity
         modalPresentationStyle = .custom
         transitioningDelegate = self
     }
@@ -103,7 +86,8 @@ class BybitTradeFlowViewController: ViewController {
     override func setup() {
         super.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(dismissTradeFlow(notification:)), name: .dismissFlow, object: nil)
-        priceStepper.delegate = self
+        priceStepper.textField.keyboardType = .numberPad
+        quantityStepper.textField.keyboardType = .numberPad
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))
         view.layer.cornerRadius = 14
@@ -118,8 +102,7 @@ class BybitTradeFlowViewController: ViewController {
         view.addSubview(limitButton)
         view.addSubview(marketButton)
         view.addSubview(priceStepper)
-        view.addSubview(priceTextView)
-        view.addSubview(quantityTextView)
+        view.addSubview(quantityStepper)
     }
     
     override func setupConstraints() {
@@ -133,37 +116,34 @@ class BybitTradeFlowViewController: ViewController {
             marketButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
             marketButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin16),
             
-            priceTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin16),
-            priceTextView.topAnchor.constraint(equalTo: limitButton.bottomAnchor, constant: Dimensions.Space.margin16),
+            priceStepper.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            priceStepper.topAnchor.constraint(equalTo: limitButton.bottomAnchor, constant: Dimensions.Space.margin16),
             
-            priceStepper.leadingAnchor.constraint(equalTo: priceTextView.leadingAnchor),
-            priceStepper.topAnchor.constraint(equalTo: priceTextView.bottomAnchor, constant: Dimensions.Space.margin16),
-            
-            quantityTextView.leadingAnchor.constraint(equalTo: priceStepper.leadingAnchor),
-            quantityTextView.topAnchor.constraint(equalTo: priceStepper.bottomAnchor, constant: Dimensions.Space.margin16)
+            quantityStepper.leadingAnchor.constraint(equalTo: priceStepper.leadingAnchor),
+            quantityStepper.topAnchor.constraint(equalTo: priceStepper.bottomAnchor, constant: Dimensions.Space.margin16)
         ])
     }
     
     private func configureTradeTypeButtons() {
         if marketButton.isSelected {
             marketButton.layer.borderColor = colorTheme.cgColor
-            limitButton.layer.borderColor = UIColor.flatGray.cgColor
+            limitButton.layer.borderColor = UIColor.Bybit.white.cgColor
         } else {
             limitButton.layer.borderColor = colorTheme.cgColor
-            marketButton.layer.borderColor = UIColor.flatGray.cgColor
+            marketButton.layer.borderColor = UIColor.Bybit.white.cgColor
         }
     }
     
     @objc func dismissTextField() {
-        priceTextView.textField.resignFirstResponder()
-        quantityTextView.textField.resignFirstResponder()
+        priceStepper.textField.resignFirstResponder()
+        quantityStepper.textField.resignFirstResponder()
     }
     
     @objc func dismissTradeFlow(notification: NSNotification) {
-        if priceTextView.textField.isFirstResponder {
-            priceTextView.textField.resignFirstResponder()
-        } else if quantityTextView.textField.isFirstResponder {
-            quantityTextView.textField.resignFirstResponder()
+        if priceStepper.textField.isFirstResponder {
+            priceStepper.textField.resignFirstResponder()
+        } else if quantityStepper.textField.isFirstResponder {
+            quantityStepper.textField.resignFirstResponder()
         }
         else {
             dismiss(animated: true)
@@ -174,12 +154,5 @@ class BybitTradeFlowViewController: ViewController {
         marketButton.isSelected.toggle()
         limitButton.isSelected = !marketButton.isSelected
         configureTradeTypeButtons()
-    }
-}
-
-extension BybitTradeFlowViewController: StepperDelegate {
-    
-    func stepperDidUpdate(to value: Double) {
-        
     }
 }

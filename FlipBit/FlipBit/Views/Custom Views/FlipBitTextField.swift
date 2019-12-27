@@ -14,13 +14,12 @@ class FlipBitTextField: UITextField {
     
     init() {
         super.init(frame: .zero)
-        addTarget(delegate, action: #selector(setActive), for: .editingDidBegin)
-        addTarget(delegate, action: #selector(setInactive), for: .editingDidEnd)
         clearButtonMode = UITextField.ViewMode.never
         autocorrectionType = .no
         spellCheckingType = .no
         inputAssistantItem.leadingBarButtonGroups = []
         inputAssistantItem.trailingBarButtonGroups = []
+        translatesAutoresizingMaskIntoConstraints = false
     }
 
     required init?(coder: NSCoder) {
@@ -43,13 +42,5 @@ class FlipBitTextField: UITextField {
         var newBounds = super.rightViewRect(forBounds: bounds)
         newBounds.origin.x -= Dimensions.Space.margin20
         return newBounds
-    }
-
-    @objc func setActive() {
-        layer.borderColor = UIColor.orange.cgColor
-    }
-
-    @objc func setInactive() {
-        layer.borderColor = UIColor.clear.cgColor
     }
 }
