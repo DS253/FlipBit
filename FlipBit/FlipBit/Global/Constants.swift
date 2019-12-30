@@ -20,12 +20,14 @@ typealias ViewController = BaseViewController
 struct Constant {
     
     // MARK: - Common
+    static let back = "Back"
     static let buy = "Buy"
     static let hour = "Hour"
     static let hours = "Hours"
     static let limit = "Limit"
     static let long = "Long"
     static let market = "Market"
+    static let next = "Next"
     static let orderPrice = "Order Price USD"
     static let orderQuantity = "Order Quantity USD"
     static let price = "Price"
