@@ -45,24 +45,6 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         return percentageView
     }()
 
-    private lazy var buyButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.buy, textColor: UIColor.flatMint)
-        button.titleLabel?.font = UIFont.title3.bold
-        button.layer.borderWidth = 2.0
-        button.layer.borderColor = UIColor.flatMint.cgColor
-        button.layer.cornerRadius = 7.0
-        return button
-    }()
-
-    private lazy var sellButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.sell, textColor: UIColor.flatWatermelon)
-        button.titleLabel?.font = UIFont.title3.bold
-        button.layer.borderWidth = 2.0
-        button.layer.borderColor = UIColor.flatWatermelon.cgColor
-        button.layer.cornerRadius = 7.0
-        return button
-    }()
-
     private lazy var tradeView: TradeFlowView = {
         let view = TradeFlowView()
         view.backgroundColor = UIColor.Bybit.white
@@ -219,7 +201,8 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
             else { return }
         
         let side = (buttonTitle == Constant.buy) ? Bybit.Side.Buy : Bybit.Side.Sell
-        let vc = BybitTradeFlowViewController(side: side, price: price, quantity: quantity)
+        let order = Order(side: side, price: price, quantity: quantity)
+        let vc = BybitTradeFlowViewController(order: order)
         present(vc, animated: true)
     }
 }
