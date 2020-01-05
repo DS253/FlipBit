@@ -25,6 +25,8 @@ extension BybitBookOrderObserver {
                 }
                 return false
             }
+        case .None:
+            return
         }
     }
     
@@ -57,6 +59,8 @@ extension BybitBookOrderObserver {
                 }
             }
             if hasOrder { NotificationCenter.default.post(name: .sellBookObserverUpdate, object: nil) }
+        case .None:
+            return
         }
     }
     
@@ -80,6 +84,8 @@ extension BybitBookOrderObserver {
                 }
             }
             if hasOrder { NotificationCenter.default.post(name: .sellBookObserverUpdate, object: nil) }
+        case .None:
+            return
         }
     }
     
@@ -94,12 +100,14 @@ extension BybitBookOrderObserver {
             sellBook?.append(contentsOf: markedOrders)
             sortBookOrders(sellBook, side: Bybit.Side.Sell)
             if !markedOrders.isEmpty { NotificationCenter.default.post(name: .sellBookObserverUpdate, object: nil) }
+        case .None:
+            return
         }
     }
 }
 
 extension BybitBookOrderObserver {
-        
+    
     func findLargestOrder(orders: [Bybit.BookOrder?]?) -> Int {
         guard let books = orders?[0..<6] else { return 0 }
         let max = books.max(by: { (a, b) -> Bool in

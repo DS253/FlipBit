@@ -72,6 +72,7 @@ public extension Bybit {
     enum Side: String, Codable {
         case Buy
         case Sell
+        case None
     }
     
     enum Symbol: String, Codable {

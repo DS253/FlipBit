@@ -26,8 +26,6 @@ class Stepper: View {
         didSet {
             if value < minValue { value = minValue }
             if value > maxValue { value = maxValue }
-            incrementer.isEnabled = value < maxValue
-            decrementer.isEnabled = value > minValue
             
             textField.text = increment < 1 ? String(format: "%.2f", value) : String(format: "%.0f", value)
             delegate?.stepperDidUpdate(to: value)
@@ -38,12 +36,13 @@ class Stepper: View {
     
     lazy var textField: FlipBitTextField = {
         let field = FlipBitTextField()
+        field.keyboardType = .decimalPad
         field.font = .body
         field.textAlignment = .center
-        field.textColor = UIColor.Bybit.white
+        field.textColor = UIColor.flatNavyBlue
         field.borderStyle = .none
         field.backgroundColor = .clear
-        field.layer.borderColor = colorTheme.cgColor
+        field.layer.borderColor = UIColor.flatNavyBlue.cgColor
         field.layer.borderWidth = 2.0
         field.layer.cornerRadius = 7.0
         field.delegate = self
@@ -53,10 +52,9 @@ class Stepper: View {
     // MARK: - Private Properties
     
     private let initialValue: Double
-    private let labelWidth: CGFloat = 120.0
     
     private lazy var titleLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: colorTheme)
+        let label = UILabel(font: UIFont.footnote, textColor: UIColor.flatNavyBlue)
         label.textAlignment = .center
         return label
     }()
@@ -66,7 +64,7 @@ class Stepper: View {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(name: .minus), for: .normal)
         button.setImage(UIImage(name: .minus), for: .disabled)
-        button.tintColor = colorTheme
+        button.tintColor = UIColor.flatNavyBlue
         button.adjustsImageWhenHighlighted = false
         button.addTarget(self, action: #selector(decrementerTapped), for: .touchUpInside)
         return button
@@ -77,7 +75,7 @@ class Stepper: View {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(name: .plus), for: .normal)
         button.setImage(UIImage(name: .plus), for: .disabled)
-        button.tintColor = colorTheme
+        button.tintColor = UIColor.flatNavyBlue
         button.adjustsImageWhenHighlighted = false
         button.addTarget(self, action: #selector(incrementerTapped), for: .touchUpInside)
         return button
@@ -90,7 +88,7 @@ class Stepper: View {
     
     // MARK: - Initializers
     
-    init(title: String, side: Bybit.Side, initialValue: Double, increment: Double, max: Double, min: Double) {
+    init(title: String, side: Bybit.Side = .None, initialValue: Double = 0.0, increment: Double = 1.0, max: Double = 0.0, min: Double = 0.0) {
         self.side = side
         self.increment = increment
         self.maxValue = max
@@ -129,25 +127,28 @@ class Stepper: View {
     override func setupConstraints() {
         super.setupConstraints()
         
+        let buttonWidth: CGFloat = 42.0
+        
         NSLayoutConstraint.activate([
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             titleLabel.topAnchor.constraint(equalTo: topAnchor),
             
             decrementer.leadingAnchor.constraint(equalTo: leadingAnchor),
-            decrementer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Dimensions.Space.margin16),
+            decrementer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Dimensions.Space.margin8),
             decrementer.bottomAnchor.constraint(equalTo: bottomAnchor),
+            decrementer.widthAnchor.constraint(equalToConstant: buttonWidth),
             
-            textField.leadingAnchor.constraint(greaterThanOrEqualTo: decrementer.trailingAnchor, constant: Dimensions.Space.margin16),
+            textField.leadingAnchor.constraint(equalTo: decrementer.trailingAnchor, constant: Dimensions.Space.margin8),
             textField.centerXAnchor.constraint(equalTo: centerXAnchor),
-            textField.widthAnchor.constraint(equalToConstant: labelWidth),
-            textField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Dimensions.Space.margin16),
+            textField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Dimensions.Space.margin8),
             textField.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            incrementer.leadingAnchor.constraint(greaterThanOrEqualTo: textField.trailingAnchor, constant: Dimensions.Space.margin16),
-            incrementer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Dimensions.Space.margin16),
+            incrementer.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: Dimensions.Space.margin8),
+            incrementer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Dimensions.Space.margin8),
             incrementer.bottomAnchor.constraint(equalTo: bottomAnchor),
-            incrementer.trailingAnchor.constraint(equalTo: trailingAnchor)
+            incrementer.trailingAnchor.constraint(equalTo: trailingAnchor),
+            incrementer.widthAnchor.constraint(equalToConstant: buttonWidth),
         ])
     }
     
@@ -174,12 +175,33 @@ class Stepper: View {
     }
 }
 
+extension Stepper: PriceSelection {
+    func priceSelected(price: String) {
+        textField.text = price
+    }
+}
+
+extension Stepper: QuantitySelection {
+    func quantitySelected(quantity: String) {
+        textField.text = quantity
+    }
+}
+
 extension Stepper: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard
             let string = textField.text,
-            let newValue = Double(string)
-            else { return }
+            let newValue = Double(string),
+            newValue != 0
+            else {
+                textField.text = increment < 1 ? String(format: "%.2f", value) : String(format: "%.0f", value)
+                delegate?.stepperDidUpdate(to: value)
+                return }
         value = newValue
     }
 }
