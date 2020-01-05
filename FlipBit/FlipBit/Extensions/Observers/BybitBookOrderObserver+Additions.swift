@@ -109,7 +109,9 @@ extension BybitBookOrderObserver {
 extension BybitBookOrderObserver {
     
     func findLargestOrder(orders: [Bybit.BookOrder?]?) -> Int {
-        guard let books = orders?[0..<6] else { return 0 }
+        var orderCount = 0
+        if let count = orders?.count { orderCount = (count > 6) ? 6 : count }
+        guard let books = orders?[0..<orderCount] else { return 0 }
         let max = books.max(by: { (a, b) -> Bool in
             guard
                 let first = a,
