@@ -126,6 +126,8 @@
 		069CFA8D2384D9F400B46BCF /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		069CFA932384E77A00B46BCF /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA922384E77A00B46BCF /* Services.swift */; };
 		069CFA962384ED7E00B46BCF /* Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA952384ED7E00B46BCF /* Dimensions.swift */; };
+		06ED4C4223C2C683002F7139 /* BybitLeverageUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED4C4123C2C683002F7139 /* BybitLeverageUpdateViewController.swift */; };
+		06ED4C4423C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED4C4323C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift */; };
 		06ED569D23B94A0100EF4AF4 /* TradeFlowPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED569C23B94A0100EF4AF4 /* TradeFlowPriceViewController.swift */; };
 		06ED569F23B950DA00EF4AF4 /* BaseTradeFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED569E23B950DA00EF4AF4 /* BaseTradeFlowViewController.swift */; };
 		06ED56A123B9582300EF4AF4 /* TradeFlowQuantityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED56A023B9582300EF4AF4 /* TradeFlowQuantityViewController.swift */; };
@@ -308,6 +310,8 @@
 		069CFA8B2384D9F400B46BCF /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		069CFA922384E77A00B46BCF /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		069CFA952384ED7E00B46BCF /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
+		06ED4C4123C2C683002F7139 /* BybitLeverageUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitLeverageUpdateViewController.swift; sourceTree = "<group>"; };
+		06ED4C4323C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitLeverageUpdateViewController+Delegates.swift"; sourceTree = "<group>"; };
 		06ED569C23B94A0100EF4AF4 /* TradeFlowPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeFlowPriceViewController.swift; sourceTree = "<group>"; };
 		06ED569E23B950DA00EF4AF4 /* BaseTradeFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTradeFlowViewController.swift; sourceTree = "<group>"; };
 		06ED56A023B9582300EF4AF4 /* TradeFlowQuantityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeFlowQuantityViewController.swift; sourceTree = "<group>"; };
@@ -861,6 +865,7 @@
 		45B3D93A2386050A0004DF76 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				06ED4C4323C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift */,
 				45B3D9362386043B0004DF76 /* BaseTableViewController+Additions.swift */,
 				06163D6223B026830076EFC0 /* BybitTradeFlowViewController+Delegates.swift */,
 			);
@@ -923,6 +928,7 @@
 			isa = PBXGroup;
 			children = (
 				0676288923B87B8500C29946 /* Trade Flow */,
+				06ED4C4123C2C683002F7139 /* BybitLeverageUpdateViewController.swift */,
 				45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */,
 				060C8BF623947B8900E50A57 /* BybitTradeEventsTableViewController.swift */,
 				06434EEF23AB482E00E04148 /* BybitTradeFlowPresentationController.swift */,
@@ -1098,6 +1104,7 @@
 				06ED56A723B9782400EF4AF4 /* TradeFlowTakeProfitViewController.swift in Sources */,
 				06490F85237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift in Sources */,
 				065F6018238B5F61008B5B89 /* BybitBookOrderSellCell.swift in Sources */,
+				06ED4C4423C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift in Sources */,
 				06F22140239C900800E1BEB5 /* UIButton+Additions.swift in Sources */,
 				062B825F23A5B14D008287C9 /* String+Additions.swift in Sources */,
 				45B3D934238603900004DF76 /* BaseTableViewController.swift in Sources */,
@@ -1207,6 +1214,7 @@
 				0641311D2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift in Sources */,
 				06470DF22377C28100419238 /* Bundle+Additions.swift in Sources */,
 				06470DF02377C24B00419238 /* Requestable+Additions.swift in Sources */,
+				06ED4C4223C2C683002F7139 /* BybitLeverageUpdateViewController.swift in Sources */,
 				45B3D93F238605D90004DF76 /* UITableView+Additions.swift in Sources */,
 				064EA948238091CE00570CEE /* BitService+BBResponseMetaData.swift in Sources */,
 				06163D5D23AED17D0076EFC0 /* FadeAnimationTransition.swift in Sources */,

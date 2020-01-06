@@ -24,6 +24,7 @@ struct Constant {
     static let buy = "Buy"
     static let hour = "Hour"
     static let hours = "Hours"
+    static let leverage = "Leverage"
     static let limit = "Limit"
     static let long = "Long"
     static let market = "Market"

@@ -27,6 +27,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         let container = View(backgroundColor: UIColor.Bybit.white)
         container.setBybitTheme()
         container.addSubview(view: currentLeverageLabel, constant: 8)
+        container.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(leverageTapped)))
         return container
     }()
     
@@ -205,6 +206,12 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         let side = (buttonTitle == Constant.buy) ? Bybit.Side.Buy : Bybit.Side.Sell
         let order = Order(side: side, price: price, quantity: quantity)
         let vc = BybitTradeFlowViewController(order: order)
+        present(vc, animated: true)
+    }
+    
+    @objc func leverageTapped() {
+        guard let leverageData = self.leverageStatus else { return }
+        let vc = BybitLeverageUpdateViewController(leverage: String(leverageData.btcLeverage))
         present(vc, animated: true)
     }
     
