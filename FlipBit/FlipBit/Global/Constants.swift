@@ -22,6 +22,7 @@ struct Constant {
     // MARK: - Common
     static let back = "Back"
     static let buy = "Buy"
+    static let cross = "Cross"
     static let hour = "Hour"
     static let hours = "Hours"
     static let leverage = "Leverage"

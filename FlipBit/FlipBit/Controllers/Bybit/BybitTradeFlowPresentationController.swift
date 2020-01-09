@@ -26,8 +26,8 @@ class BybitTradeFlowPresentationController: UIPresentationController {
         super.containerViewWillLayoutSubviews()
         
         backgroundView.frame = UIScreen.main.bounds
+        backgroundView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
         containerView?.insertSubview(backgroundView, at: 0)
-         containerView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissView)))
     }
     
     override func presentationTransitionWillBegin() {
