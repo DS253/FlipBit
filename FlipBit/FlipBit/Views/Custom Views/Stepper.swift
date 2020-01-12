@@ -178,12 +178,16 @@ class Stepper: View {
 extension Stepper: PriceSelection {
     func priceSelected(price: String) {
         textField.text = price
+        guard let double = Double(price) else { return }
+        value = double
     }
 }
 
 extension Stepper: QuantitySelection {
     func quantitySelected(quantity: String) {
         textField.text = quantity
+        guard let double = Double(quantity) else { return }
+        value = double
     }
 }
 

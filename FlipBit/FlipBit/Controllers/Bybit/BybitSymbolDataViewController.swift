@@ -70,7 +70,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }()
     
     private lazy var quantityPickerView: Stepper = {
-        Stepper(title: Constant.quantity, side: .None, initialValue: 0.0, increment: 1.0, max: 100000.0, min: 0.0)
+        Stepper(title: Constant.quantity, side: .None, initialValue: 0.0, increment: 1.0, max: 1000000.0, min: 0.0)
     }()
     
     private lazy var tradeHistoryContainer: View = {
