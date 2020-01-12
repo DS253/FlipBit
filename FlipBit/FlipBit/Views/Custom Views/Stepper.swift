@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol StepperDelegate: class {
-    func stepperDidUpdate(to value: Double)
-}
-
 class Stepper: View {
     
     // MARK: - Public Properties
@@ -28,11 +24,8 @@ class Stepper: View {
             if value > maxValue { value = maxValue }
             
             textField.text = increment < 1 ? String(format: "%.2f", value) : String(format: "%.0f", value)
-            delegate?.stepperDidUpdate(to: value)
         }
     }
-    
-    weak var delegate: StepperDelegate?
     
     lazy var textField: FlipBitTextField = {
         let field = FlipBitTextField()
@@ -204,7 +197,6 @@ extension Stepper: UITextFieldDelegate {
             newValue != 0
             else {
                 textField.text = increment < 1 ? String(format: "%.2f", value) : String(format: "%.0f", value)
-                delegate?.stepperDidUpdate(to: value)
                 return }
         value = newValue
     }

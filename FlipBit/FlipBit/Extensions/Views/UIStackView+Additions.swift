@@ -16,12 +16,12 @@ internal extension UIStackView {
     func addArrangedSubviews(_ views: [UIView]) {
         views.forEach { addArrangedSubview($0) }
     }
-
+    
     /// Resets stack view by removing all arranged subviews from `self`.
     func removeArrangedSubviews() {
         arrangedSubviews.forEach { $0.removeFromSuperview() }
     }
-
+    
     /// Swaps currently visible arranged subviews with a new one.
     ///
     /// - Parameters:
@@ -29,5 +29,30 @@ internal extension UIStackView {
     func swapArrangedSubviews(with view: UIView) {
         removeArrangedSubviews()
         addArrangedSubview(view)
+    }
+    
+    /// Displays the given view by adding it as an addArrangedSubview to the containerView
+    /// and animating the alpha from 0 to 1 as buffer for transistioning between the child views.
+    ///
+    /// - Parameters:
+    ///     - view: UIView - Child view to be added.
+    func display(view: UIView) {
+        // Duration of animation
+        let animationDuration = 0.3
+        
+        // Alpha before updating the containerview.
+        alpha = 0.0
+        
+        // Add the view as the content child view in container view.
+        swapArrangedSubviews(with: view)
+        
+        // Layout the constraints to redraw the view with the content height and set the alpha.
+        UIView.animate(withDuration: animationDuration, animations: {
+            self.superview?.layoutIfNeeded()
+        }) { _ in
+            UIView.animate(withDuration: animationDuration) {
+                self.alpha = 1.0
+            }
+        }
     }
 }

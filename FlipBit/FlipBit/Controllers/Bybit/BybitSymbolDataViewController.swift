@@ -197,7 +197,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }
     
     @objc func tradeButtonTapped(sender: UIButton) {
-        
+        vibrate()
         guard
             let price = pricePickerView.textField.text,
             let quantity = quantityPickerView.textField.text,
@@ -211,6 +211,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }
     
     @objc func leverageTapped() {
+        vibrate()
         guard let substring = currentLeverageLabel.text?.dropLast() else { return }
         let vc = BybitLeverageUpdateViewController(leverage: String(substring), observer: self)
         present(vc, animated: true)

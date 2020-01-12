@@ -12,15 +12,6 @@ import UIKit
 /// to be presented fullscreen.
 class ActivityIndicatorViewController: ViewController {
 
-    private let indicator: UIActivityIndicatorView = {
-        let indicatorView = UIActivityIndicatorView()
-        indicatorView.translatesAutoresizingMaskIntoConstraints = false
-        indicatorView.hidesWhenStopped = true
-        indicatorView.style = .large
-        indicatorView.backgroundColor = .clear
-        return indicatorView
-    }()
-
     init() {
         super.init(nibName: nil, bundle: nil)
 

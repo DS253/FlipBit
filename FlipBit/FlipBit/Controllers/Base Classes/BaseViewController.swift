@@ -39,7 +39,7 @@ class BaseViewController: UIViewController, ViewSetup {
         setupSubviews()
         setupConstraints()
     }
-
+    
     /// Allows for isolated setup of anything relating to `ViewController`.
     /// This is ideally where setup of model data or layout should occur.
     ///
@@ -48,7 +48,7 @@ class BaseViewController: UIViewController, ViewSetup {
     ///
     ///   For more information, see **Setup.swift** implementation.
     func setup() { }
-
+    
     /// Allows for isolated setup of **subviews** relating to this `ViewController`.
     /// This can include layout, configuration, customization, etc.
     ///
@@ -57,7 +57,7 @@ class BaseViewController: UIViewController, ViewSetup {
     ///
     ///   For more information, see **Setup.swift** implementation.
     func setupSubviews() { }
-
+    
     /// Allows for isolated setup of **constraints** relating to this `ViewController`.
     /// This should only include configuration of any `NSLayoutConstraint` relating
     /// to this specific `ViewController` or it's subviews.
@@ -67,6 +67,16 @@ class BaseViewController: UIViewController, ViewSetup {
     ///
     ///   For more information, see **Setup.swift** implementation.
     func setupConstraints() { }
+    
+    let indicator: UIActivityIndicatorView = {
+        let indicatorView = UIActivityIndicatorView()
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        indicatorView.hidesWhenStopped = true
+        indicatorView.style = .large
+        indicatorView.backgroundColor = .clear
+        indicatorView.startAnimating()
+        return indicatorView
+    }()
     
     func vibrate() {
         vibrateHandler.prepare()

@@ -14,7 +14,33 @@ protocol LeverageObserver: class {
 
 class BybitLeverageUpdateViewController: ViewController {
     
+    // MARK: - Private Properties
+    
+    /// The maximum leverage that can be applied.
+    private var maxValue: Int = 100
+    
+    /// The minimum leverage that can be applied.
+    private var minValue: Int = 0
+    
+    /// The initial set leverage.
+    private var initialValue: String = ""
+    
+    /// The current leverage manually set on the UISlider.
+    private var currentValue: Int {
+        didSet {
+            if currentValue < minValue { currentValue = minValue }
+            if currentValue > maxValue { currentValue = maxValue }
+            
+            leverageValueTextField.text = (currentValue == 0) ? Constant.cross : "\(String(currentValue))x"
+            updateButtonState()
+        }
+    }
+    
+    /// Delegate observer tracks changes to the set leverage.
     private weak var leverageDelegate: LeverageObserver?
+    
+    /// Tracks the dismissal of numberpad.
+    private var manualCancel: Bool = false
     
     private lazy var leverageTitleLabel: UILabel = {
         let leverageLabel = UILabel(font: UIFont.title1.bold, textColor: UIColor.flatMint)
@@ -23,10 +49,31 @@ class BybitLeverageUpdateViewController: ViewController {
         return leverageLabel
     }()
     
-    private lazy var leverageValueLabel: UILabel = {
-        let leverageLabel = UILabel(font: UIFont.largeTitle.bold, textColor: UIColor.flatMint)
-        leverageLabel.textAlignment = .center
-        return leverageLabel
+    private lazy var leverageValueTextField: FlipBitTextField = {
+        let field = FlipBitTextField()
+        field.keyboardType = .numberPad
+        field.inputAccessoryView = self.numberToolBar
+        field.font = UIFont.largeTitle.bold
+        field.textAlignment = .center
+        field.textColor = UIColor.flatMintDark
+        field.borderStyle = .none
+        field.backgroundColor = .clear
+        field.layer.borderColor = UIColor.flatMintDark.cgColor
+        field.layer.borderWidth = 2.0
+        field.layer.cornerRadius = 7.0
+        field.delegate = self
+        return field
+    }()
+    
+    private lazy var numberToolBar: UIToolbar = {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100))
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        toolbar.barStyle = .default
+        let cancelButton = UIBarButtonItem(title: Constant.cancel, style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancelNumberPad))
+        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: Constant.done, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonPressed))
+        toolbar.setItems([cancelButton, space, doneButton], animated: true)
+        return toolbar
     }()
     
     private lazy var slider: UISlider = {
@@ -35,14 +82,14 @@ class BybitLeverageUpdateViewController: ViewController {
         slider.minimumValue = 0
         slider.maximumValue = 100
         slider.addTarget(self, action: #selector(sliderAction(sender:)), for: .valueChanged)
-        slider.minimumTrackTintColor = UIColor.flatMint
-        slider.maximumTrackTintColor = UIColor.flatMint
+        slider.minimumTrackTintColor = UIColor.flatMintDark
+        slider.maximumTrackTintColor = UIColor.flatMintDark
         return slider
     }()
     
     private lazy var updateButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.updateLeverage, textColor: UIColor.flatMint)
-        button.addTarget(self, action: #selector(updateLeverage(sender:)), for: .touchUpInside)
+        let button = UIButton(type: .custom, title: Constant.updateLeverage, textColor: UIColor.flatMintDark)
+        button.addTarget(self, action: #selector(updateLeverage(sender:)), for: .touchDown)
         button.titleLabel?.font = UIFont.body
         button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
@@ -56,15 +103,18 @@ class BybitLeverageUpdateViewController: ViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .vertical
         stackView.spacing = Dimensions.Space.margin20
-        stackView.addArrangedSubviews([leverageTitleLabel, leverageValueLabel, slider, updateButton])
+        stackView.addArrangedSubviews([leverageTitleLabel, leverageValueTextField, slider, updateButton])
+        stackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cancelNumberPad)))
         return stackView
     }()
     
+    // MARK: Initializers
+    
     init(leverage: String, observer: LeverageObserver) {
+        currentValue = (initialValue as NSString).integerValue
         super.init(nibName: nil, bundle: nil)
         self.leverageDelegate = observer
-        slider.value = (leverage as NSString).floatValue
-        updateLeverageValue(value: leverage)
+        initialValue = leverage
         modalPresentationStyle = .custom
         transitioningDelegate = self
     }
@@ -77,6 +127,8 @@ class BybitLeverageUpdateViewController: ViewController {
         NotificationCenter.default.removeObserver(self, name: .dismissFlow, object: nil)
     }
     
+    // MARK: Setup
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
@@ -86,6 +138,8 @@ class BybitLeverageUpdateViewController: ViewController {
     override func setup() {
         super.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(dismissLeverageView(notification:)), name: .dismissFlow, object: nil)
+        slider.value = (initialValue as NSString).floatValue
+        updateLeverageValue(value: initialValue)
         
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 14
@@ -111,17 +165,34 @@ class BybitLeverageUpdateViewController: ViewController {
         ])
     }
     
-    func updateLeverageValue(value: String) {
-        if value == "0" { leverageValueLabel.text = Constant.cross }
-        else { leverageValueLabel.text = value + "x" }
+    /// Updates the current value and the textfield.
+    private func updateLeverageValue(value: String) {
+        currentValue = (value == "0") ? 0 : (value as NSString).integerValue
+        leverageValueTextField.text = (value == "0") ? Constant.cross : (value + "x")
     }
     
-    @objc func sliderAction(sender: UISlider) {
-        let currentValue = Int(sender.value)
+    /// Update the appearance and state of the Update button.
+    private func updateButtonState() {
+        /// If the value has changed since the initial value, the button is enabled.
+        updateButton.isEnabled = (initialValue != String(currentValue))
+        let color = updateButton.isEnabled ? UIColor.flatMintDark : UIColor.flatGray
+        updateButton.setTitleColor(color, for: .normal)
+        updateButton.layer.borderColor = color.cgColor
+    }
+    
+    // MARK: Action Methods
+    
+    /// When the UISlider is adjusted, update the textfield and value properties.
+    @objc private func sliderAction(sender: UISlider) {
+        if leverageValueTextField.isFirstResponder { leverageValueTextField.resignFirstResponder() }
+        currentValue = Int(sender.value)
         updateLeverageValue(value: String(currentValue))
     }
     
-    @objc func updateLeverage(sender: Any) {
+    /// Make call to change leverage.
+    @objc private func updateLeverage(sender: Any) {
+        /// Animate the activity indicator.
+        stackView.display(view: indicator)
         services.updateBybitLeverage(symbol: .BTC, leverage: String(Int(slider.value))) { result in
             switch result {
             case .success(_):
@@ -134,7 +205,56 @@ class BybitLeverageUpdateViewController: ViewController {
         vibrate()
     }
     
-    @objc func dismissLeverageView(notification: NSNotification) {
-        dismiss(animated: true)
+    /// Dismiss the view when tapped outside the view's bounds.
+    @objc private func dismissLeverageView(notification: NSNotification) {
+        if leverageValueTextField.isFirstResponder {
+            leverageValueTextField.resignFirstResponder()
+        } else { dismiss(animated: true) }
+    }
+    
+    /// Dismiss the numberpad.
+    @objc private func cancelNumberPad() {
+        manualCancel = true
+        leverageValueTextField.resignFirstResponder()
+        vibrate()
+    }
+    
+    /// Dismiss the numberpad.
+    @objc private func doneButtonPressed() {
+        manualCancel = false
+        leverageValueTextField.resignFirstResponder()
+        vibrate()
+    }
+}
+
+// MARK: UITextFieldDelegate
+extension BybitLeverageUpdateViewController: UITextFieldDelegate {
+    
+    /// When the textfield is active, disable the update button.
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        updateButton.isEnabled = false
+        leverageValueTextField.text = ""
+    }
+    
+    /// When the textfield is no longer active, update the button state, the UISlider, and value properties.
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard
+            manualCancel != true,
+            let string = textField.text,
+            let newValue = Int(string)
+            else {
+                textField.text = (currentValue == 0) ? Constant.cross : "\(String(currentValue))x"
+                manualCancel = false
+                updateButtonState()
+                return
+        }
+        currentValue = newValue
+        slider.value = Float(newValue)
+    }
+    
+    /// Limit the input to a maximum of 3 characters.
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = textField.text ?? ""
+        return text.appending(string).count <= 3
     }
 }
