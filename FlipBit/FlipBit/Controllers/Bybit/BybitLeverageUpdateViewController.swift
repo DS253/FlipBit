@@ -8,17 +8,23 @@
 
 import UIKit
 
+protocol LeverageObserver: class {
+    func leverageUpdated(leverage: String)
+}
+
 class BybitLeverageUpdateViewController: ViewController {
     
+    private weak var leverageDelegate: LeverageObserver?
+    
     private lazy var leverageTitleLabel: UILabel = {
-        let leverageLabel = UILabel(font: UIFont.title1.bold, textColor: UIColor.Bybit.titleGray)
+        let leverageLabel = UILabel(font: UIFont.title1.bold, textColor: UIColor.flatMint)
         leverageLabel.textAlignment = .center
         leverageLabel.text = Constant.leverage
         return leverageLabel
     }()
     
     private lazy var leverageValueLabel: UILabel = {
-        let leverageLabel = UILabel(font: UIFont.title1.bold, textColor: UIColor.Bybit.titleGray)
+        let leverageLabel = UILabel(font: UIFont.largeTitle.bold, textColor: UIColor.flatMint)
         leverageLabel.textAlignment = .center
         return leverageLabel
     }()
@@ -29,11 +35,34 @@ class BybitLeverageUpdateViewController: ViewController {
         slider.minimumValue = 0
         slider.maximumValue = 100
         slider.addTarget(self, action: #selector(sliderAction(sender:)), for: .valueChanged)
+        slider.minimumTrackTintColor = UIColor.flatMint
+        slider.maximumTrackTintColor = UIColor.flatMint
         return slider
     }()
     
-    init(leverage: String) {
+    private lazy var updateButton: UIButton = {
+        let button = UIButton(type: .custom, title: Constant.updateLeverage, textColor: UIColor.flatMint)
+        button.addTarget(self, action: #selector(updateLeverage(sender:)), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.body
+        button.layer.borderWidth = 2.0
+        button.layer.cornerRadius = 7.0
+        button.layer.borderColor = UIColor.flatMintDark.cgColor
+        button.isSelected = true
+        return button
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = Dimensions.Space.margin20
+        stackView.addArrangedSubviews([leverageTitleLabel, leverageValueLabel, slider, updateButton])
+        return stackView
+    }()
+    
+    init(leverage: String, observer: LeverageObserver) {
         super.init(nibName: nil, bundle: nil)
+        self.leverageDelegate = observer
         slider.value = (leverage as NSString).floatValue
         updateLeverageValue(value: leverage)
         modalPresentationStyle = .custom
@@ -51,7 +80,6 @@ class BybitLeverageUpdateViewController: ViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
-        view.setFrameLengthByPercentage(width: 0.85, height: 0.6)
         view.setToScreenCenter()
     }
     
@@ -59,6 +87,7 @@ class BybitLeverageUpdateViewController: ViewController {
         super.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(dismissLeverageView(notification:)), name: .dismissFlow, object: nil)
         
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 14
         view.layer.borderWidth = 1.0
         view.layer.borderColor = UIColor.Bybit.white.cgColor
@@ -67,24 +96,18 @@ class BybitLeverageUpdateViewController: ViewController {
     
     override func setupSubviews() {
         super.setupSubviews()
-        
-        view.addSubview(leverageTitleLabel)
-        view.addSubview(leverageValueLabel)
-        view.addSubview(slider)
+        view.addSubview(stackView)
     }
     
     override func setupConstraints() {
         super.setupConstraints()
         NSLayoutConstraint.activate([
-            leverageTitleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimensions.Space.margin16),
-            leverageTitleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimensions.Space.margin16),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimensions.Space.margin16),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin16),
             
-            leverageValueLabel.topAnchor.constraint(equalTo: leverageTitleLabel.bottomAnchor, constant: Dimensions.Space.margin16),
-            leverageValueLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            
-            slider.topAnchor.constraint(equalTo: leverageValueLabel.bottomAnchor, constant: Dimensions.Space.margin16),
-            slider.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin16),
-            slider.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin16)
+            slider.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 100)
         ])
     }
     
@@ -96,6 +119,19 @@ class BybitLeverageUpdateViewController: ViewController {
     @objc func sliderAction(sender: UISlider) {
         let currentValue = Int(sender.value)
         updateLeverageValue(value: String(currentValue))
+    }
+    
+    @objc func updateLeverage(sender: Any) {
+        services.updateBybitLeverage(symbol: .BTC, leverage: String(Int(slider.value))) { result in
+            switch result {
+            case .success(_):
+                self.leverageDelegate?.leverageUpdated(leverage: String(Int(self.slider.value)))
+                self.dismiss(animated: true)
+            case let.failure(error):
+                print(error)
+            }
+        }
+        vibrate()
     }
     
     @objc func dismissLeverageView(notification: NSNotification) {

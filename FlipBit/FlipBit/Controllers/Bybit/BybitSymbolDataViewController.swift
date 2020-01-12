@@ -28,6 +28,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         container.setBybitTheme()
         container.addSubview(view: currentLeverageLabel, constant: 8)
         container.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(leverageTapped)))
+        container.isUserInteractionEnabled = false
         return container
     }()
     
@@ -95,8 +96,8 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
                 self.leverageStatus = result
                 guard let leverage = self.leverageStatus else { return }
                 self.currentLeverageLabel.text = "\(leverage.btcLeverage)x"
+                self.leverageContainer.isUserInteractionEnabled = true
             case let.failure(error):
-                print(result)
                 print(error)
             }
         }
@@ -210,13 +211,19 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }
     
     @objc func leverageTapped() {
-        guard let leverageData = self.leverageStatus else { return }
-        let vc = BybitLeverageUpdateViewController(leverage: String(leverageData.btcLeverage))
+        guard let substring = currentLeverageLabel.text?.dropLast() else { return }
+        let vc = BybitLeverageUpdateViewController(leverage: String(substring), observer: self)
         present(vc, animated: true)
     }
     
     @objc func dismissTextField() {
         pricePickerView.textField.resignFirstResponder()
         quantityPickerView.textField.resignFirstResponder()
+    }
+}
+
+extension BybitSymbolDataViewController: LeverageObserver {
+    func leverageUpdated(leverage: String) {
+        self.currentLeverageLabel.text = "\(leverage)x"
     }
 }
