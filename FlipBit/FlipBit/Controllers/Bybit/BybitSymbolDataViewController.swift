@@ -65,11 +65,11 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     
     private let optionsViewGradientHeight: CGFloat = 4.0
     
-    private lazy var pricePickerView: Stepper = {
+    private lazy var priceStepper: Stepper = {
         return Stepper(title: Constant.price, side: .None, initialValue: 0.0, increment: 0.5, max: 100000.0, min: 0.0)
     }()
     
-    private lazy var quantityPickerView: Stepper = {
+    private lazy var quantityStepper: Stepper = {
         Stepper(title: Constant.quantity, side: .None, initialValue: 0.0, increment: 1.0, max: 1000000.0, min: 0.0)
     }()
     
@@ -87,8 +87,14 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     
     var leverageStatus: BitService.BybitLeverageStatus?
     
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .symbolObserverUpdate, object: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSymbolInfo(notification:)), name: .symbolObserverUpdate, object: nil)
         services.fetchBybitLeverageStatus { result in
             switch result {
                 
@@ -125,13 +131,13 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         view.addSubview(leverageContainer)
         view.addSubview(orderbookPanel)
         view.addSubview(percentageContainer)
-        view.addSubview(pricePickerView)
-        view.addSubview(quantityPickerView)
+        view.addSubview(priceStepper)
+        view.addSubview(quantityStepper)
         view.addSubview(tradeHistoryContainer)
         view.addSubview(tradeView)
         
-        orderbookPanel.setPriceSelector(selector: pricePickerView)
-        orderbookPanel.setQuantitySelector(selector: quantityPickerView)
+        orderbookPanel.setPriceSelector(selector: priceStepper)
+        orderbookPanel.setQuantitySelector(selector: quantityStepper)
         tradeView.configureButtons(self, action: #selector(tradeButtonTapped(sender:)))
     }
     
@@ -146,14 +152,14 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
             leverageContainer.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
             leverageContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
             leverageContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
-            leverageContainer.bottomAnchor.constraint(equalTo: pricePickerView.topAnchor, constant: -Dimensions.Space.margin16),
+            leverageContainer.bottomAnchor.constraint(equalTo: priceStepper.topAnchor, constant: -Dimensions.Space.margin16),
             
-            pricePickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
-            pricePickerView.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
-            pricePickerView.bottomAnchor.constraint(equalTo: quantityPickerView.topAnchor, constant: -Dimensions.Space.margin8),
+            priceStepper.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
+            priceStepper.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
+            priceStepper.bottomAnchor.constraint(equalTo: quantityStepper.topAnchor, constant: -Dimensions.Space.margin8),
             
-            quantityPickerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
-            quantityPickerView.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
+            quantityStepper.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
+            quantityStepper.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
             
             orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Dimensions.Space.margin8),
             orderbookPanel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
@@ -199,8 +205,8 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     @objc func tradeButtonTapped(sender: UIButton) {
         vibrate()
         guard
-            let price = pricePickerView.textField.text,
-            let quantity = quantityPickerView.textField.text,
+            let price = priceStepper.textField.text,
+            let quantity = quantityStepper.textField.text,
             let buttonTitle = sender.titleLabel?.text
             else { return }
         
@@ -208,6 +214,17 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         let order = Order(side: side, price: price, quantity: quantity)
         let vc = BybitTradeFlowViewController(order: order)
         present(vc, animated: true)
+    }
+    
+    @objc func updateSymbolInfo(notification: NSNotification) {
+        guard
+            priceStepper.textField.text == "0.00",
+            let newInfo = symbolObserver.symbolInfo,
+            let price = newInfo.lastPrice,
+            let value = Double(price)
+            else { return }
+        priceStepper.textField.text = price
+        priceStepper.value = value
     }
     
     @objc func leverageTapped() {
@@ -218,8 +235,8 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }
     
     @objc func dismissTextField() {
-        pricePickerView.textField.resignFirstResponder()
-        quantityPickerView.textField.resignFirstResponder()
+        priceStepper.textField.resignFirstResponder()
+        quantityStepper.textField.resignFirstResponder()
     }
 }
 
