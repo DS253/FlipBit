@@ -26,6 +26,11 @@ import UIKit
 ///
 ///   For more information, see **Setup.swift** implementation.
 open class BaseView: UIView, ViewSetup {
+    
+    private lazy var vibrateHandler: UISelectionFeedbackGenerator = {
+        UISelectionFeedbackGenerator()
+    }()
+    
     /// Creates a `BaseView` instance given the provided parameter(s).
     ///
     /// Use this initializer when you intend to create an instance of a view
@@ -88,4 +93,9 @@ open class BaseView: UIView, ViewSetup {
     ///
     ///   For more information, see **Setup.swift** implementation.
     open func setupConstraints() { }
+    
+    func vibrate() {
+        vibrateHandler.prepare()
+        vibrateHandler.selectionChanged()
+    }
 }

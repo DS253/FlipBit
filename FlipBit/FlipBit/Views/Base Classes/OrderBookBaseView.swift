@@ -106,7 +106,6 @@ class OrderBookBaseView: View {
     }
     
     @objc func updateBookRows(notification: Notification) {
-        
         guard let book = orderBook() else { return }
         let rows = allRows()
         if book.count >= 1 {

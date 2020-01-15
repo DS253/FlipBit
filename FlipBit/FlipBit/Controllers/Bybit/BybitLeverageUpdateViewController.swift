@@ -111,10 +111,10 @@ class BybitLeverageUpdateViewController: ViewController {
     // MARK: Initializers
     
     init(leverage: String, observer: LeverageObserver) {
+        initialValue = leverage
         currentValue = (initialValue as NSString).integerValue
         super.init(nibName: nil, bundle: nil)
         self.leverageDelegate = observer
-        initialValue = leverage
         modalPresentationStyle = .custom
         transitioningDelegate = self
     }

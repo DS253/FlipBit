@@ -9,12 +9,12 @@
 import UIKit
 
 class TradeFlowPriceViewController: BaseTradeFlowViewController {
-        
+    
     private lazy var priceStepper: Stepper = {
         if let price = Double(order.price) {
-            return Stepper(title: Constant.price, side: order.side, initialValue: price, increment: 0.5, max: 10000.0, min: 0.0)
+            return Stepper(side: order.side, initialValue: price, increment: 0.5, max: 10000.0, min: 0.0)
         }
-        return Stepper(title: Constant.price, side: order.side, initialValue: 0, increment: 0.5, max: 10000.0, min: 0.0)
+        return Stepper(side: order.side, initialValue: 0, increment: 0.5, max: 10000.0, min: 0.0)
     }()
     
     override func setup() {

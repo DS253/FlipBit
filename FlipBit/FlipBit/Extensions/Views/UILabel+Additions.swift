@@ -15,10 +15,12 @@ extension UILabel {
     ///
     /// - Note: This method also assigns the `translatesAutoresizingMaskIntoConstraints` to
     ///         `false` to eliminate the need to repeated assign this value.
-    convenience init(font: UIFont, textColor: UIColor = .black) {
+    convenience init(text: String = "", font: UIFont, textColor: UIColor = .black, textAlignment: NSTextAlignment = .left) {
         self.init()
+        self.text = text
         self.translatesAutoresizingMaskIntoConstraints = false
         self.textColor = textColor
         self.font = font
+        self.textAlignment = textAlignment
     }
 }

@@ -12,9 +12,9 @@ class TradeFlowStopLossViewController: BaseTradeFlowViewController {
     
     private lazy var stopLossStepper: Stepper = {
         if let quantity = Double(order.quantity) {
-            return Stepper(title: Constant.stopLoss, side: order.side, initialValue: 0, increment: 1.0, max: 100000.0, min: 0.0)
+            return Stepper(side: order.side, initialValue: 0, increment: 1.0, max: 100000.0, min: 0.0)
         }
-        return Stepper(title: Constant.takeProfit, side: order.side, initialValue: 0, increment: 1.0, max: 100000.0, min: 0.0)
+        return Stepper(side: order.side, initialValue: 0, increment: 1.0, max: 100000.0, min: 0.0)
     }()
     
     override func setup() {

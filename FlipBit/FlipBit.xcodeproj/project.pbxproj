@@ -42,6 +42,9 @@
 		062E27702391C17100AF0C7D /* BuyOrderBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */; };
 		062E27732391C3C800AF0C7D /* SellOrderBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E27722391C3C800AF0C7D /* SellOrderBookView.swift */; };
 		062E27772393590500AF0C7D /* OrderBookPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E27762393590500AF0C7D /* OrderBookPanel.swift */; };
+		063FDD4A23CE9D20002D0CDC /* BybitPriceUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063FDD4923CE9D20002D0CDC /* BybitPriceUpdateViewController.swift */; };
+		063FDD4C23CEA077002D0CDC /* BybitPriceUpdateViewController+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063FDD4B23CEA077002D0CDC /* BybitPriceUpdateViewController+Delegates.swift */; };
+		063FDD4E23CEAC83002D0CDC /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063FDD4D23CEAC83002D0CDC /* Panel.swift */; };
 		0641311D2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0641311C2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift */; };
 		0641311F2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0641311E2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift */; };
 		064131212389ED5400B795D5 /* SocketObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064131202389ED5400B795D5 /* SocketObserver.swift */; };
@@ -139,7 +142,6 @@
 		45237FB1238C9D19005FC176 /* Bybit+SymbolInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45237FB0238C9D19005FC176 /* Bybit+SymbolInfo.swift */; };
 		45436FB923AAC9A000AA141A /* BybitSymbolDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */; };
 		45436FBB23AACB4200AA141A /* BybitTradeFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45436FBA23AACB4200AA141A /* BybitTradeFlowViewController.swift */; };
-		45436FC223AAEED900AA141A /* ActivityIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45436FC123AAEED900AA141A /* ActivityIndicatorViewController.swift */; };
 		45436FC423AAEF4800AA141A /* ActivityIndicatorPresentationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45436FC323AAEF4800AA141A /* ActivityIndicatorPresentationViewController.swift */; };
 		455A1F3B237E2825005969B9 /* BitService+BBOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */; };
 		45B3D934238603900004DF76 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D933238603900004DF76 /* BaseTableViewController.swift */; };
@@ -222,6 +224,9 @@
 		062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyOrderBookView.swift; sourceTree = "<group>"; };
 		062E27722391C3C800AF0C7D /* SellOrderBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellOrderBookView.swift; sourceTree = "<group>"; };
 		062E27762393590500AF0C7D /* OrderBookPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookPanel.swift; sourceTree = "<group>"; };
+		063FDD4923CE9D20002D0CDC /* BybitPriceUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitPriceUpdateViewController.swift; sourceTree = "<group>"; };
+		063FDD4B23CEA077002D0CDC /* BybitPriceUpdateViewController+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitPriceUpdateViewController+Delegates.swift"; sourceTree = "<group>"; };
+		063FDD4D23CEAC83002D0CDC /* Panel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
 		0641311C2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitBookOrderObserver+Additions.swift"; sourceTree = "<group>"; };
 		0641311E2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitBookOrderObserver+Deserializer.swift"; sourceTree = "<group>"; };
 		064131202389ED5400B795D5 /* SocketObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketObserver.swift; sourceTree = "<group>"; };
@@ -323,7 +328,6 @@
 		45237FB0238C9D19005FC176 /* Bybit+SymbolInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+SymbolInfo.swift"; sourceTree = "<group>"; };
 		45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitSymbolDataViewController.swift; sourceTree = "<group>"; };
 		45436FBA23AACB4200AA141A /* BybitTradeFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeFlowViewController.swift; sourceTree = "<group>"; };
-		45436FC123AAEED900AA141A /* ActivityIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorViewController.swift; sourceTree = "<group>"; };
 		45436FC323AAEF4800AA141A /* ActivityIndicatorPresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorPresentationViewController.swift; sourceTree = "<group>"; };
 		455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBOrder.swift"; sourceTree = "<group>"; };
 		45B3D933238603900004DF76 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
@@ -418,6 +422,7 @@
 			children = (
 				062895D82383A7620076AA27 /* Base Classes */,
 				45B3D943238607480004DF76 /* Custom Views */,
+				063FDD4D23CEAC83002D0CDC /* Panel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -843,7 +848,6 @@
 		45436FC523AAF10400AA141A /* ActivityIndicator */ = {
 			isa = PBXGroup;
 			children = (
-				45436FC123AAEED900AA141A /* ActivityIndicatorViewController.swift */,
 				45436FC323AAEF4800AA141A /* ActivityIndicatorPresentationViewController.swift */,
 			);
 			path = ActivityIndicator;
@@ -865,7 +869,6 @@
 		45B3D93A2386050A0004DF76 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				06ED4C4323C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift */,
 				45B3D9362386043B0004DF76 /* BaseTableViewController+Additions.swift */,
 				06163D6223B026830076EFC0 /* BybitTradeFlowViewController+Delegates.swift */,
 			);
@@ -929,6 +932,9 @@
 			children = (
 				0676288923B87B8500C29946 /* Trade Flow */,
 				06ED4C4123C2C683002F7139 /* BybitLeverageUpdateViewController.swift */,
+				06ED4C4323C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift */,
+				063FDD4923CE9D20002D0CDC /* BybitPriceUpdateViewController.swift */,
+				063FDD4B23CEA077002D0CDC /* BybitPriceUpdateViewController+Delegates.swift */,
 				45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */,
 				060C8BF623947B8900E50A57 /* BybitTradeEventsTableViewController.swift */,
 				06434EEF23AB482E00E04148 /* BybitTradeFlowPresentationController.swift */,
@@ -1115,6 +1121,7 @@
 				06470DEB2377C1F400419238 /* DataConvertible.swift in Sources */,
 				065F601D238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift in Sources */,
 				064D3D852389A55200B34173 /* Bybit.swift in Sources */,
+				063FDD4E23CEAC83002D0CDC /* Panel.swift in Sources */,
 				062E276C2391B7D800AF0C7D /* OrderBookRow.swift in Sources */,
 				060C8BF9239499E100E50A57 /* BybitTradeEventCell.swift in Sources */,
 				064D3D8A2389A6E700B34173 /* Bybit+BookOrderSnapshot.swift in Sources */,
@@ -1152,6 +1159,7 @@
 				06470E132377C6C600419238 /* BitService+BBAPIKeyInfo.swift in Sources */,
 				062E276E2391C01700AF0C7D /* OrderBookBaseView.swift in Sources */,
 				06470DF62377C2B000419238 /* DateFormatter+Additions.swift in Sources */,
+				063FDD4A23CE9D20002D0CDC /* BybitPriceUpdateViewController.swift in Sources */,
 				06490F81237CF81C00C37ED4 /* BitService+BBPosition.swift in Sources */,
 				060C8BF12394645700E50A57 /* Bybit+TradeEvent.swift in Sources */,
 				062E27732391C3C800AF0C7D /* SellOrderBookView.swift in Sources */,
@@ -1175,7 +1183,6 @@
 				060D96F2237BB2B30040598A /* BBWithdrawalRecord+Endpoint.swift in Sources */,
 				0644D1DE238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift in Sources */,
 				06470E022377C35D00419238 /* BitService+Application.swift in Sources */,
-				45436FC223AAEED900AA141A /* ActivityIndicatorViewController.swift in Sources */,
 				0641F84E239CD02800EF7A0B /* ValuePickerView.swift in Sources */,
 				062E27772393590500AF0C7D /* OrderBookPanel.swift in Sources */,
 				45436FB923AAC9A000AA141A /* BybitSymbolDataViewController.swift in Sources */,
@@ -1235,6 +1242,7 @@
 				064D3D902389A8CB00B34173 /* Bybit+SocketResponse.swift in Sources */,
 				06746EB62381480300F14521 /* BBActiveOrder+Endpoint.swift in Sources */,
 				45436FC423AAEF4800AA141A /* ActivityIndicatorPresentationViewController.swift in Sources */,
+				063FDD4C23CEA077002D0CDC /* BybitPriceUpdateViewController+Delegates.swift in Sources */,
 				062895D12383A3920076AA27 /* ViewSetup.swift in Sources */,
 				06490F87237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift in Sources */,
 			);

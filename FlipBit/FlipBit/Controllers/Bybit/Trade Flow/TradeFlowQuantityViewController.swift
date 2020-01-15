@@ -12,9 +12,9 @@ class TradeFlowQuantityViewController: BaseTradeFlowViewController {
     
     private lazy var quantityStepper: Stepper = {
         if let quantity = Double(order.quantity) {
-            return Stepper(title: Constant.quantity, side: order.side, initialValue: quantity, increment: 1.0, max: 1000000.0, min: 0.0)
+            return Stepper(side: order.side, initialValue: quantity, increment: 1.0, max: 1000000.0, min: 0.0)
         }
-        return Stepper(title: Constant.quantity, side: order.side, initialValue: 0, increment: 1.0, max: 1000000.0, min: 0.0)
+        return Stepper(side: order.side, initialValue: 0, increment: 1.0, max: 1000000.0, min: 0.0)
     }()
     
     override func setup() {

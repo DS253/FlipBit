@@ -32,10 +32,10 @@ class Stepper: View {
         field.keyboardType = .decimalPad
         field.font = .body
         field.textAlignment = .center
-        field.textColor = UIColor.flatNavyBlue
+        field.textColor = UIColor.flatMintDark
         field.borderStyle = .none
         field.backgroundColor = .clear
-        field.layer.borderColor = UIColor.flatNavyBlue.cgColor
+        field.layer.borderColor = UIColor.flatMintDark.cgColor
         field.layer.borderWidth = 2.0
         field.layer.cornerRadius = 7.0
         field.delegate = self
@@ -46,18 +46,12 @@ class Stepper: View {
     
     private let initialValue: Double
     
-    private lazy var titleLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.flatNavyBlue)
-        label.textAlignment = .center
-        return label
-    }()
-    
     private lazy var decrementer: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(name: .minus), for: .normal)
         button.setImage(UIImage(name: .minus), for: .disabled)
-        button.tintColor = UIColor.flatNavyBlue
+        button.tintColor = UIColor.flatMintDark
         button.adjustsImageWhenHighlighted = false
         button.addTarget(self, action: #selector(decrementerTapped), for: .touchUpInside)
         return button
@@ -68,7 +62,7 @@ class Stepper: View {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(name: .plus), for: .normal)
         button.setImage(UIImage(name: .plus), for: .disabled)
-        button.tintColor = UIColor.flatNavyBlue
+        button.tintColor = UIColor.flatMintDark
         button.adjustsImageWhenHighlighted = false
         button.addTarget(self, action: #selector(incrementerTapped), for: .touchUpInside)
         return button
@@ -81,7 +75,7 @@ class Stepper: View {
     
     // MARK: - Initializers
     
-    init(title: String, side: Bybit.Side = .None, initialValue: Double = 0.0, increment: Double = 1.0, max: Double = 0.0, min: Double = 0.0) {
+    init(side: Bybit.Side = .None, initialValue: Double = 0.0, increment: Double = 1.0, max: Double = 0.0, min: Double = 0.0) {
         self.side = side
         self.increment = increment
         self.maxValue = max
@@ -89,7 +83,6 @@ class Stepper: View {
         self.initialValue = initialValue
         self.value = initialValue
         super.init()
-        self.titleLabel.text = title
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -111,7 +104,6 @@ class Stepper: View {
     override func setupSubviews() {
         super.setupSubviews()
         
-        addSubview(titleLabel)
         addSubview(decrementer)
         addSubview(textField)
         addSubview(incrementer)
@@ -123,22 +115,18 @@ class Stepper: View {
         let buttonWidth: CGFloat = 42.0
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            titleLabel.topAnchor.constraint(equalTo: topAnchor),
-            
             decrementer.leadingAnchor.constraint(equalTo: leadingAnchor),
-            decrementer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Dimensions.Space.margin8),
+            decrementer.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin8),
             decrementer.bottomAnchor.constraint(equalTo: bottomAnchor),
             decrementer.widthAnchor.constraint(equalToConstant: buttonWidth),
             
             textField.leadingAnchor.constraint(equalTo: decrementer.trailingAnchor, constant: Dimensions.Space.margin8),
             textField.centerXAnchor.constraint(equalTo: centerXAnchor),
-            textField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Dimensions.Space.margin8),
+            textField.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin8),
             textField.bottomAnchor.constraint(equalTo: bottomAnchor),
             
             incrementer.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: Dimensions.Space.margin8),
-            incrementer.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Dimensions.Space.margin8),
+            incrementer.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin8),
             incrementer.bottomAnchor.constraint(equalTo: bottomAnchor),
             incrementer.trailingAnchor.constraint(equalTo: trailingAnchor),
             incrementer.widthAnchor.constraint(equalToConstant: buttonWidth),
@@ -148,18 +136,22 @@ class Stepper: View {
     // MARK: - Actions
     
     @objc func decrementerTapped() {
+        textField.resignFirstResponder()
         value -= increment
     }
     
     @objc func decrementerHold() {
+        textField.resignFirstResponder()
         timer = Timer.scheduledTimer(timeInterval: 0.125, target: self, selector: #selector(decrementerTapped), userInfo: nil, repeats: true)
     }
     
     @objc func incrementerTapped() {
+        textField.resignFirstResponder()
         value += increment
     }
     
     @objc func incrementerHold() {
+        textField.resignFirstResponder()
         timer = Timer.scheduledTimer(timeInterval: 0.125, target: self, selector: #selector(incrementerTapped), userInfo: nil, repeats: true)
     }
     
@@ -199,5 +191,34 @@ extension Stepper: UITextFieldDelegate {
                 textField.text = increment < 1 ? String(format: "%.2f", value) : String(format: "%.0f", value)
                 return }
         value = newValue
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        /// If backspace is pressed, allow it.
+        let  char = string.cString(using: .utf8)
+        let isBackSpace = strcmp(char, "\\b")
+        if (isBackSpace == -92) { return true }
+        let text = textField.text ?? ""
+        
+        if text.contains(".") {
+            /// Only allow one "." in string.
+            if string == "." { return false }
+            let arrayText = text.components(separatedBy: ".")
+            /// Only allow "5" or "0" as first character after ".".
+            if arrayText[1].count == 0 {
+                if (string == "5" || string == "0") {
+                    textField.text?.append(contentsOf: string)
+                    /// Append "0" as the final character.
+                    textField.text?.append(contentsOf: "0")
+                }
+                return false
+            }
+                /// Only allow two characters after ".".
+            else if arrayText[1].count == 2 {
+                return false
+            }
+        }
+        return true
     }
 }

@@ -133,10 +133,12 @@ extension OrderBookRow {
     @objc func priceTapped() {
         guard let price = priceLabel.text else { return }
         priceSelector?.priceSelected(price: price)
+        vibrate()
     }
 
     @objc func quantityTapped() {
         guard let quantity = quantityLabel.text else { return }
         quantitySelector?.quantitySelected(quantity: quantity)
+        vibrate()
     }
 }
