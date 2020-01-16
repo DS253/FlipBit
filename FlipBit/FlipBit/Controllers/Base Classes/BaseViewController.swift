@@ -26,11 +26,6 @@ import UIKit
 ///
 ///   For more information, see **Setup.swift** implementation.
 class BaseViewController: UIViewController, ViewSetup {
-    
-    private lazy var vibrateHandler: UISelectionFeedbackGenerator = {
-        UISelectionFeedbackGenerator()
-    }()
-    
     /// Calls to each `setup` method in this order. Each of these methods
     /// are optional to implement dependant upon needs.
     override func viewDidLoad() {
@@ -77,10 +72,4 @@ class BaseViewController: UIViewController, ViewSetup {
         indicatorView.startAnimating()
         return indicatorView
     }()
-    
-    func vibrate() {
-        vibrateHandler.prepare()
-        vibrateHandler.selectionChanged()
-    }
 }
-

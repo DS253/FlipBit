@@ -119,12 +119,13 @@ class BybitPriceUpdateViewController: ViewController {
     @objc private func updatePrice(sender: Any) {
         priceDelegate?.priceUpdated(price: priceStepper.textField.text ?? "")
         dismiss(animated: true)
-        vibrate()
+        hapticFeedback()
     }
     
     /// Dismiss the numberpad.
     @objc private func cancelNumberPad() {
+        guard priceStepper.textField.isFirstResponder else { return }
         priceStepper.textField.resignFirstResponder()
-        vibrate()
+        hapticFeedback()
     }
 }

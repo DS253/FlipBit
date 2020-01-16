@@ -202,7 +202,7 @@ class BybitLeverageUpdateViewController: ViewController {
                 print(error)
             }
         }
-        vibrate()
+        hapticFeedback()
     }
     
     /// Dismiss the view when tapped outside the view's bounds.
@@ -215,15 +215,17 @@ class BybitLeverageUpdateViewController: ViewController {
     /// Dismiss the numberpad.
     @objc private func cancelNumberPad() {
         manualCancel = true
-        leverageValueTextField.resignFirstResponder()
-        vibrate()
+        if leverageValueTextField.isFirstResponder {
+            leverageValueTextField.resignFirstResponder()
+            hapticFeedback()
+        }
     }
     
     /// Dismiss the numberpad.
     @objc private func doneButtonPressed() {
         manualCancel = false
         leverageValueTextField.resignFirstResponder()
-        vibrate()
+        hapticFeedback()
     }
 }
 

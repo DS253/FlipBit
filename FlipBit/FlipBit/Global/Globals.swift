@@ -7,12 +7,20 @@
 //
 
 import Foundation
+import UIKit
 
 /// Global Application instance.
 internal let application = BitService.Application()
 
 /// Global Service instance.
 internal let service = BitService.Service()
+
+/// Provide Haptic Feedback.
+internal func hapticFeedback() {
+    let feedbackGenerator = UISelectionFeedbackGenerator()
+    feedbackGenerator.prepare()
+    feedbackGenerator.selectionChanged()
+}
 
 /// Will wait the specified amount of time before executing completion.
 internal func wait(_ time: Double, completion: @escaping (() -> Void)) {

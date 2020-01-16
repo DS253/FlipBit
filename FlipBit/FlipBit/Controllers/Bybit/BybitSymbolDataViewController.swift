@@ -215,7 +215,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }
     
     @objc func tradeButtonTapped(sender: UIButton) {
-        vibrate()
+        hapticFeedback()
         guard
             let price = priceStepper.textField.text,
             let quantity = quantityStepper.textField.text,
@@ -238,14 +238,14 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }
     
     @objc func leverageTapped() {
-        vibrate()
+        hapticFeedback()
         guard let substring = currentLeverageLabel.text?.dropLast() else { return }
         let vc = BybitLeverageUpdateViewController(leverage: String(substring), observer: self)
         present(vc, animated: true)
     }
     
     @objc func priceTapped() {
-        vibrate()
+        hapticFeedback()
         guard let price = priceLabel.text else { return }
         let vc = BybitPriceUpdateViewController(price: price, observer: self)
         present(vc, animated: true)
