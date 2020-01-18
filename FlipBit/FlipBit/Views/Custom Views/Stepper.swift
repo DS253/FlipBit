@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol StepperObserver: class {
+    func stepperUpdated()
+}
+
 class Stepper: View {
     
     // MARK: - Public Properties
@@ -17,6 +21,8 @@ class Stepper: View {
     var increment: Double
     
     var timer: Timer?
+    
+    weak var observer: StepperObserver?
     
     var value: Double {
         didSet {
@@ -75,7 +81,7 @@ class Stepper: View {
     
     // MARK: - Initializers
     
-    init(side: Bybit.Side = .None, initialValue: Double = 0.0, increment: Double = 1.0, max: Double = 0.0, min: Double = 0.0) {
+    init(side: Bybit.Side = .None, stepperObserver: StepperObserver, textFieldDelegate: UITextFieldDelegate, initialValue: Double = 0.0, increment: Double = 1.0, max: Double = 0.0, min: Double = 0.0) {
         self.side = side
         self.increment = increment
         self.maxValue = max
@@ -83,6 +89,8 @@ class Stepper: View {
         self.initialValue = initialValue
         self.value = initialValue
         super.init()
+        self.observer = stepperObserver
+        self.textField.delegate = textFieldDelegate
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -138,6 +146,7 @@ class Stepper: View {
     @objc func decrementerTapped() {
         textField.resignFirstResponder()
         value -= increment
+        observer?.stepperUpdated()
     }
     
     @objc func decrementerHold() {
@@ -148,6 +157,7 @@ class Stepper: View {
     @objc func incrementerTapped() {
         textField.resignFirstResponder()
         value += increment
+        observer?.stepperUpdated()
     }
     
     @objc func incrementerHold() {

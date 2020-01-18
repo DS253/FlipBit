@@ -39,7 +39,7 @@ class BybitLeverageUpdateViewController: ViewController {
     /// Delegate observer tracks changes to the set leverage.
     private weak var leverageDelegate: LeverageObserver?
     
-    /// Tracks the dismissal of numberpad.
+    /// Tracks the dismissal of the numberpad by the Cancel button in the toolbar.
     private var manualCancel: Bool = false
     
     private lazy var leverageTitleLabel: UILabel = {
@@ -215,10 +215,9 @@ class BybitLeverageUpdateViewController: ViewController {
     /// Dismiss the numberpad.
     @objc private func cancelNumberPad() {
         manualCancel = true
-        if leverageValueTextField.isFirstResponder {
-            leverageValueTextField.resignFirstResponder()
-            hapticFeedback()
-        }
+        guard leverageValueTextField.isFirstResponder else { return }
+        leverageValueTextField.resignFirstResponder()
+        hapticFeedback()
     }
     
     /// Dismiss the numberpad.

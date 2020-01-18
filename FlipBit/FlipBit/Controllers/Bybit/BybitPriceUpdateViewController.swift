@@ -19,8 +19,20 @@ class BybitPriceUpdateViewController: ViewController {
     /// The initial set price.
     private var initialValue: String = ""
     
+    private var currentValue: String = "" {
+        didSet {
+            guard let doubleValue = Double(currentValue) else { return }
+            priceStepper.value = doubleValue
+            priceStepper.textField.text = String(format: "%.2f", doubleValue)
+            updateButtonState()
+        }
+    }
+    
     /// Delegate observer tracks changes to the set price.
     private weak var priceDelegate: PriceObserver?
+    
+    /// Tracks the dismissal of the numberpad by the Cancel button in the toolbar.
+    private var manualCancel: Bool = false
     
     private lazy var priceTitleLabel: UILabel = {
         let leverageLabel = UILabel(font: UIFont.title1.bold, textColor: UIColor.flatMint)
@@ -30,7 +42,7 @@ class BybitPriceUpdateViewController: ViewController {
     }()
     
     private lazy var priceStepper: Stepper = {
-        return Stepper(side: .None, initialValue: (self.initialValue as NSString).doubleValue, increment: 0.5, max: 1000000.0, min: 0.0)
+        return Stepper(side: .None, stepperObserver: self, textFieldDelegate: self, initialValue: (self.initialValue as NSString).doubleValue, increment: 0.5, max: 1000000.0, min: 0.0)
     }()
     
     private lazy var updateButton: UIButton = {
@@ -40,7 +52,7 @@ class BybitPriceUpdateViewController: ViewController {
         button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
         button.layer.borderColor = UIColor.flatMintDark.cgColor
-        button.isSelected = true
+        button.isEnabled = false
         return button
     }()
     
@@ -54,11 +66,23 @@ class BybitPriceUpdateViewController: ViewController {
         return stackView
     }()
     
+    private lazy var numberToolBar: UIToolbar = {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100))
+        toolbar.translatesAutoresizingMaskIntoConstraints = false
+        toolbar.barStyle = .default
+        let cancelButton = UIBarButtonItem(title: Constant.cancel, style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancelNumberPad))
+        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: Constant.done, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonPressed))
+        toolbar.setItems([cancelButton, space, doneButton], animated: true)
+        return toolbar
+    }()
+    
     // MARK: Initializers
     
     init(price: String, observer: PriceObserver) {
         super.init(nibName: nil, bundle: nil)
         self.priceDelegate = observer
+        currentValue = price
         initialValue = price
         modalPresentationStyle = .custom
         transitioningDelegate = self
@@ -84,6 +108,7 @@ class BybitPriceUpdateViewController: ViewController {
         super.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(dismissPriceView(notification:)), name: .dismissFlow, object: nil)
         priceStepper.textField.text = initialValue
+        priceStepper.textField.inputAccessoryView = self.numberToolBar
         
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 14
@@ -95,6 +120,8 @@ class BybitPriceUpdateViewController: ViewController {
     override func setupSubviews() {
         super.setupSubviews()
         view.addSubview(stackView)
+        
+        updateButtonState()
     }
     
     override func setupConstraints() {
@@ -106,6 +133,15 @@ class BybitPriceUpdateViewController: ViewController {
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin16),
             priceStepper.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 100)
         ])
+    }
+    
+    /// Update the appearance and state of the Update button.
+    private func updateButtonState() {
+        /// If the value has changed since the initial value, the button is enabled.
+        updateButton.isEnabled = initialValue != currentValue
+        let color = updateButton.isEnabled ? UIColor.flatMintDark : UIColor.flatGray
+        updateButton.setTitleColor(color, for: .normal)
+        updateButton.layer.borderColor = color.cgColor
     }
     
     /// Dismiss the view when tapped outside the view's bounds.
@@ -124,8 +160,78 @@ class BybitPriceUpdateViewController: ViewController {
     
     /// Dismiss the numberpad.
     @objc private func cancelNumberPad() {
+        manualCancel = true
         guard priceStepper.textField.isFirstResponder else { return }
-        priceStepper.textField.resignFirstResponder()
+        priceStepper.endEditing(true)
         hapticFeedback()
+    }
+    
+    /// Dismiss the numberpad.
+    @objc private func doneButtonPressed() {
+        manualCancel = false
+        priceStepper.endEditing(true)
+        hapticFeedback()
+    }
+}
+
+extension BybitPriceUpdateViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        updateButton.isEnabled = false
+        textField.text = ""
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard
+            manualCancel != true,
+            let string = textField.text,
+            let newValue = Double(string),
+            newValue != 0
+            else {
+                textField.text = currentValue
+                manualCancel = false
+                updateButtonState()
+                return
+        }
+        currentValue = String(format: "%.2f", newValue)
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        /// If backspace is pressed, allow it.
+        if string.isBackSpace() { return true }
+        let text = textField.text ?? ""
+        
+        if text.contains(".") {
+            /// Only allow one "." in string.
+            if string == "." { return false }
+            let arrayText = text.components(separatedBy: ".")
+            /// Only allow "5" or "0" as first character after ".".
+            if arrayText[1].count == 0 {
+                if (string == "5" || string == "0") {
+                    textField.text?.append(contentsOf: string)
+                    /// Append "0" as the final character.
+                    textField.text?.append(contentsOf: "0")
+                }
+                return false
+            }
+            /// Only allow "0" as final character.
+            if arrayText[1].count == 1 {
+                textField.text?.append(contentsOf: "0")
+                return false
+            }
+            /// Only allow two characters after ".".
+            if arrayText[1].count == 2 { return false }
+        }
+        return true
+    }
+}
+
+extension BybitPriceUpdateViewController: StepperObserver {
+    func stepperUpdated() {
+        guard
+            let text = priceStepper.textField.text,
+            let value = Double(text)
+            else { return }
+        currentValue = String(format: "%.2f", value)
     }
 }
