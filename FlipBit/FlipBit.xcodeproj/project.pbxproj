@@ -139,6 +139,8 @@
 		06ED56A723B9782400EF4AF4 /* TradeFlowTakeProfitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED56A623B9782400EF4AF4 /* TradeFlowTakeProfitViewController.swift */; };
 		06F2213E239C4A0200E1BEB5 /* PercentageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2213D239C4A0200E1BEB5 /* PercentageView.swift */; };
 		06F22140239C900800E1BEB5 /* UIButton+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2213F239C900800E1BEB5 /* UIButton+Additions.swift */; };
+		06FC07B623D3A66F00E6949E /* BybitQuantityUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FC07B523D3A66F00E6949E /* BybitQuantityUpdateViewController.swift */; };
+		06FC07B823D3A6BD00E6949E /* BybitQuantityUpdateViewController+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FC07B723D3A6BD00E6949E /* BybitQuantityUpdateViewController+Delegates.swift */; };
 		45237FB1238C9D19005FC176 /* Bybit+SymbolInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45237FB0238C9D19005FC176 /* Bybit+SymbolInfo.swift */; };
 		45436FB923AAC9A000AA141A /* BybitSymbolDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */; };
 		45436FBB23AACB4200AA141A /* BybitTradeFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45436FBA23AACB4200AA141A /* BybitTradeFlowViewController.swift */; };
@@ -325,6 +327,8 @@
 		06ED56A623B9782400EF4AF4 /* TradeFlowTakeProfitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeFlowTakeProfitViewController.swift; sourceTree = "<group>"; };
 		06F2213D239C4A0200E1BEB5 /* PercentageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentageView.swift; sourceTree = "<group>"; };
 		06F2213F239C900800E1BEB5 /* UIButton+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Additions.swift"; sourceTree = "<group>"; };
+		06FC07B523D3A66F00E6949E /* BybitQuantityUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitQuantityUpdateViewController.swift; sourceTree = "<group>"; };
+		06FC07B723D3A6BD00E6949E /* BybitQuantityUpdateViewController+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitQuantityUpdateViewController+Delegates.swift"; sourceTree = "<group>"; };
 		45237FB0238C9D19005FC176 /* Bybit+SymbolInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+SymbolInfo.swift"; sourceTree = "<group>"; };
 		45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitSymbolDataViewController.swift; sourceTree = "<group>"; };
 		45436FBA23AACB4200AA141A /* BybitTradeFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeFlowViewController.swift; sourceTree = "<group>"; };
@@ -935,9 +939,11 @@
 				06ED4C4323C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift */,
 				063FDD4923CE9D20002D0CDC /* BybitPriceUpdateViewController.swift */,
 				063FDD4B23CEA077002D0CDC /* BybitPriceUpdateViewController+Delegates.swift */,
+				06FC07B523D3A66F00E6949E /* BybitQuantityUpdateViewController.swift */,
 				45436FB823AAC9A000AA141A /* BybitSymbolDataViewController.swift */,
 				060C8BF623947B8900E50A57 /* BybitTradeEventsTableViewController.swift */,
 				06434EEF23AB482E00E04148 /* BybitTradeFlowPresentationController.swift */,
+				06FC07B723D3A6BD00E6949E /* BybitQuantityUpdateViewController+Delegates.swift */,
 			);
 			path = Bybit;
 			sourceTree = "<group>";
@@ -1107,6 +1113,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06470DF82377C2C700419238 /* Double+Additions.swift in Sources */,
+				06FC07B623D3A66F00E6949E /* BybitQuantityUpdateViewController.swift in Sources */,
 				06ED56A723B9782400EF4AF4 /* TradeFlowTakeProfitViewController.swift in Sources */,
 				06490F85237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift in Sources */,
 				065F6018238B5F61008B5B89 /* BybitBookOrderSellCell.swift in Sources */,
@@ -1164,6 +1171,7 @@
 				060C8BF12394645700E50A57 /* Bybit+TradeEvent.swift in Sources */,
 				062E27732391C3C800AF0C7D /* SellOrderBookView.swift in Sources */,
 				45B3D942238606950004DF76 /* TimeInterval+Additions.swift in Sources */,
+				06FC07B823D3A6BD00E6949E /* BybitQuantityUpdateViewController+Delegates.swift in Sources */,
 				062B825823A5AF2D008287C9 /* UIStackView+Additions.swift in Sources */,
 				06470DA82377B6D500419238 /* AppDelegate.swift in Sources */,
 				06470E062377C39400419238 /* BitService+Environment.swift in Sources */,

@@ -42,6 +42,7 @@ struct Constant {
     static let takeProfit = "Take Profit"
     static let updateLeverage = "Update Leverage"
     static let updatePrice = "Update Price"
+    static let updateQuantity = "Update Quantity"
     
     // MARK: - Symbol Info
     static let dayHighTitle = "24h High"
