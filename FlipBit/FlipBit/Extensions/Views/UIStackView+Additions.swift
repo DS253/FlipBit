@@ -9,6 +9,16 @@
 import UIKit
 
 internal extension UIStackView {
+    
+    /// This is a helper method to inline assignment of the `axis` and `views` to be added.
+    convenience init(axis: NSLayoutConstraint.Axis = .vertical, spacing: CGFloat = Dimensions.Space.margin8, views: [UIView]) {
+        self.init()
+        self.axis = axis
+        self.spacing = spacing
+        self.addArrangedSubviews(views)
+        self.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     /// Adds multiple arranged subviews at once by calling `addArrangedSubview` method.
     ///
     /// - Parameters:

@@ -35,10 +35,7 @@ class BybitQuantityUpdateViewController: ViewController {
     private var manualCancel: Bool = false
     
     private lazy var quantityTitleLabel: UILabel = {
-        let leverageLabel = UILabel(font: UIFont.title1.bold, textColor: UIColor.flatMint)
-        leverageLabel.textAlignment = .center
-        leverageLabel.text = Constant.quantity
-        return leverageLabel
+        UILabel(text: Constant.quantity, font: UIFont.title1.bold, textColor: UIColor.flatMint, textAlignment: .center)
     }()
     
     private lazy var quantityStepper: Stepper = {
@@ -49,6 +46,37 @@ class BybitQuantityUpdateViewController: ViewController {
         let percentageView = PercentageView()
         percentageView.configureButtonActions(viewController: self, action: #selector(addByPercentage(sender:)), event: .touchUpInside)
         return percentageView
+    }()
+    
+    private lazy var orderValueTitleLabel: UILabel = {
+        UILabel(text: Constant.orderValue, font: UIFont.footnote.bold, textColor: UIColor.flatMint)
+    }()
+    
+    private lazy var orderValueLabel: UILabel = {
+        UILabel(text: Constant.orderValue, font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
+    }()
+    
+    private lazy var orderStackView: UIStackView = {
+        UIStackView(axis: .horizontal, views: [orderValueTitleLabel, orderValueLabel])
+    }()
+    
+    private lazy var balanceTitleLabel: UILabel = {
+        UILabel(text: Constant.availableBalance, font: UIFont.footnote.bold, textColor: UIColor.flatMint)
+    }()
+    
+    private lazy var balanceLabel: UILabel = {
+        if let balance = balanceManager.btcPosition?.walletBalance {
+            return UILabel(text: "\(String(balance))BTC", font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
+        }
+        return UILabel(font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
+    }()
+    
+    private lazy var balanceStackView: UIStackView = {
+        UIStackView(axis: .horizontal, views: [balanceTitleLabel, balanceLabel])
+    }()
+    
+    private lazy var dataStackView: UIStackView = {
+        UIStackView(axis: .vertical, views: [orderStackView, balanceStackView])
     }()
     
     private lazy var updateButton: UIButton = {
@@ -63,13 +91,7 @@ class BybitQuantityUpdateViewController: ViewController {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = Dimensions.Space.margin20
-        stackView.addArrangedSubviews([quantityTitleLabel, quantityStepper, percentageContainer, updateButton])
-        stackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cancelNumberPad)))
-        return stackView
+        UIStackView(spacing: Dimensions.Space.margin20, views: [quantityTitleLabel, quantityStepper, percentageContainer, dataStackView, updateButton])
     }()
     
     private lazy var numberToolBar: UIToolbar = {
@@ -113,6 +135,7 @@ class BybitQuantityUpdateViewController: ViewController {
     override func setup() {
         super.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(dismissQuantityView(notification:)), name: .dismissFlow, object: nil)
+        stackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cancelNumberPad)))
         quantityStepper.textField.text = initialValue
         quantityStepper.textField.inputAccessoryView = self.numberToolBar
         

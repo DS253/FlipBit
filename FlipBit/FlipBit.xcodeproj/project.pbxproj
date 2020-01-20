@@ -125,6 +125,7 @@
 		06746EB42381404E00F14521 /* BitService+BBActiveOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06746EB32381404E00F14521 /* BitService+BBActiveOrder.swift */; };
 		06746EB62381480300F14521 /* BBActiveOrder+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */; };
 		0676288B23B87BF800C29946 /* TradeFlowTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0676288A23B87BF800C29946 /* TradeFlowTypeViewController.swift */; };
+		067FEB0E23D624B500B160AC /* BalanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067FEB0D23D624B500B160AC /* BalanceManager.swift */; };
 		069CFA8C2384D9F400B46BCF /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; };
 		069CFA8D2384D9F400B46BCF /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		069CFA932384E77A00B46BCF /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA922384E77A00B46BCF /* Services.swift */; };
@@ -314,6 +315,7 @@
 		06746EB32381404E00F14521 /* BitService+BBActiveOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBActiveOrder.swift"; sourceTree = "<group>"; };
 		06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBActiveOrder+Endpoint.swift"; sourceTree = "<group>"; };
 		0676288A23B87BF800C29946 /* TradeFlowTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeFlowTypeViewController.swift; sourceTree = "<group>"; };
+		067FEB0D23D624B500B160AC /* BalanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceManager.swift; sourceTree = "<group>"; };
 		069CFA8B2384D9F400B46BCF /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		069CFA922384E77A00B46BCF /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		069CFA952384ED7E00B46BCF /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
@@ -513,6 +515,7 @@
 				062895CC2383A1B40076AA27 /* Controllers */,
 				45B3D935238604290004DF76 /* Extensions */,
 				06470E272377C8C100419238 /* Global */,
+				067FEB0C23D6248C00B160AC /* Managers */,
 				45B3D9532388B13F0004DF76 /* Models */,
 				069CFA912384E73500B46BCF /* Services */,
 				062895D72383A7300076AA27 /* Views */,
@@ -831,6 +834,14 @@
 				06ED56A623B9782400EF4AF4 /* TradeFlowTakeProfitViewController.swift */,
 			);
 			path = "Trade Flow";
+			sourceTree = "<group>";
+		};
+		067FEB0C23D6248C00B160AC /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				067FEB0D23D624B500B160AC /* BalanceManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		069CFA912384E73500B46BCF /* Services */ = {
@@ -1252,6 +1263,7 @@
 				45436FC423AAEF4800AA141A /* ActivityIndicatorPresentationViewController.swift in Sources */,
 				063FDD4C23CEA077002D0CDC /* BybitPriceUpdateViewController+Delegates.swift in Sources */,
 				062895D12383A3920076AA27 /* ViewSetup.swift in Sources */,
+				067FEB0E23D624B500B160AC /* BalanceManager.swift in Sources */,
 				06490F87237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

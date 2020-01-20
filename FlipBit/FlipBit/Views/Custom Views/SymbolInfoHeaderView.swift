@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class SymbolInfoHeaderView: View {
-        
+    
     private let titleStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
@@ -101,6 +101,12 @@ class SymbolInfoHeaderView: View {
         return symbolLabel
     }()
     
+    private lazy var balanceLabel: UILabel = {
+        let symbolLabel = UILabel(font: UIFont.footnote.bold, textColor: UIColor.Bybit.titleGray)
+        symbolLabel.text = "0 BTC"
+        return symbolLabel
+    }()
+    
     private lazy var lastTradedPriceLabel: UILabel = {
         let lastPriceLabel = UILabel(font: UIFont.title3.bold, textColor: UIColor.Bybit.orderbookGreen)
         lastPriceLabel.text = " "
@@ -109,7 +115,7 @@ class SymbolInfoHeaderView: View {
     
     private lazy var markPriceLabel: UILabel = {
         let markPriceLabel = UILabel(font: UIFont.footnote.bold, textColor: UIColor.Bybit.markPriceOrange)
-         markPriceLabel.text = " "
+        markPriceLabel.text = " "
         return markPriceLabel
     }()
     
@@ -121,11 +127,13 @@ class SymbolInfoHeaderView: View {
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: .symbolObserverUpdate, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .balanceUpdate, object: nil)
     }
     
     override func setup() {
         super.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(updateSymbolInfo(notification:)), name: .symbolObserverUpdate, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateBalance(notification:)), name: .balanceUpdate, object: nil)
         backgroundColor = UIColor.Bybit.white
         setBybitTheme()
         layer.cornerRadius = 0
@@ -136,6 +144,7 @@ class SymbolInfoHeaderView: View {
     override func setupSubviews() {
         super.setupSubviews()
         addSubview(symbolNameLabel)
+        addSubview(balanceLabel)
         addSubview(lastTradedPriceLabel)
         addSubview(markPriceLabel)
         addSubview(dayPercentageChangeLabel)
@@ -162,6 +171,9 @@ class SymbolInfoHeaderView: View {
             
             symbolNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             symbolNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            
+            balanceLabel.topAnchor.constraint(equalTo: symbolNameLabel.bottomAnchor, constant:Dimensions.Space.margin2),
+            balanceLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             lastTradedPriceLabel.topAnchor.constraint(equalTo: symbolNameLabel.bottomAnchor, constant: Dimensions.Space.margin2),
             lastTradedPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
@@ -215,8 +227,15 @@ class SymbolInfoHeaderView: View {
             fundingCountdownDataLabel.text = "\(countdown) \((countdown == 1) ? Constant.hour : Constant.hours)"
         }
     }
-        
+    
     @objc func updateSymbolInfo(notification: NSNotification) {
         configureView()
+    }
+    
+    @objc func updateBalance(notification: NSNotification) {
+        guard
+            let balance = balanceManager.btcPosition?.walletBalance
+            else { return }
+        balanceLabel.text = "\(String(balance))BTC"
     }
 }

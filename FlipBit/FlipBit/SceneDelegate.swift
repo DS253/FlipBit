@@ -43,6 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         bookObserver.connectToSocket()
         symbolObserver.connectToSocket()
         tradeObserver.connectToSocket()
+        balanceManager.retrieveBalance()
 //        positionObserver.connectToSocket()
     }
 

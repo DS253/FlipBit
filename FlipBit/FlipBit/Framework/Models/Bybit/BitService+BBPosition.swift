@@ -61,10 +61,10 @@ public extension BitService {
         let size: Int
         
         /// The position value.
-        let value: Int
+        let value: Double
         
         /// The entry price.
-        let entryPrice: Int
+        let entryPrice: Double
         
         /// The user leverage.
         let leverage: Int
@@ -73,19 +73,19 @@ public extension BitService {
         let marginMode: BybitMarginMode
         
         /// The position margin.
-        let positionMargin: Int
+        let positionMargin: Double
         
         /// The liquidation price.
-        let liquidationPrice: Int
+        let liquidationPrice: Double
         
         /// The bankrupcy price.
-        let bustPrice: Int
+        let bustPrice: Double
         
         /// The position closing fee.
-        let closingFee: Int
+        let closingFee: Double
         
         /// The position funding fee.
-        let fundingFee: Int
+        let fundingFee: Double
         
         /// The take profit price.
         let takeProfitPrice: Int
@@ -181,15 +181,15 @@ extension BitService.BybitPosition: Model {
         self.symbol = try results.decode(Bybit.Symbol.self, forKey: .symbol)
         self.side = try results.decode(BitService.BybitOrderSide.self, forKey: .side)
         self.size = try results.decode(Int.self, forKey: .size)
-        self.value = try results.decode(Int.self, forKey: .value)
-        self.entryPrice = try results.decode(Int.self, forKey: .entryPrice)
+        self.value = try results.decode(Double.self, forKey: .value)
+        self.entryPrice = try results.decode(Double.self, forKey: .entryPrice)
         self.leverage = try results.decode(Int.self, forKey: .leverage)
         self.marginMode = try results.decode(BitService.BybitMarginMode.self, forKey: .marginMode)
-        self.positionMargin = try results.decode(Int.self, forKey: .positionMargin)
-        self.liquidationPrice = try results.decode(Int.self, forKey: .liquidationPrice)
-        self.bustPrice = try results.decode(Int.self, forKey: .bustPrice)
-        self.closingFee = try results.decode(Int.self, forKey: .closingFee)
-        self.fundingFee = try results.decode(Int.self, forKey: .fundingFee)
+        self.positionMargin = try results.decode(Double.self, forKey: .positionMargin)
+        self.liquidationPrice = try results.decode(Double.self, forKey: .liquidationPrice)
+        self.bustPrice = try results.decode(Double.self, forKey: .bustPrice)
+        self.closingFee = try results.decode(Double.self, forKey: .closingFee)
+        self.fundingFee = try results.decode(Double.self, forKey: .fundingFee)
         self.takeProfitPrice = try results.decode(Int.self, forKey: .takeProfit)
         self.stopLossPrice = try results.decode(Int.self, forKey: .stopLoss)
         self.trailingStop = try results.decode(Int.self, forKey: .trailingStop)

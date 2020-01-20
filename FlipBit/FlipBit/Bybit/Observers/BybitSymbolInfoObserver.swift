@@ -22,7 +22,7 @@ class BybitSymbolInfoObserver: BybitObserver {
         sendPing()
         delegate?.observerDidConnect(observer: self)
     }
-
+    
     override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
         let encodedData = convertToData(text)
         let responseType = determineSymbolInfoResponseType(encodedData)

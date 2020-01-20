@@ -45,6 +45,11 @@ internal let tradeObserver: BybitTradeObserver = {
     return BybitTradeObserver(url: request)
 }()
 
+internal let balanceManager: BalanceManager = {
+    var balanceManager = BalanceManager()
+    return balanceManager
+}()
+
 internal let positionObserver: BybitPositionObserver = {
     let timestamp = Date().bybitSocketTimestamp()
     let signature = "GET/realtime\(timestamp)".buildSignature(secretKey: secret)

@@ -96,6 +96,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }()
     
     var leverageStatus: BitService.BybitLeverageStatus?
+    var positions: BitService.BybitPositionList?
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: .symbolObserverUpdate, object: nil)
@@ -131,7 +132,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         symbolObserver.delegate = self
         tradeObserver.delegate = self
         view.backgroundColor = UIColor.Bybit.white
-        //        positionObserver.delegate = self
+        //positionObserver.delegate = self
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))
     }
     

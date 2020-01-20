@@ -23,7 +23,7 @@ class BybitPositionObserver: BybitObserver {
     override func websocketDidConnect(socket: WebSocketClient) {
         print("Subscribing to Position socket")
         connected = true
-        writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"position\"]}")
+        writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"insurance\"]}")
         sendPing()
         delegate?.observerDidConnect(observer: self)
     }

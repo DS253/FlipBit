@@ -18,18 +18,19 @@ extension BitService.BybitPositionList {
         internal func baseURL() throws -> NetQuilt.BaseURL {
             return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
         }
-
+        
         internal func path() throws -> NetQuilt.URLPath {
             return try NetQuilt.URLPath("/position/list")
         }
         
         var signature: String {
-            let queries = "api_key=\(theAPIKey)&timestamp=\(timestamp)"
+            let queries = "api_key=\(theAPIKey)&recv_window=1000000&timestamp=\(timestamp)"
             return queries.buildSignature(secretKey: secret)
         }
         
         var queryItems: [NetQuilt.QueryItem]? {
             return [NetQuilt.QueryItem(name: "api_key", value: theAPIKey),
+                    NetQuilt.QueryItem(name: "recv_window", value: "1000000"),
                     NetQuilt.QueryItem(name: "timestamp", value: timestamp),
                     NetQuilt.QueryItem(name: "sign", value: signature)]
         }
