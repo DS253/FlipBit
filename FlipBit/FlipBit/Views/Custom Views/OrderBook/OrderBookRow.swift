@@ -9,10 +9,10 @@
 import UIKit
 
 class OrderBookRow: View {
-
+    
     weak var priceSelector: PriceSelection?
     weak var quantitySelector: QuantitySelection?
-
+    
     var bookOrder: Bybit.BookOrder?
     var colorTheme: UIColor
     var font: UIFont
@@ -20,34 +20,21 @@ class OrderBookRow: View {
     private var isAnimating: Bool = false
     
     lazy var priceLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.text = " "
-        label.font = font
-        label.textColor = colorTheme
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
+        let label = UILabel(text: " ", font: font, textColor: colorTheme, textAlignment: .left)
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(priceTapped)))
         return label
     }()
     
     lazy var quantityLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.text = " "
-        label.font = font
-        label.textColor = UIColor.Bybit.themeBlack
-        label.textAlignment = .right
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
+        let label = UILabel(text: " ", font: font, textColor: UIColor.Bybit.themeBlack, textAlignment: .right)
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(quantityTapped)))
         return label
     }()
     
     private lazy var quantityColorView: View = {
-        let view = View()
-        view.backgroundColor = colorTheme.withAlphaComponent(0.3)
+        let view = View(backgroundColor: colorTheme.withAlphaComponent(0.3))
         view.layer.cornerRadius = 7
         view.layer.masksToBounds = true
         view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
@@ -129,13 +116,13 @@ extension OrderBookRow {
             })
         }
     }
-
+    
     @objc func priceTapped() {
         guard let price = priceLabel.text else { return }
         priceSelector?.priceSelected(price: price)
         hapticFeedback()
     }
-
+    
     @objc func quantityTapped() {
         guard let quantity = quantityLabel.text else { return }
         quantitySelector?.quantitySelected(quantity: quantity)

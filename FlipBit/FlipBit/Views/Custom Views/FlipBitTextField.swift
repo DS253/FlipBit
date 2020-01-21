@@ -12,8 +12,12 @@ class FlipBitTextField: UITextField {
 
     private let padding = UIEdgeInsets(top: 12.0, left: 9.0, bottom: 10.0, right: 8.0)
     
-    init() {
+    init(keyboardType: UIKeyboardType = .default, textColor: UIColor, font: UIFont, textAlignment: NSTextAlignment = .left) {
         super.init(frame: .zero)
+        self.keyboardType = keyboardType
+        self.textColor = textColor
+        self.font = font
+        self.textAlignment = textAlignment
         clearButtonMode = UITextField.ViewMode.never
         autocorrectionType = .no
         spellCheckingType = .no

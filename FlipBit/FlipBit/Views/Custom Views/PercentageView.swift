@@ -11,39 +11,19 @@ import UIKit
 class PercentageView: View {
     
     lazy var button25: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("25%", for: .normal)
-        button.setTitleColor(UIColor.flatMintDark, for: .normal)
-        button.titleLabel?.font = .footnote
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+        UIButton(title: "25%", textColor: UIColor.flatMintDark, font: .footnote)
     }()
     
     lazy var button50: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("50%", for: .normal)
-        button.setTitleColor(UIColor.flatMintDark, for: .normal)
-        button.titleLabel?.font = .footnote
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+        UIButton(title: "50%", textColor: UIColor.flatMintDark, font: .footnote)
     }()
     
     lazy var button75: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("75%", for: .normal)
-        button.setTitleColor(UIColor.flatMintDark, for: .normal)
-        button.titleLabel?.font = .footnote
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+        UIButton(title: "75%", textColor: UIColor.flatMintDark, font: .footnote)
     }()
     
     lazy var button100: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("100%", for: .normal)
-        button.setTitleColor(UIColor.flatMintDark, for: .normal)
-        button.titleLabel?.font = .footnote
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+        UIButton(title: "100%", textColor: UIColor.flatMintDark, font: .footnote)
     }()
     
     override func setup() {

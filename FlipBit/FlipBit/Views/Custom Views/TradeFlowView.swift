@@ -21,8 +21,7 @@ class TradeFlowView: BaseView {
     }()
     
     private lazy var buyButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.buy, textColor: UIColor.flatMint)
-        button.titleLabel?.font = UIFont.title3.bold
+        let button = UIButton(type: .custom, title: Constant.buy, textColor: UIColor.flatMint, font: UIFont.title3.bold)
         button.layer.borderWidth = 2.0
         button.layer.borderColor = UIColor.flatMint.cgColor
         button.layer.cornerRadius = 7.0
@@ -30,8 +29,7 @@ class TradeFlowView: BaseView {
     }()
     
     private lazy var sellButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.sell, textColor: UIColor.flatWatermelon)
-        button.titleLabel?.font = UIFont.title3.bold
+        let button = UIButton(type: .custom, title: Constant.sell, textColor: UIColor.flatWatermelon, font: UIFont.title3.bold)
         button.layer.borderWidth = 2.0
         button.layer.borderColor = UIColor.flatWatermelon.cgColor
         button.layer.cornerRadius = 7.0

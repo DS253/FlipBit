@@ -11,10 +11,9 @@ import UIKit
 class TradeFlowTypeViewController: BaseTradeFlowViewController {
     
     private lazy var limitButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.limit, textColor: UIColor.flatGray)
+        let button = UIButton(title: Constant.limit, textColor: UIColor.flatGray, font: .body)
         button.setTitleColor(colorTheme, for: .selected)
         button.addTarget(self, action: #selector(tradeTypeButtonSelected(sender:)), for: .touchUpInside)
-        button.titleLabel?.font = UIFont.body
         button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
         button.isSelected = true
@@ -22,10 +21,9 @@ class TradeFlowTypeViewController: BaseTradeFlowViewController {
     }()
     
     private lazy var marketButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.market, textColor: UIColor.Bybit.white)
+        let button = UIButton(title: Constant.market, textColor: UIColor.Bybit.white, font: .body)
         button.setTitleColor(colorTheme, for: .selected)
         button.addTarget(self, action: #selector(tradeTypeButtonSelected(sender:)), for: .touchUpInside)
-        button.titleLabel?.font = UIFont.body
         button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
         return button

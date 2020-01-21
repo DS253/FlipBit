@@ -15,22 +15,11 @@ class BybitTradeEventCell: UITableViewCell {
     private var isAnimating: Bool = false
     
     private lazy var priceLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.font = UIFont.footnote.bold
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        return label
+        UILabel(font: UIFont.footnote.bold, textAlignment: .left)
     }()
     
     private let quantityLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.font = UIFont.footnote
-        label.textColor = UIColor.Bybit.themeBlack
-        label.textAlignment = .right
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        return label
+        UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack, textAlignment: .right)
     }()
         
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -79,12 +68,7 @@ extension BybitTradeEventCell {
             let quantity = tradeEvent.size
             else { return }
 
-        if tradeEvent.side == .Buy {
-            priceLabel.textColor = UIColor.flatMintDark
-        } else {
-            priceLabel.textColor = UIColor.flatRedDark
-        }
-        
+        priceLabel.textColor = tradeEvent.side == .Buy ? UIColor.flatMintDark : UIColor.flatRedDark        
         priceLabel.text = String(format: "%.2f", price)
         quantityLabel.text = String(quantity)
     }

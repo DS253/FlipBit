@@ -19,14 +19,11 @@ class ValuePickerView: View, PriceSelection, QuantitySelection {
     }()
     
     lazy var valueLabel: UILabel = {
-        let label = UILabel(font: UIFont.headline, textColor: UIColor.Bybit.themeBlack)
-        label.textAlignment = .center
-        return label
+        UILabel(font: UIFont.headline, textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
     }()
     
     private lazy var increaseButton: UIButton = {
-        let button = UIButton(type: .custom, title: "+", textColor: UIColor.flatMint)
-        button.titleLabel?.font = UIFont.title3.bold
+        let button = UIButton(title: "+", textColor: UIColor.flatMint, font: UIFont.title3.bold)
         button.layer.borderWidth = 2.0
         button.layer.borderColor = UIColor.flatMint.cgColor
         button.layer.cornerRadius = 7.0
@@ -34,8 +31,7 @@ class ValuePickerView: View, PriceSelection, QuantitySelection {
     }()
     
     private lazy var decreaseButton: UIButton = {
-        let button = UIButton(type: .custom, title: "-", textColor: UIColor.flatWatermelon)
-        button.titleLabel?.font = UIFont.title3.bold
+        let button = UIButton(title: "-", textColor: UIColor.flatWatermelon, font: UIFont.title3.bold)
         button.layer.borderWidth = 2.0
         button.layer.borderColor = UIColor.flatWatermelon.cgColor
         button.layer.cornerRadius = 7.0

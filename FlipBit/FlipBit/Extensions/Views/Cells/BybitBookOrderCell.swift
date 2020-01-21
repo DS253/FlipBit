@@ -15,23 +15,11 @@ class BybitBookOrderCell: UITableViewCell {
     private var isAnimating: Bool = false
     
     private lazy var priceLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.font = UIFont.footnote.bold
-        label.textColor = cellColorTheme()
-        label.textAlignment = .left
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        return label
+        UILabel(font: UIFont.footnote.bold, textColor: cellColorTheme(), textAlignment: .left)
     }()
     
     private let quantityLabel: UILabel = {
-        let label = UILabel(frame: .zero)
-        label.font = UIFont.footnote
-        label.textColor = UIColor.Bybit.white
-        label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        return label
+        UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white, textAlignment: .center)
     }()
     
     private lazy var quantityColorView: View = {

@@ -11,118 +11,72 @@ import UIKit
 
 class SymbolInfoHeaderView: View {
     
-    private let titleStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
+    private lazy var titleStackView: UIStackView = {
+        UIStackView(spacing: Dimensions.Space.margin1, views: [dayHighTitleLabel, dayLowTitleLabel, dayTurnoverTitleLabel, fundingRateTitleLabel, fundingCountdownTitleLabel])
     }()
     
-    private let dataStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
+    private lazy var dataStackView: UIStackView = {
+        UIStackView(spacing: Dimensions.Space.margin1, views: [dayHighDataLabel, dayLowDataLabel, dayTurnoverDataLabel, fundingRateDataLabel, fundingCountdownDataLabel])
     }()
     
     private lazy var dayHighTitleLabel: UILabel = {
-        let dayHighLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray)
-        dayHighLabel.textAlignment = .right
-        dayHighLabel.text = Constant.dayHighTitle
-        return dayHighLabel
+        UILabel(text: Constant.dayHighTitle, font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray, textAlignment: .right)
     }()
     
     private lazy var dayHighDataLabel: UILabel = {
-        let dayHighLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
-        dayHighLabel.text = " "
-        dayHighLabel.textAlignment = .left
-        return dayHighLabel
+        UILabel(text: " ", font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
     }()
     
     private lazy var dayLowTitleLabel: UILabel = {
-        let dayLowLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray)
-        dayLowLabel.textAlignment = .right
-        dayLowLabel.text = Constant.dayLowTitle
-        return dayLowLabel
+        UILabel(text: Constant.dayLowTitle, font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray, textAlignment: .right)
     }()
     
     private lazy var dayLowDataLabel: UILabel = {
-        let dayLowLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
-        dayLowLabel.text = " "
-        dayLowLabel.textAlignment = .left
-        return dayLowLabel
+        UILabel(text: " ", font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
     }()
     
     private lazy var dayTurnoverTitleLabel: UILabel = {
-        let dayTurnoverLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray)
-        dayTurnoverLabel.textAlignment = .right
-        dayTurnoverLabel.text = Constant.dayTurnoverTitle
-        return dayTurnoverLabel
+        UILabel(text: Constant.dayTurnoverTitle, font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray, textAlignment: .right)
     }()
     
     private lazy var dayTurnoverDataLabel: UILabel = {
-        let dayTurnoverDataLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
-        dayTurnoverDataLabel.text = " "
-        dayTurnoverDataLabel.textAlignment = .left
-        return dayTurnoverDataLabel
+        UILabel(text: " ", font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
     }()
     
     private lazy var fundingRateTitleLabel: UILabel = {
-        let fundingTitle = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray)
-        fundingTitle.textAlignment = .right
-        fundingTitle.text = Constant.fundingRateTitle
-        return fundingTitle
+        UILabel(text: Constant.fundingRateTitle, font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray, textAlignment: .right)
     }()
     
     private lazy var fundingRateDataLabel: UILabel = {
-        let dayTurnoverDataLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
-        dayTurnoverDataLabel.text = " "
-        dayTurnoverDataLabel.textAlignment = .left
-        return dayTurnoverDataLabel
+        UILabel(text: " ", font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
     }()
     
     private lazy var fundingCountdownTitleLabel: UILabel = {
-        let countdownTitle = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray)
-        countdownTitle.text = Constant.fundingCountdownTitle
-        countdownTitle.textAlignment = .right
-        return countdownTitle
+        UILabel(text: Constant.fundingCountdownTitle, font: UIFont.caption.bold, textColor: UIColor.Bybit.titleGray, textAlignment: .right)
     }()
     
     private lazy var fundingCountdownDataLabel: UILabel = {
-        let dayTurnoverDataLabel = UILabel(font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
-        dayTurnoverDataLabel.text = " "
-        dayTurnoverDataLabel.textAlignment = .left
-        return dayTurnoverDataLabel
+        UILabel(text: " ", font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
     }()
     
     private lazy var symbolNameLabel: UILabel = {
-        let symbolLabel = UILabel(font: UIFont.title2.bold, textColor: UIColor.Bybit.titleGray)
-        symbolLabel.text = " "
-        return symbolLabel
+        UILabel(text: " ", font: UIFont.title2.bold, textColor: UIColor.Bybit.titleGray)
     }()
     
     private lazy var balanceLabel: UILabel = {
-        let symbolLabel = UILabel(font: UIFont.footnote.bold, textColor: UIColor.Bybit.titleGray)
-        symbolLabel.text = "0 BTC"
-        return symbolLabel
+        UILabel(text: "0 BTC", font: UIFont.footnote.bold, textColor: UIColor.Bybit.titleGray)
     }()
     
     private lazy var lastTradedPriceLabel: UILabel = {
-        let lastPriceLabel = UILabel(font: UIFont.title3.bold, textColor: UIColor.Bybit.orderbookGreen)
-        lastPriceLabel.text = " "
-        return lastPriceLabel
+        UILabel(text: " ", font: UIFont.title3.bold, textColor: UIColor.Bybit.orderbookGreen)
     }()
     
     private lazy var markPriceLabel: UILabel = {
-        let markPriceLabel = UILabel(font: UIFont.footnote.bold, textColor: UIColor.Bybit.markPriceOrange)
-        markPriceLabel.text = " "
-        return markPriceLabel
+        UILabel(text: " ", font: UIFont.footnote.bold, textColor: UIColor.Bybit.markPriceOrange)
     }()
     
     private lazy var dayPercentageChangeLabel: UILabel = {
-        let percentLabel = UILabel(font: UIFont.footnote.bold, textColor: UIColor.Bybit.orderbookGreen)
-        percentLabel.text = " "
-        return percentLabel
+        UILabel(text: " ", font: UIFont.footnote.bold, textColor: UIColor.Bybit.orderbookGreen)
     }()
     
     deinit {
@@ -150,18 +104,7 @@ class SymbolInfoHeaderView: View {
         addSubview(dayPercentageChangeLabel)
         
         addSubview(titleStackView)
-        titleStackView.addArrangedSubview(dayHighTitleLabel)
-        titleStackView.addArrangedSubview(dayLowTitleLabel)
-        titleStackView.addArrangedSubview(dayTurnoverTitleLabel)
-        titleStackView.addArrangedSubview(fundingRateTitleLabel)
-        titleStackView.addArrangedSubview(fundingCountdownTitleLabel)
-        
         addSubview(dataStackView)
-        dataStackView.addArrangedSubview(dayHighDataLabel)
-        dataStackView.addArrangedSubview(dayLowDataLabel)
-        dataStackView.addArrangedSubview(dayTurnoverDataLabel)
-        dataStackView.addArrangedSubview(fundingRateDataLabel)
-        dataStackView.addArrangedSubview(fundingCountdownDataLabel)
     }
     
     override func setupConstraints() {

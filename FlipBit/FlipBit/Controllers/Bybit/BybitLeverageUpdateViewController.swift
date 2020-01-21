@@ -43,20 +43,12 @@ class BybitLeverageUpdateViewController: ViewController {
     private var manualCancel: Bool = false
     
     private lazy var leverageTitleLabel: UILabel = {
-        let leverageLabel = UILabel(font: UIFont.title1.bold, textColor: UIColor.flatMint)
-        leverageLabel.textAlignment = .center
-        leverageLabel.text = Constant.leverage
-        return leverageLabel
+        UILabel(text: Constant.leverage, font: UIFont.title1.bold, textColor: UIColor.flatMint, textAlignment: .center)
     }()
     
     private lazy var leverageValueTextField: FlipBitTextField = {
-        let field = FlipBitTextField()
-        field.keyboardType = .numberPad
+        let field = FlipBitTextField(keyboardType: .numberPad, textColor: UIColor.flatMintDark, font: UIFont.largeTitle.bold, textAlignment: .center)
         field.inputAccessoryView = self.numberToolBar
-        field.font = UIFont.largeTitle.bold
-        field.textAlignment = .center
-        field.textColor = UIColor.flatMintDark
-        field.borderStyle = .none
         field.backgroundColor = .clear
         field.layer.borderColor = UIColor.flatMintDark.cgColor
         field.layer.borderWidth = 2.0
@@ -88,9 +80,8 @@ class BybitLeverageUpdateViewController: ViewController {
     }()
     
     private lazy var updateButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.updateLeverage, textColor: UIColor.flatMintDark)
+        let button = UIButton(title: Constant.updateLeverage, textColor: UIColor.flatMintDark, font: .body)
         button.addTarget(self, action: #selector(updateLeverage(sender:)), for: .touchDown)
-        button.titleLabel?.font = UIFont.body
         button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
         button.layer.borderColor = UIColor.flatMintDark.cgColor
@@ -99,11 +90,7 @@ class BybitLeverageUpdateViewController: ViewController {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = Dimensions.Space.margin20
-        stackView.addArrangedSubviews([leverageTitleLabel, leverageValueTextField, slider, updateButton])
+        let stackView = UIStackView(spacing: Dimensions.Space.margin20, views: [leverageTitleLabel, leverageValueTextField, slider, updateButton])
         stackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cancelNumberPad)))
         return stackView
     }()

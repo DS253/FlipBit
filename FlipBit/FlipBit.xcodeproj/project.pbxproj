@@ -126,6 +126,7 @@
 		06746EB62381480300F14521 /* BBActiveOrder+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */; };
 		0676288B23B87BF800C29946 /* TradeFlowTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0676288A23B87BF800C29946 /* TradeFlowTypeViewController.swift */; };
 		067FEB0E23D624B500B160AC /* BalanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067FEB0D23D624B500B160AC /* BalanceManager.swift */; };
+		067FEB1023D683E800B160AC /* UIToolBar+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067FEB0F23D683E800B160AC /* UIToolBar+Additions.swift */; };
 		069CFA8C2384D9F400B46BCF /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; };
 		069CFA8D2384D9F400B46BCF /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		069CFA932384E77A00B46BCF /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA922384E77A00B46BCF /* Services.swift */; };
@@ -316,6 +317,7 @@
 		06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBActiveOrder+Endpoint.swift"; sourceTree = "<group>"; };
 		0676288A23B87BF800C29946 /* TradeFlowTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeFlowTypeViewController.swift; sourceTree = "<group>"; };
 		067FEB0D23D624B500B160AC /* BalanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceManager.swift; sourceTree = "<group>"; };
+		067FEB0F23D683E800B160AC /* UIToolBar+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolBar+Additions.swift"; sourceTree = "<group>"; };
 		069CFA8B2384D9F400B46BCF /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		069CFA922384E77A00B46BCF /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		069CFA952384ED7E00B46BCF /* Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dimensions.swift; sourceTree = "<group>"; };
@@ -419,6 +421,7 @@
 			children = (
 				062895D32383A4510076AA27 /* BaseViewController.swift */,
 				45B3D933238603900004DF76 /* BaseTableViewController.swift */,
+				45B3D9362386043B0004DF76 /* BaseTableViewController+Additions.swift */,
 			);
 			path = "Base Classes";
 			sourceTree = "<group>";
@@ -826,6 +829,7 @@
 			isa = PBXGroup;
 			children = (
 				45436FBA23AACB4200AA141A /* BybitTradeFlowViewController.swift */,
+				06163D6223B026830076EFC0 /* BybitTradeFlowViewController+Delegates.swift */,
 				06ED569E23B950DA00EF4AF4 /* BaseTradeFlowViewController.swift */,
 				0676288A23B87BF800C29946 /* TradeFlowTypeViewController.swift */,
 				06ED569C23B94A0100EF4AF4 /* TradeFlowPriceViewController.swift */,
@@ -871,7 +875,6 @@
 		45B3D935238604290004DF76 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				45B3D93A2386050A0004DF76 /* Controllers */,
 				45B3D940238606790004DF76 /* Foundation */,
 				0644D1DF238CDAB6001649F1 /* Models */,
 				0641311B2389D4F100B795D5 /* Observers */,
@@ -879,15 +882,6 @@
 				45B3D93B238605160004DF76 /* Views */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		45B3D93A2386050A0004DF76 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				45B3D9362386043B0004DF76 /* BaseTableViewController+Additions.swift */,
-				06163D6223B026830076EFC0 /* BybitTradeFlowViewController+Delegates.swift */,
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		45B3D93B238605160004DF76 /* Views */ = {
@@ -901,6 +895,7 @@
 				062B825723A5AF2D008287C9 /* UIStackView+Additions.swift */,
 				45B3D93E238605D90004DF76 /* UITableView+Additions.swift */,
 				45B3D93C2386052C0004DF76 /* UIView+Additions.swift */,
+				067FEB0F23D683E800B160AC /* UIToolBar+Additions.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1141,6 +1136,7 @@
 				064D3D852389A55200B34173 /* Bybit.swift in Sources */,
 				063FDD4E23CEAC83002D0CDC /* Panel.swift in Sources */,
 				062E276C2391B7D800AF0C7D /* OrderBookRow.swift in Sources */,
+				067FEB1023D683E800B160AC /* UIToolBar+Additions.swift in Sources */,
 				060C8BF9239499E100E50A57 /* BybitTradeEventCell.swift in Sources */,
 				064D3D8A2389A6E700B34173 /* Bybit+BookOrderSnapshot.swift in Sources */,
 				069CFA962384ED7E00B46BCF /* Dimensions.swift in Sources */,

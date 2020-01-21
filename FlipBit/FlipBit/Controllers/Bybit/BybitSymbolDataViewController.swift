@@ -31,18 +31,14 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }()
     
     private lazy var currentLeverageLabel: UILabel = {
-        let label = UILabel(font: UIFont.largeTitle, textColor: UIColor.Bybit.themeBlack)
+        let label = UILabel(text: Constant.leverage, font: UIFont.largeTitle, textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
         label.font = UIFont(name: "AvenirNext-Bold", size: 32.0)
         label.layer.cornerRadius = 14
-        label.textAlignment = .center
-        label.text = Constant.leverage
         return label
     }()
     
     private lazy var tradeView: TradeFlowView = {
-        let view = TradeFlowView()
-        view.backgroundColor = UIColor.Bybit.white
-        return view
+        TradeFlowView()
     }()
     
     private lazy var optionsViewGradient: CAGradientLayer = {
@@ -91,8 +87,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }()
     
     private lazy var tradeHistoryTable: BybitTradeEventsTableViewController = {
-        let tradeTable = BybitTradeEventsTableViewController()
-        return tradeTable
+        BybitTradeEventsTableViewController()
     }()
     
     var leverageStatus: BitService.BybitLeverageStatus?
@@ -233,7 +228,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
             let firstBook = bookObserver.buyBook?.first,
             var size = firstBook?.size
             else { return }
-        if size > 1000000 { size = 1000000 }
+        if size > maxBybitContracts { size = maxBybitContracts }
         quantityLabel.text = String(size)
         NotificationCenter.default.removeObserver(self, name: .buyBookObserverUpdate, object: nil)
     }
@@ -253,9 +248,12 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }
     
     @objc func quantityTapped() {
-        guard let quantity = quantityLabel.text else { return }
+        guard
+            let quantity = quantityLabel.text,
+            let price = priceLabel.text
+            else { return }
         hapticFeedback()
-        let vc = BybitQuantityUpdateViewController(quantity: quantity, observer: self)
+        let vc = BybitQuantityUpdateViewController(quantity: quantity, price: price, observer: self)
         present(vc, animated: true)
     }
     

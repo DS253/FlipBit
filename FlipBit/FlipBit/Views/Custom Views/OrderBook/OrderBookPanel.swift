@@ -13,31 +13,19 @@ class OrderBookPanel: View {
     weak var priceSelector: PriceSelection?
     
     private lazy var bookHeader: View = {
-        let header = View()
-        header.backgroundColor = UIColor.Bybit.white
-        return header
+        View(backgroundColor: UIColor.Bybit.white)
     }()
     
     private lazy var priceHeaderLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
-        label.backgroundColor = UIColor.Bybit.white
-        label.textAlignment = .left
-        label.text = Constant.price
-        return label
+        UILabel(text: Constant.price, font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack, textAlignment: .left)
     }()
     
     private lazy var quantityHeaderLabel: UILabel = {
-        let label = UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack)
-        label.backgroundColor = UIColor.Bybit.white
-        label.textAlignment = .right
-        label.text = Constant.quantity
-        return label
+        UILabel(text: Constant.quantity, font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack, textAlignment: .right)
     }()
     
     private lazy var separatorView: View = {
-        let separator = View()
-        separator.backgroundColor = UIColor.Bybit.themeBlack
-        return separator
+        View(backgroundColor: UIColor.Bybit.themeBlack)
     }()
     
     private lazy var buybook: BuyOrderBookView = {
@@ -49,9 +37,7 @@ class OrderBookPanel: View {
     }()
     
     private lazy var lastPriceLabel: UILabel = {
-        let label = UILabel(font: UIFont.largeTitle.bold, textColor: UIColor.flatMint)
-        label.text = " "
-        label.textAlignment = .center
+        let label = UILabel(text: " ", font: UIFont.largeTitle.bold, textColor: UIColor.flatMint, textAlignment: .center)
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(priceTapped)))
         return label
@@ -119,20 +105,20 @@ class OrderBookPanel: View {
             lastPriceLabel.topAnchor.constraint(equalTo: buybook.bottomAnchor, constant: Dimensions.Space.margin8),
             lastPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin16),
             lastPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin16),
-
+            
             sellbook.topAnchor.constraint(equalTo: lastPriceLabel.bottomAnchor, constant: Dimensions.Space.margin8),
             sellbook.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin16),
             sellbook.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin16),
             sellbook.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin16)
         ])
     }
-
+    
     func setPriceSelector(selector: PriceSelection) {
         buybook.setPriceSelector(selector: selector)
         sellbook.setPriceSelector(selector: selector)
         priceSelector = selector
     }
-
+    
     func setQuantitySelector(selector: QuantitySelection) {
         buybook.setQuantitySelector(selector: selector)
         sellbook.setQuantitySelector(selector: selector)
@@ -149,5 +135,6 @@ class OrderBookPanel: View {
     @objc func priceTapped() {
         guard let price = lastPriceLabel.text else { return }
         priceSelector?.priceSelected(price: price)
+        hapticFeedback()
     }
 }

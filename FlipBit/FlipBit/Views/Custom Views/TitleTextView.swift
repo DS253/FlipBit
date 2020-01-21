@@ -13,9 +13,7 @@ class TitleTextView: View {
     let titleLabel: UILabel = UILabel(font: UIFont.footnote, textColor: UIColor.flatGray)
 
     let textField: UITextField = {
-        let field = FlipBitTextField()
-        field.font = .body
-        field.textColor = .black
+        let field = FlipBitTextField(textColor: .black, font: .body)
         field.borderStyle = .none
         field.backgroundColor = .white
         field.layer.borderColor = UIColor.clear.cgColor

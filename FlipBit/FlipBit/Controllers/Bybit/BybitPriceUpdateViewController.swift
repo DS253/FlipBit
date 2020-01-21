@@ -35,10 +35,7 @@ class BybitPriceUpdateViewController: ViewController {
     private var manualCancel: Bool = false
     
     private lazy var priceTitleLabel: UILabel = {
-        let leverageLabel = UILabel(font: UIFont.title1.bold, textColor: UIColor.flatMint)
-        leverageLabel.textAlignment = .center
-        leverageLabel.text = Constant.price
-        return leverageLabel
+        UILabel(text: Constant.price, font: UIFont.title1.bold, textColor: UIColor.flatMint, textAlignment: .center)
     }()
     
     private lazy var priceStepper: Stepper = {
@@ -46,9 +43,8 @@ class BybitPriceUpdateViewController: ViewController {
     }()
     
     private lazy var updateButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.updatePrice, textColor: UIColor.flatMintDark)
+        let button = UIButton(title: Constant.updatePrice, textColor: UIColor.flatMintDark, font: .body)
         button.addTarget(self, action: #selector(updatePrice(sender:)), for: .touchDown)
-        button.titleLabel?.font = UIFont.body
         button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
         button.layer.borderColor = UIColor.flatMintDark.cgColor
@@ -57,23 +53,16 @@ class BybitPriceUpdateViewController: ViewController {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .vertical
-        stackView.spacing = Dimensions.Space.margin20
-        stackView.addArrangedSubviews([priceTitleLabel, priceStepper, updateButton])
+        let stackView = UIStackView(spacing: Dimensions.Space.margin20, views: [priceTitleLabel, priceStepper, updateButton])
         stackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cancelNumberPad)))
         return stackView
     }()
     
     private lazy var numberToolBar: UIToolbar = {
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100))
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.barStyle = .default
         let cancelButton = UIBarButtonItem(title: Constant.cancel, style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancelNumberPad))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: Constant.done, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonPressed))
-        toolbar.setItems([cancelButton, space, doneButton], animated: true)
+        let toolbar = UIToolbar(barItems: [cancelButton, space, doneButton])
         return toolbar
     }()
     

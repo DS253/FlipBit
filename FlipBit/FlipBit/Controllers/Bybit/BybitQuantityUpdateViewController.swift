@@ -80,9 +80,8 @@ class BybitQuantityUpdateViewController: ViewController {
     }()
     
     private lazy var updateButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.updateQuantity, textColor: UIColor.flatMintDark)
+        let button = UIButton(title: Constant.updateQuantity, textColor: UIColor.flatMintDark, font: .body)
         button.addTarget(self, action: #selector(updatePrice(sender:)), for: .touchDown)
-        button.titleLabel?.font = UIFont.body
         button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
         button.layer.borderColor = UIColor.flatMintDark.cgColor
@@ -95,19 +94,16 @@ class BybitQuantityUpdateViewController: ViewController {
     }()
     
     private lazy var numberToolBar: UIToolbar = {
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100))
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.barStyle = .default
         let cancelButton = UIBarButtonItem(title: Constant.cancel, style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancelNumberPad))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: Constant.done, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonPressed))
-        toolbar.setItems([cancelButton, space, doneButton], animated: true)
+        let toolbar = UIToolbar(barItems: [cancelButton, space, doneButton])
         return toolbar
     }()
     
     // MARK: Initializers
     
-    init(quantity: String, observer: QuantityObserver) {
+    init(quantity: String, price: String, observer: QuantityObserver) {
         super.init(nibName: nil, bundle: nil)
         self.quantityDelegate = observer
         currentValue = quantity

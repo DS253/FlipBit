@@ -21,9 +21,8 @@ class BybitTradeFlowViewController: ViewController {
     }()
     
     private lazy var nextButton: UIButton = {
-        let button = UIButton(type: .custom, title: Constant.next, textColor: colorTheme)
+        let button = UIButton(title: Constant.next, textColor: colorTheme, font: .body)
         button.addTarget(self, action: #selector(nextButtonTapped(sender:)), for: .touchUpInside)
-        button.titleLabel?.font = UIFont.body
         button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
         button.layer.borderColor = colorTheme.cgColor

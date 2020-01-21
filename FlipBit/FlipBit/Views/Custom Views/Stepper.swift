@@ -34,12 +34,7 @@ class Stepper: View {
     }
     
     lazy var textField: FlipBitTextField = {
-        let field = FlipBitTextField()
-        field.keyboardType = .decimalPad
-        field.font = .body
-        field.textAlignment = .center
-        field.textColor = UIColor.flatMintDark
-        field.borderStyle = .none
+        let field = FlipBitTextField(keyboardType: .decimalPad, textColor: UIColor.flatMintDark, font: .body, textAlignment: .center)
         field.backgroundColor = .clear
         field.layer.borderColor = UIColor.flatMintDark.cgColor
         field.layer.borderWidth = 2.0
