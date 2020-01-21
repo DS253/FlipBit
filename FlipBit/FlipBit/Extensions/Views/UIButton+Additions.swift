@@ -15,13 +15,14 @@ extension UIButton {
     ///
     /// - Note: This method also assigns the `translatesAutoresizingMaskIntoConstraints` to
     ///         `false` to eliminate the need to repeated assign this value.
-    convenience init(type: UIButton.ButtonType = .custom, title: String, textColor: UIColor = .black, font: UIFont = UIFont.callout) {
+    convenience init(type: UIButton.ButtonType = .custom, title: String, textColor: UIColor = .black, font: UIFont = UIFont.callout, enabled: Bool = true) {
         self.init(type: type)
         self.setTitle(title, for: .normal)
         self.setTitle(title, for: .highlighted)
         self.setTitle(title, for: .selected)
         self.setTitleColor(textColor, for: .normal)
         self.titleLabel?.font = font
+        self.isEnabled = enabled
         self.translatesAutoresizingMaskIntoConstraints = false
         self.clipsToBounds = true
     }

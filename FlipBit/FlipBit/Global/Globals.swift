@@ -16,7 +16,7 @@ internal let application = BitService.Application()
 internal let service = BitService.Service()
 
 /// Maximum Number of Contracts that can be purchased on Bybit.
-internal let maxBybitContracts = 1000000
+internal let maxBybitContracts = 1000000.0
 
 /// Provide Haptic Feedback.
 internal func hapticFeedback() {

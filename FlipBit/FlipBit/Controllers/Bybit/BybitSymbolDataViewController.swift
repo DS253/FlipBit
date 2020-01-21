@@ -128,7 +128,6 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         tradeObserver.delegate = self
         view.backgroundColor = UIColor.Bybit.white
         //positionObserver.delegate = self
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))
     }
     
     override func setupSubviews() {
@@ -228,7 +227,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
             let firstBook = bookObserver.buyBook?.first,
             var size = firstBook?.size
             else { return }
-        if size > maxBybitContracts { size = maxBybitContracts }
+        if size > Int(maxBybitContracts) { size = Int(maxBybitContracts) }
         quantityLabel.text = String(size)
         NotificationCenter.default.removeObserver(self, name: .buyBookObserverUpdate, object: nil)
     }
@@ -256,14 +255,6 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         let vc = BybitQuantityUpdateViewController(quantity: quantity, price: price, observer: self)
         present(vc, animated: true)
     }
-    
-    @objc func dismissTextField() {
-        //        quantityStepper.textField.resignFirstResponder()
-    }
-}
-
-extension BybitSymbolDataViewController: UITextFieldDelegate {
-    
 }
 
 extension BybitSymbolDataViewController: PriceSelection {

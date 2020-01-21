@@ -39,16 +39,15 @@ class BybitPriceUpdateViewController: ViewController {
     }()
     
     private lazy var priceStepper: Stepper = {
-        return Stepper(side: .None, stepperObserver: self, textFieldDelegate: self, initialValue: (self.initialValue as NSString).doubleValue, increment: 0.5, max: 1000000.0, min: 0.0)
+        return Stepper(side: .None, stepperObserver: self, textFieldDelegate: self, initialValue: (self.initialValue as NSString).doubleValue, increment: 0.5, max: maxBybitContracts, min: 0.0)
     }()
     
     private lazy var updateButton: UIButton = {
-        let button = UIButton(title: Constant.updatePrice, textColor: UIColor.flatMintDark, font: .body)
+        let button = UIButton(title: Constant.updatePrice, textColor: UIColor.flatMintDark, font: .body, enabled: false)
         button.addTarget(self, action: #selector(updatePrice(sender:)), for: .touchDown)
         button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
         button.layer.borderColor = UIColor.flatMintDark.cgColor
-        button.isEnabled = false
         return button
     }()
     
