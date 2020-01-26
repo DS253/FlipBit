@@ -13,7 +13,7 @@ class Panel: View {
     private lazy var stackView: UIStackView = {
         let stackview = UIStackView()
         stackview.axis = .vertical
-        stackview.spacing = Dimensions.Space.margin8
+        stackview.spacing = Space.margin8
         stackview.translatesAutoresizingMaskIntoConstraints = false
         return stackview
     }()
@@ -41,10 +41,10 @@ class Panel: View {
     override func setupConstraints() {
         super.setupConstraints()
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin8),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin8),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin8)
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin8),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin8),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin8),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin8)
         ])
     }
     

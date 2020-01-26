@@ -12,11 +12,11 @@ import UIKit
 class SymbolInfoHeaderView: View {
     
     private lazy var titleStackView: UIStackView = {
-        UIStackView(spacing: Dimensions.Space.margin1, views: [dayHighTitleLabel, dayLowTitleLabel, dayTurnoverTitleLabel, fundingRateTitleLabel, fundingCountdownTitleLabel])
+        UIStackView(spacing: Space.margin1, views: [dayHighTitleLabel, dayLowTitleLabel, dayTurnoverTitleLabel, fundingRateTitleLabel, fundingCountdownTitleLabel])
     }()
     
     private lazy var dataStackView: UIStackView = {
-        UIStackView(spacing: Dimensions.Space.margin1, views: [dayHighDataLabel, dayLowDataLabel, dayTurnoverDataLabel, fundingRateDataLabel, fundingCountdownDataLabel])
+        UIStackView(spacing: Space.margin1, views: [dayHighDataLabel, dayLowDataLabel, dayTurnoverDataLabel, fundingRateDataLabel, fundingCountdownDataLabel])
     }()
     
     private lazy var dayHighTitleLabel: UILabel = {
@@ -79,6 +79,15 @@ class SymbolInfoHeaderView: View {
         UILabel(text: " ", font: UIFont.footnote.bold, textColor: UIColor.Bybit.orderbookGreen)
     }()
     
+    override init() {
+        super.init()
+        configureView()
+    }
+    
+    public required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: .symbolObserverUpdate, object: nil)
         NotificationCenter.default.removeObserver(self, name: .balanceUpdate, object: nil)
@@ -115,13 +124,13 @@ class SymbolInfoHeaderView: View {
             symbolNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
             symbolNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            balanceLabel.topAnchor.constraint(equalTo: symbolNameLabel.bottomAnchor, constant:Dimensions.Space.margin2),
+            balanceLabel.topAnchor.constraint(equalTo: symbolNameLabel.bottomAnchor, constant: Space.margin2),
             balanceLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
-            lastTradedPriceLabel.topAnchor.constraint(equalTo: symbolNameLabel.bottomAnchor, constant: Dimensions.Space.margin2),
-            lastTradedPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
+            lastTradedPriceLabel.topAnchor.constraint(equalTo: symbolNameLabel.bottomAnchor, constant: Space.margin2),
+            lastTradedPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin8),
             
-            dayPercentageChangeLabel.topAnchor.constraint(equalTo: lastTradedPriceLabel.bottomAnchor, constant: Dimensions.Space.margin2),
+            dayPercentageChangeLabel.topAnchor.constraint(equalTo: lastTradedPriceLabel.bottomAnchor, constant: Space.margin2),
             dayPercentageChangeLabel.leadingAnchor.constraint(equalTo: lastTradedPriceLabel.leadingAnchor),
             dayPercentageChangeLabel.trailingAnchor.constraint(equalTo: markPriceLabel.leadingAnchor),
             
@@ -132,9 +141,9 @@ class SymbolInfoHeaderView: View {
             titleStackView.topAnchor.constraint(equalTo: symbolNameLabel.topAnchor),
             
             dataStackView.topAnchor.constraint(equalTo: titleStackView.topAnchor),
-            dataStackView.leadingAnchor.constraint(equalTo: titleStackView.trailingAnchor, constant: Dimensions.Space.margin8),
-            dataStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin8),
-            dataStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin8)
+            dataStackView.leadingAnchor.constraint(equalTo: titleStackView.trailingAnchor, constant: Space.margin8),
+            dataStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin8),
+            dataStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin8)
         ])
     }
     

@@ -22,7 +22,7 @@ class BybitTradeEventsTableViewController: BaseTableViewController, SocketObserv
     }
     
     deinit {
-        NotificationCenter.default.addObserver(self, selector: #selector(updateEventsTable(notification:)), name: .tradeEventObserverUpdate, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .tradeEventObserverUpdate, object: nil)
     }
     
     // MARK: - Setup Methods

@@ -66,16 +66,16 @@ class TradeFlowView: BaseView {
     override func setupConstraints() {
         super.setupConstraints()
         NSLayoutConstraint.activate([
-            sellButton.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin8),
-            sellButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin8),
-            sellButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
-            sellButton.trailingAnchor.constraint(equalTo: buyButton.leadingAnchor, constant: -Dimensions.Space.margin4),
-            sellButton.heightAnchor.constraint(equalToConstant: Dimensions.Space.margin48),
+            sellButton.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin8),
+            sellButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin8),
+            sellButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin8),
+            sellButton.trailingAnchor.constraint(equalTo: buyButton.leadingAnchor, constant: -Space.margin4),
+            sellButton.heightAnchor.constraint(equalToConstant: Space.margin48),
 
-            buyButton.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin8),
-            buyButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin8),
-            buyButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin8),
-            buyButton.heightAnchor.constraint(equalToConstant: Dimensions.Space.margin48),
+            buyButton.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin8),
+            buyButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin8),
+            buyButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin8),
+            buyButton.heightAnchor.constraint(equalToConstant: Space.margin48),
             buyButton.widthAnchor.constraint(equalTo: sellButton.widthAnchor)
         ])
     }

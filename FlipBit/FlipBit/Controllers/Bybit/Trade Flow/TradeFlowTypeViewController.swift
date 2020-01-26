@@ -43,13 +43,13 @@ class TradeFlowTypeViewController: BaseTradeFlowViewController {
     override func setupConstraints() {
         super.setupConstraints()
         NSLayoutConstraint.activate([
-            limitButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimensions.Space.margin16),
-            limitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin16),
-            limitButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
+            limitButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Space.margin16),
+            limitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin16),
+            limitButton.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
             
-            marketButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimensions.Space.margin16),
-            marketButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
-            marketButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin16)
+            marketButton.topAnchor.constraint(equalTo: view.topAnchor, constant: Space.margin16),
+            marketButton.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
+            marketButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin16)
         ])
     }
     

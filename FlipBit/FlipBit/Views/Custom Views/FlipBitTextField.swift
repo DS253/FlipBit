@@ -44,7 +44,7 @@ class FlipBitTextField: UITextField {
 
     override func rightViewRect(forBounds bounds: CGRect) -> CGRect {
         var newBounds = super.rightViewRect(forBounds: bounds)
-        newBounds.origin.x -= Dimensions.Space.margin20
+        newBounds.origin.x -= Space.margin20
         return newBounds
     }
 }

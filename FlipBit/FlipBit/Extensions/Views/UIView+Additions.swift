@@ -46,7 +46,7 @@ extension UIView {
                 line.topAnchor.constraint(equalTo: topAnchor),
                 line.leadingAnchor.constraint(equalTo: leadingAnchor),
                 line.trailingAnchor.constraint(equalTo: trailingAnchor),
-                line.heightAnchor.constraint(equalToConstant: Dimensions.singlePixel)
+                line.heightAnchor.constraint(equalToConstant: Space.singlePixel)
             ])
 
         case .bottomEdge:
@@ -54,7 +54,7 @@ extension UIView {
                 line.bottomAnchor.constraint(equalTo: bottomAnchor),
                 line.leadingAnchor.constraint(equalTo: leadingAnchor),
                 line.trailingAnchor.constraint(equalTo: trailingAnchor),
-                line.heightAnchor.constraint(equalToConstant: Dimensions.singlePixel)
+                line.heightAnchor.constraint(equalToConstant: Space.singlePixel)
             ])
 
         case .leftEdge:
@@ -62,7 +62,7 @@ extension UIView {
                 line.topAnchor.constraint(equalTo: topAnchor),
                 line.bottomAnchor.constraint(equalTo: bottomAnchor),
                 line.leadingAnchor.constraint(equalTo: leadingAnchor),
-                line.widthAnchor.constraint(equalToConstant: Dimensions.singlePixel)
+                line.widthAnchor.constraint(equalToConstant: Space.singlePixel)
             ])
 
         case .rightEdge:
@@ -70,7 +70,7 @@ extension UIView {
                 line.topAnchor.constraint(equalTo: topAnchor),
                 line.bottomAnchor.constraint(equalTo: bottomAnchor),
                 line.trailingAnchor.constraint(equalTo: trailingAnchor),
-                line.widthAnchor.constraint(equalToConstant: Dimensions.singlePixel)
+                line.widthAnchor.constraint(equalToConstant: Space.singlePixel)
             ])
         }
     }

@@ -48,14 +48,14 @@ class BybitTradeEventCell: UITableViewCell {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            priceLabel.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin4),
-            priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin4),
-            priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin16),
+            priceLabel.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
+            priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
+            priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin16),
             priceLabel.trailingAnchor.constraint(equalTo: quantityLabel.leadingAnchor),
             
-            quantityLabel.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin4),
-            quantityLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin4),
-            quantityLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin16),
+            quantityLabel.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
+            quantityLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
+            quantityLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin16),
             quantityLabel.widthAnchor.constraint(equalTo: priceLabel.widthAnchor)
         ])
     }

@@ -46,8 +46,8 @@ open class BaseTableHeaderView: BaseView {
         banner.textAlignment = .center
         view.addSubview(banner)
 
-        banner.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimensions.Space.margin10).isActive = true
-        banner.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimensions.Space.margin10).isActive = true
+        banner.topAnchor.constraint(equalTo: view.topAnchor, constant: Space.margin10).isActive = true
+        banner.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Space.margin10).isActive = true
         banner.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
         return view
@@ -115,7 +115,7 @@ open class BaseTableHeaderView: BaseView {
     /// NSLayoutConstraint used to manage the appearance of the banner to display
     /// successful or unsuccessful actions performed by the user.
     private lazy var bannerHeightConstraint: NSLayoutConstraint = {
-        banner.heightAnchor.constraint(equalToConstant: Dimensions.Space.margin40)
+        banner.heightAnchor.constraint(equalToConstant: Space.margin40)
     }()
 
     /// NSLayoutConstraint used to manage the disappearance of the banner.
@@ -197,7 +197,7 @@ open class BaseTableHeaderView: BaseView {
 
             headerTitleLabel.centerYAnchor.constraint(equalTo: header.centerYAnchor),
             headerTitleLabel.leadingAnchor.constraint(equalTo: header.leadingAnchor,
-                                                      constant: Dimensions.Space.margin20),
+                                                      constant: Space.margin20),
 
             stackView.widthAnchor.constraint(equalTo: parentStackView.widthAnchor),
 
@@ -205,7 +205,7 @@ open class BaseTableHeaderView: BaseView {
 
             footerTitleLabel.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
             footerTitleLabel.leadingAnchor.constraint(equalTo: footerView.leadingAnchor,
-                                                      constant: Dimensions.Space.margin20),
+                                                      constant: Space.margin20),
             bannerHeightConstraint])
     }
 

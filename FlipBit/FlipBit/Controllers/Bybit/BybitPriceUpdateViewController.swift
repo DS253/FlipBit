@@ -19,6 +19,7 @@ class BybitPriceUpdateViewController: ViewController {
     /// The initial set price.
     private var initialValue: String = ""
     
+    /// The most recent price selected.
     private var currentValue: String = "" {
         didSet {
             guard let doubleValue = Double(currentValue) else { return }
@@ -39,7 +40,7 @@ class BybitPriceUpdateViewController: ViewController {
     }()
     
     private lazy var priceStepper: Stepper = {
-        return Stepper(side: .None, stepperObserver: self, textFieldDelegate: self, initialValue: (self.initialValue as NSString).doubleValue, increment: 0.5, max: maxBybitContracts, min: 0.0)
+        return Stepper(observer: self, delegate: self, value: (self.initialValue as NSString).doubleValue, increment: 0.5, max: maxBybitContracts, min: 0.0)
     }()
     
     private lazy var updateButton: UIButton = {
@@ -52,7 +53,7 @@ class BybitPriceUpdateViewController: ViewController {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(spacing: Dimensions.Space.margin20, views: [priceTitleLabel, priceStepper, updateButton])
+        let stackView = UIStackView(spacing: Space.margin20, views: [priceTitleLabel, priceStepper, updateButton])
         stackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cancelNumberPad)))
         return stackView
     }()
@@ -61,8 +62,7 @@ class BybitPriceUpdateViewController: ViewController {
         let cancelButton = UIBarButtonItem(title: Constant.cancel, style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancelNumberPad))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: Constant.done, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonPressed))
-        let toolbar = UIToolbar(barItems: [cancelButton, space, doneButton])
-        return toolbar
+        return UIToolbar(barItems: [cancelButton, space, doneButton])
     }()
     
     // MARK: Initializers
@@ -115,10 +115,10 @@ class BybitPriceUpdateViewController: ViewController {
     override func setupConstraints() {
         super.setupConstraints()
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimensions.Space.margin16),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimensions.Space.margin16),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin16),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin16),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: Space.margin16),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Space.margin16),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin16),
             priceStepper.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 100)
         ])
     }

@@ -58,14 +58,10 @@ class BybitLeverageUpdateViewController: ViewController {
     }()
     
     private lazy var numberToolBar: UIToolbar = {
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 100))
-        toolbar.translatesAutoresizingMaskIntoConstraints = false
-        toolbar.barStyle = .default
         let cancelButton = UIBarButtonItem(title: Constant.cancel, style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancelNumberPad))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: Constant.done, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonPressed))
-        toolbar.setItems([cancelButton, space, doneButton], animated: true)
-        return toolbar
+        return UIToolbar(barItems: [cancelButton, space, doneButton])
     }()
     
     private lazy var slider: UISlider = {
@@ -90,7 +86,7 @@ class BybitLeverageUpdateViewController: ViewController {
     }()
     
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView(spacing: Dimensions.Space.margin20, views: [leverageTitleLabel, leverageValueTextField, slider, updateButton])
+        let stackView = UIStackView(spacing: Space.margin20, views: [leverageTitleLabel, leverageValueTextField, slider, updateButton])
         stackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cancelNumberPad)))
         return stackView
     }()
@@ -143,10 +139,10 @@ class BybitLeverageUpdateViewController: ViewController {
     override func setupConstraints() {
         super.setupConstraints()
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimensions.Space.margin16),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimensions.Space.margin16),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin16),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin16),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: Space.margin16),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Space.margin16),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin16),
             
             slider.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 100)
         ])

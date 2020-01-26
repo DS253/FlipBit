@@ -81,10 +81,10 @@ class BybitTradeFlowViewController: ViewController {
             pageController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             pageController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
-            nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin16),
-            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin16),
-            nextButton.topAnchor.constraint(equalTo: pageController.view.bottomAnchor, constant: Dimensions.Space.margin16),
-            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimensions.Space.margin16)
+            nextButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin16),
+            nextButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin16),
+            nextButton.topAnchor.constraint(equalTo: pageController.view.bottomAnchor, constant: Space.margin16),
+            nextButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Space.margin16)
         ])
     }
     

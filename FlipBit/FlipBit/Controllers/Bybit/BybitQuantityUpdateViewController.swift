@@ -39,7 +39,7 @@ class BybitQuantityUpdateViewController: ViewController {
     }()
     
     private lazy var quantityStepper: Stepper = {
-        return Stepper(side: .None, stepperObserver: self, textFieldDelegate: self, initialValue: (self.initialValue as NSString).doubleValue, max: maxBybitContracts, min: 0.0)
+        return Stepper(observer: self, delegate: self, value: (self.initialValue as NSString).doubleValue, max: maxBybitContracts, min: 0.0)
     }()
     
     private lazy var percentageContainer: PercentageView = {
@@ -89,15 +89,14 @@ class BybitQuantityUpdateViewController: ViewController {
     }()
     
     private lazy var stackView: UIStackView = {
-        UIStackView(spacing: Dimensions.Space.margin20, views: [quantityTitleLabel, quantityStepper, percentageContainer, dataStackView, updateButton])
+        UIStackView(spacing: Space.margin20, views: [quantityTitleLabel, quantityStepper, percentageContainer, dataStackView, updateButton])
     }()
     
     private lazy var numberToolBar: UIToolbar = {
         let cancelButton = UIBarButtonItem(title: Constant.cancel, style: UIBarButtonItem.Style.plain, target: self, action: #selector(cancelNumberPad))
         let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: Constant.done, style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonPressed))
-        let toolbar = UIToolbar(barItems: [cancelButton, space, doneButton])
-        return toolbar
+        return UIToolbar(barItems: [cancelButton, space, doneButton])
     }()
     
     // MARK: Initializers
@@ -151,10 +150,10 @@ class BybitQuantityUpdateViewController: ViewController {
     override func setupConstraints() {
         super.setupConstraints()
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: Dimensions.Space.margin16),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimensions.Space.margin16),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin16),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin16),
+            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: Space.margin16),
+            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Space.margin16),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin16),
             quantityStepper.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 100)
         ])
     }

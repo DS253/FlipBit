@@ -76,7 +76,13 @@ class Stepper: View {
     
     // MARK: - Initializers
     
-    init(side: Bybit.Side = .None, stepperObserver: StepperObserver, textFieldDelegate: UITextFieldDelegate, initialValue: Double = 0.0, increment: Double = 1.0, max: Double = 0.0, min: Double = 0.0) {
+    init(side: Bybit.Side = .None,
+         observer stepperObserver: StepperObserver,
+         delegate textFieldDelegate: UITextFieldDelegate,
+         value initialValue: Double = 0.0,
+         increment: Double = 1.0,
+         max: Double = 0.0,
+         min: Double = 0.0) {
         self.side = side
         self.increment = increment
         self.maxValue = max
@@ -119,17 +125,17 @@ class Stepper: View {
         
         NSLayoutConstraint.activate([
             decrementer.leadingAnchor.constraint(equalTo: leadingAnchor),
-            decrementer.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin8),
+            decrementer.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin8),
             decrementer.bottomAnchor.constraint(equalTo: bottomAnchor),
             decrementer.widthAnchor.constraint(equalToConstant: buttonWidth),
             
-            textField.leadingAnchor.constraint(equalTo: decrementer.trailingAnchor, constant: Dimensions.Space.margin8),
+            textField.leadingAnchor.constraint(equalTo: decrementer.trailingAnchor, constant: Space.margin8),
             textField.centerXAnchor.constraint(equalTo: centerXAnchor),
-            textField.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin8),
+            textField.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin8),
             textField.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            incrementer.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: Dimensions.Space.margin8),
-            incrementer.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin8),
+            incrementer.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: Space.margin8),
+            incrementer.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin8),
             incrementer.bottomAnchor.constraint(equalTo: bottomAnchor),
             incrementer.trailingAnchor.constraint(equalTo: trailingAnchor),
             incrementer.widthAnchor.constraint(equalToConstant: buttonWidth),

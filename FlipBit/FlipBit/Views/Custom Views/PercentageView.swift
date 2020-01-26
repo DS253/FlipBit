@@ -47,25 +47,25 @@ class PercentageView: View {
         super.setupConstraints()
         NSLayoutConstraint.activate([
             
-            button25.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin4),
-            button25.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin4),
-            button25.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin4),
+            button25.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
+            button25.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
+            button25.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin4),
             button25.trailingAnchor.constraint(equalTo: button50.leadingAnchor),
             
-            button50.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin4),
-            button50.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin4),
+            button50.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
+            button50.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
             button50.widthAnchor.constraint(equalTo: button25.widthAnchor),
             button50.trailingAnchor.constraint(equalTo: button75.leadingAnchor),
             
-            button75.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin4),
-            button75.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin4),
+            button75.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
+            button75.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
             button75.widthAnchor.constraint(equalTo: button25.widthAnchor),
             button75.trailingAnchor.constraint(equalTo: button100.leadingAnchor),
             
-            button100.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin4),
-            button100.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin4),
+            button100.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
+            button100.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
             button100.widthAnchor.constraint(equalTo: button25.widthAnchor),
-            button100.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin4)
+            button100.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin4)
         ])
     }
     

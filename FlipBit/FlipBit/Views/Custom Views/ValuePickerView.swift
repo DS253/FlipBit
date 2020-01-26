@@ -66,22 +66,22 @@ class ValuePickerView: View, PriceSelection, QuantitySelection {
     override func setupConstraints() {
         super.setupConstraints()
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin8),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin8),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin8),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin8),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin8),
             
-            increaseButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Dimensions.Space.margin8),
-            increaseButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin8),
+            increaseButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Space.margin8),
+            increaseButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin8),
             increaseButton.widthAnchor.constraint(equalTo: decreaseButton.widthAnchor),
             increaseButton.leadingAnchor.constraint(equalTo: centerXAnchor),
             
-            decreaseButton.topAnchor.constraint(equalTo: increaseButton.bottomAnchor, constant: Dimensions.Space.margin4),
-            decreaseButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin8),
-            decreaseButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin8),
+            decreaseButton.topAnchor.constraint(equalTo: increaseButton.bottomAnchor, constant: Space.margin4),
+            decreaseButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin8),
+            decreaseButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin8),
             decreaseButton.heightAnchor.constraint(equalTo: increaseButton.heightAnchor),
             
             valueLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            valueLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin8),
+            valueLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin8),
             valueLabel.trailingAnchor.constraint(equalTo: centerXAnchor),
             valueLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])

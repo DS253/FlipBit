@@ -80,36 +80,36 @@ class OrderBookPanel: View {
         super.setupConstraints()
         
         NSLayoutConstraint.activate([
-            bookHeader.topAnchor.constraint(equalTo: topAnchor, constant: Dimensions.Space.margin16),
-            bookHeader.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin16),
-            bookHeader.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin16),
+            bookHeader.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin16),
+            bookHeader.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin16),
+            bookHeader.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin16),
             
             separatorView.leadingAnchor.constraint(equalTo: priceHeaderLabel.leadingAnchor),
             separatorView.trailingAnchor.constraint(equalTo: quantityHeaderLabel.trailingAnchor),
-            separatorView.heightAnchor.constraint(equalToConstant: Dimensions.Space.margin1),
-            separatorView.topAnchor.constraint(equalTo: bookHeader.bottomAnchor, constant: Dimensions.Space.margin4),
+            separatorView.heightAnchor.constraint(equalToConstant: Space.margin1),
+            separatorView.topAnchor.constraint(equalTo: bookHeader.bottomAnchor, constant: Space.margin4),
             
             priceHeaderLabel.topAnchor.constraint(equalTo: bookHeader.topAnchor),
             priceHeaderLabel.bottomAnchor.constraint(equalTo: bookHeader.bottomAnchor),
-            priceHeaderLabel.leadingAnchor.constraint(equalTo: bookHeader.leadingAnchor, constant: Dimensions.Space.margin8),
+            priceHeaderLabel.leadingAnchor.constraint(equalTo: bookHeader.leadingAnchor, constant: Space.margin8),
             priceHeaderLabel.trailingAnchor.constraint(equalTo: quantityHeaderLabel.leadingAnchor),
             
             quantityHeaderLabel.topAnchor.constraint(equalTo: bookHeader.topAnchor),
             quantityHeaderLabel.bottomAnchor.constraint(equalTo: bookHeader.bottomAnchor),
             quantityHeaderLabel.trailingAnchor.constraint(equalTo: bookHeader.trailingAnchor),
             
-            buybook.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: Dimensions.Space.margin4),
-            buybook.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin16),
-            buybook.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin16),
+            buybook.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: Space.margin4),
+            buybook.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin16),
+            buybook.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin16),
             
-            lastPriceLabel.topAnchor.constraint(equalTo: buybook.bottomAnchor, constant: Dimensions.Space.margin8),
-            lastPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin16),
-            lastPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin16),
+            lastPriceLabel.topAnchor.constraint(equalTo: buybook.bottomAnchor, constant: Space.margin8),
+            lastPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin16),
+            lastPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin16),
             
-            sellbook.topAnchor.constraint(equalTo: lastPriceLabel.bottomAnchor, constant: Dimensions.Space.margin8),
-            sellbook.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Dimensions.Space.margin16),
-            sellbook.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Dimensions.Space.margin16),
-            sellbook.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Dimensions.Space.margin16)
+            sellbook.topAnchor.constraint(equalTo: lastPriceLabel.bottomAnchor, constant: Space.margin8),
+            sellbook.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin16),
+            sellbook.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin16),
+            sellbook.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin16)
         ])
     }
     

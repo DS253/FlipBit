@@ -12,9 +12,7 @@ import UIKit
 class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     
     private lazy var symbolInfoView: SymbolInfoHeaderView = {
-        let symbolInfoView = SymbolInfoHeaderView()
-        symbolInfoView.configureView()
-        return symbolInfoView
+        SymbolInfoHeaderView()
     }()
     
     private let orderbookPanel: OrderBookPanel = {
@@ -31,8 +29,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }()
     
     private lazy var currentLeverageLabel: UILabel = {
-        let label = UILabel(text: Constant.leverage, font: UIFont.largeTitle, textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
-        label.font = UIFont(name: "AvenirNext-Bold", size: 32.0)
+        let label = UILabel(text: Constant.leverage, font: UIFont(name: "AvenirNext-Bold", size: 32.0), textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
         label.layer.cornerRadius = 14
         return label
     }()
@@ -43,19 +40,14 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     
     private lazy var optionsViewGradient: CAGradientLayer = {
         let gradient = CAGradientLayer()
-        gradient.colors = [
-            UIColor.flatNavyBlue.withAlphaComponent(0.45).cgColor,
-            UIColor.flatNavyBlue.withAlphaComponent(0.0).cgColor
-        ]
-        
+        gradient.colors = [ UIColor.flatNavyBlue.withAlphaComponent(0.45).cgColor, UIColor.flatNavyBlue.withAlphaComponent(0.0).cgColor]
         return gradient
     }()
     
     private let optionsViewGradientHeight: CGFloat = 4.0
     
     private lazy var priceLabel: UILabel = {
-        guard let font = UIFont(name: "AvenirNext-Bold", size: 28.0) else { return UILabel(text: Constant.price, font: UIFont.title3, textColor: UIColor.Bybit.themeBlack, textAlignment: .center) }
-        return UILabel(text: Constant.price, font: font, textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
+        UILabel(text: Constant.price, font: UIFont(name: "AvenirNext-Bold", size: 28.0), textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
     }()
     
     private lazy var pricePanel: Panel = {
@@ -67,8 +59,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }()
     
     private lazy var quantityLabel: UILabel = {
-        guard let font = UIFont(name: "AvenirNext-Bold", size: 28.0) else { return UILabel(text: Constant.quantity, font: UIFont.title3, textColor: UIColor.Bybit.themeBlack, textAlignment: .center) }
-        return UILabel(text: Constant.quantity, font: font, textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
+        UILabel(text: Constant.quantity, font: UIFont(name: "AvenirNext-Bold", size: 28.0), textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
     }()
     
     private lazy var quantityPanel: Panel = {
@@ -82,7 +73,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     private lazy var tradeHistoryContainer: View = {
         let container = View(backgroundColor: UIColor.Bybit.white)
         container.setBybitTheme()
-        container.addSubview(view: tradeHistoryTable.view, constant: Dimensions.Space.margin4)
+        container.addSubview(view: tradeHistoryTable.view, constant: Space.margin4)
         return container
     }()
     
@@ -155,29 +146,29 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
             symbolInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             leverageContainer.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
-            leverageContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
-            leverageContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
-            leverageContainer.bottomAnchor.constraint(equalTo: pricePanel.topAnchor, constant: -Dimensions.Space.margin10),
+            leverageContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
+            leverageContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
+            leverageContainer.bottomAnchor.constraint(equalTo: pricePanel.topAnchor, constant: -Space.margin10),
             
-            pricePanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
-            pricePanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
-            pricePanel.bottomAnchor.constraint(equalTo: quantityPanel.topAnchor, constant: -Dimensions.Space.margin10),
+            pricePanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
+            pricePanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
+            pricePanel.bottomAnchor.constraint(equalTo: quantityPanel.topAnchor, constant: -Space.margin10),
             
-            quantityPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Dimensions.Space.margin8),
-            quantityPanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Dimensions.Space.margin8),
+            quantityPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
+            quantityPanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
             
-            orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Dimensions.Space.margin8),
-            orderbookPanel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
-            orderbookPanel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
+            orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Space.margin8),
+            orderbookPanel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
+            orderbookPanel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
             
-            tradeHistoryContainer.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Dimensions.Space.margin16),
-            tradeHistoryContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Dimensions.Space.margin8),
-            tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Dimensions.Space.margin8),
-            tradeHistoryContainer.bottomAnchor.constraint(equalTo: tradeView.topAnchor, constant: -Dimensions.Space.margin10),
+            tradeHistoryContainer.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Space.margin16),
+            tradeHistoryContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
+            tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
+            tradeHistoryContainer.bottomAnchor.constraint(equalTo: tradeView.topAnchor, constant: -Space.margin10),
             
             tradeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tradeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tradeView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Dimensions.Space.margin16)
+            tradeView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Space.margin16)
         ])
     }
     

@@ -1,27 +1,22 @@
 //
-//  Dimensions.swift
+//  Space.swift
 //  FlipBit
 //
-//  Created by Daniel Stewart on 11/19/19.
-//  Copyright © 2019 DS Studios. All rights reserved.
+//  Created by Daniel Stewart on 1/25/20.
+//  Copyright © 2020 DS Studios. All rights reserved.
 //
 
 import UIKit
 
-struct Dimensions {
-    
-    struct Space { }
+struct Space {
     
     struct WidthMultiplier { }
-
+    
     /// A 1-pixel dimension that can be used for thinnest-possible lines, based on screen scale.
     internal static let singlePixel: CGFloat = 1.0 / UIScreen.main.scale
-}
-
-extension Dimensions.Space {
     
     static let margin1: CGFloat = 1.0
-
+    
     /// Space between labels contained in a table cell
     static let margin2: CGFloat = 2.0
     
@@ -46,33 +41,34 @@ extension Dimensions.Space {
     
     /// Default space between nested subviews.
     static let margin20: CGFloat = 20.0
-
+    
     static let margin22: CGFloat = 22.0
-
+    
     static let margin24: CGFloat = 24.0
-
+    
     /// Default space between major UI elements.
     static let margin26: CGFloat = 26.0
     
     /// Default space between major UI elements.
     static let margin28: CGFloat = 28.0
-
+    
     static let margin32: CGFloat = 32.0
     
     static let margin40: CGFloat = 40.0
     
     static let margin42: CGFloat = 42.0
-
+    
     static let margin48: CGFloat = 48.0
-
+    
     /// Default height of table header
     static let margin50: CGFloat = 50.0
-
+    
     static let margin96: CGFloat = 96.0
 }
 
+
 /// Defines the multipliers for a twelve-column grid layout, with 16pts of padding between each column.
-extension Dimensions.WidthMultiplier {
+extension Space.WidthMultiplier {
     
     static let oneColumn: CGFloat = 0.061
     
@@ -98,4 +94,3 @@ extension Dimensions.WidthMultiplier {
     
     static let twelveColumns: CGFloat = 0.958
 }
-
