@@ -99,9 +99,25 @@ class BybitQuantityUpdateViewController: ViewController {
         return UIToolbar(barItems: [cancelButton, space, doneButton])
     }()
     
+    private var price: String
+    private var quantity: String
+    private var leverage: String
+    private lazy var initialMargin: Double = {
+        guard
+            let setPrice = Double(price),
+            let setLeverage = Double(leverage),
+            let setQuantity = Double(quantity)
+        else { return 0.0 }
+        
+        return setQuantity / (setPrice * setLeverage)
+    }()
+    
     // MARK: Initializers
     
-    init(quantity: String, price: String, observer: QuantityObserver) {
+    init(quantity: String, price: String, leverage: String, observer: QuantityObserver) {
+        self.price = price
+        self.quantity = quantity
+        self.leverage = leverage
         super.init(nibName: nil, bundle: nil)
         self.quantityDelegate = observer
         currentValue = quantity

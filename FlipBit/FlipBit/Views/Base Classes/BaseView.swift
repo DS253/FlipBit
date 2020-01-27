@@ -40,12 +40,13 @@ open class BaseView: UIView, ViewSetup {
         self.setupConstraints()
     }
     
-    public init(backgroundColor: UIColor) {
+    public init(backgroundColor: UIColor, interactive: Bool = true) {
         super.init(frame: .zero)
         self.setup()
         self.setupSubviews()
         self.setupConstraints()
         self.backgroundColor = backgroundColor
+        self.isUserInteractionEnabled = interactive
     }
 
     /// Creates a `BaseView` instance given the provided parameter(s).

@@ -64,6 +64,7 @@
 		0644D1DE238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644D1DD238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift */; };
 		0644D1E1238CDAE4001649F1 /* Bybit+SymbolInfo+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644D1E0238CDAE4001649F1 /* Bybit+SymbolInfo+Additions.swift */; };
 		0644D1E7238E36B2001649F1 /* BybitBookOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644D1E6238E36B2001649F1 /* BybitBookOrderCell.swift */; };
+		0645602023DE46E700619DC2 /* OrderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0645601F23DE46E700619DC2 /* OrderManager.swift */; };
 		0645ECDA239719B100E749C8 /* BybitPositionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0645ECD9239719B100E749C8 /* BybitPositionObserver.swift */; };
 		06470DA82377B6D500419238 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DA72377B6D500419238 /* AppDelegate.swift */; };
 		06470DAA2377B6D500419238 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DA92377B6D500419238 /* SceneDelegate.swift */; };
@@ -250,6 +251,7 @@
 		0644D1DD238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitSymbolInfoObserver+Deserializer.swift"; sourceTree = "<group>"; };
 		0644D1E0238CDAE4001649F1 /* Bybit+SymbolInfo+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+SymbolInfo+Additions.swift"; sourceTree = "<group>"; };
 		0644D1E6238E36B2001649F1 /* BybitBookOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitBookOrderCell.swift; sourceTree = "<group>"; };
+		0645601F23DE46E700619DC2 /* OrderManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderManager.swift; sourceTree = "<group>"; };
 		0645ECD9239719B100E749C8 /* BybitPositionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitPositionObserver.swift; sourceTree = "<group>"; };
 		06470DA42377B6D500419238 /* FlipBit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlipBit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		06470DA72377B6D500419238 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -844,6 +846,7 @@
 			isa = PBXGroup;
 			children = (
 				067FEB0D23D624B500B160AC /* BalanceManager.swift */,
+				0645601F23DE46E700619DC2 /* OrderManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -1250,6 +1253,7 @@
 				060D96EC237B95720040598A /* BitService+BBWalletFundRecord.swift in Sources */,
 				06163D6123B0244D0076EFC0 /* TitleTextView.swift in Sources */,
 				06ED56A523B9760900EF4AF4 /* TradeFlowStopLossViewController.swift in Sources */,
+				0645602023DE46E700619DC2 /* OrderManager.swift in Sources */,
 				45B3D94F23874DCC0004DF76 /* BybitBookOrderObserver.swift in Sources */,
 				064131262389F6FC00B795D5 /* UIResponder+Additions.swift in Sources */,
 				06470E1B2377C7E600419238 /* BitService+BBPreviousFundingFee.swift in Sources */,

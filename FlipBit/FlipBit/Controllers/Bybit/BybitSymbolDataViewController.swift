@@ -20,16 +20,16 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }()
     
     private lazy var leverageContainer: View = {
-        let container = View(backgroundColor: UIColor.Bybit.white)
+        let container = View(backgroundColor: UIColor.Bybit.white, interactive: false)
         container.setBybitTheme()
         container.addSubview(view: currentLeverageLabel, constant: 8)
         container.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(leverageTapped)))
-        container.isUserInteractionEnabled = false
         return container
     }()
     
     private lazy var currentLeverageLabel: UILabel = {
-        let label = UILabel(text: Constant.leverage, font: UIFont(name: "AvenirNext-Bold", size: 32.0), textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
+        let font = UIFont(name: "AvenirNext-Bold", size: 32.0)
+        let label = UILabel(text: Constant.leverage, font: font, textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
         label.layer.cornerRadius = 14
         return label
     }()
@@ -40,31 +40,31 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     
     private lazy var optionsViewGradient: CAGradientLayer = {
         let gradient = CAGradientLayer()
-        gradient.colors = [ UIColor.flatNavyBlue.withAlphaComponent(0.45).cgColor, UIColor.flatNavyBlue.withAlphaComponent(0.0).cgColor]
+        gradient.colors = [UIColor.flatNavyBlue.withAlphaComponent(0.45).cgColor, UIColor.flatNavyBlue.withAlphaComponent(0.0).cgColor]
         return gradient
     }()
     
     private let optionsViewGradientHeight: CGFloat = 4.0
     
     private lazy var priceLabel: UILabel = {
-        UILabel(text: Constant.price, font: UIFont(name: "AvenirNext-Bold", size: 28.0), textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
+        let font = UIFont(name: "AvenirNext-Bold", size: 28.0)
+        return UILabel(text: Constant.price, font: font, textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
     }()
     
     private lazy var pricePanel: Panel = {
         let container = Panel()
-        container.setBybitTheme()
         container.addSubviews(views: [priceLabel])
         container.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(priceTapped)))
         return container
     }()
     
     private lazy var quantityLabel: UILabel = {
-        UILabel(text: Constant.quantity, font: UIFont(name: "AvenirNext-Bold", size: 28.0), textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
+        let font = UIFont(name: "AvenirNext-Bold", size: 28.0)
+        return UILabel(text: Constant.quantity, font: font, textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
     }()
     
     private lazy var quantityPanel: Panel = {
         let container = Panel()
-        container.setBybitTheme()
         container.addSubviews(views: [quantityLabel])
         container.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(quantityTapped)))
         return container
@@ -240,10 +240,11 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     @objc func quantityTapped() {
         guard
             let quantity = quantityLabel.text,
-            let price = priceLabel.text
+            let price = priceLabel.text,
+            let leverage = currentLeverageLabel.text
             else { return }
         hapticFeedback()
-        let vc = BybitQuantityUpdateViewController(quantity: quantity, price: price, observer: self)
+        let vc = BybitQuantityUpdateViewController(quantity: quantity, price: price, leverage: String(leverage.dropLast()), observer: self)
         present(vc, animated: true)
     }
 }

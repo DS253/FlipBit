@@ -9,8 +9,8 @@
 import Foundation
 import NetQuilt
 
-let theAPIKey = "tjLNabTKzKmtlvE6Qs"
-let secret = "JiT2BnTVwhTjifzfWqPkQV8Q0Mbprnbr7ZRW"
+let theAPIKey = "avakSEpslATRbRQqX2"
+let secret = "WZoEUyZuiauyVhp5qrY51S8FZPYMb004hbwA"
 //let theAPIKey = "Mqvkxv3jRP9H2ExK3h"
 //let secret = "4VDDtErgd0uLYDBwI63S27pFcHRNvBKtS9C5"
 
