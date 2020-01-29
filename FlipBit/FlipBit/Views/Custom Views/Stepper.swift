@@ -207,9 +207,7 @@ extension Stepper: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         /// If backspace is pressed, allow it.
-        let  char = string.cString(using: .utf8)
-        let isBackSpace = strcmp(char, "\\b")
-        if (isBackSpace == -92) { return true }
+        if string.isBackSpace() { return true }
         let text = textField.text ?? ""
         
         if text.contains(".") {

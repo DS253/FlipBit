@@ -192,16 +192,16 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     
     @objc func tradeButtonTapped(sender: UIButton) {
         hapticFeedback()
-        guard
-            let price = priceLabel.text,
-            let quantity = quantityLabel.text,
-            let buttonTitle = sender.titleLabel?.text
-            else { return }
-        
-        let side = (buttonTitle == Constant.buy) ? Bybit.Side.Buy : Bybit.Side.Sell
-        let order = Order(side: side, price: price, quantity: quantity)
-        let vc = BybitTradeFlowViewController(order: order)
-        present(vc, animated: true)
+//        guard
+//            let price = priceLabel.text,
+//            let quantity = quantityLabel.text,
+//            let buttonTitle = sender.titleLabel?.text
+//            else { return }
+//        
+//        let side = (buttonTitle == Constant.buy) ? Bybit.Side.Buy : Bybit.Side.Sell
+//        let order = Order(side: side, price: price, quantity: quantity)
+//        let vc = BybitTradeFlowViewController(order: order)
+//        present(vc, animated: true)
     }
     
     @objc func updateSymbolInfo(notification: NSNotification) {

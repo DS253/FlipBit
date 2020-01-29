@@ -19,6 +19,7 @@ class BybitQuantityUpdateViewController: ViewController {
     /// The initial set price.
     private var initialValue: String = ""
     
+    /// The value the price is currently set to.
     private var currentValue: String = "" {
         didSet {
             guard let doubleValue = Double(currentValue) else { return }
@@ -34,10 +35,12 @@ class BybitQuantityUpdateViewController: ViewController {
     /// Tracks the dismissal of the numberpad by the Cancel button in the toolbar.
     private var manualCancel: Bool = false
     
+    /// Main title label.
     private lazy var quantityTitleLabel: UILabel = {
         UILabel(text: Constant.quantity, font: UIFont.title1.bold, textColor: UIColor.flatMint, textAlignment: .center)
     }()
     
+    /// Stepper component used to change the quantity value.
     private lazy var quantityStepper: Stepper = {
         return Stepper(observer: self, delegate: self, value: (self.initialValue as NSString).doubleValue, max: maxBybitContracts, min: 0.0)
     }()
@@ -71,14 +74,17 @@ class BybitQuantityUpdateViewController: ViewController {
         return UILabel(font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
     }()
     
+    /// Stackview containing the title labels.
     private lazy var balanceStackView: UIStackView = {
         UIStackView(axis: .horizontal, views: [balanceTitleLabel, balanceLabel])
     }()
     
+    /// Stackview containing the data labels.
     private lazy var dataStackView: UIStackView = {
         UIStackView(axis: .vertical, views: [orderStackView, balanceStackView])
     }()
     
+    /// Sets the current value to be the new quantity.
     private lazy var updateButton: UIButton = {
         let button = UIButton(title: Constant.updateQuantity, textColor: UIColor.flatMintDark, font: .body, enabled: false)
         button.addTarget(self, action: #selector(updatePrice(sender:)), for: .touchDown)
@@ -102,15 +108,6 @@ class BybitQuantityUpdateViewController: ViewController {
     private var price: String
     private var quantity: String
     private var leverage: String
-    private lazy var initialMargin: Double = {
-        guard
-            let setPrice = Double(price),
-            let setLeverage = Double(leverage),
-            let setQuantity = Double(quantity)
-        else { return 0.0 }
-        
-        return setQuantity / (setPrice * setLeverage)
-    }()
     
     // MARK: Initializers
     
@@ -124,6 +121,9 @@ class BybitQuantityUpdateViewController: ViewController {
         initialValue = quantity
         modalPresentationStyle = .custom
         transitioningDelegate = self
+        
+        let orderManager = OrderManager(price: (self.price as NSString).doubleValue, quantity: (self.quantity as NSString).doubleValue, leverage: (self.leverage as NSString).doubleValue, tradeType: .Buy)
+        orderManager.compute()
     }
     
     required init?(coder: NSCoder) {

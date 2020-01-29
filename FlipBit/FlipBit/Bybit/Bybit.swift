@@ -75,6 +75,14 @@ public extension Bybit {
         case None
     }
     
+    /// The type of Bybit fee.
+    /// Maker fee is for an order that is added to the order books.
+    /// Taker fee is for an order that is executed immediately.
+    enum Fee: Double, Codable {
+        case Maker = -0.00025
+        case Taker = 0.00075
+    }
+    
     enum Symbol: String, Codable {
         case BTC = "BTCUSD"
         case ETH = "ETHUSD"
