@@ -16,19 +16,20 @@ class OrderManager {
     private var side: Bybit.Side
     
     /// The amount of collateral required to open a position for leverage trading.
-    private var initialMargin: Double {
+    private lazy var initialMargin: Double = {
+        print("quantity: \(quantity)" )
         return quantity / (price * leverage)
-    }
+    }()
     
     /// The fee required to open a position.
-    private var openFee: Double {
+    private lazy var openFee: Double = {
         return (quantity / price) * fee()
-    }
+    }()
     
     /// The fee required to close a position.
-    private var closeFee: Double {
+    private lazy var closeFee: Double = {
         return (quantity / bankruptcyPrice) * fee()
-    }
+    }()
     
     /// The price level that indicates you have lost all your initial margin.
     /// Used to calculate the closing fee.
@@ -66,8 +67,18 @@ class OrderManager {
         return Bybit.Fee.Maker.rawValue
     }
     
-    func compute() {
+    func update(quantity: String) {
+        print(quantity)
+        guard let newQuantity = Double(quantity) else { return }
+        self.quantity = newQuantity
+        print(self.quantity)
+    }
+    
+    func provideEstimatedValue() -> Double {
+        print("initialMargin: \(initialMargin)" )
+        print("openFee: \(openFee)" )
+        print("closeFee: \(closeFee)" )
         let orderValue = initialMargin + openFee + closeFee
-        print(orderValue)
+        return orderValue
     }
 }

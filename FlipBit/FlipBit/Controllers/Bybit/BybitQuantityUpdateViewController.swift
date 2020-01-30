@@ -16,17 +16,23 @@ class BybitQuantityUpdateViewController: ViewController {
     
     // MARK: - Private Properties
     
-    /// The initial set price.
+    /// The initial set quantity.
     private var initialValue: String = ""
     
-    /// The value the price is currently set to.
+    /// The value the quantity is currently set to.
     private var currentValue: String = "" {
         didSet {
             guard let doubleValue = Double(currentValue) else { return }
+//            orderManager.update(quantity: currentValue)
             quantityStepper.value = doubleValue
             quantityStepper.textField.text = String(format: "%.0f", doubleValue)
+            orderValueLabel.text = "\(orderManager.provideEstimatedValue())"
             updateButtonState()
         }
+    }
+    
+    private var orderManager: OrderManager {
+        OrderManager(price: (self.price as NSString).doubleValue, quantity: (currentValue as NSString).doubleValue, leverage: (self.leverage as NSString).doubleValue, tradeType: .Buy)
     }
     
     /// Delegate observer tracks changes to the set price.
@@ -40,43 +46,55 @@ class BybitQuantityUpdateViewController: ViewController {
         UILabel(text: Constant.quantity, font: UIFont.title1.bold, textColor: UIColor.flatMint, textAlignment: .center)
     }()
     
+    /// Displays the account balance.
+    private lazy var balanceLabel: UILabel = {
+        if let balance = balanceManager.btcPosition?.walletBalance {
+            return UILabel(text: "\(String(balance))BTC", font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .center)
+        }
+        return UILabel(font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .center)
+    }()
+    
     /// Stepper component used to change the quantity value.
     private lazy var quantityStepper: Stepper = {
         return Stepper(observer: self, delegate: self, value: (self.initialValue as NSString).doubleValue, max: maxBybitContracts, min: 0.0)
     }()
     
+    /// Button collection used to select a balance percentage.
     private lazy var percentageContainer: PercentageView = {
         let percentageView = PercentageView()
         percentageView.configureButtonActions(viewController: self, action: #selector(addByPercentage(sender:)), event: .touchUpInside)
         return percentageView
     }()
     
+    /// Title for order value.
     private lazy var orderValueTitleLabel: UILabel = {
         UILabel(text: Constant.orderValue, font: UIFont.footnote.bold, textColor: UIColor.flatMint)
     }()
     
     private lazy var orderValueLabel: UILabel = {
-        UILabel(text: Constant.orderValue, font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
+        UILabel(text: "\(orderManager.provideEstimatedValue())", font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
     }()
     
     private lazy var orderStackView: UIStackView = {
         UIStackView(axis: .horizontal, views: [orderValueTitleLabel, orderValueLabel])
     }()
     
-    private lazy var balanceTitleLabel: UILabel = {
-        UILabel(text: Constant.availableBalance, font: UIFont.footnote.bold, textColor: UIColor.flatMint)
+    /// Title for leverage.
+    private lazy var leverageTitleLabel: UILabel = {
+        UILabel(text: Constant.leverage, font: UIFont.footnote.bold, textColor: UIColor.flatMint)
     }()
     
-    private lazy var balanceLabel: UILabel = {
+    /// Displays the current set leverage.
+    private lazy var leverageLabel: UILabel = {
         if let balance = balanceManager.btcPosition?.walletBalance {
-            return UILabel(text: "\(String(balance))BTC", font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
+            return UILabel(text: self.leverage, font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
         }
         return UILabel(font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
     }()
     
     /// Stackview containing the title labels.
     private lazy var balanceStackView: UIStackView = {
-        UIStackView(axis: .horizontal, views: [balanceTitleLabel, balanceLabel])
+        UIStackView(axis: .horizontal, views: [leverageTitleLabel, leverageLabel])
     }()
     
     /// Stackview containing the data labels.
@@ -95,7 +113,7 @@ class BybitQuantityUpdateViewController: ViewController {
     }()
     
     private lazy var stackView: UIStackView = {
-        UIStackView(spacing: Space.margin20, views: [quantityTitleLabel, quantityStepper, percentageContainer, dataStackView, updateButton])
+        UIStackView(spacing: Space.margin14, views: [quantityTitleLabel, balanceLabel, quantityStepper, percentageContainer, dataStackView, updateButton])
     }()
     
     private lazy var numberToolBar: UIToolbar = {
@@ -106,14 +124,12 @@ class BybitQuantityUpdateViewController: ViewController {
     }()
     
     private var price: String
-    private var quantity: String
     private var leverage: String
     
     // MARK: Initializers
     
     init(quantity: String, price: String, leverage: String, observer: QuantityObserver) {
         self.price = price
-        self.quantity = quantity
         self.leverage = leverage
         super.init(nibName: nil, bundle: nil)
         self.quantityDelegate = observer
@@ -121,9 +137,6 @@ class BybitQuantityUpdateViewController: ViewController {
         initialValue = quantity
         modalPresentationStyle = .custom
         transitioningDelegate = self
-        
-        let orderManager = OrderManager(price: (self.price as NSString).doubleValue, quantity: (self.quantity as NSString).doubleValue, leverage: (self.leverage as NSString).doubleValue, tradeType: .Buy)
-        orderManager.compute()
     }
     
     required init?(coder: NSCoder) {
@@ -218,7 +231,7 @@ class BybitQuantityUpdateViewController: ViewController {
 }
 
 extension BybitQuantityUpdateViewController: UITextFieldDelegate {
-    
+    /// Clear textField.
     func textFieldDidBeginEditing(_ textField: UITextField) {
         updateButton.isEnabled = false
         textField.text = ""

@@ -35,10 +35,12 @@ class BybitPriceUpdateViewController: ViewController {
     /// Tracks the dismissal of the numberpad by the Cancel button in the toolbar.
     private var manualCancel: Bool = false
     
+    /// Headline.
     private lazy var priceTitleLabel: UILabel = {
         UILabel(text: Constant.price, font: UIFont.title1.bold, textColor: UIColor.flatMint, textAlignment: .center)
     }()
     
+    /// Stepper component used to change the price value.
     private lazy var priceStepper: Stepper = {
         return Stepper(observer: self, delegate: self, value: (self.initialValue as NSString).doubleValue, increment: 0.5, max: maxBybitContracts, min: 0.0)
     }()
