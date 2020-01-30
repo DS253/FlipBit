@@ -26,7 +26,8 @@ class BybitQuantityUpdateViewController: ViewController {
 //            orderManager.update(quantity: currentValue)
             quantityStepper.value = doubleValue
             quantityStepper.textField.text = String(format: "%.0f", doubleValue)
-            orderValueLabel.text = "\(orderManager.provideEstimatedValue())"
+            orderValueLabel.text = "\(orderManager.orderValue)"
+            orderCostLabel.text = "\(orderManager.provideEstimatedOrderValue())"
             updateButtonState()
         }
     }
@@ -67,12 +68,25 @@ class BybitQuantityUpdateViewController: ViewController {
     }()
     
     /// Title for order value.
+    private lazy var orderCostTitleLabel: UILabel = {
+        UILabel(text: Constant.orderCost, font: UIFont.footnote.bold, textColor: UIColor.flatMint)
+    }()
+    
+    private lazy var orderCostLabel: UILabel = {
+        UILabel(text: "\(orderManager.provideEstimatedOrderValue())", font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
+    }()
+    
+    private lazy var costStackView: UIStackView = {
+        UIStackView(axis: .horizontal, views: [orderCostTitleLabel, orderCostLabel])
+    }()
+    
+    /// Title for order value.
     private lazy var orderValueTitleLabel: UILabel = {
         UILabel(text: Constant.orderValue, font: UIFont.footnote.bold, textColor: UIColor.flatMint)
     }()
     
     private lazy var orderValueLabel: UILabel = {
-        UILabel(text: "\(orderManager.provideEstimatedValue())", font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
+        UILabel(text: "\(orderManager.orderValue)", font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
     }()
     
     private lazy var orderStackView: UIStackView = {
@@ -93,13 +107,13 @@ class BybitQuantityUpdateViewController: ViewController {
     }()
     
     /// Stackview containing the title labels.
-    private lazy var balanceStackView: UIStackView = {
+    private lazy var leverageStackView: UIStackView = {
         UIStackView(axis: .horizontal, views: [leverageTitleLabel, leverageLabel])
     }()
     
     /// Stackview containing the data labels.
     private lazy var dataStackView: UIStackView = {
-        UIStackView(axis: .vertical, views: [orderStackView, balanceStackView])
+        UIStackView(axis: .vertical, views: [orderStackView, costStackView, leverageStackView])
     }()
     
     /// Sets the current value to be the new quantity.

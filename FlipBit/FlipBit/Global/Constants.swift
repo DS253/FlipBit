@@ -33,6 +33,7 @@ struct Constant {
     static let long = "Long"
     static let market = "Market"
     static let next = "Next"
+    static let orderCost = "Order Cost"
     static let orderPrice = "Order Price USD"
     static let orderQuantity = "Order Quantity USD"
     static let orderValue = "Order Value"

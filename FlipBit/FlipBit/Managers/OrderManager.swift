@@ -40,6 +40,11 @@ class OrderManager {
         return price * (leverage / (leverage - 1.0))
     }
     
+    /// The value of the order factoring in leverage.
+    lazy var orderValue: Double = {
+        return initialMargin * leverage
+    }()
+    
     init(price: Double?, quantity: Double?, leverage: Double?, tradeType: Bybit.Side) {
         self.price = price ?? 0.0
         self.quantity = quantity ?? 0.0
@@ -74,11 +79,7 @@ class OrderManager {
         print(self.quantity)
     }
     
-    func provideEstimatedValue() -> Double {
-        print("initialMargin: \(initialMargin)" )
-        print("openFee: \(openFee)" )
-        print("closeFee: \(closeFee)" )
-        let orderValue = initialMargin + openFee + closeFee
-        return orderValue
+    func provideEstimatedOrderValue() -> Double {
+        return initialMargin + openFee + closeFee
     }
 }
