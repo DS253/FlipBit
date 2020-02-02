@@ -17,7 +17,7 @@ class BybitTradeFlowViewController: ViewController {
     }()
     
     private lazy var colorTheme: UIColor = {
-        return (order.side == .Buy) ? UIColor.flatMint : UIColor.flatWatermelon
+        return (order.side == .Buy) ? themeManager.buyTextColor : themeManager.sellTextColor
     }()
     
     private lazy var nextButton: UIButton = {
@@ -50,7 +50,7 @@ class BybitTradeFlowViewController: ViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        view.backgroundColor = themeManager.themeBackgroundColor.withAlphaComponent(0.7)
         view.setFrameLengthByPercentage(width: 0.85, height: 0.6)
         view.setToScreenCenter()
     }

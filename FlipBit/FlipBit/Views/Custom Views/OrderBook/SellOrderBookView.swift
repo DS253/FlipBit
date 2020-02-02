@@ -23,7 +23,7 @@ class SellOrderBookView: OrderBookBaseView {
     }
     
     override func colorTheme() -> UIColor {
-        return UIColor.flatWatermelonDark
+        return themeManager.sellTextColor
     }
     
     func configureViewForSellBook() {

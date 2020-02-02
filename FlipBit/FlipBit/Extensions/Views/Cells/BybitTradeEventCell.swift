@@ -12,15 +12,9 @@ class BybitTradeEventCell: UITableViewCell {
 
     var bookOrders: Bybit.BookOrder?
     
-    private var isAnimating: Bool = false
+    private lazy var priceLabel: UILabel = { UILabel(font: UIFont.footnote.bold, textAlignment: .left) }()
     
-    private lazy var priceLabel: UILabel = {
-        UILabel(font: UIFont.footnote.bold, textAlignment: .left)
-    }()
-    
-    private let quantityLabel: UILabel = {
-        UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack, textAlignment: .right)
-    }()
+    private let quantityLabel: UILabel = { UILabel(font: UIFont.footnote, textColor: themeManager.themeFontColor, textAlignment: .right) }()
         
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,7 +30,7 @@ class BybitTradeEventCell: UITableViewCell {
     // MARK: - Setup Methods
     
     func setup() {
-        backgroundColor = UIColor.Bybit.white
+        backgroundColor = themeManager.themeBackgroundColor
         selectionStyle = .none
         clipsToBounds = true
     }
@@ -68,7 +62,7 @@ extension BybitTradeEventCell {
             let quantity = tradeEvent.size
             else { return }
 
-        priceLabel.textColor = tradeEvent.side == .Buy ? UIColor.flatMintDark : UIColor.flatRedDark        
+        priceLabel.textColor = tradeEvent.side == .Buy ? themeManager.buyTextColor : themeManager.sellTextColor
         priceLabel.text = String(format: "%.2f", price)
         quantityLabel.text = String(quantity)
     }

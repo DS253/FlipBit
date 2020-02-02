@@ -29,7 +29,7 @@ class Panel: View {
     override func setup() {
         super.setup()
         setBybitTheme()
-        backgroundColor = UIColor.Bybit.white
+        backgroundColor = themeManager.themeBackgroundColor
         isUserInteractionEnabled = true
     }
     

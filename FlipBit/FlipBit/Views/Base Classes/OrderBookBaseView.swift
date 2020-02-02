@@ -11,10 +11,7 @@ import UIKit
 class OrderBookBaseView: View {
 
     private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        return stackView
+        UIStackView(spacing: Space.margin2, views: [firstRow, secondRow, thirdRow, fourthRow, fifthRow, sixthRow])
     }()
     
     lazy var firstRow: OrderBookRow = {
@@ -52,13 +49,9 @@ class OrderBookBaseView: View {
     
     override func setupSubviews() {
         super.setupSubviews()
+        backgroundColor = themeManager.themeBackgroundColor
+        
         addSubview(stackView)
-        stackView.addArrangedSubview(firstRow)
-        stackView.addArrangedSubview(secondRow)
-        stackView.addArrangedSubview(thirdRow)
-        stackView.addArrangedSubview(fourthRow)
-        stackView.addArrangedSubview(fifthRow)
-        stackView.addArrangedSubview(sixthRow)
     }
     
     override func setupConstraints() {

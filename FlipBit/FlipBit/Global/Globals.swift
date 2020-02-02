@@ -25,6 +25,9 @@ internal func hapticFeedback() {
     feedbackGenerator.selectionChanged()
 }
 
+/// Theme Manager provides expected color themes.
+internal let themeManager: ThemeManager = { ThemeManager() }()
+
 /// Will wait the specified amount of time before executing completion.
 internal func wait(_ time: Double, completion: @escaping (() -> Void)) {
     DispatchQueue.main.asyncAfter(deadline: .now() + time, execute: completion)

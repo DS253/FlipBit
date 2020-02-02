@@ -9,7 +9,7 @@
 import Starscream
 import UIKit
 
-class BybitTradeEventsTableViewController: BaseTableViewController, SocketObserverDelegate {
+class BybitTradeEventsTableViewController: BaseTableViewController {
     
     // MARK: - init Methods
     
@@ -36,35 +36,15 @@ class BybitTradeEventsTableViewController: BaseTableViewController, SocketObserv
     override func setupSubviews() {
         super.setupSubviews()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor.Bybit.white
+        view.backgroundColor = themeManager.themeBackgroundColor
     }
     
     override func setupTableView() {
         super.setupTableView()
-        tableView.backgroundColor = UIColor.Bybit.white
+        tableView.backgroundColor = themeManager.themeBackgroundColor
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         optionsBarIsHidden = true
-    }
-    
-    func observer(observer: WebSocketDelegate, didWriteToSocket: String) {
-        print("Observer has written to the web socket")
-    }
-    
-    func observerFailedToConnect() {
-        print("Observer has failed to connect to the web socket")
-    }
-    
-    func observerDidConnect(observer: WebSocketDelegate) {
-        print("Observer has connected to the web socket")
-    }
-    
-    func observerDidReceiveMessage(observer: WebSocketDelegate) {
-        //        print("Observer has received messages from the web socket")
-    }
-    
-    func observerFailedToDecode(observer: WebSocketDelegate) {
-        print("Observer failed to decode the response from the web socket")
     }
     
     // MARK: - UITableViewDataSource Methods

@@ -24,7 +24,7 @@ class SymbolInfoHeaderView: View {
     }()
     
     private lazy var dayHighDataLabel: UILabel = {
-        UILabel(text: " ", font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
+        UILabel(text: " ", font: UIFont.caption.bold, textColor: themeManager.themeFontColor)
     }()
     
     private lazy var dayLowTitleLabel: UILabel = {
@@ -32,7 +32,7 @@ class SymbolInfoHeaderView: View {
     }()
     
     private lazy var dayLowDataLabel: UILabel = {
-        UILabel(text: " ", font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
+        UILabel(text: " ", font: UIFont.caption.bold, textColor: themeManager.themeFontColor)
     }()
     
     private lazy var dayTurnoverTitleLabel: UILabel = {
@@ -40,7 +40,7 @@ class SymbolInfoHeaderView: View {
     }()
     
     private lazy var dayTurnoverDataLabel: UILabel = {
-        UILabel(text: " ", font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
+        UILabel(text: " ", font: UIFont.caption.bold, textColor: themeManager.themeFontColor)
     }()
     
     private lazy var fundingRateTitleLabel: UILabel = {
@@ -48,7 +48,7 @@ class SymbolInfoHeaderView: View {
     }()
     
     private lazy var fundingRateDataLabel: UILabel = {
-        UILabel(text: " ", font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
+        UILabel(text: " ", font: UIFont.caption.bold, textColor: themeManager.themeFontColor)
     }()
     
     private lazy var fundingCountdownTitleLabel: UILabel = {
@@ -56,7 +56,7 @@ class SymbolInfoHeaderView: View {
     }()
     
     private lazy var fundingCountdownDataLabel: UILabel = {
-        UILabel(text: " ", font: UIFont.caption.bold, textColor: UIColor.Bybit.themeBlack)
+        UILabel(text: " ", font: UIFont.caption.bold, textColor: themeManager.themeFontColor)
     }()
     
     private lazy var symbolNameLabel: UILabel = {
@@ -97,7 +97,7 @@ class SymbolInfoHeaderView: View {
         super.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(updateSymbolInfo(notification:)), name: .symbolObserverUpdate, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateBalance(notification:)), name: .balanceUpdate, object: nil)
-        backgroundColor = UIColor.Bybit.white
+        backgroundColor = themeManager.themeBackgroundColor
         setBybitTheme()
         layer.cornerRadius = 0
         layer.borderWidth = 0
@@ -188,6 +188,6 @@ class SymbolInfoHeaderView: View {
         guard
             let balance = balanceManager.btcPosition?.walletBalance
             else { return }
-        balanceLabel.text = "\(String(balance))BTC"
+        balanceLabel.text = "\(String(balance)) BTC"
     }
 }

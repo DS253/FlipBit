@@ -23,6 +23,6 @@ class BuyOrderBookView: OrderBookBaseView {
     }
     
     override func colorTheme() -> UIColor {
-        return UIColor.flatMintDark
+        return themeManager.buyTextColor
     }
 }

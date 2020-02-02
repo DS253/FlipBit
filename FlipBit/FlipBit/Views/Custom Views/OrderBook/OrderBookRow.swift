@@ -20,15 +20,13 @@ class OrderBookRow: View {
     private var isAnimating: Bool = false
     
     lazy var priceLabel: UILabel = {
-        let label = UILabel(text: " ", font: font, textColor: colorTheme, textAlignment: .left)
-        label.isUserInteractionEnabled = true
+        let label = UILabel(text: " ", font: font, textColor: colorTheme)
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(priceTapped)))
         return label
     }()
     
     lazy var quantityLabel: UILabel = {
-        let label = UILabel(text: " ", font: font, textColor: UIColor.Bybit.themeBlack, textAlignment: .right)
-        label.isUserInteractionEnabled = true
+        let label = UILabel(text: " ", font: font, textColor: themeManager.themeFontColor, textAlignment: .right)
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(quantityTapped)))
         return label
     }()
@@ -41,10 +39,7 @@ class OrderBookRow: View {
         return view
     }()
     
-    private lazy var colorWidthConstraint: NSLayoutConstraint = {
-        let constraint = quantityColorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0)
-        return constraint
-    }()
+    private lazy var colorWidthConstraint: NSLayoutConstraint = { quantityColorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0) }()
     
     init(font: UIFont, colorTheme: UIColor) {
         self.colorTheme = colorTheme
@@ -60,7 +55,7 @@ class OrderBookRow: View {
     
     override func setup() {
         super.setup()
-        backgroundColor = UIColor.Bybit.white
+        backgroundColor = themeManager.themeBackgroundColor
         clipsToBounds = true
     }
     

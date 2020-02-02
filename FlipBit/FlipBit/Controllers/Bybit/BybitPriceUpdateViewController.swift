@@ -37,7 +37,7 @@ class BybitPriceUpdateViewController: ViewController {
     
     /// Headline.
     private lazy var priceTitleLabel: UILabel = {
-        UILabel(text: Constant.price, font: UIFont.title1.bold, textColor: UIColor.flatMint, textAlignment: .center)
+        UILabel(text: Constant.price, font: UIFont.title1.bold, textColor: themeManager.buyTextColor, textAlignment: .center)
     }()
     
     /// Stepper component used to change the price value.
@@ -46,11 +46,11 @@ class BybitPriceUpdateViewController: ViewController {
     }()
     
     private lazy var updateButton: UIButton = {
-        let button = UIButton(title: Constant.updatePrice, textColor: UIColor.flatMintDark, font: .body, enabled: false)
+        let button = UIButton(title: Constant.updatePrice, textColor: themeManager.buyTextColor, font: .body, enabled: false)
         button.addTarget(self, action: #selector(updatePrice(sender:)), for: .touchDown)
         button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
-        button.layer.borderColor = UIColor.flatMintDark.cgColor
+        button.layer.borderColor = themeManager.sellTextColor.cgColor
         return button
     }()
     
@@ -90,7 +90,7 @@ class BybitPriceUpdateViewController: ViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        view.backgroundColor = themeManager.blackColor.withAlphaComponent(0.7)
         view.setToScreenCenter()
     }
     
@@ -103,7 +103,7 @@ class BybitPriceUpdateViewController: ViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.cornerRadius = 14
         view.layer.borderWidth = 1.0
-        view.layer.borderColor = UIColor.Bybit.white.cgColor
+        view.layer.borderColor = themeManager.whiteColor.cgColor
         view.layer.masksToBounds = false
     }
     
@@ -129,7 +129,7 @@ class BybitPriceUpdateViewController: ViewController {
     private func updateButtonState() {
         /// If the value has changed since the initial value, the button is enabled.
         updateButton.isEnabled = initialValue != currentValue
-        let color = updateButton.isEnabled ? UIColor.flatMintDark : UIColor.flatGray
+        let color = updateButton.isEnabled ? themeManager.buyTextColor : themeManager.disabledTextColor
         updateButton.setTitleColor(color, for: .normal)
         updateButton.layer.borderColor = color.cgColor
     }

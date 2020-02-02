@@ -12,7 +12,7 @@ class ActivityIndicatorPresentationViewController: UIPresentationController {
 
     private lazy var backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .black
+        view.backgroundColor = themeManager.presentationBackgroundColor
         view.alpha = 0.0
 
         return view

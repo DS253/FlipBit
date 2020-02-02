@@ -50,7 +50,7 @@ class BybitQuantityUpdateViewController: ViewController {
     /// Displays the account balance.
     private lazy var balanceLabel: UILabel = {
         if let balance = balanceManager.btcPosition?.walletBalance {
-            return UILabel(text: "\(String(balance))BTC", font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .center)
+            return UILabel(text: "\(String(balance)) BTC", font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .center)
         }
         return UILabel(font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .center)
     }()

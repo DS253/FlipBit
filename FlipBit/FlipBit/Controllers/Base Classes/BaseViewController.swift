@@ -26,6 +26,7 @@ import UIKit
 ///
 ///   For more information, see **Setup.swift** implementation.
 class BaseViewController: UIViewController, ViewSetup {
+    
     /// Calls to each `setup` method in this order. Each of these methods
     /// are optional to implement dependant upon needs.
     override func viewDidLoad() {
@@ -68,7 +69,7 @@ class BaseViewController: UIViewController, ViewSetup {
         indicatorView.translatesAutoresizingMaskIntoConstraints = false
         indicatorView.hidesWhenStopped = true
         indicatorView.style = .large
-        indicatorView.backgroundColor = .clear
+        indicatorView.backgroundColor = themeManager.clearColor
         indicatorView.startAnimating()
         return indicatorView
     }()

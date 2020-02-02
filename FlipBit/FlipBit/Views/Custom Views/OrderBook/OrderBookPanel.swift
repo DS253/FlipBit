@@ -12,22 +12,20 @@ class OrderBookPanel: View {
     
     weak var priceSelector: PriceSelection?
     
-    private lazy var bookHeader: View = {
-        View(backgroundColor: UIColor.Bybit.white)
-    }()
+    private lazy var bookHeader: View = { View(backgroundColor: themeManager.themeBackgroundColor) }()
     
     private lazy var priceHeaderLabel: UILabel = {
-        UILabel(text: Constant.price, font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack, textAlignment: .left)
+        UILabel(text: Constant.price, font: UIFont.footnote, textColor: themeManager.themeFontColor, textAlignment: .left)
     }()
     
     private lazy var quantityHeaderLabel: UILabel = {
-        UILabel(text: Constant.quantity, font: UIFont.footnote, textColor: UIColor.Bybit.themeBlack, textAlignment: .right)
+        UILabel(text: Constant.quantity, font: UIFont.footnote, textColor: themeManager.themeFontColor, textAlignment: .right)
     }()
     
-    private lazy var separatorView: View = {
-        View(backgroundColor: UIColor.Bybit.themeBlack)
-    }()
+    /// Separates the header from the book order views.
+    private lazy var separatorView: View = { View(backgroundColor: themeManager.themeFontColor) }()
     
+    /// Lists the upcoming buy orders.
     private lazy var buybook: BuyOrderBookView = {
         let buyView = BuyOrderBookView()
         buyView.layer.cornerRadius = 7
@@ -36,13 +34,25 @@ class OrderBookPanel: View {
         return buyView
     }()
     
+    /// Displays the most recent price.
     private lazy var lastPriceLabel: UILabel = {
-        let label = UILabel(text: " ", font: UIFont.largeTitle.bold, textColor: UIColor.flatMint, textAlignment: .center)
+        let label = UILabel(text: " ", font: UIFont.largeTitle.bold, textColor: themeManager.buyTextColor, textAlignment: .center)
         label.isUserInteractionEnabled = true
         label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(priceTapped)))
         return label
     }()
     
+    /// Displays the most recent mark price.
+    private lazy var markPriceLabel: UILabel = {
+        UILabel(text: " ", font: UIFont.footnote.bold, textColor: UIColor.Bybit.markPriceOrange)
+    }()
+    
+    /// Displays the daily percentage change.
+    private lazy var dayPercentageChangeLabel: UILabel = {
+        UILabel(text: " ", font: UIFont.footnote.bold, textColor: UIColor.Bybit.orderbookGreen, textAlignment: .right)
+    }()
+    
+    /// Lists the upcoming sell orders.
     private lazy var sellbook: SellOrderBookView = {
         let sellView = SellOrderBookView()
         sellView.configureViewForSellBook()
@@ -59,7 +69,7 @@ class OrderBookPanel: View {
     override func setup() {
         super.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(updateLastPrice(notification:)), name: .symbolObserverUpdate, object: nil)
-        backgroundColor = UIColor.Bybit.white
+        backgroundColor = themeManager.themeBackgroundColor
         setBybitTheme()
     }
     
@@ -69,6 +79,8 @@ class OrderBookPanel: View {
         addSubview(bookHeader)
         addSubview(buybook)
         addSubview(lastPriceLabel)
+        addSubview(dayPercentageChangeLabel)
+        addSubview(markPriceLabel)
         addSubview(sellbook)
         
         bookHeader.addSubview(separatorView)
@@ -102,11 +114,17 @@ class OrderBookPanel: View {
             buybook.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin16),
             buybook.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin16),
             
-            lastPriceLabel.topAnchor.constraint(equalTo: buybook.bottomAnchor, constant: Space.margin8),
-            lastPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin16),
-            lastPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin16),
+            lastPriceLabel.topAnchor.constraint(equalTo: buybook.bottomAnchor),
+            lastPriceLabel.centerXAnchor.constraint(equalTo: buybook.centerXAnchor),
             
-            sellbook.topAnchor.constraint(equalTo: lastPriceLabel.bottomAnchor, constant: Space.margin8),
+            dayPercentageChangeLabel.topAnchor.constraint(equalTo: lastPriceLabel.bottomAnchor),
+            dayPercentageChangeLabel.trailingAnchor.constraint(equalTo: lastPriceLabel.centerXAnchor, constant: -Space.margin4),
+            dayPercentageChangeLabel.heightAnchor.constraint(equalTo: markPriceLabel.heightAnchor),
+            
+            markPriceLabel.topAnchor.constraint(equalTo: dayPercentageChangeLabel.topAnchor),
+            markPriceLabel.leadingAnchor.constraint(equalTo: lastPriceLabel.centerXAnchor, constant: Space.margin4),
+            
+            sellbook.topAnchor.constraint(equalTo: markPriceLabel.bottomAnchor, constant: Space.margin4),
             sellbook.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin16),
             sellbook.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin16),
             sellbook.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin16)
@@ -124,14 +142,24 @@ class OrderBookPanel: View {
         sellbook.setQuantitySelector(selector: selector)
     }
     
+    /// Update the related labels when a new data is available.
     @objc func updateLastPrice(notification: NSNotification) {
         guard let newInfo = symbolObserver.symbolInfo else { return }
         if let lastPrice = newInfo.lastPrice {
             lastPriceLabel.text = lastPrice
             lastPriceLabel.textColor = Bybit().tickColor
         }
+        if let markPrice = newInfo.markPrice {
+            markPriceLabel.text = markPrice
+        }
+        
+        if let percentge = newInfo.prevPcnt24H {
+            dayPercentageChangeLabel.textColor = Bybit().percentageDifferenceColor
+            dayPercentageChangeLabel.text = "\(percentge)%"
+        }
     }
     
+    /// Updates the selected price when the price is tapped.
     @objc func priceTapped() {
         guard let price = lastPriceLabel.text else { return }
         priceSelector?.priceSelected(price: price)

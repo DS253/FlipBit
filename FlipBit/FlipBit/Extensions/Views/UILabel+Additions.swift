@@ -23,4 +23,10 @@ extension UILabel {
         if let newFont = font { self.font = newFont }
         self.textAlignment = textAlignment
     }
+    
+    // Adds a `UIGestureRecognizer` and enables user interaction.
+    override open func addGestureRecognizer(_ gestureRecognizer: UIGestureRecognizer) {
+        super.addGestureRecognizer(gestureRecognizer)
+        isUserInteractionEnabled = true
+    }
 }

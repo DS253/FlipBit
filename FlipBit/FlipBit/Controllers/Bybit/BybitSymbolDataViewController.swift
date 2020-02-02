@@ -20,16 +20,17 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }()
     
     private lazy var leverageContainer: View = {
-        let container = View(backgroundColor: UIColor.Bybit.white, interactive: false)
+        let container = View(backgroundColor: themeManager.themeBackgroundColor, interactive: false)
         container.setBybitTheme()
         container.addSubview(view: currentLeverageLabel, constant: 8)
         container.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(leverageTapped)))
         return container
     }()
     
+    /// Displays the current set leverage.
     private lazy var currentLeverageLabel: UILabel = {
         let font = UIFont(name: "AvenirNext-Bold", size: 32.0)
-        let label = UILabel(text: Constant.leverage, font: font, textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
+        let label = UILabel(text: Constant.leverage, font: font, textColor: themeManager.themeFontColor, textAlignment: .center)
         label.layer.cornerRadius = 14
         return label
     }()
@@ -43,12 +44,10 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         gradient.colors = [UIColor.flatNavyBlue.withAlphaComponent(0.45).cgColor, UIColor.flatNavyBlue.withAlphaComponent(0.0).cgColor]
         return gradient
     }()
-    
-    private let optionsViewGradientHeight: CGFloat = 4.0
-    
+    /// Displays the current set price.
     private lazy var priceLabel: UILabel = {
         let font = UIFont(name: "AvenirNext-Bold", size: 28.0)
-        return UILabel(text: Constant.price, font: font, textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
+        return UILabel(text: Constant.price, font: font, textColor: themeManager.themeFontColor, textAlignment: .center)
     }()
     
     private lazy var pricePanel: Panel = {
@@ -57,10 +56,10 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         container.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(priceTapped)))
         return container
     }()
-    
+    /// Displays the current set quantity.
     private lazy var quantityLabel: UILabel = {
         let font = UIFont(name: "AvenirNext-Bold", size: 28.0)
-        return UILabel(text: Constant.quantity, font: font, textColor: UIColor.Bybit.themeBlack, textAlignment: .center)
+        return UILabel(text: Constant.quantity, font: font, textColor: themeManager.themeFontColor, textAlignment: .center)
     }()
     
     private lazy var quantityPanel: Panel = {
@@ -71,7 +70,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     }()
     
     private lazy var tradeHistoryContainer: View = {
-        let container = View(backgroundColor: UIColor.Bybit.white)
+        let container = View(backgroundColor: themeManager.themeBackgroundColor)
         container.setBybitTheme()
         container.addSubview(view: tradeHistoryTable.view, constant: Space.margin4)
         return container
@@ -109,7 +108,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        optionsViewGradient.frame = CGRect(x: .zero, y: .zero, width: tradeView.bounds.size.width, height: optionsViewGradientHeight)
+        optionsViewGradient.frame = CGRect(x: .zero, y: .zero, width: tradeView.bounds.size.width, height: Space.margin4)
     }
     
     override func setup() {
@@ -117,7 +116,7 @@ class BybitSymbolDataViewController: ViewController, SocketObserverDelegate {
         bookObserver.delegate = self
         symbolObserver.delegate = self
         tradeObserver.delegate = self
-        view.backgroundColor = UIColor.Bybit.white
+        view.backgroundColor = themeManager.themeBackgroundColor
         //positionObserver.delegate = self
     }
     

@@ -53,7 +53,7 @@ class BaseTableViewController: BaseViewController {
     public lazy var tableHeaderView: BaseTableHeaderView = {
         let headerView = BaseTableHeaderView()
         headerView.translatesAutoresizingMaskIntoConstraints = false
-        headerView.backgroundColor = .white
+        headerView.backgroundColor = themeManager.whiteColor
         headerView.resizeDelegate = self
         return headerView
     }()
