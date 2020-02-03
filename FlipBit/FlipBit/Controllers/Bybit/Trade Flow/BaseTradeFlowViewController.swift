@@ -15,7 +15,7 @@ class BaseTradeFlowViewController: ViewController {
     var order: Order
     
     lazy var colorTheme: UIColor = {
-        return (order.side == .Buy) ? UIColor.flatMint : UIColor.flatWatermelon
+        return (order.side == .Buy) ? themeManager.buyTextColor : themeManager.sellTextColor
     }()
     
     override func viewWillAppear(_ animated: Bool) {

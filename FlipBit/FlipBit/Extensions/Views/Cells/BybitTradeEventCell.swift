@@ -8,39 +8,31 @@
 
 import UIKit
 
-class BybitTradeEventCell: UITableViewCell {
-
+class BybitTradeEventCell: BaseTableViewCell {
+    
     var bookOrders: Bybit.BookOrder?
     
-    private lazy var priceLabel: UILabel = { UILabel(font: UIFont.footnote.bold, textAlignment: .left) }()
+    private lazy var priceLabel: UILabel = { UILabel(font: UIFont.footnote.bold) }()
     
     private let quantityLabel: UILabel = { UILabel(font: UIFont.footnote, textColor: themeManager.themeFontColor, textAlignment: .right) }()
-        
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setup()
-        setupSubviews()
-        setupConstraints()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     // MARK: - Setup Methods
     
-    func setup() {
+    override func setup() {
+        super.setup()
         backgroundColor = themeManager.themeBackgroundColor
         selectionStyle = .none
         clipsToBounds = true
     }
     
-    func setupSubviews() {
+    override func setupSubviews() {
+        super.setupSubviews()
         addSubview(priceLabel)
         addSubview(quantityLabel)
     }
     
-    func setupConstraints() {
+    override func setupConstraints() {
+        super.setupConstraints()
         NSLayoutConstraint.activate([
             priceLabel.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
             priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
@@ -61,7 +53,7 @@ extension BybitTradeEventCell {
             let price = tradeEvent.price,
             let quantity = tradeEvent.size
             else { return }
-
+        
         priceLabel.textColor = tradeEvent.side == .Buy ? themeManager.buyTextColor : themeManager.sellTextColor
         priceLabel.text = String(format: "%.2f", price)
         quantityLabel.text = String(quantity)

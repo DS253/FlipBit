@@ -11,7 +11,7 @@ import UIKit
 class TradeFlowTypeViewController: BaseTradeFlowViewController {
     
     private lazy var limitButton: UIButton = {
-        let button = UIButton(title: Constant.limit, textColor: UIColor.flatGray, font: .body)
+        let button = UIButton(title: Constant.limit, textColor: themeManager.deselectedTextColor, font: .body)
         button.setTitleColor(colorTheme, for: .selected)
         button.addTarget(self, action: #selector(tradeTypeButtonSelected(sender:)), for: .touchUpInside)
         button.layer.borderWidth = 2.0

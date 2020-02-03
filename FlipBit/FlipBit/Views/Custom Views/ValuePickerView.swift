@@ -23,17 +23,17 @@ class ValuePickerView: View, PriceSelection, QuantitySelection {
     }()
     
     private lazy var increaseButton: UIButton = {
-        let button = UIButton(title: "+", textColor: UIColor.flatMint, font: UIFont.title3.bold)
+        let button = UIButton(title: "+", textColor: themeManager.buyTextColor, font: UIFont.title3.bold)
         button.layer.borderWidth = 2.0
-        button.layer.borderColor = UIColor.flatMint.cgColor
+        button.layer.borderColor = themeManager.buyTextColor.cgColor
         button.layer.cornerRadius = 7.0
         return button
     }()
     
     private lazy var decreaseButton: UIButton = {
-        let button = UIButton(title: "-", textColor: UIColor.flatWatermelon, font: UIFont.title3.bold)
+        let button = UIButton(title: "-", textColor: themeManager.sellTextColor, font: UIFont.title3.bold)
         button.layer.borderWidth = 2.0
-        button.layer.borderColor = UIColor.flatWatermelon.cgColor
+        button.layer.borderColor = themeManager.sellTextColor.cgColor
         button.layer.cornerRadius = 7.0
         return button
     }()

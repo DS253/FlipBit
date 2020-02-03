@@ -22,6 +22,7 @@ class ThemeManager {
     /// Font Colors
     var buyTextColor = UIColor.flatMintDark
     var sellTextColor = UIColor.flatWatermelonDark
+    var deselectedTextColor = UIColor.flatGray
     var disabledTextColor = UIColor.flatGray
     
     /// Common Colors

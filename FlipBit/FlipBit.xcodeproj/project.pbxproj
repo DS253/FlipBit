@@ -48,7 +48,6 @@
 		0641311D2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0641311C2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift */; };
 		0641311F2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0641311E2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift */; };
 		064131212389ED5400B795D5 /* SocketObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064131202389ED5400B795D5 /* SocketObserver.swift */; };
-		064131242389F69200B795D5 /* BybitTradeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064131232389F69200B795D5 /* BybitTradeCell.swift */; };
 		064131262389F6FC00B795D5 /* UIResponder+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064131252389F6FC00B795D5 /* UIResponder+Additions.swift */; };
 		0641F84E239CD02800EF7A0B /* ValuePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0641F84D239CD02800EF7A0B /* ValuePickerView.swift */; };
 		06433BC42381E3B600480EC1 /* BitService+BBCancelOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BC32381E3B600480EC1 /* BitService+BBCancelOrder.swift */; };
@@ -132,6 +131,8 @@
 		069CFA8C2384D9F400B46BCF /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; };
 		069CFA8D2384D9F400B46BCF /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		069CFA932384E77A00B46BCF /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA922384E77A00B46BCF /* Services.swift */; };
+		06DA0D7F23E76F1600890EF3 /* OrderOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DA0D7E23E76F1600890EF3 /* OrderOptionsCell.swift */; };
+		06DA0D8123E76FC500890EF3 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DA0D8023E76FC500890EF3 /* BaseTableViewCell.swift */; };
 		06ED4C4223C2C683002F7139 /* BybitLeverageUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED4C4123C2C683002F7139 /* BybitLeverageUpdateViewController.swift */; };
 		06ED4C4423C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED4C4323C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift */; };
 		06ED569D23B94A0100EF4AF4 /* TradeFlowPriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED569C23B94A0100EF4AF4 /* TradeFlowPriceViewController.swift */; };
@@ -236,7 +237,6 @@
 		0641311C2389D51000B795D5 /* BybitBookOrderObserver+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitBookOrderObserver+Additions.swift"; sourceTree = "<group>"; };
 		0641311E2389DECE00B795D5 /* BybitBookOrderObserver+Deserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitBookOrderObserver+Deserializer.swift"; sourceTree = "<group>"; };
 		064131202389ED5400B795D5 /* SocketObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketObserver.swift; sourceTree = "<group>"; };
-		064131232389F69200B795D5 /* BybitTradeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeCell.swift; sourceTree = "<group>"; };
 		064131252389F6FC00B795D5 /* UIResponder+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Additions.swift"; sourceTree = "<group>"; };
 		0641F84D239CD02800EF7A0B /* ValuePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePickerView.swift; sourceTree = "<group>"; };
 		06433BC32381E3B600480EC1 /* BitService+BBCancelOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBCancelOrder.swift"; sourceTree = "<group>"; };
@@ -324,6 +324,8 @@
 		067FEB0F23D683E800B160AC /* UIToolBar+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolBar+Additions.swift"; sourceTree = "<group>"; };
 		069CFA8B2384D9F400B46BCF /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		069CFA922384E77A00B46BCF /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		06DA0D7E23E76F1600890EF3 /* OrderOptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderOptionsCell.swift; sourceTree = "<group>"; };
+		06DA0D8023E76FC500890EF3 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		06ED4C4123C2C683002F7139 /* BybitLeverageUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitLeverageUpdateViewController.swift; sourceTree = "<group>"; };
 		06ED4C4323C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitLeverageUpdateViewController+Delegates.swift"; sourceTree = "<group>"; };
 		06ED569C23B94A0100EF4AF4 /* TradeFlowPriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeFlowPriceViewController.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 			isa = PBXGroup;
 			children = (
 				45B3D938238604BA0004DF76 /* BaseTableHeaderView.swift */,
+				06DA0D8023E76FC500890EF3 /* BaseTableViewCell.swift */,
 				062895D92383A77C0076AA27 /* BaseView.swift */,
 				062E276D2391C01700AF0C7D /* OrderBookBaseView.swift */,
 			);
@@ -475,11 +478,11 @@
 		064131222389F68400B795D5 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				064131232389F69200B795D5 /* BybitTradeCell.swift */,
 				0644D1E6238E36B2001649F1 /* BybitBookOrderCell.swift */,
 				065F6013238B370C008B5B89 /* BybitBookOrderBuyCell.swift */,
 				065F6017238B5F61008B5B89 /* BybitBookOrderSellCell.swift */,
 				060C8BF8239499E100E50A57 /* BybitTradeEventCell.swift */,
+				06DA0D7E23E76F1600890EF3 /* OrderOptionsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1211,6 +1214,7 @@
 				06433BD223820E5900480EC1 /* BBLeverageStatus+Endpoint.swift in Sources */,
 				060D96E4237B70A70040598A /* BBServerTime+Endpoint.swift in Sources */,
 				45B3D9372386043B0004DF76 /* BaseTableViewController+Additions.swift in Sources */,
+				06DA0D7F23E76F1600890EF3 /* OrderOptionsCell.swift in Sources */,
 				06470DFC2377C2FB00419238 /* Result+Additions.swift in Sources */,
 				45B3D94A23860A810004DF76 /* UILabel+Additions.swift in Sources */,
 				062895DA2383A77C0076AA27 /* BaseView.swift in Sources */,
@@ -1219,7 +1223,6 @@
 				060C8BF323946C4500E50A57 /* Bybit+TradeEventSnapshot.swift in Sources */,
 				06470DAA2377B6D500419238 /* SceneDelegate.swift in Sources */,
 				064AD9E0238F402800A7AA3E /* Int+Additions.swift in Sources */,
-				064131242389F69200B795D5 /* BybitTradeCell.swift in Sources */,
 				06433BCE2381FFD100480EC1 /* BitService+BBActiveOrderUpdate.swift in Sources */,
 				065F601F238BCD60008B5B89 /* BybitObserver.swift in Sources */,
 				06FD3F1023DD635600215AA1 /* Space.swift in Sources */,
@@ -1232,6 +1235,7 @@
 				064AD9E4238F866C00A7AA3E /* UIImageView+Additions.swift in Sources */,
 				06470E262377C8BD00419238 /* Constants+Endpoints.swift in Sources */,
 				060D96E6237B78AF0040598A /* BBTickers+Endpoint.swift in Sources */,
+				06DA0D8123E76FC500890EF3 /* BaseTableViewCell.swift in Sources */,
 				0676288B23B87BF800C29946 /* TradeFlowTypeViewController.swift in Sources */,
 				06433BCC2381FD1E00480EC1 /* BBActiveOrderUpdate+Endpoint.swift in Sources */,
 				062E27702391C17100AF0C7D /* BuyOrderBookView.swift in Sources */,

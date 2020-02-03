@@ -34,9 +34,9 @@ class Stepper: View {
     }
     
     lazy var textField: FlipBitTextField = {
-        let field = FlipBitTextField(keyboardType: .decimalPad, textColor: UIColor.flatMintDark, font: .body, textAlignment: .center)
+        let field = FlipBitTextField(keyboardType: .decimalPad, textColor: themeManager.buyTextColor, font: .body, textAlignment: .center)
         field.backgroundColor = .clear
-        field.layer.borderColor = UIColor.flatMintDark.cgColor
+        field.layer.borderColor = themeManager.buyTextColor.cgColor
         field.layer.borderWidth = 2.0
         field.layer.cornerRadius = 7.0
         field.delegate = self
@@ -52,7 +52,7 @@ class Stepper: View {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(name: .minus), for: .normal)
         button.setImage(UIImage(name: .minus), for: .disabled)
-        button.tintColor = UIColor.flatMintDark
+        button.tintColor = themeManager.buyTextColor
         button.adjustsImageWhenHighlighted = false
         button.addTarget(self, action: #selector(decrementerTapped), for: .touchUpInside)
         return button
@@ -63,7 +63,7 @@ class Stepper: View {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(name: .plus), for: .normal)
         button.setImage(UIImage(name: .plus), for: .disabled)
-        button.tintColor = UIColor.flatMintDark
+        button.tintColor = themeManager.buyTextColor
         button.adjustsImageWhenHighlighted = false
         button.addTarget(self, action: #selector(incrementerTapped), for: .touchUpInside)
         return button
@@ -71,7 +71,7 @@ class Stepper: View {
     
     private let side: Bybit.Side
     private lazy var colorTheme: UIColor = {
-        return (side == .Buy) ? UIColor.flatMint : UIColor.flatWatermelon
+        return (side == .Buy) ? themeManager.buyTextColor : themeManager.sellTextColor
     }()
     
     // MARK: - Initializers

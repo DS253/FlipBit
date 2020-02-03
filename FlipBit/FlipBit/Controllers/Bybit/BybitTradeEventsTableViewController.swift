@@ -29,7 +29,6 @@ class BybitTradeEventsTableViewController: BaseTableViewController {
     
     override func setup() {
         super.setup()
-        tableView.register(BybitTradeEventCell.self, forCellReuseIdentifier: BybitTradeEventCell.id)
         NotificationCenter.default.addObserver(self, selector: #selector(updateEventsTable(notification:)), name: .tradeEventObserverUpdate, object: nil)
     }
     
@@ -41,6 +40,7 @@ class BybitTradeEventsTableViewController: BaseTableViewController {
     
     override func setupTableView() {
         super.setupTableView()
+        tableView.register(BybitTradeEventCell.self, forCellReuseIdentifier: BybitTradeEventCell.id)
         tableView.backgroundColor = themeManager.themeBackgroundColor
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false

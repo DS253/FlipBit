@@ -10,7 +10,7 @@ import UIKit
 
 class TitleTextView: View {
 
-    let titleLabel: UILabel = UILabel(font: UIFont.footnote, textColor: UIColor.flatGray)
+    let titleLabel: UILabel = UILabel(font: UIFont.footnote, textColor: themeManager.deselectedTextColor)
 
     let textField: UITextField = {
         let field = FlipBitTextField(textColor: .black, font: .body)

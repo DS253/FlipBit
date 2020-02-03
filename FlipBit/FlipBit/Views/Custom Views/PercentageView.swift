@@ -11,25 +11,25 @@ import UIKit
 class PercentageView: View {
     
     lazy var button25: UIButton = {
-        UIButton(title: "25%", textColor: UIColor.flatMintDark, font: .footnote)
+        UIButton(title: "25%", textColor: themeManager.buyTextColor, font: .footnote)
     }()
     
     lazy var button50: UIButton = {
-        UIButton(title: "50%", textColor: UIColor.flatMintDark, font: .footnote)
+        UIButton(title: "50%", textColor: themeManager.buyTextColor, font: .footnote)
     }()
     
     lazy var button75: UIButton = {
-        UIButton(title: "75%", textColor: UIColor.flatMintDark, font: .footnote)
+        UIButton(title: "75%", textColor: themeManager.buyTextColor, font: .footnote)
     }()
     
     lazy var button100: UIButton = {
-        UIButton(title: "100%", textColor: UIColor.flatMintDark, font: .footnote)
+        UIButton(title: "100%", textColor: themeManager.buyTextColor, font: .footnote)
     }()
     
     override func setup() {
         super.setup()
         
-        layer.borderColor = UIColor.flatMintDark.cgColor
+        layer.borderColor = themeManager.buyTextColor.cgColor
         layer.borderWidth = 2.0
         layer.cornerRadius = 7.0
     }

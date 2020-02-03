@@ -43,14 +43,14 @@ class BybitLeverageUpdateViewController: ViewController {
     private var manualCancel: Bool = false
     
     private lazy var leverageTitleLabel: UILabel = {
-        UILabel(text: Constant.leverage, font: UIFont.title1.bold, textColor: UIColor.flatMint, textAlignment: .center)
+        UILabel(text: Constant.leverage, font: UIFont.title1.bold, textColor: themeManager.buyTextColor, textAlignment: .center)
     }()
     
     private lazy var leverageValueTextField: FlipBitTextField = {
-        let field = FlipBitTextField(keyboardType: .numberPad, textColor: UIColor.flatMintDark, font: UIFont.largeTitle.bold, textAlignment: .center)
+        let field = FlipBitTextField(keyboardType: .numberPad, textColor: themeManager.buyTextColor, font: UIFont.largeTitle.bold, textAlignment: .center)
         field.inputAccessoryView = self.numberToolBar
         field.backgroundColor = .clear
-        field.layer.borderColor = UIColor.flatMintDark.cgColor
+        field.layer.borderColor = themeManager.buyTextColor.cgColor
         field.layer.borderWidth = 2.0
         field.layer.cornerRadius = 7.0
         field.delegate = self
@@ -70,17 +70,17 @@ class BybitLeverageUpdateViewController: ViewController {
         slider.minimumValue = 0
         slider.maximumValue = 100
         slider.addTarget(self, action: #selector(sliderAction(sender:)), for: .valueChanged)
-        slider.minimumTrackTintColor = UIColor.flatMintDark
-        slider.maximumTrackTintColor = UIColor.flatMintDark
+        slider.minimumTrackTintColor = themeManager.buyTextColor
+        slider.maximumTrackTintColor = themeManager.buyTextColor
         return slider
     }()
     
     private lazy var updateButton: UIButton = {
-        let button = UIButton(title: Constant.updateLeverage, textColor: UIColor.flatMintDark, font: .body)
+        let button = UIButton(title: Constant.updateLeverage, textColor: themeManager.buyTextColor, font: .body)
         button.addTarget(self, action: #selector(updateLeverage(sender:)), for: .touchDown)
         button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
-        button.layer.borderColor = UIColor.flatMintDark.cgColor
+        button.layer.borderColor = themeManager.buyTextColor.cgColor
         button.isSelected = true
         return button
     }()
@@ -158,7 +158,7 @@ class BybitLeverageUpdateViewController: ViewController {
     private func updateButtonState() {
         /// If the value has changed since the initial value, the button is enabled.
         updateButton.isEnabled = (initialValue != String(currentValue))
-        let color = updateButton.isEnabled ? UIColor.flatMintDark : UIColor.flatGray
+        let color = updateButton.isEnabled ? themeManager.buyTextColor : themeManager.disabledTextColor
         updateButton.setTitleColor(color, for: .normal)
         updateButton.layer.borderColor = color.cgColor
     }

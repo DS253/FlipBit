@@ -43,6 +43,8 @@ struct Constant {
     static let short = "Short"
     static let stopLoss = "Stop Loss"
     static let takeProfit = "Take Profit"
+    static let total = "Total"
+    static let type = "Type"
     static let updateLeverage = "Update Leverage"
     static let updatePrice = "Update Price"
     static let updateQuantity = "Update Quantity"

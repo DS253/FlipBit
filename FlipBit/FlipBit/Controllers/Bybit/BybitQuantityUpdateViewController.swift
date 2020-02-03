@@ -44,15 +44,15 @@ class BybitQuantityUpdateViewController: ViewController {
     
     /// Main title label.
     private lazy var quantityTitleLabel: UILabel = {
-        UILabel(text: Constant.quantity, font: UIFont.title1.bold, textColor: UIColor.flatMint, textAlignment: .center)
+        UILabel(text: Constant.quantity, font: UIFont.title1.bold, textColor: themeManager.buyTextColor, textAlignment: .center)
     }()
     
     /// Displays the account balance.
     private lazy var balanceLabel: UILabel = {
         if let balance = balanceManager.btcPosition?.walletBalance {
-            return UILabel(text: "\(String(balance)) BTC", font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .center)
+            return UILabel(text: "\(String(balance)) BTC", font: UIFont.footnote.bold, textColor: themeManager.buyTextColor, textAlignment: .center)
         }
-        return UILabel(font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .center)
+        return UILabel(font: UIFont.footnote.bold, textColor: themeManager.buyTextColor, textAlignment: .center)
     }()
     
     /// Stepper component used to change the quantity value.
@@ -69,11 +69,11 @@ class BybitQuantityUpdateViewController: ViewController {
     
     /// Title for order value.
     private lazy var orderCostTitleLabel: UILabel = {
-        UILabel(text: Constant.orderCost, font: UIFont.footnote.bold, textColor: UIColor.flatMint)
+        UILabel(text: Constant.orderCost, font: UIFont.footnote.bold, textColor: themeManager.buyTextColor)
     }()
     
     private lazy var orderCostLabel: UILabel = {
-        UILabel(text: "\(orderManager.provideEstimatedOrderValue())", font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
+        UILabel(text: "\(orderManager.provideEstimatedOrderValue())", font: UIFont.footnote.bold, textColor: themeManager.buyTextColor, textAlignment: .right)
     }()
     
     private lazy var costStackView: UIStackView = {
@@ -82,11 +82,11 @@ class BybitQuantityUpdateViewController: ViewController {
     
     /// Title for order value.
     private lazy var orderValueTitleLabel: UILabel = {
-        UILabel(text: Constant.orderValue, font: UIFont.footnote.bold, textColor: UIColor.flatMint)
+        UILabel(text: Constant.orderValue, font: UIFont.footnote.bold, textColor: themeManager.buyTextColor)
     }()
     
     private lazy var orderValueLabel: UILabel = {
-        UILabel(text: "\(orderManager.orderValue)", font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
+        UILabel(text: "\(orderManager.orderValue)", font: UIFont.footnote.bold, textColor: themeManager.buyTextColor, textAlignment: .right)
     }()
     
     private lazy var orderStackView: UIStackView = {
@@ -95,15 +95,15 @@ class BybitQuantityUpdateViewController: ViewController {
     
     /// Title for leverage.
     private lazy var leverageTitleLabel: UILabel = {
-        UILabel(text: Constant.leverage, font: UIFont.footnote.bold, textColor: UIColor.flatMint)
+        UILabel(text: Constant.leverage, font: UIFont.footnote.bold, textColor: themeManager.buyTextColor)
     }()
     
     /// Displays the current set leverage.
     private lazy var leverageLabel: UILabel = {
         if let balance = balanceManager.btcPosition?.walletBalance {
-            return UILabel(text: self.leverage, font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
+            return UILabel(text: self.leverage, font: UIFont.footnote.bold, textColor: themeManager.buyTextColor, textAlignment: .right)
         }
-        return UILabel(font: UIFont.footnote.bold, textColor: UIColor.flatMint, textAlignment: .right)
+        return UILabel(font: UIFont.footnote.bold, textColor: themeManager.buyTextColor, textAlignment: .right)
     }()
     
     /// Stackview containing the title labels.
@@ -118,11 +118,11 @@ class BybitQuantityUpdateViewController: ViewController {
     
     /// Sets the current value to be the new quantity.
     private lazy var updateButton: UIButton = {
-        let button = UIButton(title: Constant.updateQuantity, textColor: UIColor.flatMintDark, font: .body, enabled: false)
+        let button = UIButton(title: Constant.updateQuantity, textColor: themeManager.buyTextColor, font: .body, enabled: false)
         button.addTarget(self, action: #selector(updatePrice(sender:)), for: .touchDown)
         button.layer.borderWidth = 2.0
         button.layer.cornerRadius = 7.0
-        button.layer.borderColor = UIColor.flatMintDark.cgColor
+        button.layer.borderColor = themeManager.buyTextColor.cgColor
         return button
     }()
     
@@ -205,7 +205,7 @@ class BybitQuantityUpdateViewController: ViewController {
     private func updateButtonState() {
         /// If the value has changed since the initial value, the button is enabled.
         updateButton.isEnabled = initialValue != currentValue
-        let color = updateButton.isEnabled ? UIColor.flatMintDark : UIColor.flatGray
+        let color = updateButton.isEnabled ? themeManager.buyTextColor : themeManager.disabledTextColor
         updateButton.setTitleColor(color, for: .normal)
         updateButton.layer.borderColor = color.cgColor
     }

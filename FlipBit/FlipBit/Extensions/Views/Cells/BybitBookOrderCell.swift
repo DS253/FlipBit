@@ -8,57 +8,49 @@
 
 import UIKit
 
-class BybitBookOrderCell: UITableViewCell {
+class BybitBookOrderCell: BaseTableViewCell {
     
-    var bookOrders: Bybit.BookOrder?
-    
+    /// Flag tracks if an animation is in progress.
     private var isAnimating: Bool = false
     
+    /// Displays the price of the order.
     private lazy var priceLabel: UILabel = {
-        UILabel(font: UIFont.footnote.bold, textColor: cellColorTheme(), textAlignment: .left)
+        UILabel(font: UIFont.footnote.bold, textColor: cellColorTheme())
     }()
     
+    /// Displays the quantity  of the order.
     private let quantityLabel: UILabel = {
         UILabel(font: UIFont.footnote, textColor: UIColor.Bybit.white, textAlignment: .center)
     }()
     
+    /// The animating view used to display the quantity of an order.
     private lazy var quantityColorView: View = {
-        let view = View()
-        view.backgroundColor = cellColorTheme().withAlphaComponent(0.3)
-        return view
+        View(backgroundColor: cellColorTheme().withAlphaComponent(0.3))
     }()
     
+    /// The width constraint used to measure the distance of animation.
     private lazy var colorWidthConstraint: NSLayoutConstraint = {
-        let constraint = quantityColorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0)
-        return constraint
+        quantityColorView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0)
     }()
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setup()
-        setupSubviews()
-        setupConstraints()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     // MARK: - Setup Methods
     
-    func setup() {
-        backgroundColor = UIColor.Bybit.white
+    override func setup() {
+        super.setup()
+        backgroundColor = themeManager.themeBackgroundColor
         selectionStyle = .none
         clipsToBounds = true
     }
     
-    func setupSubviews() {
+    override func setupSubviews() {
+        super.setupSubviews()
         addSubview(quantityColorView)
         addSubview(priceLabel)
         addSubview(quantityLabel)
     }
     
-    func setupConstraints() {
+    override func setupConstraints() {
+        super.setupConstraints()
         NSLayoutConstraint.activate([
             quantityColorView.topAnchor.constraint(equalTo: topAnchor),
             quantityColorView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -84,17 +76,14 @@ class BybitBookOrderCell: UITableViewCell {
 
 extension BybitBookOrderCell {
     
+    /// Sets the cell text labels to the order's data.
     func configure(with order: Bybit.BookOrder, multiplier: Double) {
-        self.bookOrders = order
-        if let orderPrice = order.price {
-            priceLabel.text = orderPrice
-        }
-        if let orderQty = order.size {
-            quantityLabel.text = String(orderQty)
-        }
+        if let orderPrice = order.price { priceLabel.text = orderPrice }
+        if let orderQty = order.size { quantityLabel.text = String(orderQty) }
         updateQuantityColor(multiplier: multiplier)
     }
     
+    /// Animates the color view to a width that is a percentage of the cell's width.
     func updateQuantityColor(multiplier: Double) {
         colorWidthConstraint.isActive = false
         
