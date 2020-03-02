@@ -30,3 +30,29 @@ extension UILabel {
         isUserInteractionEnabled = true
     }
 }
+
+extension UILabel {
+  
+  func configureTitleLabel(withText text: String) {
+    configure(withText: text.uppercased(), size: .titleTextSize, alignment: .left, lines: 0)
+  }
+  
+  func configureTextLabel(withText text: String) {
+    configure(withText: text, size: .textTextSize, alignment: .left, lines: 0)
+  }
+  
+  func configureLinkLabel(withText text: String) {
+    configure(withText: text.uppercased(), size: .linkTextSize, alignment: .left, lines: 0)
+  }
+  
+  private func configure(withText newText: String,
+                         size: CGFloat,
+                         alignment: NSTextAlignment,
+                         lines: Int) {
+    text = newText
+    font = .boldSystemFont(ofSize: 34.0)
+    textAlignment = alignment
+    numberOfLines = lines
+    lineBreakMode = .byTruncatingTail
+  }
+}

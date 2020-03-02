@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIColor {
-
+    
     static let flatBlack = #colorLiteral(red: 0.17, green: 0.17, blue: 0.17, alpha: 1)
     static let flatBlackDark = #colorLiteral(red: 0.15, green: 0.15, blue: 0.15, alpha: 1)
     static let flatBlue = #colorLiteral(red: 0.315, green: 0.399, blue: 0.63, alpha: 1)
@@ -58,7 +58,7 @@ extension UIColor {
     static let flatWhiteDark = #colorLiteral(red: 0.741, green: 0.7644, blue: 0.78, alpha: 1)
     static let flatYellow = #colorLiteral(red: 1, green: 0.802, blue: 0.01, alpha: 1)
     static let flatYellowDark = #colorLiteral(red: 1, green: 0.6666666667, blue: 0, alpha: 1)
-
+    
     public struct Bybit {
         static let themeBlack = #colorLiteral(red: 0, green: 0.02311643836, blue: 0, alpha: 1)
         static let themeOrange = #colorLiteral(red: 0.9568627451, green: 0.6980392157, blue: 0.2666666667, alpha: 1)
@@ -68,4 +68,21 @@ extension UIColor {
         static let titleGray = #colorLiteral(red: 0.6745098039, green: 0.7333333333, blue: 0.8156862745, alpha: 1)
         static let white = #colorLiteral(red: 0.9334599743, green: 1, blue: 0.9361622432, alpha: 1)
     }
+}
+
+extension UIColor {
+    static let upAccentColor: UIColor = UIColor(red: 0.19, green: 0.8, blue: 0.6, alpha: 1.0)
+    static let downAccentColor: UIColor = UIColor(red: 0.95, green: 0.34, blue: 0.23, alpha: 1.0)
+    
+    static let lightTextTextColor: UIColor = .white
+    static let darkTextTextColor: UIColor = .black
+    
+    static let lightTitleTextColor: UIColor = .gray
+    static let darkTitleTextColor: UIColor = .gray
+}
+
+extension CGFloat {
+    static let titleTextSize: CGFloat = 12.0
+    static let textTextSize: CGFloat = 24.0
+    static let linkTextSize: CGFloat = 12.0
 }

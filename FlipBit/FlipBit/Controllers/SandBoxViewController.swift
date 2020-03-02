@@ -32,6 +32,16 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
         print("Observer failed to decode the response from the web socket")
     }
     
+    private var chartData = ChartData.portfolioData
+    
+    lazy private var tickerControl: TickerControl = {
+      return TickerControl(value: chartData.openingPrice)
+    }()
+    
+    lazy private var chartView: ChartView = {
+      return ChartView(data: chartData)
+    }()
+    
     private lazy var executeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Execute", for: .normal)
@@ -42,6 +52,12 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        chartView.backgroundColor = .white
+        chartView.translatesAutoresizingMaskIntoConstraints = false
+        chartView.delegate = self
+        
+        tickerControl.view.translatesAutoresizingMaskIntoConstraints = false
     }
     
     override func setup() {
@@ -51,14 +67,36 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
     }
 
     override func setupSubviews() {
-        view.addSubview(executeButton)
+     //   view.addSubview(executeButton)
+        view.addSubview(chartView)
+        view.addSubview(tickerControl.view)
+        
     }
 
     override func setupConstraints() {
-        executeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        executeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        executeButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        executeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        //tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        NSLayoutConstraint.activate([
+            tickerControl.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            tickerControl.view.topAnchor.constraint(equalTo: view.topAnchor),
+            tickerControl.view.heightAnchor.constraint(equalToConstant: 200),
+            tickerControl.view.widthAnchor.constraint(equalToConstant: 200),
+            
+            chartView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            chartView.topAnchor.constraint(equalTo: view.topAnchor),
+            chartView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+//
+//        view.addConstraints([
+//        NSLayoutConstraint(item: graphView, attribute: .bottom, relatedBy: .equal, toItem: topView, attribute: .bottom, multiplier: 1.0, constant: 0.0),
+//        NSLayoutConstraint(item: graphView, attribute: .leading, relatedBy: .equal, toItem: topView, attribute: .leading, multiplier: 1.0, constant: 0.0),
+//        NSLayoutConstraint(item: graphView, attribute: .trailing, relatedBy: .equal, toItem: topView, attribute: .trailing, multiplier: 1.0, constant: 0.0),
+//        NSLayoutConstraint(item: graphView, attribute: .height, relatedBy: .equal, toItem: topView, attribute: .height, multiplier: .graphHeightMultiplier, constant: 0.0)
+//        ])
+//        executeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+//        executeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+//        executeButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+//        executeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     // MARK: Write Text Action
@@ -67,6 +105,12 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
     //     socket.write(string: "hello there!")
          bookObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
      }
+}
+
+extension SandBoxViewController: ChartViewDelegate {
+  func didMoveToPrice(_ chartView: ChartView, price: Double) {
+    tickerControl.showNumber(price)
+  }
 }
     
 //class SandBoxViewController: ViewController {

@@ -24,7 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             rootNavigationController.navigationBar.isHidden = true
             tabBarController.viewControllers = [rootNavigationController]
             //window.rootViewController = tabBarController
-            window.rootViewController = BybitSymbolDataViewController()
+//            window.rootViewController = BybitSymbolDataViewController()
+            window.rootViewController = SandBoxViewController()
             self.window = window
             window.makeKeyAndVisible()
         }
