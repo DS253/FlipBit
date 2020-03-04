@@ -14,6 +14,7 @@ internal extension Date {
     enum Format: String {
         case bybitDateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         case chartFormat = "H:mm a, MMM d"
+        case shortHand = "yyyy-MM-dd"
     }
     
         /// Provides a default date formatter for use with dates from services

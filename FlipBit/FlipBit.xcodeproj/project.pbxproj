@@ -303,6 +303,7 @@
 		06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBPosition+Endpoint.swift"; sourceTree = "<group>"; };
 		06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBPreviousFundingRate.swift"; sourceTree = "<group>"; };
 		06490F86237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBPreviousFundingRate+Endpoint.swift"; sourceTree = "<group>"; };
+		06493938240DF9C9008B8441 /* BYBIT_BTCUSD, 1W.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = "BYBIT_BTCUSD, 1W.csv"; path = "../../../../Downloads/BYBIT_BTCUSD, 1W.csv"; sourceTree = "<group>"; };
 		064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolInfoHeaderView.swift; sourceTree = "<group>"; };
 		064AD9DF238F402800A7AA3E /* Int+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Additions.swift"; sourceTree = "<group>"; };
 		064AD9E1238F500A00A7AA3E /* Notification+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Names.swift"; sourceTree = "<group>"; };
@@ -545,6 +546,7 @@
 				06470DE62377C1BE00419238 /* BitService */,
 				06470DFF2377C32A00419238 /* Framework */,
 				06470DA72377B6D500419238 /* AppDelegate.swift */,
+				06493938240DF9C9008B8441 /* BYBIT_BTCUSD, 1W.csv */,
 				06470DA92377B6D500419238 /* SceneDelegate.swift */,
 				06470DB02377B6D500419238 /* Assets.xcassets */,
 				06470DB22377B6D500419238 /* LaunchScreen.storyboard */,

@@ -23,14 +23,14 @@ struct ChartData {
         return result
     }
     
-    var testData: [[String]] {
-        var data = readDataFromCSV(fileName: "BYBIT_BTCUSD", fileType: ".csv")
-        data = cleanRows(file: data!)
-        let csvRows = csv(data: data!)
-        print(csvRows[1][1]) // UXM n. 166/167
-        
-        return csvRows
-    }
+//    var testData: [[String]] {
+//        var data = readDataFromCSV(fileName: "BYBIT_BTCUSD", fileType: ".csv")
+//        data = cleanRows(file: data!)
+//        let csvRows = csv(data: data!)
+//        print(csvRows[1][1]) // UXM n. 166/167
+//
+//        return csvRows
+//    }
     
     func readDataFromCSV(fileName:String, fileType: String)-> String!{
             guard let filepath = Bundle.main.path(forResource: fileName, ofType: fileType)

@@ -38,9 +38,8 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
       return TickerControl(value: chartData.openingPrice)
     }()
     
-    lazy private var chartView: ChartView = {
-      return ChartView(data: chartData)
-    }()
+    private var chartView: ChartView?
+    private var data: ChartData?
     
     private lazy var executeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -50,14 +49,104 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
         return button
     }()
     
+    func csv(data: String) -> [[String]] {
+        var result: [[String]] = []
+        let rows = data.components(separatedBy: "\n")
+        for row in rows {
+            let columns = row.components(separatedBy: ";")
+            result.append(columns)
+        }
+        return result
+    }
+    
+    func cleanRows(file:String)->String{
+        var cleanFile = file
+        cleanFile = cleanFile.replacingOccurrences(of: "\r", with: "\n")
+        cleanFile = cleanFile.replacingOccurrences(of: "\n\n", with: "\n")
+        //        cleanFile = cleanFile.replacingOccurrences(of: ";;", with: "")
+        //        cleanFile = cleanFile.replacingOccurrences(of: ";\n", with: "")
+        return cleanFile
+    }
+    
+    func readDataFromCSV(fileName:String, fileType: String)-> String!{
+        guard let filepath = Bundle.main.path(forResource: fileName, ofType: fileType)
+            else {
+                return nil
+        }
+        do {
+            var contents = try String(contentsOfFile: filepath, encoding: .utf8)
+            contents = cleanRows(file: contents)
+            return contents
+        } catch {
+            print("File Read Error for file \(filepath)")
+            return nil
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        chartView.backgroundColor = .white
-        chartView.translatesAutoresizingMaskIntoConstraints = false
-        chartView.delegate = self
+        
         
         tickerControl.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        var data = readDataFromCSV(fileName: "BYBIT_BTCUSD, 1W", fileType: ".csv")
+        data = cleanRows(file: data!)
+        let csvRows = csv(data: data!)
+     //   print(csvRows) // UXM n. 166/167
+        
+        guard
+            !csvRows.isEmpty,
+            !csvRows[0].isEmpty
+        else { return }
+        let timeIndex = 0
+        let openIndex = 1
+        let closeIndex = 4
+        var chartPoints: [(date: Date, price: Double)] = []
+        var firstNumber = 0
+        for marker in csvRows {
+            let string = marker[0]
+            let array = string.components(separatedBy: ",")
+            if array[timeIndex] != "time" {
+                
+                if let interval = Double(array[timeIndex]), let openPrice = Double(array[openIndex]), let closePrice = Double(array[closeIndex]) {
+                    let date = Date(timeIntervalSince1970: interval)
+                    print(date.string(.shortHand))
+                    let chartDataPoint = (date: date, price: closePrice)
+                    chartPoints.append(chartDataPoint)
+                    
+                    //let data: [(date: Date, price: Double)]
+                    
+                }
+//                print(array[timeIndex])
+//                print(array[closeIndex])
+            }
+            
+        }
+        chartData = ChartData(openingPrice: 5601.8125, data: chartPoints)
+        chartView = ChartView(data: chartData)
+//        csvRows.forEach { chartData in
+//            if chartData[0] != "time" {
+//                print(chartData[0])
+//                if let interval = Double(chartData[0]) {
+//                    let date = Date(timeIntervalSince1970: interval)
+//                    print(date.string(.shortHand))
+//                }
+
+                // let interval = TimeInterval(chartData[0].doubleValue)
+                //let date = NSDate(timeIntervalSince1970: <#T##TimeInterval#>)
+          //  }
+        //}
+        //let date = NSDate(timeIntervalSince1970: <#T##TimeInterval#>)
+//        ChartData(openingPrice: startPrice, data: chartData)
+        
+        chartView?.backgroundColor = .white
+        chartView?.translatesAutoresizingMaskIntoConstraints = false
+        chartView?.delegate = self
+        
+        let chart = ChartView(data: chartData)
+        view.addSubview(chart)
+        view.addSubview(tickerControl.view)
     }
     
     override func setup() {
@@ -68,13 +157,15 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
 
     override func setupSubviews() {
      //   view.addSubview(executeButton)
-        view.addSubview(chartView)
-        view.addSubview(tickerControl.view)
+//        let chart = ChartView(data: chartData)
+//        view.addSubview(chart)
+//        view.addSubview(tickerControl.view)
         
     }
 
     override func setupConstraints() {
         //tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        guard let chartView = chartView else { return }
         NSLayoutConstraint.activate([
             tickerControl.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             tickerControl.view.topAnchor.constraint(equalTo: view.topAnchor),
