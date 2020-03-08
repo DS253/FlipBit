@@ -32,14 +32,14 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
         print("Observer failed to decode the response from the web socket")
     }
     
-    private var chartData = ChartData.portfolioData
+    private var chartData = ChartData(fileName: "BYBIT_BTCUSD, 1W")
     
     lazy private var tickerControl: TickerControl = {
-      return TickerControl(value: chartData.openingPrice)
+        return TickerControl(value: chartData.openingPrice)
     }()
     
-    private var chartView: ChartView?
-    private var data: ChartData?
+    private lazy var chartView = ChartView(data: chartData)
+    //private var data: ChartData?
     
     private lazy var executeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -53,100 +53,16 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
         var result: [[String]] = []
         let rows = data.components(separatedBy: "\n")
         for row in rows {
-            let columns = row.components(separatedBy: ";")
+            let columns = row.components(separatedBy: ",")
             result.append(columns)
         }
         return result
     }
     
-    func cleanRows(file:String)->String{
-        var cleanFile = file
-        cleanFile = cleanFile.replacingOccurrences(of: "\r", with: "\n")
-        cleanFile = cleanFile.replacingOccurrences(of: "\n\n", with: "\n")
-        //        cleanFile = cleanFile.replacingOccurrences(of: ";;", with: "")
-        //        cleanFile = cleanFile.replacingOccurrences(of: ";\n", with: "")
-        return cleanFile
-    }
-    
-    func readDataFromCSV(fileName:String, fileType: String)-> String!{
-        guard let filepath = Bundle.main.path(forResource: fileName, ofType: fileType)
-            else {
-                return nil
-        }
-        do {
-            var contents = try String(contentsOfFile: filepath, encoding: .utf8)
-            contents = cleanRows(file: contents)
-            return contents
-        } catch {
-            print("File Read Error for file \(filepath)")
-            return nil
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         tickerControl.view.translatesAutoresizingMaskIntoConstraints = false
-        
-        var data = readDataFromCSV(fileName: "BYBIT_BTCUSD, 1W", fileType: ".csv")
-        data = cleanRows(file: data!)
-        let csvRows = csv(data: data!)
-     //   print(csvRows) // UXM n. 166/167
-        
-        guard
-            !csvRows.isEmpty,
-            !csvRows[0].isEmpty
-        else { return }
-        let timeIndex = 0
-        let openIndex = 1
-        let closeIndex = 4
-        var chartPoints: [(date: Date, price: Double)] = []
-        var firstNumber = 0
-        for marker in csvRows {
-            let string = marker[0]
-            let array = string.components(separatedBy: ",")
-            if array[timeIndex] != "time" {
-                
-                if let interval = Double(array[timeIndex]), let openPrice = Double(array[openIndex]), let closePrice = Double(array[closeIndex]) {
-                    let date = Date(timeIntervalSince1970: interval)
-                    print(date.string(.shortHand))
-                    let chartDataPoint = (date: date, price: closePrice)
-                    chartPoints.append(chartDataPoint)
-                    
-                    //let data: [(date: Date, price: Double)]
-                    
-                }
-//                print(array[timeIndex])
-//                print(array[closeIndex])
-            }
-            
-        }
-        chartData = ChartData(openingPrice: 5601.8125, data: chartPoints)
-        chartView = ChartView(data: chartData)
-//        csvRows.forEach { chartData in
-//            if chartData[0] != "time" {
-//                print(chartData[0])
-//                if let interval = Double(chartData[0]) {
-//                    let date = Date(timeIntervalSince1970: interval)
-//                    print(date.string(.shortHand))
-//                }
-
-                // let interval = TimeInterval(chartData[0].doubleValue)
-                //let date = NSDate(timeIntervalSince1970: <#T##TimeInterval#>)
-          //  }
-        //}
-        //let date = NSDate(timeIntervalSince1970: <#T##TimeInterval#>)
-//        ChartData(openingPrice: startPrice, data: chartData)
-        
-        chartView?.backgroundColor = .white
-        chartView?.translatesAutoresizingMaskIntoConstraints = false
-        chartView?.delegate = self
-        
-        let chart = ChartView(data: chartData)
-        view.addSubview(chart)
-        view.addSubview(tickerControl.view)
     }
     
     override func setup() {
@@ -154,56 +70,48 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
         bookObserver.delegate = self
         view.backgroundColor = .white
     }
-
+    
     override func setupSubviews() {
-     //   view.addSubview(executeButton)
-//        let chart = ChartView(data: chartData)
-//        view.addSubview(chart)
-//        view.addSubview(tickerControl.view)
+           chartView.backgroundColor = .white
+           chartView.translatesAutoresizingMaskIntoConstraints = false
+           chartView.delegate = self
+        
+        view.addSubview(chartView)
+     //   view.addSubview(tickerControl.view)
         
     }
-
+    
     override func setupConstraints() {
-        //tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-        guard let chartView = chartView else { return }
+        
         NSLayoutConstraint.activate([
-            tickerControl.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tickerControl.view.topAnchor.constraint(equalTo: view.topAnchor),
-            tickerControl.view.heightAnchor.constraint(equalToConstant: 200),
-            tickerControl.view.widthAnchor.constraint(equalToConstant: 200),
+//            tickerControl.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            tickerControl.view.topAnchor.constraint(equalTo: view.topAnchor),
+//            tickerControl.view.heightAnchor.constraint(equalToConstant: 200),
+//            tickerControl.view.widthAnchor.constraint(equalToConstant: 200),
             
-            chartView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            chartView.topAnchor.constraint(equalTo: view.topAnchor),
-            chartView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            chartView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5.0),
+            chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5.0),
+            chartView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            chartView.heightAnchor.constraint(equalToConstant: self.view.bounds.size.height / 2)
+//            chartView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-//
-//        view.addConstraints([
-//        NSLayoutConstraint(item: graphView, attribute: .bottom, relatedBy: .equal, toItem: topView, attribute: .bottom, multiplier: 1.0, constant: 0.0),
-//        NSLayoutConstraint(item: graphView, attribute: .leading, relatedBy: .equal, toItem: topView, attribute: .leading, multiplier: 1.0, constant: 0.0),
-//        NSLayoutConstraint(item: graphView, attribute: .trailing, relatedBy: .equal, toItem: topView, attribute: .trailing, multiplier: 1.0, constant: 0.0),
-//        NSLayoutConstraint(item: graphView, attribute: .height, relatedBy: .equal, toItem: topView, attribute: .height, multiplier: .graphHeightMultiplier, constant: 0.0)
-//        ])
-//        executeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-//        executeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-//        executeButton.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-//        executeButton.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
     
     // MARK: Write Text Action
-     
+    
     @objc func executeAction() {
-    //     socket.write(string: "hello there!")
-         bookObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
-     }
+        //     socket.write(string: "hello there!")
+        bookObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
+    }
 }
 
 extension SandBoxViewController: ChartViewDelegate {
-  func didMoveToPrice(_ chartView: ChartView, price: Double) {
-    tickerControl.showNumber(price)
-  }
+    func didMoveToPrice(_ chartView: ChartView, price: Double) {
+     //   print(price)
+        tickerControl.showNumber(price)
+    }
 }
-    
+
 //class SandBoxViewController: ViewController {
 //
 //    var leverageStatus: BitService.BybitLeverageStatus?
