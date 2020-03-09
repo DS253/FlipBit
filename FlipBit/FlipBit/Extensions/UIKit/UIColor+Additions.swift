@@ -76,8 +76,7 @@ extension UIColor {
     
     static let lightTextTextColor: UIColor = .white
     static let darkTextTextColor: UIColor = .black
-    
-    static let lightTitleTextColor: UIColor = .gray
+
     static let darkTitleTextColor: UIColor = .gray
 }
 

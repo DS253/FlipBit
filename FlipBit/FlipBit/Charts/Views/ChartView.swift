@@ -12,18 +12,23 @@ protocol ChartViewDelegate: class {
     func didMoveToPrice(_ chartView: ChartView, price: Double)
 }
 
+/// Renders an interactive Line Chart with a time label and line marker to track the user's position.
 final class ChartView: BaseView {
-    
+
+    /// The data to be rendered in the Line Chart.
     private var dataPoints: ChartData
-    
+
+    /// The data point with the largest value. This should be the maximum y position on the chart.
     private lazy var highPoint: ChartPoint? = {
         return dataPoints.data.max { return $0.price < $1.price }
     }()
-    
+
+    /// The data point with the smallest value. This should be the minimum y position on the chart.
     private lazy var lowPoint: ChartPoint? = {
         return dataPoints.data.min { return $0.price < $1.price }
     }()
-    
+
+    /// The difference between the high and low data points. This will determine the value of each y point.
     private lazy var heightRange: CGFloat = {
         guard
             let high = highPoint?.price,
@@ -37,20 +42,32 @@ final class ChartView: BaseView {
         formatter.dateFormat = "MMM d yyyy"
         return formatter
     }()
-    
+
+    /// The value for each point increase on the x-axis.
     private lazy var xStep: CGFloat = {
         return width / CGFloat(dataPoints.data.count)
     }()
-    
+
+    /// The value for each point increase on the y-axis.
     private lazy var yStep: CGFloat = {
         return height / heightRange
     }()
-    
+
+    /// The marker to show the user the position of their touch.
     private var lineView: View = {
-         View(backgroundColor: .gray)
+        let line = View(backgroundColor: .gray)
+        line.isHidden = true
+        return line
     }()
-    
-    private let timeStampLabel = UILabel()
+
+    /// Displays the date/time of the selected data point.
+    private let timeStampLabel: UILabel = {
+        let label = UILabel(text: "", font: UIFont.body.bold)
+        label.lineBreakMode = .byTruncatingTail
+        label.isHidden = true
+        return label
+    }()
+
     private var lineViewLeading = NSLayoutConstraint()
     private var timeStampLeading = NSLayoutConstraint()
     
@@ -59,7 +76,7 @@ final class ChartView: BaseView {
     
     private var height: CGFloat = 0
     private var width: CGFloat = 0
-    private let timeStampPadding: CGFloat = 10.0
+    private let timeStampPadding: CGFloat = Space.margin10
     
     private var xCoordinates: [CGFloat] = []
     
@@ -72,8 +89,6 @@ final class ChartView: BaseView {
     }
     
     override func setup() {
-        
-        
         addGestureRecognizer(panGestureRecognizer)
         addGestureRecognizer(longPressGestureRecognizer)
     }
@@ -85,8 +100,11 @@ final class ChartView: BaseView {
     
     override func setupConstraints() {
         lineViewLeading = NSLayoutConstraint(item: lineView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
+        timeStampLeading = NSLayoutConstraint(item: timeStampLabel, attribute: .leading, relatedBy: .equal, toItem: lineView, attribute: .leading, multiplier: 1.0, constant: timeStampPadding)
         
         NSLayoutConstraint.activate([
+            timeStampLeading,
+            timeStampLabel.bottomAnchor.constraint(equalTo: lineView.topAnchor),
             lineViewLeading,
             lineView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             lineView.widthAnchor.constraint(equalToConstant: 1.5),
@@ -104,17 +122,12 @@ final class ChartView: BaseView {
         
         drawGraph()
         drawMiddleLine()
-        
-        configureTimeStampLabel()
-        
-        
+
         panGestureRecognizer.addTarget(self, action: #selector(userDidPan(_:)))
         
         
         longPressGestureRecognizer.addTarget(self, action: #selector(userDidLongPress(_:)))
-        
-        timeStampLabel.isHidden = true
-        lineView.isHidden = true
+        timeStampLabel.center = lineView.center
     }
     
     private func drawGraph() {
@@ -168,21 +181,7 @@ final class ChartView: BaseView {
         middleLine.lineCapStyle = .round
         middleLine.stroke()
     }
-        
-    private func configureTimeStampLabel() {
-        timeStampLabel.configureTitleLabel(withText: "")
-        timeStampLabel.textColor = .lightTitleTextColor
-        
-        timeStampLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        timeStampLeading = NSLayoutConstraint(item: timeStampLabel, attribute: .leading, relatedBy: .equal, toItem: lineView, attribute: .leading, multiplier: 1.0, constant: timeStampPadding)
-        
-        addConstraints([
-            NSLayoutConstraint(item: timeStampLabel, attribute: .bottom, relatedBy: .equal, toItem: lineView, attribute: .top, multiplier: 1.0, constant: 0.0),
-            timeStampLeading
-        ])
-    }
-    
+
     @objc func userDidLongPress(_ gesture: UILongPressGestureRecognizer) {
         let touchLocation = gesture.location(in: self)
         let x = convertTouchLocationToPointX(touchLocation: touchLocation)
