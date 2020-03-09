@@ -12,7 +12,7 @@ protocol ChartViewDelegate: class {
     func didMoveToPrice(_ chartView: ChartView, price: Double)
 }
 
-final class ChartView: UIView {
+final class ChartView: BaseView {
     
     private var dataPoints: ChartData
     
@@ -41,12 +41,15 @@ final class ChartView: UIView {
     private lazy var xStep: CGFloat = {
         return width / CGFloat(dataPoints.data.count)
     }()
-
+    
     private lazy var yStep: CGFloat = {
         return height / heightRange
     }()
     
-    private var lineView = UIView()
+    private var lineView: View = {
+         View(backgroundColor: .gray)
+    }()
+    
     private let timeStampLabel = UILabel()
     private var lineViewLeading = NSLayoutConstraint()
     private var timeStampLeading = NSLayoutConstraint()
@@ -65,9 +68,31 @@ final class ChartView: UIView {
     
     init(data: ChartData) {
         self.dataPoints = data
-        super.init(frame: .zero)
+        super.init()
     }
     
+    override func setup() {
+        
+        
+        addGestureRecognizer(panGestureRecognizer)
+        addGestureRecognizer(longPressGestureRecognizer)
+    }
+    
+    override func setupSubviews() {
+        addSubview(lineView)
+        addSubview(timeStampLabel)
+    }
+    
+    override func setupConstraints() {
+        lineViewLeading = NSLayoutConstraint(item: lineView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
+        
+        NSLayoutConstraint.activate([
+            lineViewLeading,
+            lineView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            lineView.widthAnchor.constraint(equalToConstant: 1.5),
+            lineView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7)
+        ])
+    }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -80,13 +105,12 @@ final class ChartView: UIView {
         drawGraph()
         drawMiddleLine()
         
-        configureLineIndicatorView()
         configureTimeStampLabel()
         
-        addGestureRecognizer(panGestureRecognizer)
+        
         panGestureRecognizer.addTarget(self, action: #selector(userDidPan(_:)))
         
-        addGestureRecognizer(longPressGestureRecognizer)
+        
         longPressGestureRecognizer.addTarget(self, action: #selector(userDidLongPress(_:)))
         
         timeStampLabel.isHidden = true
@@ -103,7 +127,7 @@ final class ChartView: UIView {
             let midPoint = (heightRange / 2) * yStep
             let graphMiddle = height / 2
             let point = CGFloat(dataPoint.price - lowPoint!.price) * yStep
-
+            
             if point > midPoint {
                 let difference = point - midPoint
                 let test = midPoint - difference
@@ -144,26 +168,11 @@ final class ChartView: UIView {
         middleLine.lineCapStyle = .round
         middleLine.stroke()
     }
-    
-    private func configureLineIndicatorView() {
-        lineView.backgroundColor = UIColor.gray
-        lineView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(lineView)
         
-        lineViewLeading = NSLayoutConstraint(item: lineView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
-                
-        NSLayoutConstraint.activate([
-            lineViewLeading,
-            lineView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            lineView.widthAnchor.constraint(equalToConstant: 1.5),
-            lineView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7)
-        ])
-    }
-    
     private func configureTimeStampLabel() {
         timeStampLabel.configureTitleLabel(withText: "")
         timeStampLabel.textColor = .lightTitleTextColor
-        addSubview(timeStampLabel)
+        
         timeStampLabel.translatesAutoresizingMaskIntoConstraints = false
         
         timeStampLeading = NSLayoutConstraint(item: timeStampLabel, attribute: .leading, relatedBy: .equal, toItem: lineView, attribute: .leading, multiplier: 1.0, constant: timeStampPadding)

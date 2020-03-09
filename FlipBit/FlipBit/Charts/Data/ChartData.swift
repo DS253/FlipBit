@@ -31,7 +31,8 @@ struct ChartData {
         let closeIndex = 4
         var chartPoints: [ChartPoint] = [ChartPoint]()
         
-        for marker in csvRows {
+        let realRows = csvRows.filter { $0[0] != "time" }
+        for marker in realRows {
             if marker[timeIndex] != "time" {
                 
                 if let interval = Double(marker[timeIndex]), let closePrice = Double(marker[closeIndex]) {
@@ -58,13 +59,6 @@ extension ChartData {
             print("File Read Error for file \(filepath)")
             return nil
         }
-    }
-    
-    func cleanRows(file: String) -> String {
-        var cleanFile = file
-        cleanFile = cleanFile.replacingOccurrences(of: "\r", with: "\n")
-        cleanFile = cleanFile.replacingOccurrences(of: "\n\n", with: "\n")
-        return cleanFile
     }
     
     func csv(data: String) -> [[String]] {
