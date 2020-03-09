@@ -72,8 +72,6 @@
 		06470DB42377B6D500419238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 06470DB22377B6D500419238 /* LaunchScreen.storyboard */; };
 		06470DBF2377B6D500419238 /* FlipBitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DBE2377B6D500419238 /* FlipBitTests.swift */; };
 		06470DCA2377B6D500419238 /* FlipBitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DC92377B6D500419238 /* FlipBitUITests.swift */; };
-		06470DE02377BBBF00419238 /* NetQuilt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06470DDD2377B7CE00419238 /* NetQuilt.framework */; };
-		06470DE12377BBBF00419238 /* NetQuilt.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06470DDD2377B7CE00419238 /* NetQuilt.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		06470DE52377C19700419238 /* BitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DE42377C19700419238 /* BitService.swift */; };
 		06470DEB2377C1F400419238 /* DataConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DEA2377C1F400419238 /* DataConvertible.swift */; };
 		06470DF02377C24B00419238 /* Requestable+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470DEF2377C24B00419238 /* Requestable+Additions.swift */; };
@@ -137,6 +135,8 @@
 		069CFA8C2384D9F400B46BCF /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; };
 		069CFA8D2384D9F400B46BCF /* Starscream.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 069CFA8B2384D9F400B46BCF /* Starscream.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		069CFA932384E77A00B46BCF /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA922384E77A00B46BCF /* Services.swift */; };
+		06AE860A2415C9650004C68A /* Atom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06AE86092415C9650004C68A /* Atom.framework */; };
+		06AE860B2415C9650004C68A /* Atom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06AE86092415C9650004C68A /* Atom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		06DA0D7F23E76F1600890EF3 /* OrderOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DA0D7E23E76F1600890EF3 /* OrderOptionsCell.swift */; };
 		06DA0D8123E76FC500890EF3 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DA0D8023E76FC500890EF3 /* BaseTableViewCell.swift */; };
 		06ED4C4223C2C683002F7139 /* BybitLeverageUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED4C4123C2C683002F7139 /* BybitLeverageUpdateViewController.swift */; };
@@ -193,8 +193,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				06470DE12377BBBF00419238 /* NetQuilt.framework in Embed Frameworks */,
 				069CFA8D2384D9F400B46BCF /* Starscream.framework in Embed Frameworks */,
+				06AE860B2415C9650004C68A /* Atom.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,7 +273,6 @@
 		06470DC52377B6D500419238 /* FlipBitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlipBitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		06470DC92377B6D500419238 /* FlipBitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipBitUITests.swift; sourceTree = "<group>"; };
 		06470DCB2377B6D500419238 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		06470DDD2377B7CE00419238 /* NetQuilt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NetQuilt.framework; path = Carthage/Build/iOS/NetQuilt.framework; sourceTree = "<group>"; };
 		06470DE42377C19700419238 /* BitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitService.swift; sourceTree = "<group>"; };
 		06470DEA2377C1F400419238 /* DataConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataConvertible.swift; sourceTree = "<group>"; };
 		06470DEF2377C24B00419238 /* Requestable+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Requestable+Additions.swift"; sourceTree = "<group>"; };
@@ -337,6 +336,7 @@
 		067FEB0F23D683E800B160AC /* UIToolBar+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolBar+Additions.swift"; sourceTree = "<group>"; };
 		069CFA8B2384D9F400B46BCF /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		069CFA922384E77A00B46BCF /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
+		06AE86092415C9650004C68A /* Atom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Atom.framework; path = Carthage/Build/iOS/Atom.framework; sourceTree = "<group>"; };
 		06DA0D7E23E76F1600890EF3 /* OrderOptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderOptionsCell.swift; sourceTree = "<group>"; };
 		06DA0D8023E76FC500890EF3 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		06ED4C4123C2C683002F7139 /* BybitLeverageUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitLeverageUpdateViewController.swift; sourceTree = "<group>"; };
@@ -374,8 +374,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				06470DE02377BBBF00419238 /* NetQuilt.framework in Frameworks */,
 				069CFA8C2384D9F400B46BCF /* Starscream.framework in Frameworks */,
+				06AE860A2415C9650004C68A /* Atom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -576,8 +576,8 @@
 		06470DD72377B78100419238 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				06AE86092415C9650004C68A /* Atom.framework */,
 				069CFA8B2384D9F400B46BCF /* Starscream.framework */,
-				06470DDD2377B7CE00419238 /* NetQuilt.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1160,13 +1160,13 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/NetQuilt.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Atom.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Starscream.framework",
 			);
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/NetQuilt.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Atom.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Starscream.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 1;

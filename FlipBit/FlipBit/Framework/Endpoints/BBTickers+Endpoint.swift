@@ -6,25 +6,25 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 extension BitService.BybitTickerList {
     
     struct Endpoint: Requestable {
         
         var symbol: Bybit.Symbol
-
-        internal func baseURL() throws -> NetQuilt.BaseURL {
-            return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
-        }
-
-        internal func path() throws -> NetQuilt.URLPath {
-            return try NetQuilt.URLPath("/v2/public/tickers")
+        
+        internal func baseURL() throws -> Atom.BaseURL {
+            return try Atom.BaseURL(host: "api-testnet.bybit.com")
         }
         
-        var queryItems: [NetQuilt.QueryItem]? {
-            return [NetQuilt.QueryItem(name: "symbol", value: self.symbol.rawValue)]
+        internal func path() throws -> Atom.URLPath {
+            return try Atom.URLPath("/v2/public/tickers")
+        }
+        
+        var queryItems: [Atom.QueryItem]? {
+            return [Atom.QueryItem(name: "symbol", value: self.symbol.rawValue)]
         }
         
         init(symbol: Bybit.Symbol) {

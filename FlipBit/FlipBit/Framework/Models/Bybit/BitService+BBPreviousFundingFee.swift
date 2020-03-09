@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 public extension BitService {
     struct BybitPreviousFundingFee {

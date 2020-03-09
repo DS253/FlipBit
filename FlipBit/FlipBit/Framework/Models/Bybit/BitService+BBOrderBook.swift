@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 public extension BitService {
     
@@ -26,13 +26,13 @@ extension BitService.BybitOrderbook: Model {
     private enum CodingKeys: String, CodingKey {
         case result
     }
-
+    
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         self.metaData = try BitService.BybitResponseMetaData(from: decoder)
         self.book = try values.decode([BitService.BybitBookItem].self, forKey: .result)
     }
-
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(book, forKey: .result)
@@ -65,7 +65,7 @@ extension BitService.BybitBookItem: Model {
         case size
         case side
     }
-
+    
     public init(from decoder: Decoder) throws {
         let results = try decoder.container(keyedBy: CodingKeys.self)
         self.symbol = try results.decode(Bybit.Symbol.self, forKey: .symbol)
@@ -73,10 +73,10 @@ extension BitService.BybitBookItem: Model {
         self.size = try results.decode(Int.self, forKey: .size)
         self.side = try results.decode(BitService.BybitOrderSide.self, forKey: .side)
     }
-
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-
+        
         try container.encode(symbol, forKey: .symbol)
         try container.encode(price, forKey: .price)
         try container.encode(size, forKey: .size)

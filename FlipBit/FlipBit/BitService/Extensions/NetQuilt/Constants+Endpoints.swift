@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import NetQuilt
 
 internal typealias HeaderKeys = BitService.HeaderKeys
 internal typealias HeaderValues = BitService.HeaderValues

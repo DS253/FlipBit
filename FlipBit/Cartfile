@@ -1,2 +1,2 @@
-github "DS253/NetQuilt" "v2"
+git "https://github.com/AlaskaAirlines/atom" ~> 1.0.0
 github "daltoniam/Starscream" >= 3.0.2

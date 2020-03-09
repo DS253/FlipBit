@@ -6,19 +6,19 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 extension BitService.BybitServerTime {
 
     struct Endpoint: Requestable {
 
-        internal func baseURL() throws -> NetQuilt.BaseURL {
-            return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
+        internal func baseURL() throws -> Atom.BaseURL {
+            return try Atom.BaseURL(host: "api-testnet.bybit.com")
         }
 
-        internal func path() throws -> NetQuilt.URLPath {
-            return try NetQuilt.URLPath("/v2/public/time")
+        internal func path() throws -> Atom.URLPath {
+            return try Atom.URLPath("/v2/public/time")
         }
     }
 }

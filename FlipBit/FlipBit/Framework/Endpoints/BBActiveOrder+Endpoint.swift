@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 extension BitService.BybitActiveOrderList {
     
@@ -18,12 +18,12 @@ extension BitService.BybitActiveOrderList {
         var timestamp: String
         var orderStatus: BitService.BybitOrderStatus?
         
-        internal func baseURL() throws -> NetQuilt.BaseURL {
-            return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
+        internal func baseURL() throws -> Atom.BaseURL {
+            return try Atom.BaseURL(host: "api-testnet.bybit.com")
         }
 
-        internal func path() throws -> NetQuilt.URLPath {
-            return try NetQuilt.URLPath("/open-api/order/list")
+        internal func path() throws -> Atom.URLPath {
+            return try Atom.URLPath("/open-api/order/list")
         }
         
         var signature: String {
@@ -37,16 +37,16 @@ extension BitService.BybitActiveOrderList {
             return queries.buildSignature(secretKey: secret)
         }
         
-        var queryItems: [NetQuilt.QueryItem]? {
-            var queryItems = [NetQuilt.QueryItem]()
-            queryItems.append(NetQuilt.QueryItem(name: "api_key", value: theAPIKey))
-            queryItems.append(NetQuilt.QueryItem(name: "limit", value: "50"))
-            if let status = self.orderStatus { queryItems.append(NetQuilt.QueryItem(name: "order_status", value: status.rawValue)) }
-            queryItems.append(NetQuilt.QueryItem(name: "page", value: String(pageNumber)))
-            queryItems.append(NetQuilt.QueryItem(name: "recv_window", value: "1000000"))
-            queryItems.append(NetQuilt.QueryItem(name: "symbol", value: symbol.rawValue))
-            queryItems.append(NetQuilt.QueryItem(name: "timestamp", value: timestamp))
-            queryItems.append(NetQuilt.QueryItem(name: "sign", value: signature))
+        var queryItems: [Atom.QueryItem]? {
+            var queryItems = [Atom.QueryItem]()
+            queryItems.append(Atom.QueryItem(name: "api_key", value: theAPIKey))
+            queryItems.append(Atom.QueryItem(name: "limit", value: "50"))
+            if let status = self.orderStatus { queryItems.append(Atom.QueryItem(name: "order_status", value: status.rawValue)) }
+            queryItems.append(Atom.QueryItem(name: "page", value: String(pageNumber)))
+            queryItems.append(Atom.QueryItem(name: "recv_window", value: "1000000"))
+            queryItems.append(Atom.QueryItem(name: "symbol", value: symbol.rawValue))
+            queryItems.append(Atom.QueryItem(name: "timestamp", value: timestamp))
+            queryItems.append(Atom.QueryItem(name: "sign", value: signature))
             return queryItems
         }
         

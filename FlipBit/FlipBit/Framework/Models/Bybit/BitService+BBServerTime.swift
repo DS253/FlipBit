@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 public extension BitService {
     /// The official server time for Bybit.
@@ -21,17 +21,17 @@ public extension BitService {
 }
 
 extension BitService.BybitServerTime: Model {
-
+    
     /// List of top level coding keys.
     private enum CodingKeys: String, CodingKey {
         case time = "time_now"
     }
-
+    
     public init(from decoder: Decoder) throws {
         self.metaData = try BitService.BybitResponseMetaData(from: decoder)
         self.time = metaData.timeNow
     }
-
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(time, forKey: .time)

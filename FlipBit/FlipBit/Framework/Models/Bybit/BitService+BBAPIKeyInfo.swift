@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 public extension BitService {
     /// A type that represents the API Key information for the Bybit account.
@@ -18,19 +18,19 @@ public extension BitService {
         
         /// The user ID for the Bybit account.
         let userID: Int
-
+        
         /// Associated IP addresses permitted to access Bybit.
         let ipAddresses: [String]
-
+        
         /// Unique information about the account - currently returns the account holder's name.
         let note: String
-
+        
         /// Actions the Bybit account is allowed to take.
         let permissions: [String]
-
+        
         /// The time the Bybit account was created.
         let timeCreated: String
-
+        
         /// The read only flag.
         let isReadOnly: Bool
         
@@ -58,10 +58,10 @@ extension BitService.BybitAPIKeyInfo: Model {
     public init(from decoder: Decoder) throws {
         let results = try decoder.container(keyedBy: CodingKeys.self)
         self.metaData = try BitService.BybitResponseMetaData(from: decoder)
-
+        
         var array = try results.nestedUnkeyedContainer(forKey: .result)
         let data = try array.nestedContainer(keyedBy: ResultKeys.self)
-
+        
         self.apiKey = try data.decode(String.self, forKey: .apiKey)
         self.userID = try data.decode(Int.self, forKey: .userID)
         self.ipAddresses = try data.decode(Array.self, forKey: .ipAddresses)
@@ -70,10 +70,10 @@ extension BitService.BybitAPIKeyInfo: Model {
         self.timeCreated = try data.decode(String.self, forKey: .timeCreated)
         self.isReadOnly = try data.decode(Bool.self, forKey: .isReadOnly)
     }
-
+    
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: ResultKeys.self)
-
+        
         try container.encode(apiKey, forKey: .apiKey)
         try container.encode(userID, forKey: .userID)
         try container.encode(ipAddresses, forKey: .ipAddresses)

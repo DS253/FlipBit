@@ -6,12 +6,12 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 public extension BitService {
     struct BybitOrderResponse {
-
+        
         /// Details of the of the order.
         let orderData: BitService.BybitOrder?
         
@@ -41,7 +41,7 @@ extension BitService.BybitOrderResponse: Model {
 public extension BitService {
     /// A type that represents the details of a Bybit order.
     struct BybitOrder {
-
+        
         /// The user's ID.
         let userID: Int
         
@@ -50,16 +50,16 @@ public extension BitService {
         
         /// The side of the order.
         let side: BitService.BybitOrderSide
-
+        
         /// The type of order.
         let orderType: BitService.BybitOrderType
         
         /// The price of the order. Required if you make a limit price order.
         let price: Double
-
+        
         /// The quantity of the order.
         let quantity: Int
-
+        
         /// The timing type of the order.
         let timeInForce: BitService.BybitOrderTimeInForce
         

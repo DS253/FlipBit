@@ -6,28 +6,28 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 internal extension BitService {
-    /// A wrapper around `Atom` library with added ability to map `NetQuiltError` and `NetQuilt.Response` into `BitService`
-    /// types without exposing `NetQuilt` (or any other networking library we might use in the future) to the client.
+    /// A wrapper around `Atom` library with added ability to map `AtomError` and `Atom.Response` into `BitService`
+    /// types without exposing `Atom` (or any other networking library we might use in the future) to the client.
     struct Service {
-        /// The `NetQuilt` instance for performing network calls.
-        private let session: NetQuilt
+        /// The `Atom` instance for performing network calls.
+        private let session: Atom
         
         /// Creates a `Service` instance given the provided parameter(s).
         internal init() {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601)
             
-            self.session = NetQuilt(sessionConfiguration: NetQuilt.NetSessionConfiguration(configuration: .default, decoder: decoder, dispatchQueue: .main))
+            self.session = Atom(serviceConfiguration: Atom.ServiceConfiguration(configuration: .default, decoder: decoder, dispatchQueue: .main))
         }
         
-        /// An internal wrapper method around APIs made available by the `NetQuilt` networking library.
+        /// An internal wrapper method around APIs made available by the `Atom` networking library.
         ///
-        /// The result returned by `NetQuilt` library will be mapped into `Result<BitService.Response, BitService.Error>` where both the
-        /// `Response` and `Error` types are declared and managed by `BitService`. This is to avoid having both `NetQuilt` types leak into the client.
+        /// The result returned by `Atom` library will be mapped into `Result<BitService.Response, BitService.Error>` where both the
+        /// `Response` and `Error` types are declared and managed by `BitService`. This is to avoid having both `Atom` types leak into the client.
         ///
         /// - Parameters:
         ///   - requestable: The requestable item containing required data for a network call.
@@ -41,10 +41,10 @@ internal extension BitService {
             }
         }
         
-        /// An internal wrapper method around APIs made available by the `NetQuilt` networking library.
+        /// An internal wrapper method around APIs made available by the `Atom` networking library.
         ///
-        /// The result returned by `NetQuilt` library will be mapped into `Result<T: Model, BitService.Error>` where `Error` type is declared and
-        /// managed by `BitService`. This is to avoid having `NetQuiltError` type leak into the client.
+        /// The result returned by `Atom` library will be mapped into `Result<T: Model, BitService.Error>` where `Error` type is declared and
+        /// managed by `BitService`. This is to avoid having `AtomError` type leak into the client.
         ///
         /// - Parameters:
         ///   - requestable: The requestable item containing required data for a network call.

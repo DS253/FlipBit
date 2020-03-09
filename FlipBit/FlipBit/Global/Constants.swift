@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import NetQuilt
 
 let theAPIKey = "avakSEpslATRbRQqX2"
 let secret = "WZoEUyZuiauyVhp5qrY51S8FZPYMb004hbwA"

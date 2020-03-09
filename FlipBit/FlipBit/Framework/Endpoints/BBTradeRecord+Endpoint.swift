@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 extension BitService.BybitTradeRecords {
     
@@ -17,12 +17,12 @@ extension BitService.BybitTradeRecords {
         var pageNumber: Int
         var timestamp: String
         
-        internal func baseURL() throws -> NetQuilt.BaseURL {
-            return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
+        internal func baseURL() throws -> Atom.BaseURL {
+            return try Atom.BaseURL(host: "api-testnet.bybit.com")
         }
-
-        internal func path() throws -> NetQuilt.URLPath {
-            return try NetQuilt.URLPath("/v2/private/execution/list")
+        
+        internal func path() throws -> Atom.URLPath {
+            return try Atom.URLPath("/v2/private/execution/list")
         }
         
         var signature: String {
@@ -30,13 +30,13 @@ extension BitService.BybitTradeRecords {
             return queries.buildSignature(secretKey: secret)
         }
         
-        var queryItems: [NetQuilt.QueryItem]? {
-            return [NetQuilt.QueryItem(name: "api_key", value: theAPIKey),
-                    NetQuilt.QueryItem(name: "limit", value: "50"),
-                    NetQuilt.QueryItem(name: "page", value: String(pageNumber)),
-                    NetQuilt.QueryItem(name: "symbol", value: symbol.rawValue),
-                    NetQuilt.QueryItem(name: "timestamp", value: timestamp),
-                    NetQuilt.QueryItem(name: "sign", value: signature)]
+        var queryItems: [Atom.QueryItem]? {
+            return [Atom.QueryItem(name: "api_key", value: theAPIKey),
+                    Atom.QueryItem(name: "limit", value: "50"),
+                    Atom.QueryItem(name: "page", value: String(pageNumber)),
+                    Atom.QueryItem(name: "symbol", value: symbol.rawValue),
+                    Atom.QueryItem(name: "timestamp", value: timestamp),
+                    Atom.QueryItem(name: "sign", value: signature)]
         }
         
         init(symbol: Bybit.Symbol, pageNumber: Int, timeStamp: String) {

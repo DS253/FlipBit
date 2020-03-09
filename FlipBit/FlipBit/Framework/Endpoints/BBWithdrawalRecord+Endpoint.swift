@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 extension BitService.BybitWithdrawalRecords {
     struct Endpoint: Requestable {
@@ -16,12 +16,12 @@ extension BitService.BybitWithdrawalRecords {
         var pageNumber: Int
         var timestamp: String
         
-        internal func baseURL() throws -> NetQuilt.BaseURL {
-            return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
+        internal func baseURL() throws -> Atom.BaseURL {
+            return try Atom.BaseURL(host: "api-testnet.bybit.com")
         }
-
-        internal func path() throws -> NetQuilt.URLPath {
-            return try NetQuilt.URLPath("/open-api/wallet/withdraw/list")
+        
+        internal func path() throws -> Atom.URLPath {
+            return try Atom.URLPath("/open-api/wallet/withdraw/list")
         }
         
         var signature: String {
@@ -29,14 +29,14 @@ extension BitService.BybitWithdrawalRecords {
             return queries.buildSignature(secretKey: secret)
         }
         
-        var queryItems: [NetQuilt.QueryItem]? {
-            return [NetQuilt.QueryItem(name: "api_key", value: theAPIKey),
-                    NetQuilt.QueryItem(name: "currency", value: currency.rawValue),
-                    NetQuilt.QueryItem(name: "limit", value: "50"),
-                    NetQuilt.QueryItem(name: "page", value: String(pageNumber)),
-                    NetQuilt.QueryItem(name: "recv_window", value: "1000000"),
-                    NetQuilt.QueryItem(name: "timestamp", value: timestamp),
-                    NetQuilt.QueryItem(name: "sign", value: signature)]
+        var queryItems: [Atom.QueryItem]? {
+            return [Atom.QueryItem(name: "api_key", value: theAPIKey),
+                    Atom.QueryItem(name: "currency", value: currency.rawValue),
+                    Atom.QueryItem(name: "limit", value: "50"),
+                    Atom.QueryItem(name: "page", value: String(pageNumber)),
+                    Atom.QueryItem(name: "recv_window", value: "1000000"),
+                    Atom.QueryItem(name: "timestamp", value: timestamp),
+                    Atom.QueryItem(name: "sign", value: signature)]
         }
         
         init(currency: BitService.Currency, pageNumber: Int, timeStamp: String) {

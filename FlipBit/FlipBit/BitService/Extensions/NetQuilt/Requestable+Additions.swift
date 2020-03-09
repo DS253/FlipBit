@@ -6,26 +6,26 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 internal extension Requestable {
     /// Returns default header values for `BitService` framework.
-    var headerItems: [NetQuilt.HeaderItem]? {
+    var headerItems: [Atom.HeaderItem]? {
         return [
-            NetQuilt.HeaderItem(name: HeaderKeys.apiVersion, value: HeaderValues.apiVersion),
-            NetQuilt.HeaderItem(name: HeaderKeys.subscriptionKey, value: application.environment.subscriptionKey),
-            NetQuilt.HeaderItem(name: HeaderKeys.contentType, value: HeaderValues.contentType)
+            Atom.HeaderItem(name: HeaderKeys.apiVersion, value: HeaderValues.apiVersion),
+            Atom.HeaderItem(name: HeaderKeys.subscriptionKey, value: application.environment.subscriptionKey),
+            Atom.HeaderItem(name: HeaderKeys.contentType, value: HeaderValues.contentType)
         ]
     }
     
     /// Returns default `baseURL` values based on environment for `BitService` framework.
-    func baseURL() throws -> NetQuilt.BaseURL {
+    func baseURL() throws -> Atom.BaseURL {
         switch application.environment {
         case .testnet:
-            return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
+            return try Atom.BaseURL(host: "api-testnet.bybit.com")
         case .mainnet:
-            return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
+            return try Atom.BaseURL(host: "api-testnet.bybit.com")
         }
     }
 }

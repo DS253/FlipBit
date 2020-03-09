@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 extension BitService.BybitCancelledOrder {
     
@@ -17,15 +17,15 @@ extension BitService.BybitCancelledOrder {
         var orderLinkID: String?
         var timestamp: String
         
-        internal func baseURL() throws -> NetQuilt.BaseURL {
-            return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
+        internal func baseURL() throws -> Atom.BaseURL {
+            return try Atom.BaseURL(host: "api-testnet.bybit.com")
         }
 
-        internal func path() throws -> NetQuilt.URLPath {
-            return try NetQuilt.URLPath("/open-api/order/cancel")
+        internal func path() throws -> Atom.URLPath {
+            return try Atom.URLPath("/open-api/order/cancel")
         }
         
-        var method: NetQuilt.Method {
+        var method: Atom.Method {
             return .post(Data())
         }
         
@@ -38,16 +38,16 @@ extension BitService.BybitCancelledOrder {
             return queries.buildSignature(secretKey: secret)
         }
         
-        var queryItems: [NetQuilt.QueryItem]? {
-            var queryItems = [NetQuilt.QueryItem]()
-            queryItems.append(NetQuilt.QueryItem(name: "api_key", value: theAPIKey))
+        var queryItems: [Atom.QueryItem]? {
+            var queryItems = [Atom.QueryItem]()
+            queryItems.append(Atom.QueryItem(name: "api_key", value: theAPIKey))
 
-            if let order = self.orderID { queryItems.append(NetQuilt.QueryItem(name: "order_id", value: order)) }
-            if let orderLink = self.orderLinkID { queryItems.append(NetQuilt.QueryItem(name: "order_link_id", value: orderLink)) }
+            if let order = self.orderID { queryItems.append(Atom.QueryItem(name: "order_id", value: order)) }
+            if let orderLink = self.orderLinkID { queryItems.append(Atom.QueryItem(name: "order_link_id", value: orderLink)) }
             
-            queryItems.append(NetQuilt.QueryItem(name: "recv_window", value: "1000000"))
-            queryItems.append(NetQuilt.QueryItem(name: "timestamp", value: timestamp))
-            queryItems.append(NetQuilt.QueryItem(name: "sign", value: signature))
+            queryItems.append(Atom.QueryItem(name: "recv_window", value: "1000000"))
+            queryItems.append(Atom.QueryItem(name: "timestamp", value: timestamp))
+            queryItems.append(Atom.QueryItem(name: "sign", value: signature))
             return queryItems
         }
         

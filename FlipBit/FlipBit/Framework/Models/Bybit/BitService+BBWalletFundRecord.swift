@@ -6,15 +6,15 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 public extension BitService {
     struct BybitWalletRecords {
-
+        
         /// An array of WalletFundingEvents.
         let records: [BitService.BybitWalletFundingEvent]?
-
+        
         /// Server data about the response.
         let metaData: BitService.BybitResponseMetaData
     }

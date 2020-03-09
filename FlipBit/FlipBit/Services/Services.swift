@@ -6,11 +6,11 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
-typealias Service = NetQuilt
-typealias ServiceError = NetQuiltError
+typealias Service = Atom
+typealias ServiceError = AtomError
 
 let services: Services = {
     Services()
@@ -40,7 +40,7 @@ class Services {
     typealias BybitAPIKeyInfo = BitService.BybitAPIKeyInfo
     
     let api: Service = {
-        Service(sessionConfiguration: Service.NetSessionConfiguration())
+        Service(serviceConfiguration: Service.ServiceConfiguration())
     }()
     
     let bitService: BitService = BitService()
@@ -112,19 +112,4 @@ class Services {
     func updateBybitActiveOrder(orderID: String, symbol: Bybit.Symbol, quantity: Int? = nil, price: Double? = nil, completion: @escaping BitServiceActiveOrderUpdateCompletion) {
         bitService.postBybitUpdateActiveOrder(orderID: orderID, symbol: symbol, quantity: quantity, price: price, completion: completion)
     }
-    
-//    private func load<Endpoint: Requestable, Expecting: Model>(endpoint: Endpoint, completion: ResponseServiceCompletion<Expecting>? = nil) {
-//
-//        api.load(endpoint).execute(expecting: Expecting.self) { [weak self] result in
-//
-//            switch result {
-//            case let .success(result):
-//                completion?(result, nil)
-//
-//            case let .failure(error):
-//                print("Failure")
-//                completion?(nil, error)
-//            }
-//        }
-//    }
 }

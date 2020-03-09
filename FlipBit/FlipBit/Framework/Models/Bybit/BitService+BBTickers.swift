@@ -6,13 +6,13 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 public extension BitService {
     
     struct BybitTickerList {
-
+        
         /// An array of TickerItems.
         let tickers: [BitService.BybitTickerItem]
         
@@ -26,7 +26,7 @@ extension BitService.BybitTickerList: Model {
     private enum CodingKeys: String, CodingKey {
         case result
     }
-        
+    
     public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         self.metaData = try BitService.BybitResponseMetaData(from: decoder)

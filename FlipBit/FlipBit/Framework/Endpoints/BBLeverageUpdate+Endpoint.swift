@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 extension BitService.BybitLeverageUpdate {
     
@@ -17,15 +17,15 @@ extension BitService.BybitLeverageUpdate {
         var symbol: Bybit.Symbol
         var timestamp: String
         
-        internal func baseURL() throws -> NetQuilt.BaseURL {
-            return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
+        internal func baseURL() throws -> Atom.BaseURL {
+            return try Atom.BaseURL(host: "api-testnet.bybit.com")
         }
         
-        internal func path() throws -> NetQuilt.URLPath {
-            return try NetQuilt.URLPath("/user/leverage/save")
+        internal func path() throws -> Atom.URLPath {
+            return try Atom.URLPath("/user/leverage/save")
         }
         
-        var method: NetQuilt.Method {
+        var method: Atom.Method {
             return .post(Data())
         }
         
@@ -34,13 +34,13 @@ extension BitService.BybitLeverageUpdate {
             return queries.buildSignature(secretKey: secret)
         }
         
-        var queryItems: [NetQuilt.QueryItem]? {
-            return [NetQuilt.QueryItem(name: "api_key", value: theAPIKey),
-                    NetQuilt.QueryItem(name: "leverage", value: leverage),
-                    NetQuilt.QueryItem(name: "recv_window", value: "1000000"),
-                    NetQuilt.QueryItem(name: "symbol", value: symbol.rawValue),
-                    NetQuilt.QueryItem(name: "timestamp", value: timestamp),
-                    NetQuilt.QueryItem(name: "sign", value: signature)]
+        var queryItems: [Atom.QueryItem]? {
+            return [Atom.QueryItem(name: "api_key", value: theAPIKey),
+                    Atom.QueryItem(name: "leverage", value: leverage),
+                    Atom.QueryItem(name: "recv_window", value: "1000000"),
+                    Atom.QueryItem(name: "symbol", value: symbol.rawValue),
+                    Atom.QueryItem(name: "timestamp", value: timestamp),
+                    Atom.QueryItem(name: "sign", value: signature)]
         }
         
         init(symbol: Bybit.Symbol, leverage: String, timeStamp: String) {

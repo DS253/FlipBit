@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 extension BitService.BybitOrder {
     
@@ -26,15 +26,15 @@ extension BitService.BybitOrder {
         var orderLinkID: String?
         var timestamp: String
         
-        internal func baseURL() throws -> NetQuilt.BaseURL {
-            return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
+        internal func baseURL() throws -> Atom.BaseURL {
+            return try Atom.BaseURL(host: "api-testnet.bybit.com")
         }
         
-        internal func path() throws -> NetQuilt.URLPath {
-            return try NetQuilt.URLPath("/open-api/order/create")
+        internal func path() throws -> Atom.URLPath {
+            return try Atom.URLPath("/open-api/order/create")
         }
         
-        var method: NetQuilt.Method {
+        var method: Atom.Method {
             return .post(Data())
         }
         
@@ -56,34 +56,34 @@ extension BitService.BybitOrder {
             return queries.buildSignature(secretKey: secret)
         }
         
-        var queryItems: [NetQuilt.QueryItem]? {
-            var queryItems = [NetQuilt.QueryItem]()
-            queryItems.append(NetQuilt.QueryItem(name: "api_key", value: theAPIKey))
-
-            if let close = closeOnTrigger { queryItems.append(NetQuilt.QueryItem(name: "close_on_trigger", value: String(close))) }
-            if let linkID = orderLinkID { queryItems.append(NetQuilt.QueryItem(name: "order_link_id", value: linkID)) }
-
-            queryItems.append(NetQuilt.QueryItem(name: "order_type", value: orderType.rawValue))
+        var queryItems: [Atom.QueryItem]? {
+            var queryItems = [Atom.QueryItem]()
+            queryItems.append(Atom.QueryItem(name: "api_key", value: theAPIKey))
             
-            if let price = orderPrice { queryItems.append(NetQuilt.QueryItem(name: "price", value: String(price))) }
+            if let close = closeOnTrigger { queryItems.append(Atom.QueryItem(name: "close_on_trigger", value: String(close))) }
+            if let linkID = orderLinkID { queryItems.append(Atom.QueryItem(name: "order_link_id", value: linkID)) }
             
-            queryItems.append(NetQuilt.QueryItem(name: "qty", value: String(quantity)))
-            queryItems.append(NetQuilt.QueryItem(name: "recv_window", value: "1000000"))
-
-            if reduceOnly != nil { queryItems.append(NetQuilt.QueryItem(name: "reduce_only", value: String(reduceOnly!))) }
-
-            queryItems.append(NetQuilt.QueryItem(name: "side", value: side.rawValue))
+            queryItems.append(Atom.QueryItem(name: "order_type", value: orderType.rawValue))
             
-            if let stopLoss = stopLossPrice { queryItems.append(NetQuilt.QueryItem(name: "stop_loss", value: String(stopLoss))) }
-
-            queryItems.append(NetQuilt.QueryItem(name: "symbol", value: symbol.rawValue))
+            if let price = orderPrice { queryItems.append(Atom.QueryItem(name: "price", value: String(price))) }
             
-            if let takeProfit = takeProfitPrice { queryItems.append(NetQuilt.QueryItem(name: "take_profit", value: String(takeProfit))) }
-
-            queryItems.append(NetQuilt.QueryItem(name: "time_in_force", value: timeInForce.rawValue))
-            queryItems.append(NetQuilt.QueryItem(name: "timestamp", value: timestamp))
-            queryItems.append(NetQuilt.QueryItem(name: "sign", value: signature))
-
+            queryItems.append(Atom.QueryItem(name: "qty", value: String(quantity)))
+            queryItems.append(Atom.QueryItem(name: "recv_window", value: "1000000"))
+            
+            if reduceOnly != nil { queryItems.append(Atom.QueryItem(name: "reduce_only", value: String(reduceOnly!))) }
+            
+            queryItems.append(Atom.QueryItem(name: "side", value: side.rawValue))
+            
+            if let stopLoss = stopLossPrice { queryItems.append(Atom.QueryItem(name: "stop_loss", value: String(stopLoss))) }
+            
+            queryItems.append(Atom.QueryItem(name: "symbol", value: symbol.rawValue))
+            
+            if let takeProfit = takeProfitPrice { queryItems.append(Atom.QueryItem(name: "take_profit", value: String(takeProfit))) }
+            
+            queryItems.append(Atom.QueryItem(name: "time_in_force", value: timeInForce.rawValue))
+            queryItems.append(Atom.QueryItem(name: "timestamp", value: timestamp))
+            queryItems.append(Atom.QueryItem(name: "sign", value: signature))
+            
             return queryItems
         }
         

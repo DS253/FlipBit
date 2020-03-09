@@ -1,0 +1,11 @@
+framework module Atom {
+  umbrella header "Atom.h"
+
+  export *
+  module * { export * }
+}
+
+module Atom.Swift {
+    header "Atom-Swift.h"
+    requires objc
+}

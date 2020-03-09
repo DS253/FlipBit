@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 extension BitService.BybitActiveOrderUpdate {
     
@@ -19,15 +19,15 @@ extension BitService.BybitActiveOrderUpdate {
         var price: Double?
         var timestamp: String
         
-        internal func baseURL() throws -> NetQuilt.BaseURL {
-            return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
+        internal func baseURL() throws -> Atom.BaseURL {
+            return try Atom.BaseURL(host: "api-testnet.bybit.com")
         }
 
-        internal func path() throws -> NetQuilt.URLPath {
-            return try NetQuilt.URLPath("/open-api/order/replace")
+        internal func path() throws -> Atom.URLPath {
+            return try Atom.URLPath("/open-api/order/replace")
         }
         
-        var method: NetQuilt.Method {
+        var method: Atom.Method {
             return .post(Data())
         }
         
@@ -44,18 +44,18 @@ extension BitService.BybitActiveOrderUpdate {
             return queries.buildSignature(secretKey: secret)
         }
         
-        var queryItems: [NetQuilt.QueryItem]? {
-            var queryItems = [NetQuilt.QueryItem]()
-            queryItems.append(NetQuilt.QueryItem(name: "api_key", value: theAPIKey))
-            queryItems.append(NetQuilt.QueryItem(name: "order_id", value: orderID))
+        var queryItems: [Atom.QueryItem]? {
+            var queryItems = [Atom.QueryItem]()
+            queryItems.append(Atom.QueryItem(name: "api_key", value: theAPIKey))
+            queryItems.append(Atom.QueryItem(name: "order_id", value: orderID))
 
-            if let newPrice = self.price { queryItems.append(NetQuilt.QueryItem(name: "p_r_price", value: String(newPrice))) }
-            if let newQuantity = self.quantity { queryItems.append(NetQuilt.QueryItem(name: "p_r_qty", value: String(newQuantity))) }
+            if let newPrice = self.price { queryItems.append(Atom.QueryItem(name: "p_r_price", value: String(newPrice))) }
+            if let newQuantity = self.quantity { queryItems.append(Atom.QueryItem(name: "p_r_qty", value: String(newQuantity))) }
             
-            queryItems.append(NetQuilt.QueryItem(name: "recv_window", value: "1000000"))
-            queryItems.append(NetQuilt.QueryItem(name: "symbol", value: symbol.rawValue))
-            queryItems.append(NetQuilt.QueryItem(name: "timestamp", value: timestamp))
-            queryItems.append(NetQuilt.QueryItem(name: "sign", value: signature))
+            queryItems.append(Atom.QueryItem(name: "recv_window", value: "1000000"))
+            queryItems.append(Atom.QueryItem(name: "symbol", value: symbol.rawValue))
+            queryItems.append(Atom.QueryItem(name: "timestamp", value: timestamp))
+            queryItems.append(Atom.QueryItem(name: "sign", value: signature))
             return queryItems
         }
         

@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 extension BitService.BybitPreviousFundingRate {
     
@@ -16,12 +16,12 @@ extension BitService.BybitPreviousFundingRate {
         var symbol: Bybit.Symbol
         var timestamp: String
         
-        internal func baseURL() throws -> NetQuilt.BaseURL {
-            return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
+        internal func baseURL() throws -> Atom.BaseURL {
+            return try Atom.BaseURL(host: "api-testnet.bybit.com")
         }
-    
-        internal func path() throws -> NetQuilt.URLPath {
-            return try NetQuilt.URLPath("/open-api/funding/prev-funding-rate")
+        
+        internal func path() throws -> Atom.URLPath {
+            return try Atom.URLPath("/open-api/funding/prev-funding-rate")
         }
         
         var signature: String {
@@ -29,11 +29,11 @@ extension BitService.BybitPreviousFundingRate {
             return queries.buildSignature(secretKey: secret)
         }
         
-        var queryItems: [NetQuilt.QueryItem]? {
-            return [NetQuilt.QueryItem(name: "api_key", value: theAPIKey),
-                    NetQuilt.QueryItem(name: "symbol", value: symbol.rawValue),
-                    NetQuilt.QueryItem(name: "timestamp", value: timestamp),
-                    NetQuilt.QueryItem(name: "sign", value: signature)]
+        var queryItems: [Atom.QueryItem]? {
+            return [Atom.QueryItem(name: "api_key", value: theAPIKey),
+                    Atom.QueryItem(name: "symbol", value: symbol.rawValue),
+                    Atom.QueryItem(name: "timestamp", value: timestamp),
+                    Atom.QueryItem(name: "sign", value: signature)]
         }
         
         init(symbol: Bybit.Symbol, timeStamp: String) {

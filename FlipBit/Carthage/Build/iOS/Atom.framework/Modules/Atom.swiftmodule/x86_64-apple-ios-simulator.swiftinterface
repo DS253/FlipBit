@@ -1,0 +1,222 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)
+// swift-module-flags: -target x86_64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name Atom
+@_exported import Atom
+import Foundation
+import Swift
+public protocol Requestable {
+  var headerItems: [Atom.Atom.HeaderItem]? { get }
+  var method: Atom.Atom.Method { get }
+  var queryItems: [Atom.Atom.QueryItem]? { get }
+  var requiresAuthentication: Swift.Bool { get }
+  func baseURL() throws -> Atom.Atom.BaseURL
+  func path() throws -> Atom.Atom.URLPath
+}
+extension Atom {
+  public enum Method : Swift.Equatable {
+    case delete
+    case get
+    case patch(Foundation.Data)
+    case post(Foundation.Data)
+    case put(Foundation.Data)
+    public static func == (a: Atom.Atom.Method, b: Atom.Atom.Method) -> Swift.Bool
+  }
+}
+extension Requestable {
+  public var headerItems: [Atom.Atom.HeaderItem]? {
+    get
+  }
+  public var method: Atom.Atom.Method {
+    get
+  }
+  public var queryItems: [Atom.Atom.QueryItem]? {
+    get
+  }
+  public var requiresAuthentication: Swift.Bool {
+    get
+  }
+  public func path() throws -> Atom.Atom.URLPath
+}
+extension Atom {
+  public class Service {
+    @objc deinit
+  }
+}
+extension Atom.Service {
+  public func execute<T>(expecting type: T.Type, completion: @escaping (Swift.Result<T, Atom.AtomError>) -> Swift.Void) where T : Atom.Model
+  public func execute(_ completion: @escaping (Swift.Result<Atom.Atom.Response, Atom.AtomError>) -> Swift.Void)
+}
+extension Atom.BaseURL {
+  public enum Scheme {
+    case http
+    case https
+    public static func == (a: Atom.Atom.BaseURL.Scheme, b: Atom.Atom.BaseURL.Scheme) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+  }
+}
+extension AtomError {
+  public var isAuthorizationFailure: Swift.Bool {
+    get
+  }
+  public var isAccessTokenRefreshFailure: Swift.Bool {
+    get
+  }
+}
+extension AtomError {
+  public func decodeIfPresent<T>(as type: T.Type) throws -> T? where T : Swift.Decodable
+}
+public protocol BasicCredentialConvertible {
+  var basicCredential: Atom.Atom.BasicCredential { get }
+}
+public protocol TokenCredentialWritable : AnyObject {
+  var tokenCredential: Atom.Atom.TokenCredential { get set }
+}
+extension Atom {
+  public struct URLPath {
+    public init(_ path: Swift.String) throws
+  }
+}
+extension Atom {
+  public struct AuthorizationEndpoint {
+    public init(host: Swift.String, path: Swift.String)
+  }
+}
+public enum RequestableError : Swift.Error {
+  case invalidBaseURL
+  case invalidURL
+  case invalidURLPath
+  public static func == (a: Atom.RequestableError, b: Atom.RequestableError) -> Swift.Bool
+  public var hashValue: Swift.Int {
+    get
+  }
+  public func hash(into hasher: inout Swift.Hasher)
+}
+extension Atom {
+  public struct Response {
+    public typealias HeaderFields = Foundation.NSDictionary
+    public let allHeaderFields: Atom.Atom.Response.HeaderFields?
+    public let expectedContentLength: Swift.Int64?
+    public let data: Foundation.Data?
+    public let mimeType: Swift.String?
+    public let statusCode: Swift.Int?
+    public let suggestedFilename: Swift.String?
+    public let textEncodingName: Swift.String?
+    public let url: Foundation.URL?
+  }
+}
+extension Data : Atom.Model {
+}
+extension Atom {
+  public static let didFailToRefreshAccessToken: Foundation.Notification.Name
+}
+extension Atom {
+  public class ServiceConfiguration {
+    public enum Configuration : Swift.Equatable {
+      case background(Swift.String)
+      case `default`
+      case ephemeral
+      public static func == (a: Atom.Atom.ServiceConfiguration.Configuration, b: Atom.Atom.ServiceConfiguration.Configuration) -> Swift.Bool
+    }
+    public init(authenticationMethod: Atom.Atom.AuthenticationMethod = .none, configuration: Atom.Atom.ServiceConfiguration.Configuration = .ephemeral, decoder: Foundation.JSONDecoder = JSONDecoder(), dispatchQueue: Dispatch.DispatchQueue = .main)
+    @objc deinit
+  }
+}
+public protocol Model : Swift.Decodable, Swift.Encodable {
+}
+public enum AtomError : Swift.Error {
+  case decoder(Swift.Error)
+  case data(Swift.Error)
+  case requestable(Atom.RequestableError)
+  case response(Atom.Atom.Response)
+  case session(Swift.Error)
+  case unexpected
+  case unknown
+}
+extension Atom.ClientCredential {
+  public enum GrantType : Swift.String {
+    case refreshToken
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+    public init?(rawValue: Swift.String)
+  }
+}
+extension Atom {
+  public struct TokenCredential {
+    public let accessToken: Swift.String
+    public let expiresIn: Swift.Int
+    public let expiresAt: Foundation.Date
+    public let refreshToken: Swift.String
+    public init(accessToken: Swift.String, expiresIn: Swift.Int, expiresAt: Foundation.Date, refreshToken: Swift.String)
+  }
+}
+extension Atom {
+  public struct BasicCredential {
+    public init(password: Swift.String, username: Swift.String)
+  }
+}
+extension Optional {
+  public func unwrap(_ because: (() -> Swift.String)? = nil, file: Swift.StaticString = #file, line: Swift.UInt = #line) -> Wrapped
+}
+extension Atom {
+  public struct HeaderItem {
+    public init(name: Swift.String, value: Swift.String)
+  }
+}
+extension Atom.Response {
+  public static let success: Atom.Atom.Response
+}
+public protocol ClientCredentialConvertible {
+  var clientCredential: Atom.Atom.ClientCredential { get }
+}
+extension URLResponse {
+  public var isFailure: Swift.Bool {
+    get
+  }
+  public var isSuccessful: Swift.Bool {
+    get
+  }
+}
+extension Atom {
+  public struct BaseURL {
+    public init(scheme: Atom.Atom.BaseURL.Scheme = .https, host: Swift.String) throws
+  }
+}
+extension Atom {
+  public typealias QueryItem = Foundation.URLQueryItem
+}
+extension Atom {
+  public struct ClientCredential {
+    public init(grantType: Atom.Atom.ClientCredential.GrantType = .refreshToken, id: Swift.String, secret: Swift.String)
+  }
+}
+extension Array : Atom.Model where Element : Atom.Model {
+}
+public struct Atom {
+  public init(serviceConfiguration: Atom.Atom.ServiceConfiguration = Atom.ServiceConfiguration())
+}
+extension Atom {
+  public func cancelAllSessionTasks()
+  public func load(_ requestable: Atom.Requestable) -> Atom.Atom.Service
+}
+extension Atom {
+  public enum AuthenticationMethod {
+    case basic(Atom.Atom.BasicCredential)
+    case bearer(Atom.Atom.AuthorizationEndpoint, Atom.Atom.ClientCredential, Atom.TokenCredentialWritable)
+    case none
+  }
+}
+extension Atom.TokenCredential : Swift.Decodable {
+  public init(from decoder: Swift.Decoder) throws
+}
+extension Atom.Atom.BaseURL.Scheme : Swift.Equatable {}
+extension Atom.Atom.BaseURL.Scheme : Swift.Hashable {}
+extension Atom.RequestableError : Swift.Equatable {}
+extension Atom.RequestableError : Swift.Hashable {}
+extension Atom.Atom.ClientCredential.GrantType : Swift.Equatable {}
+extension Atom.Atom.ClientCredential.GrantType : Swift.Hashable {}
+extension Atom.Atom.ClientCredential.GrantType : Swift.RawRepresentable {}

@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 public struct BitService {
     /// The configuration data used for initializing `BitService` instance.
@@ -60,7 +60,7 @@ public extension BitService {
         case Sell
         case None
     }
-
+    
     enum BybitOrderTimeInForce: String, Codable {
         case GoodTillCancel
         case ImmediateOrCancel
@@ -90,7 +90,7 @@ public extension BitService {
         case Liq
         case Normal
     }
-
+    
     enum BybitWithdrawalStatus: String, Codable {
         case ToBeConfirmed
         case UnderReview
@@ -172,8 +172,8 @@ public extension BitService {
     }
     
     func postBybitCreateActiveOrder(side: BitService.BybitOrderSide, symbol: Bybit.Symbol, orderType: BitService.BybitOrderType, quantity: Int,
-                              timeInForce: BitService.BybitOrderTimeInForce, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil,
-                              reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkID: String? = nil, completion: @escaping (Result<BybitOrderResponse, BitService.Error>) -> Void) {
+                                    timeInForce: BitService.BybitOrderTimeInForce, price: Double? = nil, takeProfit: Double? = nil, stopLoss: Double? = nil,
+                                    reduceOnly: Bool? = nil, closeOnTrigger: Bool? = nil, orderLinkID: String? = nil, completion: @escaping (Result<BybitOrderResponse, BitService.Error>) -> Void) {
         let endpoint = BybitOrder.Endpoint.init(side: side, symbol: symbol, orderType: orderType, quantity: quantity, timeInForce: timeInForce,
                                                 price: price, takeProfit: takeProfit, stopLoss: stopLoss, reduceOnly: reduceOnly, closeOnTrigger: closeOnTrigger,
                                                 orderLinkID: orderLinkID, timeStamp: Date().bybitTimestamp())

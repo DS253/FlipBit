@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 extension BitService.BybitLeverageStatus {
     
@@ -15,12 +15,12 @@ extension BitService.BybitLeverageStatus {
         
         var timestamp: String
         
-        internal func baseURL() throws -> NetQuilt.BaseURL {
-            return try NetQuilt.BaseURL(host: "api-testnet.bybit.com")
+        internal func baseURL() throws -> Atom.BaseURL {
+            return try Atom.BaseURL(host: "api-testnet.bybit.com")
         }
-    
-        internal func path() throws -> NetQuilt.URLPath {
-            return try NetQuilt.URLPath("/user/leverage")
+        
+        internal func path() throws -> Atom.URLPath {
+            return try Atom.URLPath("/user/leverage")
         }
         
         var signature: String {
@@ -28,11 +28,11 @@ extension BitService.BybitLeverageStatus {
             return queries.buildSignature(secretKey: secret)
         }
         
-        var queryItems: [NetQuilt.QueryItem]? {
-            return [NetQuilt.QueryItem(name: "api_key", value: theAPIKey),
-                    NetQuilt.QueryItem(name: "recv_window", value: "1000000"),
-                    NetQuilt.QueryItem(name: "timestamp", value: timestamp),
-                    NetQuilt.QueryItem(name: "sign", value: signature)]
+        var queryItems: [Atom.QueryItem]? {
+            return [Atom.QueryItem(name: "api_key", value: theAPIKey),
+                    Atom.QueryItem(name: "recv_window", value: "1000000"),
+                    Atom.QueryItem(name: "timestamp", value: timestamp),
+                    Atom.QueryItem(name: "sign", value: signature)]
         }
         
         init(timeStamp: String) {

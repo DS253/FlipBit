@@ -6,8 +6,8 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 public extension BitService {
     /// List of all possible error cases returned by `BitService` framework.
@@ -35,20 +35,20 @@ public extension BitService {
         /// Creates a `BitService.Error` instance given the provided parameter(s).
         ///
         /// - Parameters:
-        ///   - error: The `NetQuiltError` instance mapped to `BitService.Error`.
-        internal init(_ error: NetQuiltError) {
+        ///   - error: The `AtomError` instance mapped to `BitService.Error`.
+        internal init(_ error: AtomError) {
             switch error {
             case .data, .requestable:
                 self = .internal
             case .decoder(let error):
-                self = .decoder(error)
+                self = .decoder(error as NSError)
             case .response(let response):
                 self = .response(BitService.Response(response))
             case .session, .unexpected, .unknown:
                 self = .dependency
+            @unknown default:
+                self = .internal
             }
         }
     }
 }
-
-

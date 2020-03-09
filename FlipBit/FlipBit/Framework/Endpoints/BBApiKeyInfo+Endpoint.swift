@@ -6,11 +6,11 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import Atom
 import Foundation
-import NetQuilt
 
 extension BitService.BybitAPIKeyInfo {
-
+    
     struct Endpoint: Requestable {
         
         var timestamp: String
@@ -20,15 +20,15 @@ extension BitService.BybitAPIKeyInfo {
             return queries.buildSignature(secretKey: secret)
         }
         
-        internal var queryItems: [NetQuilt.QueryItem]? {
-            return [NetQuilt.QueryItem(name: "api_key", value: theAPIKey),
-                    NetQuilt.QueryItem(name: "recv_window", value: "1000000"),
-                    NetQuilt.QueryItem(name: "timestamp", value: timestamp),
-                    NetQuilt.QueryItem(name: "sign", value: signature)]
+        internal var queryItems: [Atom.QueryItem]? {
+            return [Atom.QueryItem(name: "api_key", value: theAPIKey),
+                    Atom.QueryItem(name: "recv_window", value: "1000000"),
+                    Atom.QueryItem(name: "timestamp", value: timestamp),
+                    Atom.QueryItem(name: "sign", value: signature)]
         }
         
-        internal func path() throws -> NetQuilt.URLPath {
-            return try NetQuilt.URLPath("/open-api/api-key")
+        internal func path() throws -> Atom.URLPath {
+            return try Atom.URLPath("/open-api/api-key")
         }
         
         init(timeStamp: String) {
