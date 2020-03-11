@@ -152,58 +152,54 @@ final class ChartView: BaseView {
         guard let lowestPoint = lowPoint else { return }
 
         /// Set the initial point of the path to be the computed y-coordinate of the first data point price.
-        let graphPath = UIBezierPath()
-        graphPath.move(to: CGPoint(x: 0, y: CGFloat(dataPoints.data[0].price) * yStep))
+        let chartPath = UIBezierPath()
+        chartPath.move(to: CGPoint(x: 0, y: CGFloat(dataPoints.data[0].price) * yStep))
 
         /// Calculate the y-coordinate for each data point.
         for (index, dataPoint) in dataPoints.data.enumerated() {
             let midPoint = (heightRange / 2) * yStep
-            let graphMiddle = height / 2
-            let point = CGFloat(dataPoint.price - lowestPoint.price) * yStep
-            
-            if point > midPoint {
-                let difference = point - midPoint
-                let test = midPoint - difference
+            /// The middle point of the y-axis.
+            let chartMiddle = height / 2
+            /// Determine distance from the bottom by subtracting the price from the lowest price.
+            let distanceFromBottom = CGFloat(dataPoint.price - lowestPoint.price) * yStep
 
-                let newPoint = CGPoint(x: xCoordinates[index], y: test)
-                graphPath.addLine(to: newPoint)
+            /// If the y distance is greater than the mid point, subtract the difference of the midpoint and the y distance.
+            if distanceFromBottom > midPoint {
+                let difference = midPoint - (distanceFromBottom - midPoint)
+                chartPath.addLine(to: CGPoint(x: xCoordinates[index], y: difference))
             }
-            else if point < midPoint {
-                let difference = midPoint - point
-                let test = midPoint + difference
-                let newPoint = CGPoint(x: xCoordinates[index], y: test)
-                graphPath.addLine(to: newPoint)
+                /// If the y distance is less than the mid point, add the difference of the midpoint and the y distance.
+            else if distanceFromBottom < midPoint {
+                let difference = midPoint + (midPoint - distanceFromBottom)
+                chartPath.addLine(to: CGPoint(x: xCoordinates[index], y: difference))
             }
-            else if point == midPoint {
-                let newPoint = CGPoint(x: xCoordinates[index], y: graphMiddle)
-                graphPath.addLine(to: newPoint)
+                /// If the y distance is the same as the mid point, set the y coordinate to the mid point.
+            else if distanceFromBottom == midPoint {
+                chartPath.addLine(to: CGPoint(x: xCoordinates[index], y: chartMiddle))
             }
         }
         
-        UIColor.upAccentColor.setFill()
-        UIColor.upAccentColor.setStroke()
-        graphPath.lineWidth = 1.5
-        graphPath.stroke()
+        UIColor.Chart.gainsColor.setFill()
+        UIColor.Chart.gainsColor.setStroke()
+        chartPath.lineWidth = 1.5
+        chartPath.stroke()
     }
 
+    /// LongPress reveals the line view indicator.
     @objc func userDidLongPress(_ gesture: UILongPressGestureRecognizer) {
-        let touchLocation = gesture.location(in: self)
-        let x = convertTouchLocationToPointX(touchLocation: touchLocation)
-        
+        let x = convertTouchLocationToPointX(touchLocation: gesture.location(in: self))
         guard let xIndex = xCoordinates.firstIndex(of: x) else {return }
         
         let dataPoint = dataPoints.data[xIndex]
         updateIndicator(with: x, date: dataPoint.date, price: dataPoint.price)
         manageIndicatorAppearance(gesture: gesture)
     }
-    
+
+    /// PanGesture moves the line view indicator.
     @objc func userDidPan(_ gesture: UIPanGestureRecognizer) {
-        let touchLocation = gesture.location(in: self)
-        
         switch gesture.state {
         case .changed, .began, .ended:
-            let x = convertTouchLocationToPointX(touchLocation: touchLocation)
-            
+            let x = convertTouchLocationToPointX(touchLocation: gesture.location(in: self))
             guard let xIndex = xCoordinates.firstIndex(of: x) else {return }
             let dataPoint = dataPoints.data[xIndex]
             
@@ -256,7 +252,7 @@ final class ChartView: BaseView {
         }
     }
     
-    // Check if touchLocation.x is in the bounds of the width of the view, and converts it to a graph value
+    /// Converts the x value of the touch location to an x coordinate on the chart.
     private func convertTouchLocationToPointX(touchLocation: CGPoint) -> CGFloat {
         let maxX: CGFloat = width
         let minX: CGFloat = 0
@@ -270,7 +266,6 @@ final class ChartView: BaseView {
                 return
             }
         }
-        
         return x
     }
 }

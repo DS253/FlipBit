@@ -82,7 +82,7 @@ extension TickerColumnCell: UITableViewDataSource {
     
     let char = characters[indexPath.row]
     tickerCell.digit = "\(char)"
-    tickerCell.fontSize = size.fontSize
+ //   tickerCell.fontSize = size.fontSize
     
     return tickerCell
   }

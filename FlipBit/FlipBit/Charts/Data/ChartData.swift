@@ -8,14 +8,15 @@
 
 import Foundation
 
+/// A single ChartPoint represents the date and the closing price.
 struct ChartPoint {
     var date: Date
     var price: Double
 }
 
+/// ChartData represents a collection of ChartPoints that can be used to construct a Chart.
 struct ChartData {
-    
-    var openingPrice: Double = 0.0
+
     var data: [ChartPoint] = [ChartPoint]()
     
     init(fileName: String) {
@@ -42,9 +43,7 @@ struct ChartData {
                     chartPoints.append(chartDataPoint)
                 }
             }
-            
         }
-        self.openingPrice = 5555.625
         self.data = chartPoints
     }
 }
