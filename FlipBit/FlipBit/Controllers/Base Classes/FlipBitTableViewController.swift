@@ -1,14 +1,14 @@
 //
-//  BaseTableViewController.swift
+//  FlipBitTableViewController.swift
 //  FlipBit
 //
-//  Created by Daniel Stewart on 11/20/19.
-//  Copyright © 2019 DS Studios. All rights reserved.
+//  Created by Daniel Stewart on 3/14/20.
+//  Copyright © 2020 DS Studios. All rights reserved.
 //
 
 import UIKit
 
-/// Provides logic for shared implementation used across all `BaseViewController`s.
+/// Provides logic for shared implementation used across all `FlipBitViewController`s.
 /// This class provides a custom `tableHeaderView`, `tableView` and `optionsView`
 /// to be configured and used as needed. This class **is** intended to be subclassed.
 ///
@@ -20,11 +20,11 @@ import UIKit
 ///   - `setup()`
 ///   - `setupSubviews()`
 ///   - `setupConstraints()`
-class BaseTableViewController: BaseViewController {
-    /// Defines the specified configurations for a `BaseTableViewController`.
+class FlipBitTableViewController: FlipBitViewController {
+    /// Defines the specified configurations for a `FlipBitTableViewController`.
     /// The default configuration is `standard`.
     public enum Configuration {
-        /// Specifies a default configuration for an instance of `BaseTableViewController`.
+        /// Specifies a default configuration for an instance of `FlipBitTableViewController`.
         /// With the `default` configuration, the `tableHeaderView` scrolls with the `tableView` content.
         case `default`
         
@@ -95,7 +95,7 @@ class BaseTableViewController: BaseViewController {
     
     // MARK: - Initializers
     
-    /// Initialize an instance of `BaseTableViewController` where `nibName` and `bundle` are `nil`.
+    /// Initialize an instance of `FlipBitTableViewController` where `nibName` and `bundle` are `nil`.
     public init(configuration: Configuration = .default) {
         self.configuration = configuration
         
@@ -193,7 +193,7 @@ class BaseTableViewController: BaseViewController {
 
 // MARK: - Configuration
 
-extension BaseTableViewController {
+extension FlipBitTableViewController {
     public func addOptionsView(_ view: UIView) {
         optionsView.addSubview(view)
         
@@ -211,7 +211,7 @@ extension BaseTableViewController {
     }
 }
 
-extension BaseTableViewController: BaseTableHeaderViewResizeDelegate {
+extension FlipBitTableViewController: BaseTableHeaderViewResizeDelegate {
     public func headerViewDidResize(_ headerView: BaseTableHeaderView) {
         tableView.tableHeaderView?.layoutIfNeeded()
         
@@ -221,3 +221,4 @@ extension BaseTableViewController: BaseTableHeaderViewResizeDelegate {
         tableView.setHeaderView(headerView)
     }
 }
+

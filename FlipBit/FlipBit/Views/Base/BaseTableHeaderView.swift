@@ -20,7 +20,7 @@ public protocol BaseTableHeaderViewResizeDelegate: class {
     func headerViewDidResize(_ headerView: BaseTableHeaderView)
 }
 
-/// Provides base functionality for the `tableHeaderView` of a `BaseTableViewController`.
+/// Provides base functionality for the `tableHeaderView` of a `FlipBitTableViewController`.
 /// `BaseTableHeaderView` is composed of multiple configurable components that manage it's
 /// layout.
 ///

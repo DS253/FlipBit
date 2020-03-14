@@ -31,14 +31,22 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
         print("Observer failed to decode the response from the web socket")
     }
     
-    private var chartData = ChartData(fileName: "BYBIT_BTCUSD, 1W")
-    
     lazy private var tickerControl: TickerControl = {
         return TickerControl(value: chartData.openingPrice)
     }()
     
+    private var chartData = ChartData(fileName: "BYBIT_BTCUSD, 1W")
     private lazy var chartView = ChartView(data: chartData)
-    //private var data: ChartData?
+    
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .red
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+        return collectionView
+    }()
     
     private lazy var executeButton: UIButton = {
         let button = UIButton(type: .system)
@@ -47,16 +55,6 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
-    func csv(data: String) -> [[String]] {
-        var result: [[String]] = []
-        let rows = data.components(separatedBy: "\n")
-        for row in rows {
-            let columns = row.components(separatedBy: ",")
-            result.append(columns)
-        }
-        return result
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +73,8 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
            chartView.translatesAutoresizingMaskIntoConstraints = false
            chartView.delegate = self
         
-        view.addSubview(chartView)
+     //   view.addSubview(chartView)
+        view.addSubview(collectionView)
      //   view.addSubview(tickerControl.view)
         
     }
@@ -88,11 +87,15 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
 //            tickerControl.view.heightAnchor.constraint(equalToConstant: 200),
 //            tickerControl.view.widthAnchor.constraint(equalToConstant: 200),
             
-            chartView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5.0),
-            chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5.0),
-            chartView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            chartView.heightAnchor.constraint(equalToConstant: self.view.bounds.size.height / 2)
+//            chartView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5.0),
+//            chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5.0),
+//            chartView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+//            chartView.heightAnchor.constraint(equalToConstant: self.view.bounds.size.height / 2)
 //            chartView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -102,6 +105,36 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
         //     socket.write(string: "hello there!")
         bookObserver.writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
     }
+}
+
+extension SandBoxViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 100, height: 100)
+    }
+}
+
+extension SandBoxViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+        cell.backgroundColor = .blue
+        let label = UILabel()
+        label.text = "What Up"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        cell.contentView.addSubview(label)
+        NSLayoutConstraint.activate([
+        label.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor),
+        label.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor),
+        label.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
+        label.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor)
+        ])
+        return cell
+    }
+    
+    
 }
 
 extension SandBoxViewController: ChartViewDelegate {

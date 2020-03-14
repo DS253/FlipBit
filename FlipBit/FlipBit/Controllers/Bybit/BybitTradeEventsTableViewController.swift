@@ -9,7 +9,7 @@
 import Starscream
 import UIKit
 
-class BybitTradeEventsTableViewController: BaseTableViewController {
+class BybitTradeEventsTableViewController: FlipBitTableViewController {
     
     // MARK: - init Methods
     

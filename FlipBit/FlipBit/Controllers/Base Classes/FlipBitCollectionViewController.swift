@@ -1,0 +1,59 @@
+//
+//  FlipBitCollectionViewController.swift
+//  FlipBit
+//
+//  Created by Daniel Stewart on 3/14/20.
+//  Copyright © 2020 DS Studios. All rights reserved.
+//
+
+import UIKit
+
+/// Provides logic for shared implementation used across all `FlipBitViewController`s.
+/// This class provides a custom `collectionView` to be configured and used as needed.
+/// This class **is** intended to be subclassed.
+///
+///   Overrides the following methods:
+///   - `setup()`
+///   - `setupSubviews()`
+///   - `setupConstraints()`
+class FlipBitCollectionViewController: FlipBitViewController {
+    /// The primary collectionView for displaying information relating
+    /// to this controller.
+    public lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = #colorLiteral(red: 0.9607340693, green: 0.9608191848, blue: 0.9606630206, alpha: 1)
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        return collectionView
+    }()
+    
+    public lazy var flowLayout: UICollectionViewFlowLayout = {
+        let layout = UICollectionViewFlowLayout()
+        layout.estimatedItemSize = CGSize(width: 1, height: 1)
+        return layout
+    }()
+    
+    override func setup() {
+        super.setup()
+        
+        view.backgroundColor = .white
+    }
+    
+    override func setupSubviews() {
+        super.setupSubviews()
+        
+        view.addSubview(collectionView)
+    }
+    
+    override func setupConstraints() {
+        super.setupConstraints()
+        
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+    }
+}

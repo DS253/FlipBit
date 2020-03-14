@@ -1,9 +1,9 @@
 //
-//  BaseViewController.swift
+//  FlipBitViewController.swift
 //  FlipBit
 //
-//  Created by Daniel Stewart on 11/18/19.
-//  Copyright © 2019 DS Studios. All rights reserved.
+//  Created by Daniel Stewart on 3/14/20.
+//  Copyright © 2020 DS Studios. All rights reserved.
 //
 
 import UIKit
@@ -25,7 +25,7 @@ import UIKit
 ///   - `setupConstraints()`
 ///
 ///   For more information, see **Setup.swift** implementation.
-class BaseViewController: UIViewController, ViewSetup {
+class FlipBitViewController: UIViewController, ViewSetup {
     
     /// Calls to each `setup` method in this order. Each of these methods
     /// are optional to implement dependant upon needs.

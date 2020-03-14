@@ -14,7 +14,7 @@ let secret = "WZoEUyZuiauyVhp5qrY51S8FZPYMb004hbwA"
 //let secret = "4VDDtErgd0uLYDBwI63S27pFcHRNvBKtS9C5"
 
 typealias View = BaseView
-typealias ViewController = BaseViewController
+typealias ViewController = FlipBitViewController
 
 struct Constant {
     

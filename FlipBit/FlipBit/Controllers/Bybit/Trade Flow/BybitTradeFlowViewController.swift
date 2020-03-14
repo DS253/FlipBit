@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BybitTradeFlowViewController: BaseTableViewController {
+class BybitTradeFlowViewController: FlipBitTableViewController {
     
     private let order: Order
     private var pageIndex: Int = 0
@@ -26,13 +26,13 @@ class BybitTradeFlowViewController: BaseTableViewController {
             switch self {
             case .type:
                 return Constant.type
-
+                
             case .price:
                 return Constant.price
-
+                
             case .quantity:
                 return Constant.quantity
-
+                
             case .total:
                 return Constant.total
             }
