@@ -80,7 +80,7 @@ final class TickerControl: UIViewController {
       let indexPath = IndexPath(item: index, section: 0)
       
       guard let cell = columnsCollectionView.cellForItem(at: indexPath) as? TickerColumnCell,
-        let characterIndex = cell.characters.index(of: "\(char)") else { return }
+        let characterIndex = cell.characters.firstIndex(of: "\(char)") else { return }
       
       let charIndexPath = IndexPath(item: characterIndex, section: 0)
       

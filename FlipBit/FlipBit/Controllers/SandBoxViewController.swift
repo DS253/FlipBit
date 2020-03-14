@@ -32,7 +32,7 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
     }
     
     lazy private var tickerControl: TickerControl = {
-        return TickerControl(value: chartData.openingPrice)
+        return TickerControl(value: 5000.0)
     }()
     
     private var chartData = ChartData(fileName: "BYBIT_BTCUSD, 1W")
@@ -69,23 +69,25 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
     }
     
     override func setupSubviews() {
-           chartView.backgroundColor = .white
-           chartView.translatesAutoresizingMaskIntoConstraints = false
-           chartView.delegate = self
+//           chartView.backgroundColor = .white
+//           chartView.translatesAutoresizingMaskIntoConstraints = false
+//           chartView.delegate = self
         
      //   view.addSubview(chartView)
         view.addSubview(collectionView)
      //   view.addSubview(tickerControl.view)
-        
+
+        view.addSubview(chartView)
+        view.addSubview(tickerControl.view)
     }
     
     override func setupConstraints() {
         
         NSLayoutConstraint.activate([
-//            tickerControl.view.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            tickerControl.view.topAnchor.constraint(equalTo: view.topAnchor),
-//            tickerControl.view.heightAnchor.constraint(equalToConstant: 200),
-//            tickerControl.view.widthAnchor.constraint(equalToConstant: 200),
+            tickerControl.view.topAnchor.constraint(equalTo: view.topAnchor),
+            tickerControl.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tickerControl.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tickerControl.view.heightAnchor.constraint(equalToConstant: 300.0),
             
 //            chartView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5.0),
 //            chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5.0),

@@ -68,20 +68,9 @@ extension UIColor {
         static let titleGray = #colorLiteral(red: 0.6745098039, green: 0.7333333333, blue: 0.8156862745, alpha: 1)
         static let white = #colorLiteral(red: 0.9334599743, green: 1, blue: 0.9361622432, alpha: 1)
     }
-}
 
-extension UIColor {
-    static let upAccentColor: UIColor = UIColor(red: 0.19, green: 0.8, blue: 0.6, alpha: 1.0)
-    static let downAccentColor: UIColor = UIColor(red: 0.95, green: 0.34, blue: 0.23, alpha: 1.0)
-    
-    static let lightTextTextColor: UIColor = .white
-    static let darkTextTextColor: UIColor = .black
-
-    static let darkTitleTextColor: UIColor = .gray
-}
-
-extension CGFloat {
-    static let titleTextSize: CGFloat = 12.0
-    static let textTextSize: CGFloat = 24.0
-    static let linkTextSize: CGFloat = 12.0
+    public struct Chart {
+        static let gainsColor = #colorLiteral(red: 0.1921568627, green: 0.8, blue: 0.6, alpha: 1)
+        static let lossColor = #colorLiteral(red: 0.9490196078, green: 0.3411764706, blue: 0.231372549, alpha: 1)
+    }
 }
