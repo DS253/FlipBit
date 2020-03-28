@@ -71,7 +71,7 @@ final class ChartView: BaseView {
 
     /// Displays the date/time of the selected data point.
     private let timeStampLabel: UILabel = {
-        let label = UILabel(text: "", font: UIFont.body.bold)
+        let label = UILabel(text: "", font: UIFont.body.bold, textColor: themeManager.themeFontColor)
         label.lineBreakMode = .byTruncatingTail
         label.isHidden = true
         return label
@@ -106,6 +106,7 @@ final class ChartView: BaseView {
     }
     
     override func setup() {
+        translatesAutoresizingMaskIntoConstraints = false
         addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(userDidPan(_:))))
         addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(userDidLongPress(_:))))
     }
@@ -122,7 +123,9 @@ final class ChartView: BaseView {
             lineViewLeadConstraint,
             lineView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             lineView.widthAnchor.constraint(equalToConstant: 1.5),
-            lineView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7)
+            lineView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7),
+            
+            heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 3)
         ])
     }
 

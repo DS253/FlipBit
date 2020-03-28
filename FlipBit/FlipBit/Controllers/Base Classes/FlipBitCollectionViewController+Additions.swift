@@ -20,7 +20,14 @@ extension FlipBitCollectionViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDataSource
+
+//extension FlipBitCollectionViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        fatalError("\(String(describing: self)) - \(#function) must be overriden by a subclass.")
+//    }
+//}
+
 // MARK: - UICollectionViewDelegate
 
 extension FlipBitCollectionViewController: UICollectionViewDelegate { }
-

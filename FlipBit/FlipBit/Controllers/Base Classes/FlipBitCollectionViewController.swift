@@ -22,7 +22,7 @@ class FlipBitCollectionViewController: FlipBitViewController {
     public lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = #colorLiteral(red: 0.9607340693, green: 0.9608191848, blue: 0.9606630206, alpha: 1)
+        collectionView.backgroundColor = themeManager.themeBackgroundColor
         collectionView.dataSource = self
         collectionView.delegate = self
         return collectionView
@@ -30,19 +30,17 @@ class FlipBitCollectionViewController: FlipBitViewController {
     
     public lazy var flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.estimatedItemSize = CGSize(width: 1, height: 1)
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         return layout
     }()
     
     override func setup() {
         super.setup()
-        
-        view.backgroundColor = .white
+        view.backgroundColor = themeManager.themeBackgroundColor
     }
     
     override func setupSubviews() {
         super.setupSubviews()
-        
         view.addSubview(collectionView)
     }
     

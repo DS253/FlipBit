@@ -65,6 +65,9 @@
 		06433BDE23826A9A00480EC1 /* BitService+BBLeverageUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06433BDD23826A9A00480EC1 /* BitService+BBLeverageUpdate.swift */; };
 		06434EF023AB482E00E04148 /* BybitTradeFlowPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06434EEF23AB482E00E04148 /* BybitTradeFlowPresentationController.swift */; };
 		06438FA923E6459300D65878 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06438FA823E6459300D65878 /* ThemeManager.swift */; };
+		0644AA492427E51C00C32A2B /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644AA482427E51C00C32A2B /* BaseCollectionViewCell.swift */; };
+		0644AA4B2427E98700C32A2B /* ContainerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644AA4A2427E98700C32A2B /* ContainerCollectionViewCell.swift */; };
+		0644AA4D242A92ED00C32A2B /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644AA4C242A92ED00C32A2B /* TitleCollectionViewCell.swift */; };
 		0644D1DE238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644D1DD238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift */; };
 		0644D1E1238CDAE4001649F1 /* Bybit+SymbolInfo+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644D1E0238CDAE4001649F1 /* Bybit+SymbolInfo+Additions.swift */; };
 		0644D1E7238E36B2001649F1 /* BybitBookOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644D1E6238E36B2001649F1 /* BybitBookOrderCell.swift */; };
@@ -262,6 +265,9 @@
 		06433BDD23826A9A00480EC1 /* BitService+BBLeverageUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBLeverageUpdate.swift"; sourceTree = "<group>"; };
 		06434EEF23AB482E00E04148 /* BybitTradeFlowPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeFlowPresentationController.swift; sourceTree = "<group>"; };
 		06438FA823E6459300D65878 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		0644AA482427E51C00C32A2B /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
+		0644AA4A2427E98700C32A2B /* ContainerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerCollectionViewCell.swift; sourceTree = "<group>"; };
+		0644AA4C242A92ED00C32A2B /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		0644D1DD238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitSymbolInfoObserver+Deserializer.swift"; sourceTree = "<group>"; };
 		0644D1E0238CDAE4001649F1 /* Bybit+SymbolInfo+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+SymbolInfo+Additions.swift"; sourceTree = "<group>"; };
 		0644D1E6238E36B2001649F1 /* BybitBookOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitBookOrderCell.swift; sourceTree = "<group>"; };
@@ -476,6 +482,7 @@
 		06405B45241D6B5B00132493 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				0644AA482427E51C00C32A2B /* BaseCollectionViewCell.swift */,
 				45B3D938238604BA0004DF76 /* BaseTableHeaderView.swift */,
 				06DA0D8023E76FC500890EF3 /* BaseTableViewCell.swift */,
 				062895D92383A77C0076AA27 /* BaseView.swift */,
@@ -502,7 +509,9 @@
 				065F6013238B370C008B5B89 /* BybitBookOrderBuyCell.swift */,
 				065F6017238B5F61008B5B89 /* BybitBookOrderSellCell.swift */,
 				060C8BF8239499E100E50A57 /* BybitTradeEventCell.swift */,
+				0644AA4A2427E98700C32A2B /* ContainerCollectionViewCell.swift */,
 				06DA0D7E23E76F1600890EF3 /* OrderOptionsCell.swift */,
+				0644AA4C242A92ED00C32A2B /* TitleCollectionViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1193,6 +1202,7 @@
 				065F6026238C5DFD008B5B89 /* Bybit+SymbolInfoUpdate.swift in Sources */,
 				06470DEB2377C1F400419238 /* DataConvertible.swift in Sources */,
 				065F601D238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift in Sources */,
+				0644AA492427E51C00C32A2B /* BaseCollectionViewCell.swift in Sources */,
 				064D3D852389A55200B34173 /* Bybit.swift in Sources */,
 				063FDD4E23CEAC83002D0CDC /* Panel.swift in Sources */,
 				062E276C2391B7D800AF0C7D /* OrderBookRow.swift in Sources */,
@@ -1258,6 +1268,7 @@
 				45436FBB23AACB4200AA141A /* BybitTradeFlowViewController.swift in Sources */,
 				06405B3C241D641400132493 /* FlipBitCollectionViewController.swift in Sources */,
 				06433BC42381E3B600480EC1 /* BitService+BBCancelOrder.swift in Sources */,
+				0644AA4B2427E98700C32A2B /* ContainerCollectionViewCell.swift in Sources */,
 				060D96EA237B82910040598A /* BBPreviousFundingFee+Endpoint.swift in Sources */,
 				06470E152377C6EF00419238 /* BitService+BBOrderBook.swift in Sources */,
 				060D96F2237BB2B30040598A /* BBWithdrawalRecord+Endpoint.swift in Sources */,
@@ -1281,6 +1292,7 @@
 				064AD9E0238F402800A7AA3E /* Int+Additions.swift in Sources */,
 				06433BCE2381FFD100480EC1 /* BitService+BBActiveOrderUpdate.swift in Sources */,
 				065F601F238BCD60008B5B89 /* BybitObserver.swift in Sources */,
+				0644AA4D242A92ED00C32A2B /* TitleCollectionViewCell.swift in Sources */,
 				06FD3F1023DD635600215AA1 /* Space.swift in Sources */,
 				06470E192377C7C600419238 /* BitService+BBPredictedFunding.swift in Sources */,
 				06433BC82381FAB900480EC1 /* BBActiveOrderCreate+Endpoint.swift in Sources */,

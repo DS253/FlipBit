@@ -11,6 +11,9 @@ import UIKit
 
 class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObserverDelegate {
     
+    private var chartData = ChartData(fileName: "BYBIT_BTCUSD, 1W")
+    private lazy var chartView = ChartView(data: chartData)
+    
     private lazy var symbolInfoView: SymbolInfoHeaderView = {
         SymbolInfoHeaderView()
     }()
@@ -117,80 +120,91 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         symbolObserver.delegate = self
         tradeObserver.delegate = self
         view.backgroundColor = themeManager.themeBackgroundColor
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-        //positionObserver.delegate = self
+        collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.id)
+        collectionView.register(ContainerCollectionViewCell.self, forCellWithReuseIdentifier: ContainerCollectionViewCell.id)
+        
     }
     
     override func setupSubviews() {
         super.setupSubviews()
         
-                view.addSubview(symbolInfoView)
-                view.addSubview(leverageContainer)
-                view.addSubview(orderbookPanel)
-                view.addSubview(pricePanel)
-                view.addSubview(quantityPanel)
-                view.addSubview(tradeHistoryContainer)
-                view.addSubview(tradeView)
-        
-                orderbookPanel.setPriceSelector(selector: self)
-                orderbookPanel.setQuantitySelector(selector: self)
-                tradeView.configureButtons(self, action: #selector(tradeButtonTapped(sender:)))
-        
-        collectionView.isHidden = true
+        //                view.addSubview(symbolInfoView)
+        //                view.addSubview(leverageContainer)
+        //                view.addSubview(orderbookPanel)
+        //                view.addSubview(pricePanel)
+        //                view.addSubview(quantityPanel)
+        //                view.addSubview(tradeHistoryContainer)
+        //                view.addSubview(tradeView)
+        //
+        //                orderbookPanel.setPriceSelector(selector: self)
+        //                orderbookPanel.setQuantitySelector(selector: self)
+        //                tradeView.configureButtons(self, action: #selector(tradeButtonTapped(sender:)))
     }
     
     override func setupConstraints() {
         super.setupConstraints()
-                NSLayoutConstraint.activate([
-        
-                    symbolInfoView.topAnchor.constraint(equalTo: view.topAnchor),
-                    symbolInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                    symbolInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-        
-                    leverageContainer.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
-                    leverageContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
-                    leverageContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
-                    leverageContainer.bottomAnchor.constraint(equalTo: pricePanel.topAnchor, constant: -Space.margin10),
-        
-                    pricePanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
-                    pricePanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
-                    pricePanel.bottomAnchor.constraint(equalTo: quantityPanel.topAnchor, constant: -Space.margin10),
-        
-                    quantityPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
-                    quantityPanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
-        
-                    orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Space.margin8),
-                    orderbookPanel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
-                    orderbookPanel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
-        
-                    tradeHistoryContainer.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Space.margin16),
-                    tradeHistoryContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
-                    tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
-                    tradeHistoryContainer.bottomAnchor.constraint(equalTo: tradeView.topAnchor, constant: -Space.margin10),
-        
-                    tradeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                    tradeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                    tradeView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Space.margin16)
-                ])
+        NSLayoutConstraint.activate([
+            
+            //                    symbolInfoView.topAnchor.constraint(equalTo: view.topAnchor),
+            //                    symbolInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            //                    symbolInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            //
+            //                    leverageContainer.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
+            //                    leverageContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
+            //                    leverageContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
+            //                    leverageContainer.bottomAnchor.constraint(equalTo: pricePanel.topAnchor, constant: -Space.margin10),
+            //
+            //                    pricePanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
+            //                    pricePanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
+            //                    pricePanel.bottomAnchor.constraint(equalTo: quantityPanel.topAnchor, constant: -Space.margin10),
+            //
+            //                    quantityPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
+            //                    quantityPanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
+            //
+            //                    orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Space.margin8),
+            //                    orderbookPanel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
+            //                    orderbookPanel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
+            //
+            //                    tradeHistoryContainer.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Space.margin16),
+            //                    tradeHistoryContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
+            //                    tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
+            //                    tradeHistoryContainer.bottomAnchor.constraint(equalTo: tradeView.topAnchor, constant: -Space.margin10),
+            //
+            //                    tradeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            //                    tradeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            //                    tradeView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Space.margin16)
+        ])
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
-        cell.backgroundColor = .blue
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ContainerCollectionViewCell {
+        if indexPath.row == 0 {
+            guard
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.id, for: indexPath) as? TitleCollectionViewCell
+                else {
+                    let titleCell = TitleCollectionViewCell(frame: .zero)
+                    titleCell.set(title: "Bitcoin Perpetual Futures Contract")
+                    return titleCell
+            }
+            
+            cell.set(title: "Bitcoin Perpetual Futures Contract")
+            return cell
+            
+        }
+        
+        guard
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContainerCollectionViewCell.id, for: indexPath) as? ContainerCollectionViewCell
+            else { return ContainerCollectionViewCell(frame: .zero, axis: .vertical) }
+        
+        
         let label = UILabel()
         label.text = "What Up"
         label.translatesAutoresizingMaskIntoConstraints = false
-        cell.contentView.addSubview(tradeHistoryTable.view)
-        NSLayoutConstraint.activate([
-            tradeHistoryTable.view.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor),
-            tradeHistoryTable.view.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor),
-            tradeHistoryTable.view.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
-            tradeHistoryTable.view.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor)
-        ])
+        
+        cell.add([chartView])
         return cell
     }
     

@@ -70,7 +70,6 @@ class OrderBookPanel: View {
         super.setup()
         NotificationCenter.default.addObserver(self, selector: #selector(updateLastPrice(notification:)), name: .symbolObserverUpdate, object: nil)
         backgroundColor = themeManager.themeBackgroundColor
-        setBybitTheme()
     }
     
     override func setupSubviews() {
@@ -125,7 +124,6 @@ class OrderBookPanel: View {
             markPriceLabel.leadingAnchor.constraint(equalTo: lastPriceLabel.centerXAnchor, constant: Space.margin4),
             
             sellbook.topAnchor.constraint(equalTo: markPriceLabel.bottomAnchor, constant: Space.margin4),
-            sellbook.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin16),
             sellbook.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin16),
             sellbook.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin16)
         ])

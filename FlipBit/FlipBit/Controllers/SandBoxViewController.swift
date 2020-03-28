@@ -77,17 +77,17 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
         view.addSubview(collectionView)
      //   view.addSubview(tickerControl.view)
 
-        view.addSubview(chartView)
-        view.addSubview(tickerControl.view)
+     //   view.addSubview(chartView)
+       // view.addSubview(tickerControl.view)
     }
     
     override func setupConstraints() {
         
         NSLayoutConstraint.activate([
-            tickerControl.view.topAnchor.constraint(equalTo: view.topAnchor),
-            tickerControl.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tickerControl.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tickerControl.view.heightAnchor.constraint(equalToConstant: 300.0),
+//            tickerControl.view.topAnchor.constraint(equalTo: view.topAnchor),
+//            tickerControl.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+//            tickerControl.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//            tickerControl.view.heightAnchor.constraint(equalToConstant: 300.0),
             
 //            chartView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5.0),
 //            chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5.0),
@@ -111,13 +111,15 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
 
 extension SandBoxViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height / 2
+        return CGSize(width: width, height: height)
     }
 }
 
 extension SandBoxViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        4
+        1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
