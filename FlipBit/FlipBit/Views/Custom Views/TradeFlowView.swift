@@ -65,19 +65,19 @@ class TradeFlowView: BaseView {
     
     override func setupConstraints() {
         super.setupConstraints()
-        NSLayoutConstraint.activate([
-            sellButton.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin8),
-            sellButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin8),
-            sellButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin8),
-            sellButton.trailingAnchor.constraint(equalTo: buyButton.leadingAnchor, constant: -Space.margin4),
-            sellButton.heightAnchor.constraint(equalToConstant: Space.margin48),
-
-            buyButton.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin8),
-            buyButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin8),
-            buyButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin8),
-            buyButton.heightAnchor.constraint(equalToConstant: Space.margin48),
-            buyButton.widthAnchor.constraint(equalTo: sellButton.widthAnchor)
-        ])
+        
+        sellButton.snp.makeConstraints { make in
+            make.top.bottom.leading.equalToSuperview().inset(Space.margin8)
+            make.trailing.equalTo(self.snp.centerX).inset(Space.margin4)
+            make.height.equalTo(Space.margin48)
+        }
+        
+        buyButton.snp.makeConstraints { make in
+            make.top.bottom.trailing.equalToSuperview().inset(Space.margin8)
+            make.leading.equalTo(self.snp.centerX).offset(Space.margin4)
+            make.height.equalTo(sellButton.snp.height)
+            make.width.equalTo(sellButton.snp.width)
+        }
     }
 
     func configureButtons(_ target: Any?, action: Selector) {

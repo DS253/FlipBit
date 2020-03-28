@@ -40,12 +40,10 @@ class Panel: View {
     
     override func setupConstraints() {
         super.setupConstraints()
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin8),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin8),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin8),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin8)
-        ])
+        
+        stackView.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.equalToSuperview().inset(Space.margin8)
+        }
     }
     
     func addSubviews(views: [UIView]) {

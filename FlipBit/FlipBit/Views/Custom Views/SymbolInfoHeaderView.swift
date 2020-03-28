@@ -118,33 +118,43 @@ class SymbolInfoHeaderView: View {
     
     override func setupConstraints() {
         super.setupConstraints()
+        symbolNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
+            make.centerX.equalToSuperview()
+        }
         
-        NSLayoutConstraint.activate([
-            
-            symbolNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            symbolNameLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
-            balanceLabel.topAnchor.constraint(equalTo: symbolNameLabel.bottomAnchor, constant: Space.margin2),
-            balanceLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            
-            lastTradedPriceLabel.topAnchor.constraint(equalTo: symbolNameLabel.bottomAnchor, constant: Space.margin2),
-            lastTradedPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin8),
-            
-            dayPercentageChangeLabel.topAnchor.constraint(equalTo: lastTradedPriceLabel.bottomAnchor, constant: Space.margin2),
-            dayPercentageChangeLabel.leadingAnchor.constraint(equalTo: lastTradedPriceLabel.leadingAnchor),
-            dayPercentageChangeLabel.trailingAnchor.constraint(equalTo: markPriceLabel.leadingAnchor),
-            
-            markPriceLabel.topAnchor.constraint(equalTo: dayPercentageChangeLabel.topAnchor),
-            markPriceLabel.leadingAnchor.constraint(equalTo: lastTradedPriceLabel.centerXAnchor),
-            markPriceLabel.trailingAnchor.constraint(equalTo: lastTradedPriceLabel.trailingAnchor),
-            
-            titleStackView.topAnchor.constraint(equalTo: symbolNameLabel.topAnchor),
-            
-            dataStackView.topAnchor.constraint(equalTo: titleStackView.topAnchor),
-            dataStackView.leadingAnchor.constraint(equalTo: titleStackView.trailingAnchor, constant: Space.margin8),
-            dataStackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin8),
-            dataStackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin8)
-        ])
+        balanceLabel.snp.makeConstraints { make in
+            make.top.equalTo(symbolNameLabel.snp.bottom).offset(Space.margin2)
+            make.centerX.equalToSuperview()
+        }
+        
+        lastTradedPriceLabel.snp.makeConstraints { make in
+            make.top.equalTo(symbolNameLabel.snp.bottom).offset(Space.margin2)
+            make.leading.equalToSuperview().offset(Space.margin8)
+        }
+        
+        dayPercentageChangeLabel.snp.makeConstraints { make in
+            make.top.equalTo(lastTradedPriceLabel.snp.bottom).offset(Space.margin2)
+            make.leading.equalTo(lastTradedPriceLabel.snp.leading).offset(Space.margin8)
+            make.trailing.equalTo(markPriceLabel.snp.leading)
+        }
+        
+        markPriceLabel.snp.makeConstraints { make in
+            make.top.equalTo(dayPercentageChangeLabel.snp.top)
+            make.leading.equalTo(lastTradedPriceLabel.snp.centerX)
+            make.trailing.equalTo(lastTradedPriceLabel.snp.trailing)
+        }
+        
+        titleStackView.snp.makeConstraints { make in
+            make.top.equalTo(symbolNameLabel.snp.top)
+        }
+        
+        dataStackView.snp.makeConstraints { make in
+            make.top.equalTo(titleStackView.snp.top)
+            make.leading.equalTo(titleStackView.snp.trailing).offset(Space.margin8)
+            make.trailing.equalToSuperview().inset(Space.margin8)
+            make.bottom.equalToSuperview().inset(Space.margin8)
+        }
     }
     
     func configureView() {

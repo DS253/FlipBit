@@ -45,28 +45,28 @@ class PercentageView: View {
     
     override func setupConstraints() {
         super.setupConstraints()
-        NSLayoutConstraint.activate([
-            
-            button25.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
-            button25.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
-            button25.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin4),
-            button25.trailingAnchor.constraint(equalTo: button50.leadingAnchor),
-            
-            button50.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
-            button50.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
-            button50.widthAnchor.constraint(equalTo: button25.widthAnchor),
-            button50.trailingAnchor.constraint(equalTo: button75.leadingAnchor),
-            
-            button75.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
-            button75.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
-            button75.widthAnchor.constraint(equalTo: button25.widthAnchor),
-            button75.trailingAnchor.constraint(equalTo: button100.leadingAnchor),
-            
-            button100.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
-            button100.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
-            button100.widthAnchor.constraint(equalTo: button25.widthAnchor),
-            button100.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin4)
-        ])
+        
+        button25.snp.makeConstraints { make in
+            make.top.bottom.leading.equalToSuperview().inset(Space.margin4)
+            make.trailing.equalTo(button50.snp.leading)
+        }
+        
+        button50.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(Space.margin4)
+            make.trailing.equalTo(button75.snp.leading)
+            make.width.equalTo(button25.snp.width)
+        }
+        
+        button75.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview().inset(Space.margin4)
+            make.trailing.equalTo(button100.snp.leading)
+            make.width.equalTo(button50.snp.width)
+        }
+        
+        button100.snp.makeConstraints { make in
+            make.top.bottom.trailing.equalToSuperview().inset(Space.margin4)
+            make.width.equalTo(button75.snp.width)
+        }
     }
     
     func configureButtonActions(viewController: ViewController, action: Selector, event: UIControl.Event) {

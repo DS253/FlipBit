@@ -143,11 +143,12 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
     
     override func setupConstraints() {
         super.setupConstraints()
+        
+        symbolInfoView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+        }
+        
         NSLayoutConstraint.activate([
-            
-            symbolInfoView.topAnchor.constraint(equalTo: view.topAnchor),
-            symbolInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            symbolInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             leverageContainer.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
             leverageContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
@@ -237,8 +238,8 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         
         let side = (buttonTitle == Constant.buy) ? Bybit.Side.Buy : Bybit.Side.Sell
         let order = Order(side: side, price: price, quantity: quantity)
-        let vc = BybitTradeFlowViewController(order: order)
-        present(vc, animated: true)
+//        let vc = BybitTradeFlowViewController(order: order)
+//        present(vc, animated: true)
     }
     
     @objc func updateSymbolInfo(notification: NSNotification) {

@@ -121,25 +121,24 @@ class Stepper: View {
     override func setupConstraints() {
         super.setupConstraints()
         
-        let buttonWidth: CGFloat = 42.0
+        decrementer.snp.makeConstraints { make in
+            make.bottom.leading.equalToSuperview()
+            make.top.equalToSuperview().inset(Space.margin8)
+            make.width.equalTo(Space.margin42)
+        }
         
-        NSLayoutConstraint.activate([
-            decrementer.leadingAnchor.constraint(equalTo: leadingAnchor),
-            decrementer.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin8),
-            decrementer.bottomAnchor.constraint(equalTo: bottomAnchor),
-            decrementer.widthAnchor.constraint(equalToConstant: buttonWidth),
-            
-            textField.leadingAnchor.constraint(equalTo: decrementer.trailingAnchor, constant: Space.margin8),
-            textField.centerXAnchor.constraint(equalTo: centerXAnchor),
-            textField.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin8),
-            textField.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            incrementer.leadingAnchor.constraint(equalTo: textField.trailingAnchor, constant: Space.margin8),
-            incrementer.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin8),
-            incrementer.bottomAnchor.constraint(equalTo: bottomAnchor),
-            incrementer.trailingAnchor.constraint(equalTo: trailingAnchor),
-            incrementer.widthAnchor.constraint(equalToConstant: buttonWidth),
-        ])
+        textField.snp.makeConstraints { make in
+            make.top.equalTo(decrementer.snp.top)
+            make.leading.equalTo(decrementer.snp.trailing).offset(Space.margin8)
+            make.bottom.centerX.equalToSuperview()
+        }
+        
+        incrementer.snp.makeConstraints { make in
+            make.top.equalTo(textField.snp.top)
+            make.leading.equalTo(textField.snp.trailing).offset(Space.margin8)
+            make.bottom.trailing.equalToSuperview()
+            make.width.equalTo(Space.margin42)
+        }
     }
     
     // MARK: - Actions

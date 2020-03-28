@@ -33,17 +33,20 @@ class BybitTradeEventCell: BaseTableViewCell {
     
     override func setupConstraints() {
         super.setupConstraints()
-        NSLayoutConstraint.activate([
-            priceLabel.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
-            priceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
-            priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin16),
-            priceLabel.trailingAnchor.constraint(equalTo: quantityLabel.leadingAnchor),
-            
-            quantityLabel.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
-            quantityLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
-            quantityLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin16),
-            quantityLabel.widthAnchor.constraint(equalTo: priceLabel.widthAnchor)
-        ])
+        
+        priceLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Space.margin4)
+            make.bottom.equalToSuperview().inset(Space.margin4)
+            make.leading.equalToSuperview().inset(Space.margin16)
+            make.trailing.equalTo(quantityLabel.snp.leading)
+        }
+        
+        quantityLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(Space.margin4)
+            make.bottom.equalToSuperview().inset(Space.margin4)
+            make.trailing.equalToSuperview().inset(Space.margin16)
+            make.width.equalTo(priceLabel.snp.width)
+        }
     }
 }
 

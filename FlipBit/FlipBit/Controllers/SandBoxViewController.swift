@@ -82,23 +82,9 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
     }
     
     override func setupConstraints() {
-        
-        NSLayoutConstraint.activate([
-//            tickerControl.view.topAnchor.constraint(equalTo: view.topAnchor),
-//            tickerControl.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-//            tickerControl.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-//            tickerControl.view.heightAnchor.constraint(equalToConstant: 300.0),
-            
-//            chartView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5.0),
-//            chartView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5.0),
-//            chartView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-//            chartView.heightAnchor.constraint(equalToConstant: self.view.bounds.size.height / 2)
-//            chartView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        collectionView.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.equalToSuperview()
+        }
     }
     
     // MARK: Write Text Action
@@ -127,14 +113,7 @@ extension SandBoxViewController: UICollectionViewDataSource {
         cell.backgroundColor = .blue
         let label = UILabel()
         label.text = "What Up"
-        label.translatesAutoresizingMaskIntoConstraints = false
         cell.contentView.addSubview(label)
-        NSLayoutConstraint.activate([
-        label.leadingAnchor.constraint(equalTo: cell.contentView.leadingAnchor),
-        label.trailingAnchor.constraint(equalTo: cell.contentView.trailingAnchor),
-        label.topAnchor.constraint(equalTo: cell.contentView.topAnchor),
-        label.bottomAnchor.constraint(equalTo: cell.contentView.bottomAnchor)
-        ])
         return cell
     }
     

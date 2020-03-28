@@ -9,7 +9,7 @@
 import UIKit
 
 class OrderBookBaseView: View {
-
+    
     private lazy var stackView: UIStackView = {
         UIStackView(spacing: Space.margin2, views: [firstRow, secondRow, thirdRow, fourthRow, fifthRow, sixthRow])
     }()
@@ -56,14 +56,11 @@ class OrderBookBaseView: View {
     
     override func setupConstraints() {
         super.setupConstraints()
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor)
-        ])
+        stackView.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.equalToSuperview()
+        }
     }
-
+    
     func setPriceSelector(selector: PriceSelection) {
         firstRow.priceSelector = selector
         secondRow.priceSelector = selector
@@ -72,7 +69,7 @@ class OrderBookBaseView: View {
         fifthRow.priceSelector = selector
         sixthRow.priceSelector = selector
     }
-
+    
     func setQuantitySelector(selector: QuantitySelection) {
         firstRow.quantitySelector = selector
         secondRow.quantitySelector = selector
@@ -89,7 +86,7 @@ class OrderBookBaseView: View {
     func allRows() -> [OrderBookRow] {
         fatalError("Must be implemented by child class")
     }
-
+    
     func notificationName() -> Notification.Name {
         fatalError("Must be implemented by child class")
     }

@@ -16,19 +16,19 @@ extension UIView {
     internal enum LinePosition {
         /// Represents the leading(left) edge of a `UIView`.
         case leftEdge
-
+        
         /// Represents the trailing(right) edge of a `UIView`.
         case rightEdge
-
+        
         /// Represents the top edge of a `UIView`.
         case topEdge
-
+        
         /// Represents the bottom edge of a `UIView`.
         case bottomEdge
     }
-
+    
     // MARK: - Internal Methods
-
+    
     /// Adds a line to a specific position of this instance using Auto Layout.
     /// This is primary used when adding a divider line between this
     /// view and another view.
@@ -39,39 +39,31 @@ extension UIView {
         let line = BaseView()
         line.backgroundColor = .gray
         addSubview(line)
-
+        
         switch posisiton {
         case .topEdge:
-            NSLayoutConstraint.activate([
-                line.topAnchor.constraint(equalTo: topAnchor),
-                line.leadingAnchor.constraint(equalTo: leadingAnchor),
-                line.trailingAnchor.constraint(equalTo: trailingAnchor),
-                line.heightAnchor.constraint(equalToConstant: Space.singlePixel)
-            ])
-
+            line.snp.makeConstraints { make in
+                make.top.leading.trailing.equalToSuperview()
+                make.height.equalTo(Space.singlePixel)
+            }
+            
         case .bottomEdge:
-            NSLayoutConstraint.activate([
-                line.bottomAnchor.constraint(equalTo: bottomAnchor),
-                line.leadingAnchor.constraint(equalTo: leadingAnchor),
-                line.trailingAnchor.constraint(equalTo: trailingAnchor),
-                line.heightAnchor.constraint(equalToConstant: Space.singlePixel)
-            ])
-
+            line.snp.makeConstraints { make in
+                make.bottom.leading.trailing.equalToSuperview()
+                make.height.equalTo(Space.singlePixel)
+            }
+            
         case .leftEdge:
-            NSLayoutConstraint.activate([
-                line.topAnchor.constraint(equalTo: topAnchor),
-                line.bottomAnchor.constraint(equalTo: bottomAnchor),
-                line.leadingAnchor.constraint(equalTo: leadingAnchor),
-                line.widthAnchor.constraint(equalToConstant: Space.singlePixel)
-            ])
-
+            line.snp.makeConstraints { make in
+                make.top.bottom.leading.equalToSuperview()
+                make.width.equalTo(Space.singlePixel)
+            }
+            
         case .rightEdge:
-            NSLayoutConstraint.activate([
-                line.topAnchor.constraint(equalTo: topAnchor),
-                line.bottomAnchor.constraint(equalTo: bottomAnchor),
-                line.trailingAnchor.constraint(equalTo: trailingAnchor),
-                line.widthAnchor.constraint(equalToConstant: Space.singlePixel)
-            ])
+            line.snp.makeConstraints { make in
+                make.top.bottom.trailing.equalToSuperview()
+                make.width.equalTo(Space.singlePixel)
+            }
         }
     }
     
@@ -90,40 +82,40 @@ extension UIView {
         let height = UIScreen.main.bounds.height * height
         frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: width, height: height)
     }
-
+    
     // MARK: - Animation Methods
-
+    
     /// "Shimmer" a view's transparency to indicate a loading state.
     func animateTransparency() {
-
+        
         let gradientLayer = CAGradientLayer()
-
+        
         gradientLayer.colors = [UIColor.white.cgColor,
                                 UIColor.white.withAlphaComponent(0.5).cgColor,
                                 UIColor.white.cgColor]
-
+        
         gradientLayer.startPoint = CGPoint(x: 0, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1, y: 0.5)
-
+        
         layer.mask = gradientLayer
         gradientLayer.frame.size = CGSize(width: frame.width * 4, height: frame.height)
-
+        
         let animation = CABasicAnimation(keyPath: "position.x")
-
+        
         animation.fromValue = bounds.width - gradientLayer.bounds.width / 2
         animation.toValue = gradientLayer.bounds.width / 2
-
+        
         animation.duration = 1.5
         animation.repeatCount = .infinity
-
+        
         gradientLayer.add(animation, forKey: "animateTransparency")
     }
-
+    
     func removeAnimations() {
         layer.removeAllAnimations()
         layer.mask = nil
     }
-
+    
     // MARK: - CALayer Methods
     
     /// Sets the view's layer to the Bybit theme.
@@ -136,7 +128,7 @@ extension UIView {
         layer.shadowOffset = CGSize(width: -1, height: 6)
         layer.masksToBounds = false
     }
-
+    
     /// Helper method to simplify the process of adding a `CALayer` as a sublayer.
     /// to a given `UIView` instance.
     ///
@@ -145,7 +137,7 @@ extension UIView {
     internal func addSublayer(_ layer: CALayer) {
         self.layer.addSublayer(layer)
     }
-
+    
     func addDropShadow(color: UIColor, scale: Bool = true) {
         layer.masksToBounds = false
         layer.shadowColor = color.cgColor
@@ -177,7 +169,7 @@ extension UIView {
     func addSubviews(_ views: [UIView]) {
         views.forEach { addSubview($0) }
     }
-
+    
     /// Will animate subviews visibility in sequence.
     ///
     /// - Parameters:
@@ -189,8 +181,8 @@ extension UIView {
                 delay: Double(index) * 0.1,
                 options: .curveEaseInOut,
                 animations: {
-                aView.alpha = 1.0
-
+                    aView.alpha = 1.0
+                    
             }, completion: nil)
         }
     }

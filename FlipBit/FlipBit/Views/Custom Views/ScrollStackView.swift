@@ -25,7 +25,7 @@ open class ScrollStackView: BaseView {
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
     }()
-
+    
     /// The `UIStackView` configured to scroll based on its `arrangedSubviews`.
     private lazy var stackView: UIStackView = {
         let view = UIStackView()
@@ -35,55 +35,51 @@ open class ScrollStackView: BaseView {
         view.distribution = .fill
         view.spacing = 0.0
         view.axis = .horizontal
-
+        
         return view
     }()
-
+    
     // MARK: - Override Methods
-
+    
     override open func setup() {
         super.setup()
-
+        
         backgroundColor = .white
         translatesAutoresizingMaskIntoConstraints = false
     }
-
+    
     override open func setupSubviews() {
         super.setupSubviews()
-
+        
         scrollView.addSubview(stackView)
         addSubview(scrollView)
     }
-
+    
     override open func setupConstraints() {
         super.setupConstraints()
-
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-        ])
+        
+        scrollView.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.equalToSuperview()
+        }
+        
+        stackView.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.equalTo(scrollView)
+            make.height.equalTo(scrollView.snp.height)
+        }
     }
-
+    
     // MARK: - Private Methods
-
+    
     /// Clears the `UIStackView` and then adds each `UIView` passed in.
     ///
     /// - Parameters:
     ///   - views:      The views to add to the underlying `UIStackView`.
     private func addAllSubviews(_ views: [UIView]?) {
         guard let views = views else { return }
-
+        
         /// Remove all stackView arranged subviews before assigning new ones.
         clearStackView()
-
+        
         views.forEach { stackView.addArrangedSubview($0) }
     }
 }
@@ -100,26 +96,26 @@ extension ScrollStackView {
     public func configure(with views: [UIView]? = nil, isHidden: Bool = false, isPagingEnabled: Bool = false) {
         self.isHidden = isHidden
         scrollView.isPagingEnabled = isPagingEnabled
-
+        
         addAllSubviews(views)
     }
-
+    
     /// Adds an instance of `UIView` to the underlying `UIStackView` that can scroll based
     /// on its content.
     public func addArrangedSubview(_ view: UIView) {
         stackView.addArrangedSubview(view)
     }
-
+    
     /// Removes all `arrangedSubviews` from the underlying `UIStackView`.
     public func clearStackView() {
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
     }
-
+    
     /// Provide access to the `arrangedSubviews` from the underlying `UIStackView`.
     public func arrangedSubviews() -> [UIView] {
         return stackView.arrangedSubviews
     }
-
+    
     /// Scrolls to a given `CGPoint` on the underlying `UIScollView`.
     ///
     /// - Parameters:
@@ -128,7 +124,7 @@ extension ScrollStackView {
     public func scrollContent(to point: CGPoint, animated: Bool) {
         scrollView.setContentOffset(point, animated: animated)
     }
-
+    
     /// Returns the content offset of the scroll view
     public func contentOffset() -> CGPoint {
         return scrollView.contentOffset

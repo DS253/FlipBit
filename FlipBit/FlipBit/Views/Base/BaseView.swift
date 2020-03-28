@@ -6,6 +6,7 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import SnapKit
 import UIKit
 
 /// Provides all basic functionality of `UIView` with the

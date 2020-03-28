@@ -116,13 +116,14 @@ class BybitPriceUpdateViewController: ViewController {
     
     override func setupConstraints() {
         super.setupConstraints()
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: view.topAnchor, constant: Space.margin16),
-            stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Space.margin16),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin16),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin16),
-            priceStepper.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 100)
-        ])
+        
+        stackView.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.equalToSuperview().inset(Space.margin16)
+        }
+        
+        priceStepper.snp.makeConstraints { make in
+            make.width.equalTo(UIScreen.main.bounds.width - 100)
+        }
     }
     
     /// Update the appearance and state of the Update button.

@@ -34,13 +34,10 @@ class ContainerCollectionViewCell: BaseCollectionViewCell {
     }
     
     override func setupConstraints() {
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackView.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.size.width)
-        ])
+        stackView.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.equalToSuperview()
+            make.width.equalTo(UIScreen.main.bounds.size.width)
+        }
     }
     
     func add(_ views: [UIView]) {

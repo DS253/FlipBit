@@ -90,43 +90,52 @@ class OrderBookPanel: View {
     override func setupConstraints() {
         super.setupConstraints()
         
-        NSLayoutConstraint.activate([
-            bookHeader.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin16),
-            bookHeader.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin16),
-            bookHeader.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin16),
-            
-            separatorView.leadingAnchor.constraint(equalTo: priceHeaderLabel.leadingAnchor),
-            separatorView.trailingAnchor.constraint(equalTo: quantityHeaderLabel.trailingAnchor),
-            separatorView.heightAnchor.constraint(equalToConstant: Space.margin1),
-            separatorView.topAnchor.constraint(equalTo: bookHeader.bottomAnchor, constant: Space.margin4),
-            
-            priceHeaderLabel.topAnchor.constraint(equalTo: bookHeader.topAnchor),
-            priceHeaderLabel.bottomAnchor.constraint(equalTo: bookHeader.bottomAnchor),
-            priceHeaderLabel.leadingAnchor.constraint(equalTo: bookHeader.leadingAnchor, constant: Space.margin8),
-            priceHeaderLabel.trailingAnchor.constraint(equalTo: quantityHeaderLabel.leadingAnchor),
-            
-            quantityHeaderLabel.topAnchor.constraint(equalTo: bookHeader.topAnchor),
-            quantityHeaderLabel.bottomAnchor.constraint(equalTo: bookHeader.bottomAnchor),
-            quantityHeaderLabel.trailingAnchor.constraint(equalTo: bookHeader.trailingAnchor),
-            
-            buybook.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: Space.margin4),
-            buybook.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin16),
-            buybook.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin16),
-            
-            lastPriceLabel.topAnchor.constraint(equalTo: buybook.bottomAnchor),
-            lastPriceLabel.centerXAnchor.constraint(equalTo: buybook.centerXAnchor),
-            
-            dayPercentageChangeLabel.topAnchor.constraint(equalTo: lastPriceLabel.bottomAnchor),
-            dayPercentageChangeLabel.trailingAnchor.constraint(equalTo: lastPriceLabel.centerXAnchor, constant: -Space.margin4),
-            dayPercentageChangeLabel.heightAnchor.constraint(equalTo: markPriceLabel.heightAnchor),
-            
-            markPriceLabel.topAnchor.constraint(equalTo: dayPercentageChangeLabel.topAnchor),
-            markPriceLabel.leadingAnchor.constraint(equalTo: lastPriceLabel.centerXAnchor, constant: Space.margin4),
-            
-            sellbook.topAnchor.constraint(equalTo: markPriceLabel.bottomAnchor, constant: Space.margin4),
-            sellbook.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin16),
-            sellbook.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin16)
-        ])
+        bookHeader.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview().inset(Space.margin16)
+        }
+        
+        separatorView.snp.makeConstraints { make in
+            make.leading.equalTo(priceHeaderLabel.snp.leading)
+            make.trailing.equalTo(quantityHeaderLabel.snp.trailing)
+            make.height.equalTo(Space.singlePixel)
+            make.top.equalTo(bookHeader.snp.bottom).offset(Space.margin4)
+        }
+        
+        priceHeaderLabel.snp.makeConstraints { make in
+            make.top.bottom.equalTo(bookHeader)
+            make.leading.equalTo(bookHeader.snp.leading).inset(Space.margin8)
+            make.trailing.equalTo(quantityHeaderLabel.snp.leading)
+        }
+        
+        quantityHeaderLabel.snp.makeConstraints { make in
+            make.top.bottom.trailing.equalTo(bookHeader)
+        }
+        
+        buybook.snp.makeConstraints { make in
+            make.top.equalTo(separatorView.snp.bottom).inset(Space.margin4)
+            make.leading.trailing.equalToSuperview().inset(Space.margin16)
+        }
+        
+        lastPriceLabel.snp.makeConstraints { make in
+            make.top.equalTo(buybook.snp.bottom)
+            make.centerX.equalTo(buybook.snp.centerX)
+        }
+        
+        dayPercentageChangeLabel.snp.makeConstraints { make in
+            make.top.equalTo(lastPriceLabel.snp.bottom)
+            make.trailing.equalTo(lastPriceLabel.snp.centerX).inset(Space.margin4)
+            make.height.equalTo(markPriceLabel.snp.height)
+        }
+        
+        markPriceLabel.snp.makeConstraints { make in
+            make.top.equalTo(dayPercentageChangeLabel.snp.top)
+            make.leading.equalTo(lastPriceLabel.snp.centerX).offset(Space.margin4)
+        }
+        
+        sellbook.snp.makeConstraints { make in
+            make.top.equalTo(markPriceLabel.snp.bottom).offset(Space.margin4)
+            make.leading.trailing.equalToSuperview().inset(Space.margin16)
+        }
     }
     
     func setPriceSelector(selector: PriceSelection) {
