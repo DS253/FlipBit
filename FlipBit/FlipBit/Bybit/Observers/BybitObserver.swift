@@ -11,25 +11,55 @@ import Starscream
 
 class BybitObserver: WebSocketDelegate {
     
+    var socket: WebSocket?
     weak var delegate: SocketObserverDelegate?
     var connected: Bool = false
-    
-    var socket: WebSocket?
     var response: Bybit.SocketResponse?
     
     init(url: URLRequest?) {
         if let urlRequest = url {
-            socket = WebSocket(request: urlRequest)
+            socket = WebSocket(request: urlRequest, certPinner: nil)
             socket?.delegate = self
-            socket?.connect()
         } else {
             print("The URL is invalid")
             delegate?.observerFailedToConnect()
         }
     }
     
+    func didReceive(event: WebSocketEvent, client: WebSocket) {
+        switch event {
+        case .connected(let headers):
+            print("Websocket is connected: \(headers)")
+            connected = true
+            writeToSocket(topic: socketMessage())
+        case .disconnected(let reason, let code):
+            connected = false
+            print("websocket is disconnected: \(reason) with code: \(code)")
+        case .text(let string):
+            let encodedData = convertToData(string)
+            processData(data: encodedData)
+        case .binary(let data):
+            print("Received data: \(data.count)")
+        case .ping(_):
+            break
+        case .pong(_):
+            break
+        case .viablityChanged(_):
+            break
+        case .reconnectSuggested(_):
+            break
+        case .cancelled:
+            connected = false
+        case .error(let error):
+            connected = false
+            print(error.debugDescription)
+        }
+    }
+    
     func connectToSocket() {
-        if !connected { socket?.connect() }
+        if !connected {
+            print("Attempting to connect to socket")
+            socket?.connect() }
     }
     
     func disconnectFromSocket() {
@@ -37,8 +67,8 @@ class BybitObserver: WebSocketDelegate {
     }
     
     func writeToSocket(topic: String) {
-        guard let bybitSocket = socket else { return }
-        bybitSocket.write(string: topic)
+        print("Attempting to write to socket.")
+        socket?.write(string: topic)
         delegate?.observer(observer: self, didWriteToSocket: topic)
     }
     
@@ -50,30 +80,18 @@ class BybitObserver: WebSocketDelegate {
         }
     }
     
-    func websocketDidConnect(socket: WebSocketClient) {
-        fatalError("Child class must override method")
-    }
-    
-    func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
-        connected = false
-        if let e = error as? WSError {
-            print("websocket is disconnected: \(e.message)")
-        } else if let e = error {
-            print("websocket is disconnected: \(e.localizedDescription)")
-        } else {
-            print("websocket disconnected")
-        }
-    }
-    
-    func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        fatalError("Child class must override method")
-    }
-    
-    func websocketDidReceiveData(socket: WebSocketClient, data: Data) {
-        print("Received data: \(data.count)")
-    }
-    
+    /// Converts the received string into a data object.
     func convertToData(_ text: String) -> Data? {
         return text.data(using: String.Encoding.utf8)
+    }
+    
+    /// The expected message to be sent to the socket.
+    func socketMessage() -> String {
+        fatalError("Child class must override method")
+    }
+    
+    /// Convert the data object into the expected models.
+    func processData(data: Data?) {
+        fatalError("Child class must override method")
     }
 }

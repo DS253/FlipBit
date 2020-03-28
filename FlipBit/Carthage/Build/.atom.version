@@ -1,10 +1,10 @@
 {
-  "commitish" : "v1.1.0",
+  "commitish" : "v1.2.0",
   "iOS" : [
     {
       "name" : "Atom",
-      "hash" : "61149a48ee01e71da89fb935fc87b2b2e1a2ca35eab7424a8d041c82b8e34c67",
-      "swiftToolchainVersion" : "5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)"
+      "hash" : "28a84a87e36abf3b1e3d826939327833ad7f2d2cfc4163493515b7248fd8ec9c",
+      "swiftToolchainVersion" : "5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)"
     }
   ]
 }

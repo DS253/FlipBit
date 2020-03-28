@@ -13,22 +13,14 @@ class BybitTradeObserver: BybitObserver {
     
     var tradeSnapshot: Bybit.TradeEventSnapshot?
     
-    // MARK: Websocket Delegate Methods.
-    
-    override func websocketDidConnect(socket: WebSocketClient) {
-        print("Subscribing to Trade Events socket")
-        connected = true
-        writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"trade.BTCUSD\"]}")
-        sendPing()
-        delegate?.observerDidConnect(observer: self)
+    override func socketMessage() -> String {
+        return "{\"op\": \"subscribe\", \"args\": [\"trade.BTCUSD\"]}"
     }
     
-    override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        let encodedData = convertToData(text)
-        let responseType = determineTradeEventResponseType(encodedData)
-        
+    override func processData(data: Data?) {
+        let responseType = determineTradeEventResponseType(data)
         guard
-            let data = encodedData,
+            let newData = data,
             responseType != .DecodingFailure
             else {
                 print("Failed to decode Bybit Trade Event SocketResponse")
@@ -37,7 +29,7 @@ class BybitTradeObserver: BybitObserver {
         
         switch responseType {
         case .Snapshot:
-            if let snapshot = try? Bybit.TradeEventSnapshot(from: data) {
+            if let snapshot = try? Bybit.TradeEventSnapshot(from: newData) {
                 updateTradeEvents(newSnapshot: snapshot)
                 NotificationCenter.default.post(name: .tradeEventObserverUpdate, object: nil)
             } else {
@@ -45,7 +37,7 @@ class BybitTradeObserver: BybitObserver {
                 delegate?.observerFailedToDecode(observer: self)
             }
         case .SocketResponse:
-            if let socketResponse = try? Bybit.SocketResponse(from: data) {
+            if let socketResponse = try? Bybit.SocketResponse(from: newData) {
                 response = socketResponse
             } else {
                 print("Failed to decode Bybit TradeEvent SocketResponse")

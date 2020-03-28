@@ -13,21 +13,14 @@ class BybitSymbolInfoObserver: BybitObserver {
     
     var symbolInfo: Bybit.SymbolInfo?
     
-    // MARK: Websocket Delegate Methods.
-    
-    override func websocketDidConnect(socket: WebSocketClient) {
-        print("Subscribing to SymbolInfo socket")
-        connected = true
-        writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"instrument_info.100ms.BTCUSD\"]}")
-        sendPing()
-        delegate?.observerDidConnect(observer: self)
+    override func socketMessage() -> String {
+        return "{\"op\": \"subscribe\", \"args\": [\"instrument_info.100ms.BTCUSD\"]}"
     }
     
-    override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        let encodedData = convertToData(text)
-        let responseType = determineSymbolInfoResponseType(encodedData)
+    override func processData(data: Data?) {
+        let responseType = determineSymbolInfoResponseType(data)
         guard
-            let data = encodedData,
+            let newData = data,
             responseType != .DecodingFailure
             else {
                 print("Failed to decode Bybit SymbolInfo Response")
@@ -36,7 +29,7 @@ class BybitSymbolInfoObserver: BybitObserver {
         
         switch responseType {
         case .Snapshot:
-            if let firstSnapshot = try? Bybit.SymbolInfoSnapshot(from: data) {
+            if let firstSnapshot = try? Bybit.SymbolInfoSnapshot(from: newData) {
                 symbolInfo = firstSnapshot.symbol
                 NotificationCenter.default.post(name: .symbolObserverUpdate, object: nil)
             } else {
@@ -45,7 +38,7 @@ class BybitSymbolInfoObserver: BybitObserver {
             }
         case .Update:
             guard
-                let update = try? Bybit.SymbolInfoUpdate(from: data),
+                let update = try? Bybit.SymbolInfoUpdate(from: newData),
                 let allSymbols = update.symbols,
                 let updatedSymbol = allSymbols.first
                 else {
@@ -56,7 +49,7 @@ class BybitSymbolInfoObserver: BybitObserver {
             symbolInfo?.updateSymbolInfo(newSymbol: updatedSymbol)
             NotificationCenter.default.post(name: .symbolObserverUpdate, object: nil)
         case .SocketResponse:
-            if let socketResponse = try? Bybit.SocketResponse(from: data) {
+            if let socketResponse = try? Bybit.SocketResponse(from: newData) {
                 response = socketResponse
             } else {
                 print("Failed to decode Bybit SymbolInfo SocketResponse")

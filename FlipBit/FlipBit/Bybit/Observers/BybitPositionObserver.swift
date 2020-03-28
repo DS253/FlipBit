@@ -18,23 +18,15 @@ class BybitPositionObserver: BybitObserver {
         writeToSocket(topic: "{\"op\": \"auth\", \"args\": [\"\(apikey)\", \"\(expires)\", \"\(signature)\"]}")
     }
     
-    // MARK: Websocket Delegate Methods.
-    
-    override func websocketDidConnect(socket: WebSocketClient) {
-        print("Subscribing to Position socket")
-        connected = true
-        writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"insurance\"]}")
-        sendPing()
-        delegate?.observerDidConnect(observer: self)
+    override func socketMessage() -> String {
+        return "{\"op\": \"subscribe\", \"args\": [\"insurance\"]}"
     }
     
-    override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        print(text)
-        let encodedData = convertToData(text)
-        let responseType = determinePositionResponseType(encodedData)
+    override func processData(data: Data?) {
+        let responseType = determinePositionResponseType(data)
         
         guard
-            let data = encodedData,
+            let newData = data,
             responseType != .DecodingFailure
             else {
                 print("Failed to decode Bybit Position SocketResponse")
@@ -44,7 +36,7 @@ class BybitPositionObserver: BybitObserver {
         switch responseType {
         case .SocketResponse:
             guard
-                let socketResponse = try? Bybit.SocketResponse(from: data),
+                let socketResponse = try? Bybit.SocketResponse(from: newData),
                 let success = socketResponse.success,
                 success == true
                 else {
@@ -68,7 +60,7 @@ class BybitPositionObserver: BybitObserver {
         }
         
         if dictionary.keys.contains("success") { return .SocketResponse }
-
+        
         return .UnknownResponse
     }
 }

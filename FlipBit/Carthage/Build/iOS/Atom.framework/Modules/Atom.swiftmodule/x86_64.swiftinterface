@@ -1,9 +1,11 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)
+// swift-compiler-version: Apple Swift version 5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)
 // swift-module-flags: -target x86_64-apple-ios11.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name Atom
 @_exported import Atom
 import Foundation
 import Swift
+import os.log
+import os
 public protocol Requestable {
   var headerItems: [Atom.Atom.HeaderItem]? { get }
   var method: Atom.Atom.Method { get }
@@ -38,7 +40,7 @@ extension Requestable {
   public func path() throws -> Atom.Atom.URLPath
 }
 extension Atom {
-  public class Service {
+  @_hasMissingDesignatedInitializers public class Service {
     @objc deinit
   }
 }
@@ -79,6 +81,11 @@ extension Atom {
     public init(_ path: Swift.String) throws
   }
 }
+extension URLSessionTask {
+  @objc override dynamic open var debugDescription: Swift.String {
+    @objc get
+  }
+}
 extension Atom {
   public struct AuthorizationEndpoint {
     public init(host: Swift.String, path: Swift.String)
@@ -93,6 +100,11 @@ public enum RequestableError : Swift.Error {
     get
   }
   public func hash(into hasher: inout Swift.Hasher)
+}
+extension URLRequest {
+  public var debugDescription: Swift.String {
+    get
+  }
 }
 extension Atom {
   public struct Response {
@@ -145,6 +157,10 @@ extension Atom.ClientCredential {
     public init?(rawValue: Swift.String)
   }
 }
+extension Bool {
+  public static let on: Swift.Bool
+  public static let off: Swift.Bool
+}
 extension Atom {
   public struct TokenCredential {
     public let accessToken: Swift.String
@@ -181,6 +197,11 @@ extension URLResponse {
     get
   }
 }
+extension URLResponse {
+  @objc override dynamic public var debugDescription: Swift.String {
+    @objc get
+  }
+}
 extension Atom {
   public struct BaseURL {
     public init(scheme: Atom.Atom.BaseURL.Scheme = .https, host: Swift.String) throws
@@ -196,18 +217,28 @@ extension Atom {
 }
 extension Array : Atom.Model where Element : Atom.Model {
 }
-public struct Atom {
+final public class Atom {
+  final public var log: Swift.Bool {
+    get
+    set
+  }
   public init(serviceConfiguration: Atom.Atom.ServiceConfiguration = Atom.ServiceConfiguration())
+  @objc deinit
 }
 extension Atom {
-  public func cancelAllSessionTasks()
-  public func load(_ requestable: Atom.Requestable) -> Atom.Atom.Service
+  final public func cancelAllSessionTasks()
+  final public func load(_ requestable: Atom.Requestable) -> Atom.Atom.Service
 }
 extension Atom {
   public enum AuthenticationMethod {
     case basic(Atom.Atom.BasicCredential)
     case bearer(Atom.Atom.AuthorizationEndpoint, Atom.Atom.ClientCredential, Atom.TokenCredentialWritable)
     case none
+  }
+}
+extension URLSessionTaskMetrics {
+  @objc override dynamic open var debugDescription: Swift.String {
+    @objc get
   }
 }
 extension Atom.TokenCredential : Swift.Decodable {

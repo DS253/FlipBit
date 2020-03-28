@@ -14,23 +14,16 @@ class BybitBookOrderObserver: BybitObserver {
     var snapshot: Bybit.BookOrderSnapshot?
     var buyBook: [Bybit.BookOrder?]?
     var sellBook: [Bybit.BookOrder?]?
-        
-    // MARK: Websocket Delegate Methods.
     
-    override func websocketDidConnect(socket: WebSocketClient) {
-        print("Subscribing to Orderbook socket")
-        connected = true
-        writeToSocket(topic: "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}")
-        sendPing()
-        delegate?.observerDidConnect(observer: self)
+    override func socketMessage() -> String {
+        return "{\"op\": \"subscribe\", \"args\": [\"orderBookL2_25.BTCUSD\"]}"
     }
-
-    override func websocketDidReceiveMessage(socket: WebSocketClient, text: String) {
-        let encodedData = convertToData(text)
-        let responseType = determineBookOrderResponseType(encodedData)
+    
+    override func processData(data: Data?) {
+        let responseType = determineBookOrderResponseType(data)
         
         guard
-            let data = encodedData,
+            let newData = data,
             responseType != .DecodingFailure
             else {
                 print("Failed to decode Bybit BookOrder Response")
@@ -39,7 +32,7 @@ class BybitBookOrderObserver: BybitObserver {
         
         switch responseType {
         case .Snapshot:
-            if let firstSnapshot = try? Bybit.BookOrderSnapshot(from: data) {
+            if let firstSnapshot = try? Bybit.BookOrderSnapshot(from: newData) {
                 snapshot = firstSnapshot
                 sortBookOrders(snapshot?.book?.filter { $0.side == Bybit.Side.Buy }, side: Bybit.Side.Buy)
                 NotificationCenter.default.post(name: .buyBookObserverUpdate, object: nil)
@@ -50,7 +43,7 @@ class BybitBookOrderObserver: BybitObserver {
                 delegate?.observerFailedToDecode(observer: self)
             }
         case .Update, .Delete, .Insert:
-            if let bookUpdate = try? Bybit.BookUpdate(from: data) {
+            if let bookUpdate = try? Bybit.BookUpdate(from: newData) {
                 updateBookOrders(bookUpdate.update?.filter { $0.side == Bybit.Side.Buy }, side: .Buy)
                 deleteBookOrders(bookUpdate.delete?.filter { $0.side == Bybit.Side.Buy }, side: .Buy)
                 insertBookOrders(bookUpdate.insert?.filter { $0.side == Bybit.Side.Buy }, side: .Buy)
@@ -63,7 +56,7 @@ class BybitBookOrderObserver: BybitObserver {
                 delegate?.observerFailedToDecode(observer: self)
             }
         case .SocketResponse:
-            if let socketResponse = try? Bybit.SocketResponse(from: data) {
+            if let socketResponse = try? Bybit.SocketResponse(from: newData) {
                 response = socketResponse
             } else {
                 print("Failed to decode Bybit BookOrder SocketResponse")

@@ -128,51 +128,52 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
     override func setupSubviews() {
         super.setupSubviews()
         
-        //                view.addSubview(symbolInfoView)
-        //                view.addSubview(leverageContainer)
-        //                view.addSubview(orderbookPanel)
-        //                view.addSubview(pricePanel)
-        //                view.addSubview(quantityPanel)
-        //                view.addSubview(tradeHistoryContainer)
-        //                view.addSubview(tradeView)
-        //
-        //                orderbookPanel.setPriceSelector(selector: self)
-        //                orderbookPanel.setQuantitySelector(selector: self)
-        //                tradeView.configureButtons(self, action: #selector(tradeButtonTapped(sender:)))
+        view.addSubview(symbolInfoView)
+        view.addSubview(leverageContainer)
+        view.addSubview(orderbookPanel)
+        view.addSubview(pricePanel)
+        view.addSubview(quantityPanel)
+        view.addSubview(tradeHistoryContainer)
+        view.addSubview(tradeView)
+        
+        orderbookPanel.setPriceSelector(selector: self)
+        orderbookPanel.setQuantitySelector(selector: self)
+        tradeView.configureButtons(self, action: #selector(tradeButtonTapped(sender:)))
     }
     
     override func setupConstraints() {
         super.setupConstraints()
         NSLayoutConstraint.activate([
             
-            //                    symbolInfoView.topAnchor.constraint(equalTo: view.topAnchor),
-            //                    symbolInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            //                    symbolInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            //
-            //                    leverageContainer.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
-            //                    leverageContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
-            //                    leverageContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
-            //                    leverageContainer.bottomAnchor.constraint(equalTo: pricePanel.topAnchor, constant: -Space.margin10),
-            //
-            //                    pricePanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
-            //                    pricePanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
-            //                    pricePanel.bottomAnchor.constraint(equalTo: quantityPanel.topAnchor, constant: -Space.margin10),
-            //
-            //                    quantityPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
-            //                    quantityPanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
-            //
-            //                    orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Space.margin8),
-            //                    orderbookPanel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
-            //                    orderbookPanel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
-            //
-            //                    tradeHistoryContainer.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Space.margin16),
-            //                    tradeHistoryContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
-            //                    tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
-            //                    tradeHistoryContainer.bottomAnchor.constraint(equalTo: tradeView.topAnchor, constant: -Space.margin10),
-            //
-            //                    tradeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            //                    tradeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            //                    tradeView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Space.margin16)
+            symbolInfoView.topAnchor.constraint(equalTo: view.topAnchor),
+            symbolInfoView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            symbolInfoView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            leverageContainer.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
+            leverageContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
+            leverageContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
+            leverageContainer.bottomAnchor.constraint(equalTo: pricePanel.topAnchor, constant: -Space.margin10),
+            
+            pricePanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
+            pricePanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
+            pricePanel.bottomAnchor.constraint(equalTo: quantityPanel.topAnchor, constant: -Space.margin10),
+            
+            quantityPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
+            quantityPanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
+            
+            orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Space.margin8),
+            orderbookPanel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
+            orderbookPanel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
+            orderbookPanel.heightAnchor.constraint(equalToConstant: 500.0),
+            
+            tradeHistoryContainer.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Space.margin16),
+            tradeHistoryContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
+            tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
+            tradeHistoryContainer.bottomAnchor.constraint(equalTo: tradeView.topAnchor, constant: -Space.margin10),
+            
+            tradeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            tradeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tradeView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Space.margin16)
         ])
     }
     
