@@ -1,21 +1,21 @@
 //
-//  TitleCollectionViewCell.swift
+//  InfoCollectionViewCell.swift
 //  FlipBit
 //
-//  Created by Daniel Stewart on 3/24/20.
+//  Created by Daniel Stewart on 4/12/20.
 //  Copyright © 2020 DS Studios. All rights reserved.
 //
 
 import UIKit
 
-class TitleCollectionViewCell: ContainerCollectionViewCell {
+class InfoCollectionViewCell: ContainerCollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
-        UILabel(text: "Bitcoin Perpetual Contract", font: UIFont.title1, textColor: .white)
+        UILabel(text: " ", font: UIFont.title3, textColor: .white)
     }()
     
-    private lazy var symbolLabel: UILabel = {
-        UILabel(text: "BTCUSD", font: UIFont.title3, textColor: .white)
+    private lazy var infoLabel: UILabel = {
+        UILabel(text: " ", font: UIFont.subheadline, textColor: .white)
     }()
     
     override init(frame: CGRect) {
@@ -38,7 +38,7 @@ class TitleCollectionViewCell: ContainerCollectionViewCell {
     
     override func setupSubviews() {
         super.setupSubviews()
-        add([titleLabel, symbolLabel])
+        add([titleLabel, infoLabel])
     }
     
     override func setupConstraints() {
@@ -49,14 +49,14 @@ class TitleCollectionViewCell: ContainerCollectionViewCell {
             make.leading.equalToSuperview().inset(Space.margin8)
         }
         
-        symbolLabel.snp.makeConstraints { make in
+        infoLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom)
             make.leading.trailing.equalTo(titleLabel)
             make.bottom.equalToSuperview()
         }
     }
     
-    func set(title: String) {
+    func set(title: String, text: String) {
         titleLabel.text = title
     }
     
@@ -65,4 +65,6 @@ class TitleCollectionViewCell: ContainerCollectionViewCell {
     }
     
     func configureView() {}
+
+
 }

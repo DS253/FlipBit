@@ -86,6 +86,12 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
     var leverageStatus: BitService.BybitLeverageStatus?
     var positions: BitService.BybitPositionList?
     
+    enum Section: Int, CaseIterable {
+        case title
+        case chart
+        case info
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: .symbolObserverUpdate, object: nil)
         NotificationCenter.default.removeObserver(self, name: .buyBookObserverUpdate, object: nil)
@@ -128,13 +134,13 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
     override func setupSubviews() {
         super.setupSubviews()
         
-        view.addSubview(symbolInfoView)
-        view.addSubview(leverageContainer)
-        view.addSubview(orderbookPanel)
-        view.addSubview(pricePanel)
-        view.addSubview(quantityPanel)
-        view.addSubview(tradeHistoryContainer)
-        view.addSubview(tradeView)
+        //        view.addSubview(symbolInfoView)
+        //        view.addSubview(leverageContainer)
+        //        view.addSubview(orderbookPanel)
+        //        view.addSubview(pricePanel)
+        //        view.addSubview(quantityPanel)
+        //        view.addSubview(tradeHistoryContainer)
+        //        view.addSubview(tradeView)
         
         orderbookPanel.setPriceSelector(selector: self)
         orderbookPanel.setQuantitySelector(selector: self)
@@ -144,70 +150,86 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
     override func setupConstraints() {
         super.setupConstraints()
         
-        symbolInfoView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-        }
+        //        symbolInfoView.snp.makeConstraints { make in
+        //            make.top.leading.trailing.equalToSuperview()
+        //        }
         
-        NSLayoutConstraint.activate([
-            
-            leverageContainer.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
-            leverageContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
-            leverageContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
-            leverageContainer.bottomAnchor.constraint(equalTo: pricePanel.topAnchor, constant: -Space.margin10),
-            
-            pricePanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
-            pricePanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
-            pricePanel.bottomAnchor.constraint(equalTo: quantityPanel.topAnchor, constant: -Space.margin10),
-            
-            quantityPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
-            quantityPanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
-            
-            orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Space.margin8),
-            orderbookPanel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
-            orderbookPanel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
-            orderbookPanel.heightAnchor.constraint(equalToConstant: 500.0),
-            
-            tradeHistoryContainer.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Space.margin16),
-            tradeHistoryContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
-            tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
-            tradeHistoryContainer.bottomAnchor.constraint(equalTo: tradeView.topAnchor, constant: -Space.margin10),
-            
-            tradeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tradeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tradeView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Space.margin16)
-        ])
+        //        NSLayoutConstraint.activate([
+        //
+        //            leverageContainer.topAnchor.constraint(equalTo: orderbookPanel.topAnchor),
+        //            leverageContainer.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
+        //            leverageContainer.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
+        //            leverageContainer.bottomAnchor.constraint(equalTo: pricePanel.topAnchor, constant: -Space.margin10),
+        //
+        //            pricePanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
+        //            pricePanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
+        //            pricePanel.bottomAnchor.constraint(equalTo: quantityPanel.topAnchor, constant: -Space.margin10),
+        //
+        //            quantityPanel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Space.margin8),
+        //            quantityPanel.leadingAnchor.constraint(equalTo: view.centerXAnchor, constant: Space.margin8),
+        //
+        //            orderbookPanel.topAnchor.constraint(equalTo: symbolInfoView.bottomAnchor, constant: Space.margin8),
+        //            orderbookPanel.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
+        //            orderbookPanel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
+        //            orderbookPanel.heightAnchor.constraint(equalToConstant: 500.0),
+        //
+        //            tradeHistoryContainer.topAnchor.constraint(equalTo: orderbookPanel.bottomAnchor, constant: Space.margin16),
+        //            tradeHistoryContainer.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Space.margin8),
+        //            tradeHistoryContainer.trailingAnchor.constraint(equalTo: view.centerXAnchor, constant: -Space.margin8),
+        //            tradeHistoryContainer.bottomAnchor.constraint(equalTo: tradeView.topAnchor, constant: -Space.margin10),
+        //
+        //            tradeView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        //            tradeView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+        //            tradeView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -Space.margin16)
+        //        ])
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return Section.allCases.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        guard let collectionViewSection = Section(rawValue: section) else { return 0 }
+        
+        switch collectionViewSection {
+        case .title, .chart, .info:
+            return 1
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ContainerCollectionViewCell {
-        if indexPath.row == 0 {
+        guard let section = Section(rawValue: indexPath.section) else { return ContainerCollectionViewCell(frame: .zero) }
+        switch section {
+        case .title:
             guard
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.id, for: indexPath) as? TitleCollectionViewCell
                 else {
                     let titleCell = TitleCollectionViewCell(frame: .zero)
-                    titleCell.set(title: "Bitcoin Perpetual Futures Contract")
+                    titleCell.set(title: "Bitcoin Perpetual Contract")
                     return titleCell
             }
             
-            cell.set(title: "Bitcoin Perpetual Futures Contract")
+            cell.set(title: "Bitcoin Perpetual Contract")
             return cell
             
+        case .chart:
+            guard
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContainerCollectionViewCell.id, for: indexPath) as? ContainerCollectionViewCell
+                else { return ContainerCollectionViewCell(frame: .zero, axis: .vertical) }
+            
+            cell.add([chartView])
+            
+            return cell
+            
+        case .info:
+            guard
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContainerCollectionViewCell.id, for: indexPath) as? ContainerCollectionViewCell
+                else { return ContainerCollectionViewCell(frame: .zero, axis: .vertical) }
+            
+            cell.add([chartView])
+            
+            return cell
         }
-        
-        guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContainerCollectionViewCell.id, for: indexPath) as? ContainerCollectionViewCell
-            else { return ContainerCollectionViewCell(frame: .zero, axis: .vertical) }
-        
-        
-        let label = UILabel()
-        label.text = "What Up"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        
-        cell.add([chartView])
-        return cell
     }
     
     func observer(observer: WebSocketDelegate, didWriteToSocket: String) {
@@ -238,8 +260,8 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         
         let side = (buttonTitle == Constant.buy) ? Bybit.Side.Buy : Bybit.Side.Sell
         let order = Order(side: side, price: price, quantity: quantity)
-//        let vc = BybitTradeFlowViewController(order: order)
-//        present(vc, animated: true)
+        //        let vc = BybitTradeFlowViewController(order: order)
+        //        present(vc, animated: true)
     }
     
     @objc func updateSymbolInfo(notification: NSNotification) {

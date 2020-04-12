@@ -41,6 +41,7 @@
 		062E27772393590500AF0C7D /* OrderBookPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E27762393590500AF0C7D /* OrderBookPanel.swift */; };
 		063C508D242FDFC6008CB9FC /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 063C508C242FDFC6008CB9FC /* SnapKit.framework */; };
 		063C508E242FDFC6008CB9FC /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 063C508C242FDFC6008CB9FC /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		063C50902443E0A5008CB9FC /* InfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063C508F2443E0A5008CB9FC /* InfoCollectionViewCell.swift */; };
 		063FDD4A23CE9D20002D0CDC /* BybitPriceUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063FDD4923CE9D20002D0CDC /* BybitPriceUpdateViewController.swift */; };
 		063FDD4C23CEA077002D0CDC /* BybitPriceUpdateViewController+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063FDD4B23CEA077002D0CDC /* BybitPriceUpdateViewController+Delegates.swift */; };
 		063FDD4E23CEAC83002D0CDC /* Panel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063FDD4D23CEAC83002D0CDC /* Panel.swift */; };
@@ -234,6 +235,7 @@
 		062E27722391C3C800AF0C7D /* SellOrderBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellOrderBookView.swift; sourceTree = "<group>"; };
 		062E27762393590500AF0C7D /* OrderBookPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookPanel.swift; sourceTree = "<group>"; };
 		063C508C242FDFC6008CB9FC /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
+		063C508F2443E0A5008CB9FC /* InfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		063FDD4923CE9D20002D0CDC /* BybitPriceUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitPriceUpdateViewController.swift; sourceTree = "<group>"; };
 		063FDD4B23CEA077002D0CDC /* BybitPriceUpdateViewController+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitPriceUpdateViewController+Delegates.swift"; sourceTree = "<group>"; };
 		063FDD4D23CEAC83002D0CDC /* Panel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Panel.swift; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 				065F6017238B5F61008B5B89 /* BybitBookOrderSellCell.swift */,
 				060C8BF8239499E100E50A57 /* BybitTradeEventCell.swift */,
 				0644AA4A2427E98700C32A2B /* ContainerCollectionViewCell.swift */,
+				063C508F2443E0A5008CB9FC /* InfoCollectionViewCell.swift */,
 				06DA0D7E23E76F1600890EF3 /* OrderOptionsCell.swift */,
 				0644AA4C242A92ED00C32A2B /* TitleCollectionViewCell.swift */,
 			);
@@ -1262,6 +1265,7 @@
 				06433BCE2381FFD100480EC1 /* BitService+BBActiveOrderUpdate.swift in Sources */,
 				065F601F238BCD60008B5B89 /* BybitObserver.swift in Sources */,
 				0644AA4D242A92ED00C32A2B /* TitleCollectionViewCell.swift in Sources */,
+				063C50902443E0A5008CB9FC /* InfoCollectionViewCell.swift in Sources */,
 				06FD3F1023DD635600215AA1 /* Space.swift in Sources */,
 				06470E192377C7C600419238 /* BitService+BBPredictedFunding.swift in Sources */,
 				06433BC82381FAB900480EC1 /* BBActiveOrderCreate+Endpoint.swift in Sources */,
