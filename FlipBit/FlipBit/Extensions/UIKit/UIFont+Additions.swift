@@ -9,6 +9,28 @@
 import UIKit
 
 extension UIFont {
+    public static var cambay: UIFont {
+        guard let font = UIFont(name: "Cambay-Regular", size: UIFont.labelFontSize) else { fatalError("Couldn't load font.") }
+        return font
+    }
+    
+    public static var cambayBold: UIFont {
+        guard let font = UIFont(name: "Cambay-Bold", size: UIFont.labelFontSize) else { fatalError("Couldn't load font.") }
+        return font
+    }
+    
+    public static var cambayItalic: UIFont {
+        guard let font = UIFont(name: "Cambay-Italic", size: UIFont.labelFontSize) else { fatalError("Couldn't load font.") }
+        return font
+    }
+    
+    public static var cambayBoldItalic: UIFont {
+        guard let font = UIFont(name: "Cambay-BoldItalic", size: UIFont.labelFontSize) else { fatalError("Couldn't load font.") }
+        return font
+    }
+}
+
+extension UIFont {
     /// The `bold` version of any font. This allows us to `bold` preferred(dynamic) font sizes.
     public var bold: UIFont { return applying(weight: .bold) }
 

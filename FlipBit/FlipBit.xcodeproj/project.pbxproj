@@ -27,7 +27,13 @@
 		060D96F6237BC6900040598A /* BBTradeRecord+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060D96F5237BC6900040598A /* BBTradeRecord+Endpoint.swift */; };
 		06163D5D23AED17D0076EFC0 /* FadeAnimationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06163D5C23AED17D0076EFC0 /* FadeAnimationTransition.swift */; };
 		06163D5F23B023B60076EFC0 /* FlipBitTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06163D5E23B023B60076EFC0 /* FlipBitTextField.swift */; };
+		061B60DC244BE9CF00D7A107 /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061B60DB244BE9CF00D7A107 /* InfoLabel.swift */; };
 		0623602A23B593820098A4EF /* Stepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0623602923B593820098A4EF /* Stepper.swift */; };
+		06258C6D2468921600116F40 /* TimeBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06258C6C2468921600116F40 /* TimeBarView.swift */; };
+		06258C6F2468BCC500116F40 /* BYBIT_BTCUSD, 1W.csv in Resources */ = {isa = PBXBuildFile; fileRef = 06258C6E2468BCC500116F40 /* BYBIT_BTCUSD, 1W.csv */; };
+		06258C712468BD3C00116F40 /* BYBIT_BTCUSD, 1H.csv in Resources */ = {isa = PBXBuildFile; fileRef = 06258C702468BD3C00116F40 /* BYBIT_BTCUSD, 1H.csv */; };
+		06258C732468BD6200116F40 /* BYBIT_BTCUSD, 1D.csv in Resources */ = {isa = PBXBuildFile; fileRef = 06258C722468BD6200116F40 /* BYBIT_BTCUSD, 1D.csv */; };
+		06258C752468BDAB00116F40 /* BYBIT_BTCUSD, 1M.csv in Resources */ = {isa = PBXBuildFile; fileRef = 06258C742468BDAB00116F40 /* BYBIT_BTCUSD, 1M.csv */; };
 		062895CE2383A1CC0076AA27 /* SandBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895CD2383A1CC0076AA27 /* SandBoxViewController.swift */; };
 		062895D12383A3920076AA27 /* ViewSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D02383A3920076AA27 /* ViewSetup.swift */; };
 		062895D62383A6A40076AA27 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D52383A6A40076AA27 /* Globals.swift */; };
@@ -109,6 +115,10 @@
 		06490F83237D04D100C37ED4 /* BBPosition+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */; };
 		06490F85237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */; };
 		06490F87237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F86237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift */; };
+		064A706E2449063000C23D03 /* Cambay-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 064A706A2449063000C23D03 /* Cambay-Bold.ttf */; };
+		064A706F2449063000C23D03 /* Cambay-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 064A706B2449063000C23D03 /* Cambay-Regular.ttf */; };
+		064A70702449063000C23D03 /* Cambay-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 064A706C2449063000C23D03 /* Cambay-Italic.ttf */; };
+		064A70712449063000C23D03 /* Cambay-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 064A706D2449063000C23D03 /* Cambay-BoldItalic.ttf */; };
 		064AD9DE238F224A00A7AA3E /* SymbolInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */; };
 		064AD9E0238F402800A7AA3E /* Int+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064AD9DF238F402800A7AA3E /* Int+Additions.swift */; };
 		064AD9E2238F500A00A7AA3E /* Notification+Names.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064AD9E1238F500A00A7AA3E /* Notification+Names.swift */; };
@@ -134,7 +144,6 @@
 		0665AD91240CB2BF00D28AB9 /* TickerControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0665AD90240CB2BF00D28AB9 /* TickerControl.swift */; };
 		0665AD93240CB2DD00D28AB9 /* TickerColumnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0665AD92240CB2DD00D28AB9 /* TickerColumnCell.swift */; };
 		0665AD95240CB2E700D28AB9 /* TickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0665AD94240CB2E700D28AB9 /* TickerCell.swift */; };
-		0665AD97240CC56E00D28AB9 /* BYBIT_BTCUSD, 1W.csv in Resources */ = {isa = PBXBuildFile; fileRef = 0665AD96240CC56E00D28AB9 /* BYBIT_BTCUSD, 1W.csv */; };
 		06746EB42381404E00F14521 /* BitService+BBActiveOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06746EB32381404E00F14521 /* BitService+BBActiveOrder.swift */; };
 		06746EB62381480300F14521 /* BBActiveOrder+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */; };
 		067FEB0E23D624B500B160AC /* BalanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067FEB0D23D624B500B160AC /* BalanceManager.swift */; };
@@ -222,7 +231,13 @@
 		060D96F5237BC6900040598A /* BBTradeRecord+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBTradeRecord+Endpoint.swift"; sourceTree = "<group>"; };
 		06163D5C23AED17D0076EFC0 /* FadeAnimationTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeAnimationTransition.swift; sourceTree = "<group>"; };
 		06163D5E23B023B60076EFC0 /* FlipBitTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipBitTextField.swift; sourceTree = "<group>"; };
+		061B60DB244BE9CF00D7A107 /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 		0623602923B593820098A4EF /* Stepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stepper.swift; sourceTree = "<group>"; };
+		06258C6C2468921600116F40 /* TimeBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBarView.swift; sourceTree = "<group>"; };
+		06258C6E2468BCC500116F40 /* BYBIT_BTCUSD, 1W.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BYBIT_BTCUSD, 1W.csv"; sourceTree = "<group>"; };
+		06258C702468BD3C00116F40 /* BYBIT_BTCUSD, 1H.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BYBIT_BTCUSD, 1H.csv"; sourceTree = "<group>"; };
+		06258C722468BD6200116F40 /* BYBIT_BTCUSD, 1D.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BYBIT_BTCUSD, 1D.csv"; sourceTree = "<group>"; };
+		06258C742468BDAB00116F40 /* BYBIT_BTCUSD, 1M.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "BYBIT_BTCUSD, 1M.csv"; sourceTree = "<group>"; };
 		062895CD2383A1CC0076AA27 /* SandBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandBoxViewController.swift; sourceTree = "<group>"; };
 		062895D02383A3920076AA27 /* ViewSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSetup.swift; sourceTree = "<group>"; };
 		062895D52383A6A40076AA27 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
@@ -310,6 +325,10 @@
 		06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBPreviousFundingRate.swift"; sourceTree = "<group>"; };
 		06490F86237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBPreviousFundingRate+Endpoint.swift"; sourceTree = "<group>"; };
 		06493938240DF9C9008B8441 /* BYBIT_BTCUSD, 1W.csv */ = {isa = PBXFileReference; lastKnownFileType = text; name = "BYBIT_BTCUSD, 1W.csv"; path = "../../../../Downloads/BYBIT_BTCUSD, 1W.csv"; sourceTree = "<group>"; };
+		064A706A2449063000C23D03 /* Cambay-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cambay-Bold.ttf"; sourceTree = "<group>"; };
+		064A706B2449063000C23D03 /* Cambay-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cambay-Regular.ttf"; sourceTree = "<group>"; };
+		064A706C2449063000C23D03 /* Cambay-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cambay-Italic.ttf"; sourceTree = "<group>"; };
+		064A706D2449063000C23D03 /* Cambay-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Cambay-BoldItalic.ttf"; sourceTree = "<group>"; };
 		064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolInfoHeaderView.swift; sourceTree = "<group>"; };
 		064AD9DF238F402800A7AA3E /* Int+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Additions.swift"; sourceTree = "<group>"; };
 		064AD9E1238F500A00A7AA3E /* Notification+Names.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Names.swift"; sourceTree = "<group>"; };
@@ -335,7 +354,6 @@
 		0665AD90240CB2BF00D28AB9 /* TickerControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerControl.swift; sourceTree = "<group>"; };
 		0665AD92240CB2DD00D28AB9 /* TickerColumnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerColumnCell.swift; sourceTree = "<group>"; };
 		0665AD94240CB2E700D28AB9 /* TickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerCell.swift; sourceTree = "<group>"; };
-		0665AD96240CC56E00D28AB9 /* BYBIT_BTCUSD, 1W.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "BYBIT_BTCUSD, 1W.csv"; path = "../../../../../../Downloads/BYBIT_BTCUSD, 1W.csv"; sourceTree = "<group>"; };
 		06746EB32381404E00F14521 /* BitService+BBActiveOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBActiveOrder.swift"; sourceTree = "<group>"; };
 		06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBActiveOrder+Endpoint.swift"; sourceTree = "<group>"; };
 		067FEB0D23D624B500B160AC /* BalanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceManager.swift; sourceTree = "<group>"; };
@@ -544,6 +562,7 @@
 				069CFA942384ED6300B46BCF /* Constants */,
 				062895CC2383A1B40076AA27 /* Controllers */,
 				45B3D935238604290004DF76 /* Extensions */,
+				064A7069244905DE00C23D03 /* Fonts */,
 				06470E272377C8C100419238 /* Global */,
 				067FEB0C23D6248C00B160AC /* Managers */,
 				45B3D9532388B13F0004DF76 /* Models */,
@@ -776,6 +795,17 @@
 			path = Global;
 			sourceTree = "<group>";
 		};
+		064A7069244905DE00C23D03 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				064A706A2449063000C23D03 /* Cambay-Bold.ttf */,
+				064A706D2449063000C23D03 /* Cambay-BoldItalic.ttf */,
+				064A706C2449063000C23D03 /* Cambay-Italic.ttf */,
+				064A706B2449063000C23D03 /* Cambay-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		064D3D832389A54300B34173 /* Bybit */ = {
 			isa = PBXGroup;
 			children = (
@@ -859,7 +889,10 @@
 		0665AD89240CAACB00D28AB9 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				0665AD96240CC56E00D28AB9 /* BYBIT_BTCUSD, 1W.csv */,
+				06258C702468BD3C00116F40 /* BYBIT_BTCUSD, 1H.csv */,
+				06258C722468BD6200116F40 /* BYBIT_BTCUSD, 1D.csv */,
+				06258C6E2468BCC500116F40 /* BYBIT_BTCUSD, 1W.csv */,
+				06258C742468BDAB00116F40 /* BYBIT_BTCUSD, 1M.csv */,
 				0665AD8A240CAAEC00D28AB9 /* ChartData.swift */,
 			);
 			path = Data;
@@ -869,6 +902,7 @@
 			isa = PBXGroup;
 			children = (
 				0665AD8D240CABD800D28AB9 /* ChartView.swift */,
+				06258C6C2468921600116F40 /* TimeBarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -966,6 +1000,7 @@
 				064AD9DD238F224A00A7AA3E /* SymbolInfoHeaderView.swift */,
 				060073A923A721280022F124 /* TradeFlowView.swift */,
 				0641F84D239CD02800EF7A0B /* ValuePickerView.swift */,
+				061B60DB244BE9CF00D7A107 /* InfoLabel.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -1110,8 +1145,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0665AD97240CC56E00D28AB9 /* BYBIT_BTCUSD, 1W.csv in Resources */,
+				064A706F2449063000C23D03 /* Cambay-Regular.ttf in Resources */,
+				06258C712468BD3C00116F40 /* BYBIT_BTCUSD, 1H.csv in Resources */,
+				064A70712449063000C23D03 /* Cambay-BoldItalic.ttf in Resources */,
+				06258C732468BD6200116F40 /* BYBIT_BTCUSD, 1D.csv in Resources */,
+				06258C752468BDAB00116F40 /* BYBIT_BTCUSD, 1M.csv in Resources */,
 				06470DB42377B6D500419238 /* LaunchScreen.storyboard in Resources */,
+				06258C6F2468BCC500116F40 /* BYBIT_BTCUSD, 1W.csv in Resources */,
+				064A70702449063000C23D03 /* Cambay-Italic.ttf in Resources */,
+				064A706E2449063000C23D03 /* Cambay-Bold.ttf in Resources */,
 				06470DB12377B6D500419238 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1256,6 +1298,7 @@
 				06DA0D7F23E76F1600890EF3 /* OrderOptionsCell.swift in Sources */,
 				06470DFC2377C2FB00419238 /* Result+Additions.swift in Sources */,
 				45B3D94A23860A810004DF76 /* UILabel+Additions.swift in Sources */,
+				06258C6D2468921600116F40 /* TimeBarView.swift in Sources */,
 				06405B44241D658F00132493 /* FlipBitTableViewController+Additions.swift in Sources */,
 				062895DA2383A77C0076AA27 /* BaseView.swift in Sources */,
 				06433BC62381E45A00480EC1 /* BBActiveOrderCancel+Endpoint.swift in Sources */,
@@ -1309,6 +1352,7 @@
 				45436FC423AAEF4800AA141A /* ActivityIndicatorPresentationViewController.swift in Sources */,
 				063FDD4C23CEA077002D0CDC /* BybitPriceUpdateViewController+Delegates.swift in Sources */,
 				062895D12383A3920076AA27 /* ViewSetup.swift in Sources */,
+				061B60DC244BE9CF00D7A107 /* InfoLabel.swift in Sources */,
 				067FEB0E23D624B500B160AC /* BalanceManager.swift in Sources */,
 				06490F87237D210500C37ED4 /* BBPreviousFundingRate+Endpoint.swift in Sources */,
 			);

@@ -12,63 +12,63 @@ protocol ChartViewDelegate: class {
     func didMoveToPrice(_ chartView: ChartView, price: Double)
 }
 
-/// Renders an interactive Line Chart with a time label and line marker to track the user's position.
-final class ChartView: BaseView {
-
+/// An interactive Line Chart with a time label and line marker to track the user's position.
+class ChartView: BaseView {
+    
     /// The data to be rendered in the Line Chart.
     private var dataPoints: ChartData
-
+    
     /// The delegate will update the TickerControl component to display the price of the selected data point.
     weak var delegate: ChartViewDelegate?
-
+    
     /// The x coordinate for each data point.
-    private lazy var xCoordinates: [CGFloat] = {
+    private var xCoordinates: [CGFloat] {
         var coordinates = [CGFloat]()
         for i in stride(from: 0, to: width, by: xStep) { coordinates.append(i) }
         return coordinates
-    }()
-
+    }
+    
     /// The data point with the largest value. This should be the maximum y position on the chart.
-    private lazy var highPoint: ChartPoint? = {
+    private var highPoint: ChartPoint? {
         return dataPoints.data.max { return $0.price < $1.price }
-    }()
-
+    }
+    
     /// The data point with the smallest value. This should be the minimum y position on the chart.
-    private lazy var lowPoint: ChartPoint? = {
+    private var lowPoint: ChartPoint? {
         return dataPoints.data.min { return $0.price < $1.price }
-    }()
-
+    }
+    
     /// The difference between the high and low data points. This will determine the value of each y point.
-    private lazy var heightRange: CGFloat = {
+    private var heightRange: CGFloat {
         guard
             let high = highPoint?.price,
             let low = lowPoint?.price
             else { return 0.0 }
         return CGFloat(high - low)
-    }()
-
+    }
+    
     /// The value for each point increase on the x-axis.
-    private lazy var xStep: CGFloat = {
+    private var xStep: CGFloat {
         return width / CGFloat(dataPoints.data.count)
-    }()
-
+    }
+    
     /// The value for each point increase on the y-axis.
-    private lazy var yStep: CGFloat = {
+    private var yStep: CGFloat {
         return height / heightRange
-    }()
-
+    }
+    
     /// The marker to show the user the position of their touch.
     private var lineView: View = {
         let line = View(backgroundColor: .gray)
         line.isHidden = true
         return line
     }()
-
+    
     /// Constraint used to allow the line indicator to move across the chart.
-    private lazy var lineViewLeadConstraint: NSLayoutConstraint = {
+    private var lineViewLeadConstraint: NSLayoutConstraint {
         NSLayoutConstraint(item: lineView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
-    }()
-
+    }
+    
     /// Displays the date/time of the selected data point.
     private let timeStampLabel: UILabel = {
         let label = UILabel(text: "", font: UIFont.body.bold, textColor: themeManager.themeFontColor)
@@ -76,30 +76,32 @@ final class ChartView: BaseView {
         label.isHidden = true
         return label
     }()
-
+    
     /// Constraint used to center the time stamp label with the line indicator and to update the position as the user selects a data point too close to the boundaries of the chart.
-    private lazy var timeStampCenterConstraint: NSLayoutConstraint = {
+    private var timeStampCenterConstraint: NSLayoutConstraint {
         NSLayoutConstraint(item: timeStampLabel, attribute: .centerX, relatedBy: .equal, toItem: lineView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-    }()
-
+    }
+    
+    private var chartPath: UIBezierPath!
+    
     /// The expected dashed line to represent the middle of the chart.
-    private lazy var middleLine: UIBezierPath = {
+    private var middleLine: UIBezierPath {
         let middleLine = UIBezierPath()
         middleLine.lineWidth = 1.0
         middleLine.lineCapStyle = .round
         return middleLine
-    }()
-
+    }
+    
     private var height: CGFloat = 0
     private var width: CGFloat = 0
     private let timeStampPadding: CGFloat = Space.margin10
-
-    private lazy var dateFormatter: DateFormatter = {
+    
+    private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d yyyy"
         return formatter
-    }()
-
+    }
+    
     init(data: ChartData) {
         self.dataPoints = data
         super.init()
@@ -128,7 +130,7 @@ final class ChartView: BaseView {
             heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 3)
         ])
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -140,7 +142,7 @@ final class ChartView: BaseView {
         drawChart()
         drawMiddleLine()
     }
-
+    
     /// Draws a dashed line horizontally across the chart.
     private func drawMiddleLine() {
         middleLine.move(to: CGPoint(x: 0, y: height / 2))
@@ -148,16 +150,16 @@ final class ChartView: BaseView {
         middleLine.setLineDash([0, xStep], count: 2, phase: 0)
         middleLine.stroke()
     }
-
+    
     /// Draws the line chart from the provided data points.
     private func drawChart() {
         /// Do not draw if the lowest point can not be determined.
         guard let lowestPoint = lowPoint else { return }
-
+        
         /// Set the initial point of the path to be the computed y-coordinate of the first data point price.
         let chartPath = UIBezierPath()
         chartPath.move(to: CGPoint(x: 0, y: CGFloat(dataPoints.data[0].price) * yStep))
-
+        
         /// Calculate the y-coordinate for each data point.
         for (index, dataPoint) in dataPoints.data.enumerated() {
             let midPoint = (heightRange / 2) * yStep
@@ -165,7 +167,7 @@ final class ChartView: BaseView {
             let chartMiddle = height / 2
             /// Determine distance from the bottom by subtracting the price from the lowest price.
             let distanceFromBottom = CGFloat(dataPoint.price - lowestPoint.price) * yStep
-
+            
             /// If the y distance is greater than the mid point, subtract the difference of the midpoint and the y distance.
             if distanceFromBottom > midPoint {
                 let difference = midPoint - (distanceFromBottom - midPoint)
@@ -184,10 +186,9 @@ final class ChartView: BaseView {
         
         UIColor.Chart.gainsColor.setFill()
         UIColor.Chart.gainsColor.setStroke()
-        chartPath.lineWidth = 1.5
         chartPath.stroke()
     }
-
+    
     /// LongPress reveals the line view indicator.
     @objc func userDidLongPress(_ gesture: UILongPressGestureRecognizer) {
         let x = convertTouchLocationToPointX(touchLocation: gesture.location(in: self))
@@ -197,7 +198,7 @@ final class ChartView: BaseView {
         updateIndicator(with: x, date: dataPoint.date, price: dataPoint.price)
         manageIndicatorAppearance(gesture: gesture)
     }
-
+    
     /// PanGesture moves the line view indicator.
     @objc func userDidPan(_ gesture: UIPanGestureRecognizer) {
         switch gesture.state {
@@ -212,7 +213,7 @@ final class ChartView: BaseView {
             break
         }
     }
-
+    
     /// Moves the position of the line view and the time stamp label  based on the provided offset.
     private func updateIndicator(with offset: CGFloat, date: Date, price: Double) {
         timeStampLabel.text = dateFormatter.string(from: date).uppercased()
@@ -222,11 +223,11 @@ final class ChartView: BaseView {
         }
         
         lineViewLeadConstraint.constant = offset
-
+        
         let timeStampWidth = timeStampLabel.frame.width / 2
         let timeStampLeadingAnchor = timeStampWidth + timeStampPadding
         let timeStampTrailingAnchor = width - timeStampWidth - timeStampPadding
-
+        
         /// If the current x coordinate doesn't require the time stamp label to move from the center, set the time stamp constraint to 0.
         if offset > timeStampLeadingAnchor && offset < timeStampTrailingAnchor {
             timeStampCenterConstraint.constant = 0
@@ -240,7 +241,7 @@ final class ChartView: BaseView {
             timeStampCenterConstraint.constant = maxOffset - offset
         }
     }
-
+    
     /// Hides the line view and time stamp label when a gesture is ending and reveals them when a gesture is beginning.
     private func manageIndicatorAppearance(gesture: UIGestureRecognizer) {
         switch gesture.state {
@@ -270,5 +271,13 @@ final class ChartView: BaseView {
             }
         }
         return x
+    }
+}
+
+extension ChartView: TimeUpdateDelegate {
+    func updateChartTime(time: String) {
+        let fileName = time == "All" ? "BYBIT_BTCUSD, 1D" : "BYBIT_BTCUSD, \(time)"
+        dataPoints = ChartData(fileName: fileName)
+        setNeedsDisplay()
     }
 }

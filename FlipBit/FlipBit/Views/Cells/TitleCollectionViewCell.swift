@@ -11,7 +11,7 @@ import UIKit
 class TitleCollectionViewCell: ContainerCollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
-        UILabel(text: "Bitcoin Perpetual Contract", font: UIFont.title1, textColor: .white)
+        UILabel(text: "Bitcoin Perpetual Contract", font: UIFont.cambayBoldItalic, textColor: .white)
     }()
     
     private lazy var symbolLabel: UILabel = {
