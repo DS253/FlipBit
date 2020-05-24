@@ -203,7 +203,7 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         }
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ContainerCollectionViewCell {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> BaseCollectionViewCell {
         guard let section = Section(rawValue: indexPath.section) else { return ContainerCollectionViewCell(frame: .zero) }
         switch section {
         case .title:

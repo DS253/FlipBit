@@ -13,7 +13,6 @@ class BaseCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        translatesAutoresizingMaskIntoConstraints = false
         setup()
         setupSubviews()
         setupConstraints()
@@ -29,5 +28,9 @@ class BaseCollectionViewCell: UICollectionViewCell {
     
     func setupSubviews() {}
     
-    func setupConstraints() {}
+    func setupConstraints() {
+        contentView.snp.makeConstraints { make in
+            make.width.equalTo(UIScreen.main.bounds.size.width)
+        }
+    }
 }

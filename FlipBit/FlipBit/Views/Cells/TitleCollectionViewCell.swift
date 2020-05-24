@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TitleCollectionViewCell: ContainerCollectionViewCell {
+class TitleCollectionViewCell: BaseCollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
         UILabel(text: "Bitcoin Perpetual Contract", font: UIFont.cambayBoldItalic, textColor: .white)
@@ -38,12 +38,12 @@ class TitleCollectionViewCell: ContainerCollectionViewCell {
     
     override func setupSubviews() {
         super.setupSubviews()
-        add([titleLabel, symbolLabel])
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(symbolLabel)
     }
     
     override func setupConstraints() {
         super.setupConstraints()
-        
         titleLabel.snp.makeConstraints { make in
             make.top.trailing.equalToSuperview()
             make.leading.equalToSuperview().inset(Space.margin8)

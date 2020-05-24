@@ -65,9 +65,9 @@ class ChartView: BaseView {
     }()
     
     /// Constraint used to allow the line indicator to move across the chart.
-    private var lineViewLeadConstraint: NSLayoutConstraint {
+    private lazy var lineViewLeadConstraint: NSLayoutConstraint = {
         NSLayoutConstraint(item: lineView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
-    }
+    }()
     
     /// Displays the date/time of the selected data point.
     private let timeStampLabel: UILabel = {
@@ -78,9 +78,9 @@ class ChartView: BaseView {
     }()
     
     /// Constraint used to center the time stamp label with the line indicator and to update the position as the user selects a data point too close to the boundaries of the chart.
-    private var timeStampCenterConstraint: NSLayoutConstraint {
+    private lazy var timeStampCenterConstraint: NSLayoutConstraint = {
         NSLayoutConstraint(item: timeStampLabel, attribute: .centerX, relatedBy: .equal, toItem: lineView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
-    }
+    }()
     
     private var chartPath: UIBezierPath!
     
