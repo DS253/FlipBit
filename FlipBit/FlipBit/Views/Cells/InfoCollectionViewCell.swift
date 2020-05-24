@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InfoCollectionViewCell: ContainerCollectionViewCell {
+class InfoCollectionViewCell: BaseCollectionViewCell {
     
     private lazy var highLabel: InfoLabel = {
         InfoLabel(title: "24 Hour High")
@@ -55,17 +55,6 @@ class InfoCollectionViewCell: ContainerCollectionViewCell {
         stackView.snp.makeConstraints { make in
             make.leading.trailing.top.bottom.equalToSuperview()
         }
-        
-//        titleLabel.snp.makeConstraints { make in
-//            make.top.trailing.equalToSuperview()
-//            make.leading.equalToSuperview().inset(Space.margin8)
-//        }
-//
-//        infoLabel.snp.makeConstraints { make in
-//            make.top.equalTo(titleLabel.snp.bottom)
-//            make.leading.trailing.equalTo(titleLabel)
-//            make.bottom.equalToSuperview()
-//        }
     }
         
     @objc func updateSymbolInfo(notification: NSNotification) {

@@ -11,12 +11,6 @@ import UIKit
 
 class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObserverDelegate {
     
-    private var chartData = ChartData(fileName: "BYBIT_BTCUSD, 1W")
-    private lazy var chartView = ChartView(data: chartData)
-    private lazy var timeBar: TimeBarView = {
-        TimeBarView()
-    }()
-    
     private lazy var symbolInfoView: SymbolInfoHeaderView = {
         SymbolInfoHeaderView()
     }()
@@ -132,7 +126,7 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         tradeObserver.delegate = self
         view.backgroundColor = themeManager.themeBackgroundColor
         collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.id)
-        collectionView.register(ContainerCollectionViewCell.self, forCellWithReuseIdentifier: ContainerCollectionViewCell.id)
+        collectionView.register(ChartCollectionViewCell.self, forCellWithReuseIdentifier: ChartCollectionViewCell.id)
         collectionView.register(InfoCollectionViewCell.self, forCellWithReuseIdentifier: InfoCollectionViewCell.id)
         
     }
@@ -204,7 +198,7 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> BaseCollectionViewCell {
-        guard let section = Section(rawValue: indexPath.section) else { return ContainerCollectionViewCell(frame: .zero) }
+        guard let section = Section(rawValue: indexPath.section) else { return BaseCollectionViewCell(frame: .zero) }
         switch section {
         case .title:
             guard
@@ -220,10 +214,8 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
             
         case .chart:
             guard
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ContainerCollectionViewCell.id, for: indexPath) as? ContainerCollectionViewCell
-                else { return ContainerCollectionViewCell(frame: .zero, axis: .vertical) }
-            timeBar.timeDelegate = chartView
-            cell.add([chartView, timeBar])
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChartCollectionViewCell.id, for: indexPath) as? ChartCollectionViewCell
+                else { return ChartCollectionViewCell(frame: .zero) }
             
             return cell
             

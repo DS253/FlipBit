@@ -73,7 +73,6 @@
 		06434EF023AB482E00E04148 /* BybitTradeFlowPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06434EEF23AB482E00E04148 /* BybitTradeFlowPresentationController.swift */; };
 		06438FA923E6459300D65878 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06438FA823E6459300D65878 /* ThemeManager.swift */; };
 		0644AA492427E51C00C32A2B /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644AA482427E51C00C32A2B /* BaseCollectionViewCell.swift */; };
-		0644AA4B2427E98700C32A2B /* ContainerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644AA4A2427E98700C32A2B /* ContainerCollectionViewCell.swift */; };
 		0644AA4D242A92ED00C32A2B /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644AA4C242A92ED00C32A2B /* TitleCollectionViewCell.swift */; };
 		0644D1DE238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644D1DD238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift */; };
 		0644D1E1238CDAE4001649F1 /* Bybit+SymbolInfo+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0644D1E0238CDAE4001649F1 /* Bybit+SymbolInfo+Additions.swift */; };
@@ -277,7 +276,6 @@
 		06434EEF23AB482E00E04148 /* BybitTradeFlowPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitTradeFlowPresentationController.swift; sourceTree = "<group>"; };
 		06438FA823E6459300D65878 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
 		0644AA482427E51C00C32A2B /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
-		0644AA4A2427E98700C32A2B /* ContainerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerCollectionViewCell.swift; sourceTree = "<group>"; };
 		0644AA4C242A92ED00C32A2B /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		0644D1DD238CD9BE001649F1 /* BybitSymbolInfoObserver+Deserializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitSymbolInfoObserver+Deserializer.swift"; sourceTree = "<group>"; };
 		0644D1E0238CDAE4001649F1 /* Bybit+SymbolInfo+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+SymbolInfo+Additions.swift"; sourceTree = "<group>"; };
@@ -518,7 +516,6 @@
 				065F6013238B370C008B5B89 /* BybitBookOrderBuyCell.swift */,
 				065F6017238B5F61008B5B89 /* BybitBookOrderSellCell.swift */,
 				060C8BF8239499E100E50A57 /* BybitTradeEventCell.swift */,
-				0644AA4A2427E98700C32A2B /* ContainerCollectionViewCell.swift */,
 				063C508F2443E0A5008CB9FC /* InfoCollectionViewCell.swift */,
 				06DA0D7E23E76F1600890EF3 /* OrderOptionsCell.swift */,
 				0644AA4C242A92ED00C32A2B /* TitleCollectionViewCell.swift */,
@@ -1287,7 +1284,6 @@
 				0663083123ADE1D0005197E5 /* FlipBitTabBarController.swift in Sources */,
 				06405B3C241D641400132493 /* FlipBitCollectionViewController.swift in Sources */,
 				06433BC42381E3B600480EC1 /* BitService+BBCancelOrder.swift in Sources */,
-				0644AA4B2427E98700C32A2B /* ContainerCollectionViewCell.swift in Sources */,
 				060D96EA237B82910040598A /* BBPreviousFundingFee+Endpoint.swift in Sources */,
 				06470E152377C6EF00419238 /* BitService+BBOrderBook.swift in Sources */,
 				060D96F2237BB2B30040598A /* BBWithdrawalRecord+Endpoint.swift in Sources */,
