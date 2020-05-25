@@ -30,6 +30,7 @@ class BaseCollectionViewCell: UICollectionViewCell {
     
     func setupConstraints() {
         contentView.snp.makeConstraints { make in
+            make.top.bottom.leading.trailing.equalToSuperview()
             make.width.equalTo(UIScreen.main.bounds.size.width)
         }
     }

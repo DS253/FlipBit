@@ -120,21 +120,5 @@ class TimeBarView: BaseView {
     @objc func buttonTapped(sender: UIButton) {
         guard let timeText = sender.titleLabel?.text else { return }
         timeDelegate?.updateChartTime(time: timeText)
-//        switch sender.titleLabel?.text {
-//        case "1H":
-//            timeDelegate?.didTapButton()
-//        case "1D":
-//            timeDelegate?.didTapButton()
-//        case "1W":
-//            timeDelegate?.didTapButton()
-//        case "1M":
-//            timeDelegate?.didTapButton()
-//        case "1Y":
-//            timeDelegate?.didTapButton()
-//        case "All":
-//            timeDelegate?.didTapButton()
-//        default:
-//            break
-//        }
     }
 }

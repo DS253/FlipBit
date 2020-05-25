@@ -276,7 +276,7 @@ class ChartView: BaseView {
 
 extension ChartView: TimeUpdateDelegate {
     func updateChartTime(time: String) {
-        let fileName = time == "All" ? "BYBIT_BTCUSD, 1D" : "BYBIT_BTCUSD, \(time)"
+        let fileName = time == "All" || time == "1Y" ? "BYBIT_BTCUSD, 1M" : "BYBIT_BTCUSD, \(time)"
         dataPoints = ChartData(fileName: fileName)
         setNeedsDisplay()
     }

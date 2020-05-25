@@ -8,8 +8,8 @@
 
 import Foundation
 
-let theAPIKey = "avakSEpslATRbRQqX2"
-let secret = "WZoEUyZuiauyVhp5qrY51S8FZPYMb004hbwA"
+let theAPIKey = "Jl8KaIslAUrq7ziLEh"
+let secret = "mZnvHk5KH5ggxA9LcMBgChEbiMxUwNUid2r8"
 //let theAPIKey = "Mqvkxv3jRP9H2ExK3h"
 //let secret = "4VDDtErgd0uLYDBwI63S27pFcHRNvBKtS9C5"
 
