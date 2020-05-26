@@ -62,10 +62,6 @@ class TimeBarView: BaseView {
     
     override func setup() {
         super.setup()
-        
-        //        layer.borderColor = themeManager.buyTextColor.cgColor
-        //        layer.borderWidth = 2.0
-        //        layer.cornerRadius = 7.0
     }
     
     override func setupSubviews() {

@@ -82,15 +82,15 @@ class ChartView: BaseView {
         NSLayoutConstraint(item: timeStampLabel, attribute: .centerX, relatedBy: .equal, toItem: lineView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
     }()
     
-    private var chartPath: UIBezierPath!
+    private var chartPath: UIBezierPath?
     
     /// The expected dashed line to represent the middle of the chart.
-    private var middleLine: UIBezierPath {
+    private lazy var middleLine: UIBezierPath = {
         let middleLine = UIBezierPath()
         middleLine.lineWidth = 1.0
         middleLine.lineCapStyle = .round
         return middleLine
-    }
+    }()
     
     private var height: CGFloat = 0
     private var width: CGFloat = 0
@@ -145,9 +145,10 @@ class ChartView: BaseView {
     
     /// Draws a dashed line horizontally across the chart.
     private func drawMiddleLine() {
+        middleLine.removeAllPoints()
         middleLine.move(to: CGPoint(x: 0, y: height / 2))
         middleLine.addLine(to: CGPoint(x: width, y: height / 2))
-        middleLine.setLineDash([0, xStep], count: 2, phase: 0)
+        middleLine.setLineDash([0, 5], count: 2, phase: 0)
         middleLine.stroke()
     }
     
@@ -156,9 +157,11 @@ class ChartView: BaseView {
         /// Do not draw if the lowest point can not be determined.
         guard let lowestPoint = lowPoint else { return }
         
+        chartPath?.removeAllPoints()
+        
         /// Set the initial point of the path to be the computed y-coordinate of the first data point price.
-        let chartPath = UIBezierPath()
-        chartPath.move(to: CGPoint(x: 0, y: CGFloat(dataPoints.data[0].price) * yStep))
+        let newPath = UIBezierPath()
+        newPath.move(to: CGPoint(x: 0, y: CGFloat(dataPoints.data[0].price) * yStep))
         
         /// Calculate the y-coordinate for each data point.
         for (index, dataPoint) in dataPoints.data.enumerated() {
@@ -171,22 +174,23 @@ class ChartView: BaseView {
             /// If the y distance is greater than the mid point, subtract the difference of the midpoint and the y distance.
             if distanceFromBottom > midPoint {
                 let difference = midPoint - (distanceFromBottom - midPoint)
-                chartPath.addLine(to: CGPoint(x: xCoordinates[index], y: difference))
+                newPath.addLine(to: CGPoint(x: xCoordinates[index], y: difference))
             }
                 /// If the y distance is less than the mid point, add the difference of the midpoint and the y distance.
             else if distanceFromBottom < midPoint {
                 let difference = midPoint + (midPoint - distanceFromBottom)
-                chartPath.addLine(to: CGPoint(x: xCoordinates[index], y: difference))
+                newPath.addLine(to: CGPoint(x: xCoordinates[index], y: difference))
             }
                 /// If the y distance is the same as the mid point, set the y coordinate to the mid point.
             else if distanceFromBottom == midPoint {
-                chartPath.addLine(to: CGPoint(x: xCoordinates[index], y: chartMiddle))
+                newPath.addLine(to: CGPoint(x: xCoordinates[index], y: chartMiddle))
             }
         }
         
         UIColor.Chart.gainsColor.setFill()
         UIColor.Chart.gainsColor.setStroke()
-        chartPath.stroke()
+        newPath.stroke()
+        chartPath = newPath
     }
     
     /// LongPress reveals the line view indicator.
