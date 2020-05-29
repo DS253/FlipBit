@@ -71,7 +71,7 @@ class ChartView: BaseView {
     
     /// Displays the date/time of the selected data point.
     private let timeStampLabel: UILabel = {
-        let label = UILabel(text: "", font: UIFont.body.bold, textColor: themeManager.themeFontColor)
+        let label = UILabel(text: "", font: UIFont.body, textColor: themeManager.themeFontColor)
         label.lineBreakMode = .byTruncatingTail
         label.isHidden = true
         return label
@@ -124,8 +124,8 @@ class ChartView: BaseView {
             timeStampLabel.bottomAnchor.constraint(equalTo: lineView.topAnchor),
             lineViewLeadConstraint,
             lineView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            lineView.widthAnchor.constraint(equalToConstant: 1.5),
-            lineView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7),
+            lineView.widthAnchor.constraint(equalToConstant: 1.0),
+            lineView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0),
             
             heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 3)
         ])
@@ -275,13 +275,5 @@ class ChartView: BaseView {
             }
         }
         return x
-    }
-}
-
-extension ChartView: TimeUpdateDelegate {
-    func updateChartTime(time: String) {
-        let fileName = time == "All" || time == "1Y" ? "BYBIT_BTCUSD, 1M" : "BYBIT_BTCUSD, \(time)"
-        dataPoints = ChartData(fileName: fileName)
-        setNeedsDisplay()
     }
 }
