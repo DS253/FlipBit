@@ -144,6 +144,7 @@
 		0665AD93240CB2DD00D28AB9 /* TickerColumnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0665AD92240CB2DD00D28AB9 /* TickerColumnCell.swift */; };
 		0665AD95240CB2E700D28AB9 /* TickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0665AD94240CB2E700D28AB9 /* TickerCell.swift */; };
 		06741BA22479DFE8007363CA /* ChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06741BA12479DFE8007363CA /* ChartCollectionViewCell.swift */; };
+		06741BA424830937007363CA /* TimeBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06741BA324830937007363CA /* TimeBarButton.swift */; };
 		06746EB42381404E00F14521 /* BitService+BBActiveOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06746EB32381404E00F14521 /* BitService+BBActiveOrder.swift */; };
 		06746EB62381480300F14521 /* BBActiveOrder+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */; };
 		067FEB0E23D624B500B160AC /* BalanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067FEB0D23D624B500B160AC /* BalanceManager.swift */; };
@@ -354,6 +355,7 @@
 		0665AD92240CB2DD00D28AB9 /* TickerColumnCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerColumnCell.swift; sourceTree = "<group>"; };
 		0665AD94240CB2E700D28AB9 /* TickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerCell.swift; sourceTree = "<group>"; };
 		06741BA12479DFE8007363CA /* ChartCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCollectionViewCell.swift; sourceTree = "<group>"; };
+		06741BA324830937007363CA /* TimeBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeBarButton.swift; sourceTree = "<group>"; };
 		06746EB32381404E00F14521 /* BitService+BBActiveOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBActiveOrder.swift"; sourceTree = "<group>"; };
 		06746EB52381480300F14521 /* BBActiveOrder+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBActiveOrder+Endpoint.swift"; sourceTree = "<group>"; };
 		067FEB0D23D624B500B160AC /* BalanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceManager.swift; sourceTree = "<group>"; };
@@ -902,6 +904,7 @@
 			isa = PBXGroup;
 			children = (
 				0665AD8D240CABD800D28AB9 /* ChartView.swift */,
+				06741BA324830937007363CA /* TimeBarButton.swift */,
 				06258C6C2468921600116F40 /* TimeBarView.swift */,
 			);
 			path = Views;
@@ -1216,6 +1219,7 @@
 				06470E0E2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift in Sources */,
 				064D3D882389A69700B34173 /* Bybit+BookOrder.swift in Sources */,
 				064D3D932389AD3D00B34173 /* Bybit+Metadata.swift in Sources */,
+				06741BA424830937007363CA /* TimeBarButton.swift in Sources */,
 				065F6026238C5DFD008B5B89 /* Bybit+SymbolInfoUpdate.swift in Sources */,
 				06470DEB2377C1F400419238 /* DataConvertible.swift in Sources */,
 				065F601D238B8DB7008B5B89 /* BybitSymbolInfoObserver.swift in Sources */,

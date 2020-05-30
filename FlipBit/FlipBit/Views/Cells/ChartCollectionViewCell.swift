@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// The CollectionViewCell displays the `ChartView` and `TimeBarView`.
 class ChartCollectionViewCell: BaseCollectionViewCell {
     
     private lazy var hourChartView = ChartView(data: ChartData(fileName: "BYBIT_BTCUSD, 1H"))
@@ -77,9 +78,10 @@ class ChartCollectionViewCell: BaseCollectionViewCell {
         }
         
         timeBar.snp.makeConstraints { make in
-            make.top.equalTo(weekChartView.snp.bottom)
+            make.top.equalTo(weekChartView.snp.bottom).offset(Space.margin10)
             make.leading.trailing.equalTo(weekChartView)
-            make.bottom.equalToSuperview().inset(Space.margin20)
+            make.height.equalTo(Space.margin32)
+            make.bottom.equalToSuperview().inset(Space.margin10)
         }
     }
     
@@ -91,25 +93,27 @@ class ChartCollectionViewCell: BaseCollectionViewCell {
 }
 
 extension ChartCollectionViewCell: TimeUpdateDelegate {
-    func updateChartTime(time: String) {
-        switch time {
+    
+    /// Display the selected `ChartView`.
+    func updateChartTime(time: ChartTime) {
+        
+        hourChartView.isHidden = true
+        dayChartView.isHidden = true
+        weekChartView.isHidden = true
+        monthChartView.isHidden = true
+        
+        switch time.rawValue {
         case "1H":
             hourChartView.isHidden = false
-            dayChartView.isHidden = true
-            weekChartView.isHidden = true
-            monthChartView.isHidden = true
             
         case "1D":
-            hourChartView.isHidden = true
             dayChartView.isHidden = false
-            weekChartView.isHidden = true
-            monthChartView.isHidden = true
-            
-        case "1W", "1M", "1Y", "All":
-            hourChartView.isHidden = true
-            dayChartView.isHidden = true
+        
+        case "1W":
             weekChartView.isHidden = false
-            monthChartView.isHidden = true
+            
+        case "1M", "1Y", "All":
+            monthChartView.isHidden = false
             
         default:
             break

@@ -14,6 +14,16 @@ struct ChartPoint {
     var price: Double
 }
 
+/// Time-related enum to track the selected time segment currently displayed by `ChartView` and `TimeBarView`.
+enum ChartTime: String {
+    case hour = "1H"
+    case day = "1D"
+    case week = "1W"
+    case month = "1M"
+    case year = "1Y"
+    case all = "All"
+}
+
 /// ChartData represents a collection of ChartPoints that can be used to construct a Chart.
 struct ChartData {
 
