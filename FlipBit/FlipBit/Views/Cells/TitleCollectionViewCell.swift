@@ -11,7 +11,7 @@ import UIKit
 class TitleCollectionViewCell: BaseCollectionViewCell {
     
     private lazy var titleLabel: UILabel = {
-        UILabel(text: "Bitcoin Perpetual Contract", font: UIFont.cambayBoldItalic, textColor: .white)
+        UILabel(font: UIFont.cambayBold, textColor: .white)
     }()
     
     private lazy var symbolLabel: UILabel = {
@@ -54,6 +54,10 @@ class TitleCollectionViewCell: BaseCollectionViewCell {
             make.leading.trailing.equalTo(titleLabel)
             make.bottom.equalToSuperview()
         }
+    }
+    
+    func set(for symbol: Bybit.Symbol) {
+        titleLabel.text = symbol.rawValue
     }
     
     func set(title: String) {

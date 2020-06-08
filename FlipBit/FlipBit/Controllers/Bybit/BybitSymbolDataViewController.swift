@@ -205,11 +205,11 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.id, for: indexPath) as? TitleCollectionViewCell
                 else {
                     let titleCell = TitleCollectionViewCell(frame: .zero)
-                    titleCell.set(title: "Bitcoin Perpetual Contract")
+                    titleCell.set(for: .BTC)
                     return titleCell
             }
             
-            cell.set(title: "Bitcoin Perpetual Contract")
+            cell.set(for: .BTC)
             return cell
             
         case .chart:

@@ -60,6 +60,7 @@ class ChartView: BaseView {
     /// The marker to show the user the position of their touch.
     private var lineView: View = {
         let line = View(backgroundColor: .gray)
+        line.alpha = 0.0
         line.isHidden = true
         return line
     }()
@@ -80,6 +81,16 @@ class ChartView: BaseView {
     /// Constraint used to center the time stamp label with the line indicator and to update the position as the user selects a data point too close to the boundaries of the chart.
     private lazy var timeStampCenterConstraint: NSLayoutConstraint = {
         NSLayoutConstraint(item: timeStampLabel, attribute: .centerX, relatedBy: .equal, toItem: lineView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
+    }()
+    
+    /// The circular marker indicates the selected `DataPoint` on the `ChartView`.
+    private lazy var circularMarker: UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isHidden = true
+        view.backgroundColor = themeManager.buyTextColor
+        view.layer.cornerRadius = view.bounds.width / 2
+        return view
     }()
     
     private var chartPath: UIBezierPath?
@@ -116,6 +127,7 @@ class ChartView: BaseView {
     override func setupSubviews() {
         addSubview(lineView)
         addSubview(timeStampLabel)
+        addSubview(circularMarker)
     }
     
     override func setupConstraints() {
@@ -154,9 +166,6 @@ class ChartView: BaseView {
     
     /// Draws the line chart from the provided data points.
     private func drawChart() {
-        /// Do not draw if the lowest point can not be determined.
-        guard let lowestPoint = lowPoint else { return }
-        
         chartPath?.removeAllPoints()
         
         /// Set the initial point of the path to be the computed y-coordinate of the first data point price.
@@ -165,26 +174,9 @@ class ChartView: BaseView {
         
         /// Calculate the y-coordinate for each data point.
         for (index, dataPoint) in dataPoints.data.enumerated() {
-            let midPoint = (heightRange / 2) * yStep
-            /// The middle point of the y-axis.
-            let chartMiddle = height / 2
-            /// Determine distance from the bottom by subtracting the price from the lowest price.
-            let distanceFromBottom = CGFloat(dataPoint.price - lowestPoint.price) * yStep
-            
-            /// If the y distance is greater than the mid point, subtract the difference of the midpoint and the y distance.
-            if distanceFromBottom > midPoint {
-                let difference = midPoint - (distanceFromBottom - midPoint)
-                newPath.addLine(to: CGPoint(x: xCoordinates[index], y: difference))
-            }
-                /// If the y distance is less than the mid point, add the difference of the midpoint and the y distance.
-            else if distanceFromBottom < midPoint {
-                let difference = midPoint + (midPoint - distanceFromBottom)
-                newPath.addLine(to: CGPoint(x: xCoordinates[index], y: difference))
-            }
-                /// If the y distance is the same as the mid point, set the y coordinate to the mid point.
-            else if distanceFromBottom == midPoint {
-                newPath.addLine(to: CGPoint(x: xCoordinates[index], y: chartMiddle))
-            }
+            /// Calculate the y-coordinate for each data point.
+            let yPoint = convertToY(dataPoint: dataPoint)
+            newPath.addLine(to: CGPoint(x: xCoordinates[index], y: yPoint))
         }
         
         UIColor.Chart.gainsColor.setFill()
@@ -201,6 +193,9 @@ class ChartView: BaseView {
         let dataPoint = dataPoints.data[xIndex]
         updateIndicator(with: x, date: dataPoint.date, price: dataPoint.price)
         manageIndicatorAppearance(gesture: gesture)
+        
+        let y = convertToY(dataPoint: dataPoint)
+        circularMarker.center = CGPoint(x: x, y: y)
     }
     
     /// PanGesture moves the line view indicator.
@@ -213,6 +208,9 @@ class ChartView: BaseView {
             
             updateIndicator(with: x, date: dataPoint.date, price: dataPoint.price)
             manageIndicatorAppearance(gesture: gesture)
+            
+            let y = convertToY(dataPoint: dataPoint)
+            circularMarker.center = CGPoint(x: x, y: y)
         default:
             break
         }
@@ -250,9 +248,11 @@ class ChartView: BaseView {
     private func manageIndicatorAppearance(gesture: UIGestureRecognizer) {
         switch gesture.state {
         case .began:
+            circularMarker.isHidden = false
             timeStampLabel.isHidden = false
             lineView.isHidden = false
         case .ended:
+            circularMarker.isHidden = true
             timeStampLabel.isHidden = true
             lineView.isHidden = true
         default:
@@ -274,6 +274,35 @@ class ChartView: BaseView {
                 return
             }
         }
+        
         return x
+    }
+    
+    /// Returns the Y Point on the `ChartView` of the provided `DataPoint`.
+    private func convertToY(dataPoint: ChartPoint) -> CGFloat {
+        guard let lowestPoint = lowPoint else { return 0.0 }
+        
+        /// Determine distance from the bottom by subtracting the price from the lowest price.
+        let distanceFromBottom = CGFloat(dataPoint.price - lowestPoint.price) * yStep
+        let midPoint = (heightRange / 2) * yStep
+        
+        /// The middle point of the y-axis.
+        let chartMiddle = height / 2
+        var yPoint: CGFloat = 0.0
+        
+        if distanceFromBottom > midPoint {
+            yPoint = midPoint - (distanceFromBottom - midPoint)
+        }
+            /// If the y distance is less than the mid point, add the difference of the midpoint and the y distance.
+        else if distanceFromBottom < midPoint {
+            yPoint = midPoint + (midPoint - distanceFromBottom)
+        }
+            
+        /// If the y distance is the same as the mid point, set the y coordinate to the mid point.
+        else if distanceFromBottom == midPoint {
+            yPoint = chartMiddle
+        }
+        
+        return yPoint
     }
 }

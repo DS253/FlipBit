@@ -11,11 +11,11 @@ import UIKit
 class InfoLabel: BaseView {
     
     private lazy var titleLabel: UILabel = {
-        UILabel(text: " ", font: UIFont.subheadline, textColor: .white)
+        UILabel(text: " ", font: UIFont.cambay, textColor: .white)
     }()
     
     private lazy var infoLabel: UILabel = {
-        UILabel(text: " ", font: UIFont.subheadline, textColor: .white, textAlignment: .right)
+        UILabel(text: " ", font: UIFont.cambayBold, textColor: .white, textAlignment: .right)
     }()
     
     init(title: String) {
@@ -42,8 +42,8 @@ class InfoLabel: BaseView {
         super.setupConstraints()
         
         titleLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().inset(Space.margin8)
+            make.top.bottom.leading.equalToSuperview()
+          //  make.leading.equalToSuperview().inset(Space.margin8)
             make.trailing.equalTo(self.snp.centerX)
         }
         
