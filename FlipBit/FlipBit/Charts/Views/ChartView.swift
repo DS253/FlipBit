@@ -216,11 +216,36 @@ class ChartView: BaseView {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let touch = touches.first {
+            let x = convertTouchLocationToPointX(touchLocation: touch.location(in: self))
+            guard let xIndex = xCoordinates.firstIndex(of: x) else {return }
+            
+            let dataPoint = dataPoints.data[xIndex]
+            updateIndicator(with: x, date: dataPoint.date, price: dataPoint.price)
+            
+            let y = convertToY(dataPoint: dataPoint)
+            circularMarker.center = CGPoint(x: x, y: y)
+            circularMarker.isHidden = false
+            timeStampLabel.isHidden = false
+            lineView.isHidden = false
+            hapticFeedback()
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if touches.first != nil {
+            circularMarker.isHidden = true
+            timeStampLabel.isHidden = true
+            lineView.isHidden = true
+            hapticFeedback()
+        }
+    }
+    
     /// Moves the position of the line view and the time stamp label  based on the provided offset.
     private func updateIndicator(with offset: CGFloat, date: Date, price: Double) {
         timeStampLabel.text = dateFormatter.string(from: date).uppercased()
         if offset != lineViewLeadConstraint.constant {
-            hapticFeedback()
             delegate?.didMoveToPrice(self, price: price)
         }
         
@@ -298,7 +323,7 @@ class ChartView: BaseView {
             yPoint = midPoint + (midPoint - distanceFromBottom)
         }
             
-        /// If the y distance is the same as the mid point, set the y coordinate to the mid point.
+            /// If the y distance is the same as the mid point, set the y coordinate to the mid point.
         else if distanceFromBottom == midPoint {
             yPoint = chartMiddle
         }
