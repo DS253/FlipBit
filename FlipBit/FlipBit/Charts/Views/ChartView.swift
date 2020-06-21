@@ -1,10 +1,4 @@
-//
-//  ChartView.swift
-//  FlipBit
-//
-//  Created by Daniel Stewart on 3/1/20.
 //  Copyright © 2020 DS Studios. All rights reserved.
-//
 
 import UIKit
 
@@ -70,20 +64,25 @@ class ChartView: BaseView {
         NSLayoutConstraint(item: lineView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: 0.0)
     }()
     
-    /// Displays the date/time of the selected data point.
-    private let timeStampLabel: UILabel = {
-//        let label = UILabel(text: "", font: UIFont.body, textColor: themeManager.themeFontColor)
-        let label = UILabel(text: "", font: UIFont.body, textColor: .flatWhiteDark)
+    /// Displays the time of the selected data point.
+    private let timeLabel: UILabel = {
+        let label = UILabel(text: "", font: UIFont.body, textColor: themeManager.themeFontColor)
         label.lineBreakMode = .byTruncatingTail
         label.isHidden = true
-        label.layer.borderColor = UIColor.flatWhiteDark.cgColor
-        label.layer.borderWidth = 2.0
+        return label
+    }()
+    
+    /// Displays the date of the selected data point.
+    private let dateLabel: UILabel = {
+        let label = UILabel(text: "", font: UIFont.body, textColor: themeManager.themeFontColor)
+        label.lineBreakMode = .byTruncatingTail
+        label.isHidden = true
         return label
     }()
     
     /// Constraint used to center the time stamp label with the line indicator and to update the position as the user selects a data point too close to the boundaries of the chart.
     private lazy var timeStampCenterConstraint: NSLayoutConstraint = {
-        NSLayoutConstraint(item: timeStampLabel, attribute: .centerX, relatedBy: .equal, toItem: lineView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
+        NSLayoutConstraint(item: dateLabel, attribute: .centerX, relatedBy: .equal, toItem: lineView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
     }()
     
     /// The circular marker indicates the selected `DataPoint` on the `ChartView`.
@@ -91,7 +90,7 @@ class ChartView: BaseView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
-        view.backgroundColor = .flatWhiteDark
+        view.backgroundColor = themeManager.buyTextColor
         view.layer.cornerRadius = view.bounds.width / 2
         return view
     }()
@@ -110,9 +109,15 @@ class ChartView: BaseView {
     private var width: CGFloat = 0
     private let timeStampPadding: CGFloat = Space.margin10
     
+    private var timeFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm a"
+        return formatter
+    }
+    
     private var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d yyyy"
+        formatter.dateFormat = "E MMM d, yyyy"
         return formatter
     }
     
@@ -129,18 +134,22 @@ class ChartView: BaseView {
     
     override func setupSubviews() {
         addSubview(lineView)
-        addSubview(timeStampLabel)
+        addSubview(timeLabel)
+        addSubview(dateLabel)
         addSubview(circularMarker)
     }
     
     override func setupConstraints() {
         NSLayoutConstraint.activate([
             timeStampCenterConstraint,
-            timeStampLabel.bottomAnchor.constraint(equalTo: lineView.topAnchor),
+            timeLabel.topAnchor.constraint(equalTo: timeLabel.topAnchor),
+            timeLabel.bottomAnchor.constraint(equalTo: dateLabel.topAnchor),
+            timeLabel.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
+            timeLabel.widthAnchor.constraint(equalTo: dateLabel.widthAnchor),
             lineViewLeadConstraint,
             lineView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             lineView.widthAnchor.constraint(equalToConstant: 1.0),
-            lineView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 1.0),
+            lineView.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.75),
             
             heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 3)
         ])
@@ -181,11 +190,9 @@ class ChartView: BaseView {
             let yPoint = convertToY(dataPoint: dataPoint)
             newPath.addLine(to: CGPoint(x: xCoordinates[index], y: yPoint))
         }
-  
-        UIColor.flatWhiteDark.setFill()
-        UIColor.flatWhiteDark.setStroke()
-//        UIColor.Chart.gainsColor.setFill()
-//        UIColor.Chart.gainsColor.setStroke()
+        
+        UIColor.Chart.gainsColor.setFill()
+        UIColor.Chart.gainsColor.setStroke()
         newPath.stroke()
         chartPath = newPath
     }
@@ -232,7 +239,8 @@ class ChartView: BaseView {
             let y = convertToY(dataPoint: dataPoint)
             circularMarker.center = CGPoint(x: x, y: y)
             circularMarker.isHidden = false
-            timeStampLabel.isHidden = false
+            dateLabel.isHidden = false
+            timeLabel.isHidden = false
             lineView.isHidden = false
             hapticFeedback()
         }
@@ -241,7 +249,8 @@ class ChartView: BaseView {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if touches.first != nil {
             circularMarker.isHidden = true
-            timeStampLabel.isHidden = true
+            dateLabel.isHidden = true
+            timeLabel.isHidden = true
             lineView.isHidden = true
             hapticFeedback()
         }
@@ -249,14 +258,15 @@ class ChartView: BaseView {
     
     /// Moves the position of the line view and the time stamp label  based on the provided offset.
     private func updateIndicator(with offset: CGFloat, date: Date, price: Double) {
-        timeStampLabel.text = dateFormatter.string(from: date).uppercased()
+        dateLabel.text = dateFormatter.string(from: date)
+        timeLabel.text = timeFormatter.string(from: date).uppercased()
         if offset != lineViewLeadConstraint.constant {
             delegate?.didMoveToPrice(self, price: price)
         }
         
         lineViewLeadConstraint.constant = offset
         
-        let timeStampWidth = timeStampLabel.frame.width / 2
+        let timeStampWidth = timeLabel.frame.width / 2
         let timeStampLeadingAnchor = timeStampWidth + timeStampPadding
         let timeStampTrailingAnchor = width - timeStampWidth - timeStampPadding
         
@@ -279,11 +289,13 @@ class ChartView: BaseView {
         switch gesture.state {
         case .began:
             circularMarker.isHidden = false
-            timeStampLabel.isHidden = false
+            dateLabel.isHidden = false
+            timeLabel.isHidden = false
             lineView.isHidden = false
         case .ended:
             circularMarker.isHidden = true
-            timeStampLabel.isHidden = true
+            dateLabel.isHidden = true
+            timeLabel.isHidden = true
             lineView.isHidden = true
         default:
             break

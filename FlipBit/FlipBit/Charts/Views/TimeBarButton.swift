@@ -23,7 +23,7 @@ class TimeBarButton: UIButton {
         self.isSelected = selected
         self.clipsToBounds = true
         self.setBackgroundColor(color: themeManager.darkModeTheme, forState: .normal)
-        self.setBackgroundColor(color: .flatWhiteDark, forState: .selected)
+        self.setBackgroundColor(color: themeManager.buyTextColor, forState: .selected)
         self.layer.cornerRadius = 8
     }
     

@@ -125,6 +125,10 @@ extension SandBoxViewController: ChartViewDelegate {
      //   print(price)
         tickerControl.showNumber(price)
     }
+    
+    func hidePreviousPrice() {
+        
+    }
 }
 
 //class SandBoxViewController: ViewController {
