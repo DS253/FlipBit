@@ -125,7 +125,7 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         symbolObserver.delegate = self
         tradeObserver.delegate = self
         view.backgroundColor = themeManager.themeBackgroundColor
-        collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.id)
+        collectionView.register(PriceCollectionViewCell.self, forCellWithReuseIdentifier: PriceCollectionViewCell.id)
         collectionView.register(ChartCollectionViewCell.self, forCellWithReuseIdentifier: ChartCollectionViewCell.id)
         collectionView.register(InfoCollectionViewCell.self, forCellWithReuseIdentifier: InfoCollectionViewCell.id)
         
@@ -202,9 +202,9 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         switch section {
         case .title:
             guard
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.id, for: indexPath) as? TitleCollectionViewCell
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PriceCollectionViewCell.id, for: indexPath) as? PriceCollectionViewCell
                 else {
-                    let titleCell = TitleCollectionViewCell(frame: .zero)
+                    let titleCell = PriceCollectionViewCell(frame: .zero)
                     titleCell.set(for: .BTC)
                     return titleCell
             }

@@ -23,42 +23,42 @@ class TimeBarView: BaseView {
     
     /// Sets the chart to one hour segments.
     lazy var hourButton: TimeBarButton = {
-        let button = TimeBarButton(title: "1H", textColor: themeManager.buyTextColor, font: .footnote, selected: true)
+        let button = TimeBarButton(title: "1H", textColor: .flatWhiteDark, font: .footnote, selected: true)
         button.addTarget(self, action: #selector(timeSelected), for: .touchUpInside)
         return button
     }()
     
     /// Sets the chart to one day segments.
     lazy var dayButton: TimeBarButton = {
-        let button = TimeBarButton(title: "1D", textColor: themeManager.buyTextColor, font: .footnote)
+        let button = TimeBarButton(title: "1D", textColor: .flatWhiteDark, font: .footnote)
         button.addTarget(self, action: #selector(timeSelected), for: .touchUpInside)
         return button
     }()
     
     /// Sets the chart to one week segments.
     lazy var weekButton: TimeBarButton = {
-        let button = TimeBarButton(title: "1W", textColor: themeManager.buyTextColor, font: .footnote)
+        let button = TimeBarButton(title: "1W", textColor: .flatWhiteDark, font: .footnote)
         button.addTarget(self, action: #selector(timeSelected), for: .touchUpInside)
         return button
     }()
     
     /// Sets the chart to one month segments.
     lazy var monthButton: TimeBarButton = {
-        let button = TimeBarButton(title: "1M", textColor: themeManager.buyTextColor, font: .footnote)
+        let button = TimeBarButton(title: "1M", textColor: .flatWhiteDark, font: .footnote)
         button.addTarget(self, action: #selector(timeSelected), for: .touchUpInside)
         return button
     }()
     
     /// Sets the chart to one year segments.
     lazy var yearButton: TimeBarButton = {
-        let button = TimeBarButton(title: "1Y", textColor: themeManager.buyTextColor, font: .footnote)
+        let button = TimeBarButton(title: "1Y", textColor: .flatWhiteDark, font: .footnote)
         button.addTarget(self, action: #selector(timeSelected), for: .touchUpInside)
         return button
     }()
     
     /// Sets the chart to display all recorded data.
     lazy var allTimeButton: TimeBarButton = {
-        let button = TimeBarButton(title: "All", textColor: themeManager.buyTextColor, font: .footnote)
+        let button = TimeBarButton(title: "All", textColor: .flatWhiteDark, font: .footnote)
         button.addTarget(self, action: #selector(timeSelected), for: .touchUpInside)
         return button
     }()

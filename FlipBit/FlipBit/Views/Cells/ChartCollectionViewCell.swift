@@ -22,6 +22,10 @@ class ChartCollectionViewCell: BaseCollectionViewCell {
         return view
     }()
     
+    private lazy var bottomSeparator: BaseView = {
+        BaseView(backgroundColor: .flatWhiteDark)
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -52,36 +56,43 @@ class ChartCollectionViewCell: BaseCollectionViewCell {
         contentView.addSubview(weekChartView)
         contentView.addSubview(monthChartView)
         contentView.addSubview(timeBar)
+        contentView.addSubview(bottomSeparator)
     }
     
     override func setupConstraints() {
         super.setupConstraints()
         
         hourChartView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Space.margin20)
+            make.top.equalToSuperview().inset(Space.margin32)
             make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
         
         dayChartView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Space.margin20)
+            make.top.equalToSuperview().inset(Space.margin32)
             make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
         
         weekChartView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Space.margin20)
+            make.top.equalToSuperview().inset(Space.margin32)
             make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
         
         monthChartView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Space.margin20)
+            make.top.equalToSuperview().inset(Space.margin32)
             make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
         
         timeBar.snp.makeConstraints { make in
-            make.top.equalTo(weekChartView.snp.bottom).offset(Space.margin10)
+            make.top.equalTo(weekChartView.snp.bottom).offset(Space.margin16)
             make.leading.trailing.equalTo(weekChartView)
             make.height.equalTo(Space.margin32)
-            make.bottom.equalToSuperview().inset(Space.margin10)
+            make.bottom.equalToSuperview().inset(Space.margin16)
+        }
+        
+        bottomSeparator.snp.makeConstraints { make in
+            make.height.equalTo(Space.margin1)
+            make.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
     }
     
@@ -108,7 +119,7 @@ extension ChartCollectionViewCell: TimeUpdateDelegate {
             
         case "1D":
             dayChartView.isHidden = false
-        
+            
         case "1W":
             weekChartView.isHidden = false
             

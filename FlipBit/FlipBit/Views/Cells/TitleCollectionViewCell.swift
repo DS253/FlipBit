@@ -68,5 +68,10 @@ class TitleCollectionViewCell: BaseCollectionViewCell {
         configureView()
     }
     
-    func configureView() {}
+    func configureView() {
+        guard let newInfo = symbolObserver.symbolInfo else { return }
+        if let lastPrice = newInfo.lastPrice {
+            titleLabel.text = lastPrice
+        }
+    }
 }

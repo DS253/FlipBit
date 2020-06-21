@@ -11,19 +11,15 @@ import UIKit
 class InfoCollectionViewCell: BaseCollectionViewCell {
     
     private lazy var highLabel: InfoLabel = {
-        InfoLabel(title: "24 Hour High")
+        InfoLabel(title: "Day High")
     }()
     
     private lazy var lowLabel: InfoLabel = {
-        InfoLabel(title: "24 Hour Low")
+        InfoLabel(title: "Day Low")
     }()
     
     private lazy var infoLabel: UILabel = {
         UILabel(text: " ", font: UIFont.subheadline, textColor: .white)
-    }()
-    
-    private lazy var stackView: UIStackView = {
-        UIStackView(axis: .horizontal, views: [highLabel, lowLabel])
     }()
     
     override init(frame: CGRect) {
@@ -46,17 +42,22 @@ class InfoCollectionViewCell: BaseCollectionViewCell {
     
     override func setupSubviews() {
         super.setupSubviews()
-        addSubview(stackView)
+        contentView.addSubview(highLabel)
+        contentView.addSubview(lowLabel)
     }
     
     override func setupConstraints() {
         super.setupConstraints()
         
-        stackView.snp.makeConstraints { make in
-            make.leading.trailing.top.bottom.equalToSuperview()
+        highLabel.snp.makeConstraints { make in
+            make.top.bottom.leading.equalToSuperview().inset(Space.margin16)
+        }
+        
+        lowLabel.snp.makeConstraints { make in
+            make.top.bottom.trailing.equalToSuperview().inset(Space.margin16)
         }
     }
-        
+    
     @objc func updateSymbolInfo(notification: NSNotification) {
         configureView()
     }

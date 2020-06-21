@@ -72,9 +72,12 @@ class ChartView: BaseView {
     
     /// Displays the date/time of the selected data point.
     private let timeStampLabel: UILabel = {
-        let label = UILabel(text: "", font: UIFont.body, textColor: themeManager.themeFontColor)
+//        let label = UILabel(text: "", font: UIFont.body, textColor: themeManager.themeFontColor)
+        let label = UILabel(text: "", font: UIFont.body, textColor: .flatWhiteDark)
         label.lineBreakMode = .byTruncatingTail
         label.isHidden = true
+        label.layer.borderColor = UIColor.flatWhiteDark.cgColor
+        label.layer.borderWidth = 2.0
         return label
     }()
     
@@ -88,7 +91,7 @@ class ChartView: BaseView {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
-        view.backgroundColor = themeManager.buyTextColor
+        view.backgroundColor = .flatWhiteDark
         view.layer.cornerRadius = view.bounds.width / 2
         return view
     }()
@@ -178,9 +181,11 @@ class ChartView: BaseView {
             let yPoint = convertToY(dataPoint: dataPoint)
             newPath.addLine(to: CGPoint(x: xCoordinates[index], y: yPoint))
         }
-        
-        UIColor.Chart.gainsColor.setFill()
-        UIColor.Chart.gainsColor.setStroke()
+  
+        UIColor.flatWhiteDark.setFill()
+        UIColor.flatWhiteDark.setStroke()
+//        UIColor.Chart.gainsColor.setFill()
+//        UIColor.Chart.gainsColor.setStroke()
         newPath.stroke()
         chartPath = newPath
     }
