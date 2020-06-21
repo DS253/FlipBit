@@ -121,12 +121,12 @@ extension SandBoxViewController: UICollectionViewDataSource {
 }
 
 extension SandBoxViewController: ChartViewDelegate {
-    func didMoveToPrice(_ chartView: ChartView, price: Double) {
+    func didMoveToPrice(price: Double) {
      //   print(price)
         tickerControl.showNumber(price)
     }
     
-    func hidePreviousPrice() {
+    func movementEnded() {
         
     }
 }

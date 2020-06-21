@@ -3,7 +3,8 @@
 import UIKit
 
 protocol ChartViewDelegate: class {
-    func didMoveToPrice(_ chartView: ChartView, price: Double)
+    func didMoveToPrice(price: Double)
+    func movementEnded()
 }
 
 /// An interactive Line Chart with a time label and line marker to track the user's position.
@@ -199,6 +200,11 @@ class ChartView: BaseView {
         chartPath = newPath
     }
     
+    /// Set the ChartViewDelegate.
+    func configure(delegate: ChartViewDelegate) {
+        self.delegate = delegate
+    }
+    
     /// LongPress reveals the line view indicator.
     @objc func userDidLongPress(_ gesture: UILongPressGestureRecognizer) {
         let x = convertTouchLocationToPointX(touchLocation: gesture.location(in: self))
@@ -247,24 +253,12 @@ class ChartView: BaseView {
             hapticFeedback()
         }
     }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if touches.first != nil {
-            circularMarker.isHidden = true
-            dateLabel.isHidden = true
-            timeLabel.isHidden = true
-            lineView.isHidden = true
-            hapticFeedback()
-        }
-    }
-    
+        
     /// Moves the position of the line view and the time stamp label  based on the provided offset.
     private func updateIndicator(with offset: CGFloat, date: Date, price: Double) {
         dateLabel.text = dateFormatter.string(from: date)
         timeLabel.text = timeFormatter.string(from: date).uppercased()
-        if offset != lineViewLeadConstraint.constant {
-            delegate?.didMoveToPrice(self, price: price)
-        }
+        delegate?.didMoveToPrice(price: price)
         
         lineViewLeadConstraint.constant = offset
         
@@ -299,6 +293,7 @@ class ChartView: BaseView {
             dateLabel.isHidden = true
             timeLabel.isHidden = true
             lineView.isHidden = true
+            delegate?.movementEnded()
         default:
             break
         }

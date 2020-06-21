@@ -40,6 +40,11 @@ class ChartCollectionViewCell: BaseCollectionViewCell {
     
     override func setup() {
         super.setup()
+        
+        hourChartView.configure(delegate: priceHeader)
+        dayChartView.configure(delegate: priceHeader)
+        weekChartView.configure(delegate: priceHeader)
+        monthChartView.configure(delegate: priceHeader)
     }
     
     override func setupSubviews() {

@@ -8,7 +8,11 @@ class PriceHeaderView: BaseView {
         UILabel(font: UIFont.headline, textColor: .flatWhiteDark)
     }()
     
-    private lazy var priceLabel: UILabel = {
+    private lazy var currentPriceLabel: UILabel = {
+        UILabel(text: "  ", font: UIFont.title1, textColor: .white)
+    }()
+    
+    private lazy var previousPriceLabel: UILabel = {
         UILabel(text: "  ", font: UIFont.title1, textColor: .white)
     }()
     
@@ -45,7 +49,8 @@ class PriceHeaderView: BaseView {
     override func setupSubviews() {
         super.setupSubviews()
         addSubview(topSeparator)
-        addSubview(priceLabel)
+        addSubview(currentPriceLabel)
+        addSubview(previousPriceLabel)
         addSubview(percentageLabel)
         addSubview(percentageSymbolLabel)
         addSubview(currencySymbolLabel)
@@ -61,23 +66,28 @@ class PriceHeaderView: BaseView {
             make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
         
-        priceLabel.snp.makeConstraints { make in
+        currentPriceLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(Space.margin16)
             make.leading.equalTo(currencySymbolLabel.snp.trailing).offset(Space.margin2)
         }
         
+        previousPriceLabel.snp.makeConstraints { make in
+            make.edges.equalTo(currentPriceLabel.snp.edges)
+            make.size.equalTo(currentPriceLabel.snp.size)
+        }
+        
         currencySymbolLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(Space.margin16)
-            make.centerY.equalTo(priceLabel.snp.centerY)
+            make.centerY.equalTo(currentPriceLabel.snp.centerY)
         }
         
         currencyTypeLabel.snp.makeConstraints { make in
-            make.leading.equalTo(priceLabel.snp.trailing).offset(Space.margin2)
-            make.centerY.equalTo(priceLabel.snp.centerY)
+            make.leading.equalTo(currentPriceLabel.snp.trailing).offset(Space.margin2)
+            make.centerY.equalTo(currentPriceLabel.snp.centerY)
         }
         
         percentageLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(priceLabel.snp.centerY)
+            make.centerY.equalTo(currentPriceLabel.snp.centerY)
         }
         
         percentageSymbolLabel.snp.makeConstraints { make in
@@ -100,7 +110,7 @@ class PriceHeaderView: BaseView {
     func configureView() {
         guard let newInfo = symbolObserver.symbolInfo else { return }
         if let lastPrice = newInfo.lastPrice {
-            priceLabel.text = lastPrice
+            currentPriceLabel.text = lastPrice
             currencySymbolLabel.text = "$"
             currencyTypeLabel.text = "USD"
         }
@@ -120,5 +130,19 @@ class PriceHeaderView: BaseView {
             percentageLabel.textColor = (text == "0.00") ? .flatWhiteDark : themeManager.buyTextColor
             percentageSymbolLabel.textColor = (text == "0.00") ? .flatWhiteDark : themeManager.buyTextColor
         }
+    }
+}
+
+extension PriceHeaderView: ChartViewDelegate {
+    func didMoveToPrice(price: Double) {
+        previousPriceLabel.text = String(format: "%.2f", price)
+        
+        currentPriceLabel.isHidden = true
+        previousPriceLabel.isHidden = false
+    }
+    
+    func movementEnded() {
+        currentPriceLabel.isHidden = false
+        previousPriceLabel.isHidden = true
     }
 }
