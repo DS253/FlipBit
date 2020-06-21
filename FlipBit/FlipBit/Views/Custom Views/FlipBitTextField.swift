@@ -1,10 +1,4 @@
-//
-//  FlipBitTextField.swift
-//  FlipBit
-//
-//  Created by Daniel Stewart on 12/22/19.
 //  Copyright © 2019 DS Studios. All rights reserved.
-//
 
 import UIKit
 

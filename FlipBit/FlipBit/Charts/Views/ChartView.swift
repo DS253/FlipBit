@@ -18,8 +18,16 @@ class ChartView: BaseView {
     /// The x coordinate for each data point.
     private var xCoordinates: [CGFloat] {
         var coordinates = [CGFloat]()
-        for i in stride(from: 0, to: width, by: xStep) { coordinates.append(i) }
+        for (index, _) in dataPoints.data.enumerated() {
+            let x = CGFloat(index) * xStep
+            coordinates.append(x)
+        }
         return coordinates
+    }
+    
+    /// The value for each point increase on the x-axis.
+    private var xStep: CGFloat {
+        return width / CGFloat(dataPoints.data.count - 1)
     }
     
     /// The data point with the largest value. This should be the maximum y position on the chart.
@@ -39,11 +47,6 @@ class ChartView: BaseView {
             let low = lowPoint?.price
             else { return 0.0 }
         return CGFloat(high - low)
-    }
-    
-    /// The value for each point increase on the x-axis.
-    private var xStep: CGFloat {
-        return width / CGFloat(dataPoints.data.count)
     }
     
     /// The value for each point increase on the y-axis.
@@ -142,7 +145,7 @@ class ChartView: BaseView {
     override func setupConstraints() {
         NSLayoutConstraint.activate([
             timeStampCenterConstraint,
-            timeLabel.topAnchor.constraint(equalTo: timeLabel.topAnchor),
+            timeLabel.topAnchor.constraint(equalTo: topAnchor),
             timeLabel.bottomAnchor.constraint(equalTo: dateLabel.topAnchor),
             timeLabel.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
             timeLabel.widthAnchor.constraint(equalTo: dateLabel.widthAnchor),
@@ -162,7 +165,6 @@ class ChartView: BaseView {
     override func draw(_ rect: CGRect) {
         height = rect.size.height
         width = rect.size.width
-        
         drawChart()
         drawMiddleLine()
     }
@@ -182,7 +184,7 @@ class ChartView: BaseView {
         
         /// Set the initial point of the path to be the computed y-coordinate of the first data point price.
         let newPath = UIBezierPath()
-        newPath.move(to: CGPoint(x: 0, y: CGFloat(dataPoints.data[0].price) * yStep))
+        newPath.move(to: CGPoint(x: 0, y: convertToY(dataPoint: dataPoints.data[0])))
         
         /// Calculate the y-coordinate for each data point.
         for (index, dataPoint) in dataPoints.data.enumerated() {

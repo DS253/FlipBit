@@ -86,7 +86,6 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
     var positions: BitService.BybitPositionList?
     
     enum Section: Int, CaseIterable {
-        case title
         case chart
         case info
     }
@@ -192,7 +191,7 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         guard let collectionViewSection = Section(rawValue: section) else { return 0 }
         
         switch collectionViewSection {
-        case .title, .chart, .info:
+        case .chart, .info:
             return 1
         }
     }
@@ -200,18 +199,6 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> BaseCollectionViewCell {
         guard let section = Section(rawValue: indexPath.section) else { return BaseCollectionViewCell(frame: .zero) }
         switch section {
-        case .title:
-            guard
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PriceCollectionViewCell.id, for: indexPath) as? PriceCollectionViewCell
-                else {
-                    let titleCell = PriceCollectionViewCell(frame: .zero)
-                    titleCell.set(for: .BTC)
-                    return titleCell
-            }
-            
-            cell.set(for: .BTC)
-            return cell
-            
         case .chart:
             guard
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChartCollectionViewCell.id, for: indexPath) as? ChartCollectionViewCell

@@ -2,14 +2,14 @@
 
 import UIKit
 
-class PriceCollectionViewCell: BaseCollectionViewCell {
+class PriceHeaderView: BaseView {
     
     private lazy var currencySymbolLabel: UILabel = {
         UILabel(font: UIFont.headline, textColor: .flatWhiteDark)
     }()
     
     private lazy var priceLabel: UILabel = {
-        UILabel(font: UIFont.title1, textColor: .white)
+        UILabel(text: "  ", font: UIFont.title1, textColor: .white)
     }()
     
     private lazy var currencyTypeLabel: UILabel = {
@@ -32,33 +32,25 @@ class PriceCollectionViewCell: BaseCollectionViewCell {
         BaseView(backgroundColor: .flatWhiteDark)
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateSymbolInfo(notification:)), name: .symbolObserverUpdate, object: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     deinit {
         NotificationCenter.default.removeObserver(self, name: .symbolObserverUpdate, object: nil)
     }
     
     override func setup() {
         super.setup()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateSymbolInfo(notification:)), name: .symbolObserverUpdate, object: nil)
     }
     
     override func setupSubviews() {
         super.setupSubviews()
-        contentView.addSubview(topSeparator)
-        contentView.addSubview(priceLabel)
-        contentView.addSubview(percentageLabel)
-        contentView.addSubview(percentageSymbolLabel)
-        contentView.addSubview(currencySymbolLabel)
-        contentView.addSubview(currencyTypeLabel)
-        contentView.addSubview(bottomSeparator)
+        addSubview(topSeparator)
+        addSubview(priceLabel)
+        addSubview(percentageLabel)
+        addSubview(percentageSymbolLabel)
+        addSubview(currencySymbolLabel)
+        addSubview(currencyTypeLabel)
+        addSubview(bottomSeparator)
     }
     
     override func setupConstraints() {
@@ -69,29 +61,29 @@ class PriceCollectionViewCell: BaseCollectionViewCell {
             make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
         
-        currencySymbolLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().inset(Space.margin16)
-        }
-        
         priceLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(Space.margin16)
             make.leading.equalTo(currencySymbolLabel.snp.trailing).offset(Space.margin2)
         }
         
+        currencySymbolLabel.snp.makeConstraints { make in
+            make.leading.equalToSuperview().inset(Space.margin16)
+            make.centerY.equalTo(priceLabel.snp.centerY)
+        }
+        
         currencyTypeLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
             make.leading.equalTo(priceLabel.snp.trailing).offset(Space.margin2)
+            make.centerY.equalTo(priceLabel.snp.centerY)
         }
         
         percentageLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
+            make.centerY.equalTo(priceLabel.snp.centerY)
         }
         
         percentageSymbolLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
             make.leading.equalTo(percentageLabel.snp.trailing)
             make.trailing.equalToSuperview().inset(Space.margin8)
+            make.centerY.equalTo(percentageLabel.snp.centerY)
         }
         
         bottomSeparator.snp.makeConstraints { make in
@@ -99,14 +91,6 @@ class PriceCollectionViewCell: BaseCollectionViewCell {
             make.bottom.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
-    }
-    
-    func set(for symbol: Bybit.Symbol) {
-        priceLabel.text = symbol.rawValue
-    }
-    
-    func set(title: String) {
-        priceLabel.text = title
     }
     
     @objc func updateSymbolInfo(notification: NSNotification) {
@@ -138,4 +122,3 @@ class PriceCollectionViewCell: BaseCollectionViewCell {
         }
     }
 }
-

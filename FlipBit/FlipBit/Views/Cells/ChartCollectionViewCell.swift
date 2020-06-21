@@ -5,6 +5,10 @@ import UIKit
 /// The CollectionViewCell displays the `ChartView` and `TimeBarView`.
 class ChartCollectionViewCell: BaseCollectionViewCell {
     
+    private lazy var priceHeader: PriceHeaderView = {
+        PriceHeaderView()
+    }()
+    
     private lazy var hourChartView = ChartView(data: ChartData(fileName: "BYBIT_BTCUSD, 1H"))
     private lazy var dayChartView = ChartView(data: ChartData(fileName: "BYBIT_BTCUSD, 1D"))
     private lazy var weekChartView = ChartView(data: ChartData(fileName: "BYBIT_BTCUSD, 1W"))
@@ -45,6 +49,7 @@ class ChartCollectionViewCell: BaseCollectionViewCell {
         weekChartView.isHidden = true
         monthChartView.isHidden = true
         
+        contentView.addSubview(priceHeader)
         contentView.addSubview(hourChartView)
         contentView.addSubview(dayChartView)
         contentView.addSubview(weekChartView)
@@ -56,23 +61,27 @@ class ChartCollectionViewCell: BaseCollectionViewCell {
     override func setupConstraints() {
         super.setupConstraints()
         
+        priceHeader.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+        }
+        
         hourChartView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Space.margin32)
+            make.top.equalTo(priceHeader.snp.bottom).offset(Space.margin16)
             make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
         
         dayChartView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Space.margin32)
+            make.top.equalTo(priceHeader.snp.bottom).offset(Space.margin16)
             make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
         
         weekChartView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Space.margin32)
+            make.top.equalTo(priceHeader.snp.bottom).offset(Space.margin16)
             make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
         
         monthChartView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(Space.margin32)
+            make.top.equalTo(priceHeader.snp.bottom).offset(Space.margin16)
             make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
         

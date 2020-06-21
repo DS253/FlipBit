@@ -1,10 +1,4 @@
-//
-//  PercentageView.swift
-//  FlipBit
-//
-//  Created by Daniel Stewart on 12/7/19.
 //  Copyright © 2019 DS Studios. All rights reserved.
-//
 
 import UIKit
 
