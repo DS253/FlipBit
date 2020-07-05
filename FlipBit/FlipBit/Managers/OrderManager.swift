@@ -55,10 +55,10 @@ class OrderManager {
     /// Determines the rate used to calculate  the open and closing fees.
     private func fee() -> Double {
         guard
-            let stringPrice = symbolObserver.symbolInfo?.lastPrice,
-            let doublePrice = Double(stringPrice)
-            else { return 0.0 }
+            let stringPrice = symbolObserver.symbolInfo?.lastPrice
+        else { return 0.0 }
         
+        let doublePrice = Double(stringPrice)
         /// If the order is a Buy/Long, an order price less than the most recent transaction price will have a Taker Fee.
         /// An order greater than the most recent price will have a Maker Fee.
         if side == .Buy {

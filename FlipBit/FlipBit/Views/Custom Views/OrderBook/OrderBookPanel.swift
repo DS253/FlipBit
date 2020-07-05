@@ -153,11 +153,11 @@ class OrderBookPanel: View {
     @objc func updateLastPrice(notification: NSNotification) {
         guard let newInfo = symbolObserver.symbolInfo else { return }
         if let lastPrice = newInfo.lastPrice {
-            lastPriceLabel.text = lastPrice
+            lastPriceLabel.text = lastPrice.formatPriceString(notation: 4)
             lastPriceLabel.textColor = Bybit().tickColor
         }
         if let markPrice = newInfo.markPrice {
-            markPriceLabel.text = markPrice
+            markPriceLabel.text = markPrice.formatPriceString(notation: 4)
         }
         
         if let percentge = newInfo.prevPcnt24H {

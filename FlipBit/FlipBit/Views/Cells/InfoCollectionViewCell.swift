@@ -10,12 +10,34 @@ import UIKit
 
 class InfoCollectionViewCell: BaseCollectionViewCell {
     
-    private lazy var highLabel: InfoLabel = {
-        InfoLabel(title: "Day High")
+    private lazy var firstRow: InfoRow = {
+        let row = InfoRow(left: InfoLabel(title: "Mark Price"),
+                          right: InfoLabel(title: "Index Price"))
+        return row
     }()
     
-    private lazy var lowLabel: InfoLabel = {
-        InfoLabel(title: "Day Low")
+    private lazy var firstRowSeparator: BaseView = {
+        BaseView(backgroundColor: .flatWhiteDark)
+    }()
+    
+    private lazy var secondRow: InfoRow = {
+        let row = InfoRow(left: InfoLabel(title: "24h High"),
+                          right: InfoLabel(title: "24h Low"))
+        return row
+    }()
+    
+    private lazy var secondRowSeparator: BaseView = {
+        BaseView(backgroundColor: .flatWhiteDark)
+    }()
+    
+    private lazy var thirdRow: InfoRow = {
+        let row = InfoRow(left: InfoLabel(title: "24h Turnover"),
+                          right: InfoLabel(title: "24h Volume"))
+        return row
+    }()
+    
+    private lazy var thirdRowSeparator: BaseView = {
+        BaseView(backgroundColor: .flatWhiteDark)
     }()
     
     private lazy var infoLabel: UILabel = {
@@ -42,19 +64,47 @@ class InfoCollectionViewCell: BaseCollectionViewCell {
     
     override func setupSubviews() {
         super.setupSubviews()
-        contentView.addSubview(highLabel)
-        contentView.addSubview(lowLabel)
+        contentView.addSubview(firstRow)
+        contentView.addSubview(firstRowSeparator)
+        contentView.addSubview(secondRow)
+        contentView.addSubview(secondRowSeparator)
+        contentView.addSubview(thirdRow)
+        contentView.addSubview(thirdRowSeparator)
     }
     
     override func setupConstraints() {
         super.setupConstraints()
         
-        highLabel.snp.makeConstraints { make in
-            make.top.bottom.leading.equalToSuperview().inset(Space.margin16)
+        firstRow.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(secondRow.snp.top)
         }
         
-        lowLabel.snp.makeConstraints { make in
-            make.top.bottom.trailing.equalToSuperview().inset(Space.margin16)
+        firstRowSeparator.snp.makeConstraints { make in
+            make.height.equalTo(Space.margin1)
+            make.bottom.equalTo(firstRow.snp.bottom)
+            make.leading.trailing.equalToSuperview().inset(Space.margin8)
+        }
+        
+        secondRow.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(thirdRow.snp.top)
+        }
+        
+        secondRowSeparator.snp.makeConstraints { make in
+            make.height.equalTo(Space.margin1)
+            make.bottom.equalTo(secondRow.snp.bottom)
+            make.leading.trailing.equalToSuperview().inset(Space.margin8)
+        }
+        
+        thirdRow.snp.makeConstraints { make in
+            make.bottom.leading.trailing.equalToSuperview()
+        }
+        
+        thirdRowSeparator.snp.makeConstraints { make in
+            make.height.equalTo(Space.margin1)
+            make.bottom.equalTo(thirdRow.snp.bottom)
+            make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
     }
     
@@ -64,11 +114,23 @@ class InfoCollectionViewCell: BaseCollectionViewCell {
     
     func configureView() {
         guard let newInfo = symbolObserver.symbolInfo else { return }
+        if let markPrice = newInfo.markPrice {
+            firstRow.update(left: markPrice.formatPriceString(notation: 4))
+        }
+        if let indexPrice = newInfo.indexPrice {
+            firstRow.update(right: indexPrice.formatPriceString(notation: 4))
+        }
         if let dayHighPrice = newInfo.highPrice24H {
-            highLabel.configure(info: dayHighPrice)
+            secondRow.update(left: dayHighPrice.formatPriceString(notation: 4))
         }
         if let dayLowPrice = newInfo.lowPrice24H {
-            lowLabel.configure(info: dayLowPrice)
+            secondRow.update(right: dayLowPrice.formatPriceString(notation: 4))
+        }
+        if let turnover = newInfo.turnover24H {
+            thirdRow.update(left: turnover)
+        }
+        if let volume = newInfo.volume24H {
+            thirdRow.update(right: String(volume))
         }
     }
 }

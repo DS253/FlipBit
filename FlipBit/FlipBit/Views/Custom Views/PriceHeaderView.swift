@@ -110,7 +110,7 @@ class PriceHeaderView: BaseView {
     func configureView() {
         guard let newInfo = symbolObserver.symbolInfo else { return }
         if let lastPrice = newInfo.lastPrice {
-            currentPriceLabel.text = lastPrice
+            currentPriceLabel.text = lastPrice.formatPriceString(notation: 4)
             currencySymbolLabel.text = "$"
             currencyTypeLabel.text = "USD"
         }

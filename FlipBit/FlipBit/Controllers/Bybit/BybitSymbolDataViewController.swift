@@ -254,7 +254,7 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
             let newInfo = symbolObserver.symbolInfo,
             let price = newInfo.lastPrice
             else { return }
-        priceLabel.text = price
+        priceLabel.text = price.formatPriceString(notation: 4)
         NotificationCenter.default.removeObserver(self, name: .symbolObserverUpdate, object: nil)
     }
     

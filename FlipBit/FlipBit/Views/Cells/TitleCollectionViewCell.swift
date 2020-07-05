@@ -71,7 +71,7 @@ class TitleCollectionViewCell: BaseCollectionViewCell {
     func configureView() {
         guard let newInfo = symbolObserver.symbolInfo else { return }
         if let lastPrice = newInfo.lastPrice {
-            titleLabel.text = lastPrice
+            titleLabel.text = lastPrice.formatPriceString(notation: 4)
         }
     }
 }

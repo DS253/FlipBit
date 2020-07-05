@@ -162,17 +162,17 @@ class SymbolInfoHeaderView: View {
         if let symbolName = newInfo.symbol {
             symbolNameLabel.text = symbolName.rawValue }
         if let lastPrice = newInfo.lastPrice {
-            lastTradedPriceLabel.text = lastPrice
+            lastTradedPriceLabel.text = lastPrice.formatPriceString(notation: 4)
             lastTradedPriceLabel.textColor = Bybit().tickColor
         }
         if let markPrice = newInfo.markPrice {
-            markPriceLabel.text = markPrice
+            markPriceLabel.text = String(markPrice)
         }
         if let dayHighPrice = newInfo.highPrice24H {
-            dayHighDataLabel.text = dayHighPrice
+            dayHighDataLabel.text = dayHighPrice.formatPriceString(notation: 4)
         }
         if let dayLowPrice = newInfo.lowPrice24H {
-            dayLowDataLabel.text = dayLowPrice
+            dayLowDataLabel.text = dayLowPrice.formatPriceString(notation: 4)
         }
         if let dayTurnover = newInfo.turnover24H {
             dayTurnoverDataLabel.text = dayTurnover

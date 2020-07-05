@@ -129,6 +129,7 @@
 		064D3D8D2389A76300B34173 /* Bybit+BookOrderUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D3D8C2389A76300B34173 /* Bybit+BookOrderUpdate.swift */; };
 		064D3D902389A8CB00B34173 /* Bybit+SocketResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D3D8F2389A8CB00B34173 /* Bybit+SocketResponse.swift */; };
 		064D3D932389AD3D00B34173 /* Bybit+Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064D3D922389AD3D00B34173 /* Bybit+Metadata.swift */; };
+		064DC2DE24B00A9A0039DE98 /* InfoRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064DC2DD24B00A9A0039DE98 /* InfoRow.swift */; };
 		064EA948238091CE00570CEE /* BitService+BBResponseMetaData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064EA947238091CE00570CEE /* BitService+BBResponseMetaData.swift */; };
 		065F6014238B370C008B5B89 /* BybitBookOrderBuyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065F6013238B370C008B5B89 /* BybitBookOrderBuyCell.swift */; };
 		065F6016238B550C008B5B89 /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 065F6015238B550C008B5B89 /* UIColor+Additions.swift */; };
@@ -342,6 +343,7 @@
 		064D3D8C2389A76300B34173 /* Bybit+BookOrderUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+BookOrderUpdate.swift"; sourceTree = "<group>"; };
 		064D3D8F2389A8CB00B34173 /* Bybit+SocketResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+SocketResponse.swift"; sourceTree = "<group>"; };
 		064D3D922389AD3D00B34173 /* Bybit+Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+Metadata.swift"; sourceTree = "<group>"; };
+		064DC2DD24B00A9A0039DE98 /* InfoRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRow.swift; sourceTree = "<group>"; };
 		064EA947238091CE00570CEE /* BitService+BBResponseMetaData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBResponseMetaData.swift"; sourceTree = "<group>"; };
 		065F6013238B370C008B5B89 /* BybitBookOrderBuyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitBookOrderBuyCell.swift; sourceTree = "<group>"; };
 		065F6015238B550C008B5B89 /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
@@ -477,6 +479,7 @@
 				064131222389F68400B795D5 /* Cells */,
 				45B3D943238607480004DF76 /* Custom Views */,
 				063FDD4D23CEAC83002D0CDC /* Panel.swift */,
+				064DC2DD24B00A9A0039DE98 /* InfoRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1288,6 +1291,7 @@
 				06470E1F2377C82100419238 /* BitService+BBTickers.swift in Sources */,
 				06433BD023820AFD00480EC1 /* BitService+BBLeverageStatus.swift in Sources */,
 				06490F83237D04D100C37ED4 /* BBPosition+Endpoint.swift in Sources */,
+				064DC2DE24B00A9A0039DE98 /* InfoRow.swift in Sources */,
 				064D3D8D2389A76300B34173 /* Bybit+BookOrderUpdate.swift in Sources */,
 				06470E082377C3B500419238 /* BitService+Registry.swift in Sources */,
 				06741BA22479DFE8007363CA /* ChartCollectionViewCell.swift in Sources */,

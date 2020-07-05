@@ -11,11 +11,15 @@ import UIKit
 class InfoLabel: BaseView {
     
     private lazy var titleLabel: UILabel = {
-        UILabel(text: " ", font: .body, textColor: .white)
+        UILabel(text: " ", font: .subheadline, textColor: .white)
     }()
     
     private lazy var infoLabel: UILabel = {
-        UILabel(text: "     ", font: .body, textColor: .white, textAlignment: .right)
+        UILabel(text: "     ", font: .subheadline, textColor: .white, textAlignment: .right)
+    }()
+    
+    private lazy var container: UIStackView = {
+        UIStackView(axis: .horizontal, spacing: 0.0)
     }()
     
     init(title: String) {
@@ -34,23 +38,23 @@ class InfoLabel: BaseView {
     override func setupSubviews() {
         super.setupSubviews()
         
-        addSubview(titleLabel)
-        addSubview(infoLabel)
+        addSubview(container)
+        container.addArrangedSubviews([titleLabel, infoLabel])
     }
     
     override func setupConstraints() {
         super.setupConstraints()
         
+        container.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         titleLabel.snp.makeConstraints { make in
-            make.top.bottom.leading.equalToSuperview()
-            make.leading.equalToSuperview().inset(Space.margin16)
-            make.trailing.equalTo(self.snp.centerX)
+            make.width.equalTo(infoLabel.snp.width)
         }
         
         infoLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.trailing.equalToSuperview().inset(Space.margin16)
-            make.leading.equalTo(self.snp.centerX)
+            make.width.equalTo(titleLabel.snp.width)
         }
     }
     
