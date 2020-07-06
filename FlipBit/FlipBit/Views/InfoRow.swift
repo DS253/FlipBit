@@ -11,8 +11,15 @@ import UIKit
 class InfoRow: BaseView {
     
     private var leftLabel: InfoLabel
-
     private var rightLabel: InfoLabel
+    
+    private lazy var leftSeparator: BaseView = {
+        BaseView(backgroundColor: UIColor.flatGray.withAlphaComponent(0.5))
+    }()
+    
+    private lazy var rightSeparator: BaseView = {
+        BaseView(backgroundColor: UIColor.flatGray.withAlphaComponent(0.5))
+    }()
     
     private lazy var container: UIStackView = {
         UIStackView(axis: .horizontal, spacing: Space.margin16)
@@ -36,13 +43,16 @@ class InfoRow: BaseView {
         super.setupSubviews()
         container.addArrangedSubviews([leftLabel, rightLabel])
         addSubview(container)
+        addSubview(leftSeparator)
+        addSubview(rightSeparator)
     }
     
     override func setupConstraints() {
         super.setupConstraints()
         
         container.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(Space.margin16)
+            make.top.bottom.equalToSuperview().inset(Space.margin8)
+            make.leading.trailing.equalToSuperview().inset(Space.margin16)
         }
         
         leftLabel.snp.makeConstraints { make in
@@ -51,6 +61,20 @@ class InfoRow: BaseView {
         
         rightLabel.snp.makeConstraints { make in
             make.width.equalTo(leftLabel.snp.width)
+        }
+        
+        leftSeparator.snp.makeConstraints { make in
+            make.leading.equalTo(leftLabel.snp.leading)
+            make.trailing.equalTo(leftLabel.snp.trailing)
+            make.bottom.equalToSuperview()
+            make.height.equalTo(Space.margin1)
+        }
+        
+        rightSeparator.snp.makeConstraints { make in
+            make.leading.equalTo(rightLabel.snp.leading)
+            make.trailing.equalTo(rightLabel.snp.trailing)
+            make.bottom.equalToSuperview()
+            make.height.equalTo(Space.margin1)
         }
     }
     

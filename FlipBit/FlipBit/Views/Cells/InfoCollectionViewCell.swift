@@ -16,18 +16,10 @@ class InfoCollectionViewCell: BaseCollectionViewCell {
         return row
     }()
     
-    private lazy var firstRowSeparator: BaseView = {
-        BaseView(backgroundColor: .flatWhiteDark)
-    }()
-    
     private lazy var secondRow: InfoRow = {
         let row = InfoRow(left: InfoLabel(title: "24h High"),
                           right: InfoLabel(title: "24h Low"))
         return row
-    }()
-    
-    private lazy var secondRowSeparator: BaseView = {
-        BaseView(backgroundColor: .flatWhiteDark)
     }()
     
     private lazy var thirdRow: InfoRow = {
@@ -36,8 +28,10 @@ class InfoCollectionViewCell: BaseCollectionViewCell {
         return row
     }()
     
-    private lazy var thirdRowSeparator: BaseView = {
-        BaseView(backgroundColor: .flatWhiteDark)
+    private lazy var fourthRow: InfoRow = {
+        let row = InfoRow(left: InfoLabel(title: "Funding Rate"),
+                          right: InfoLabel(title: "Predicted Rate"))
+        return row
     }()
     
     private lazy var infoLabel: UILabel = {
@@ -65,11 +59,9 @@ class InfoCollectionViewCell: BaseCollectionViewCell {
     override func setupSubviews() {
         super.setupSubviews()
         contentView.addSubview(firstRow)
-        contentView.addSubview(firstRowSeparator)
         contentView.addSubview(secondRow)
-        contentView.addSubview(secondRowSeparator)
         contentView.addSubview(thirdRow)
-        contentView.addSubview(thirdRowSeparator)
+        contentView.addSubview(fourthRow)
     }
     
     override func setupConstraints() {
@@ -80,31 +72,18 @@ class InfoCollectionViewCell: BaseCollectionViewCell {
             make.bottom.equalTo(secondRow.snp.top)
         }
         
-        firstRowSeparator.snp.makeConstraints { make in
-            make.height.equalTo(Space.margin1)
-            make.bottom.equalTo(firstRow.snp.bottom)
-            make.leading.trailing.equalToSuperview().inset(Space.margin8)
-        }
-        
         secondRow.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(thirdRow.snp.top)
         }
         
-        secondRowSeparator.snp.makeConstraints { make in
-            make.height.equalTo(Space.margin1)
-            make.bottom.equalTo(secondRow.snp.bottom)
-            make.leading.trailing.equalToSuperview().inset(Space.margin8)
-        }
-        
         thirdRow.snp.makeConstraints { make in
-            make.bottom.leading.trailing.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(fourthRow.snp.top)
         }
         
-        thirdRowSeparator.snp.makeConstraints { make in
-            make.height.equalTo(Space.margin1)
-            make.bottom.equalTo(thirdRow.snp.bottom)
-            make.leading.trailing.equalToSuperview().inset(Space.margin8)
+        fourthRow.snp.makeConstraints { make in
+            make.bottom.leading.trailing.equalToSuperview()
         }
     }
     
@@ -131,6 +110,14 @@ class InfoCollectionViewCell: BaseCollectionViewCell {
         }
         if let volume = newInfo.volume24H {
             thirdRow.update(right: String(volume))
+        }
+        if let fundingRate = newInfo.fundingRate {
+            let text = "\(fundingRate.formatPriceString(notation: 4))%"
+            fourthRow.update(left:  String(text.dropFirst()))
+        }
+        if let predictedRate = newInfo.predictedFundingRate {
+            let text = "\(predictedRate.formatPriceString(notation: 4))%"
+            fourthRow.update(right:  String(text.dropFirst()))
         }
     }
 }

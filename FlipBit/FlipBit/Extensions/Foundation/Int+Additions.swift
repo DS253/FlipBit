@@ -10,7 +10,7 @@ import Foundation
 
 extension Int {
     
-    func formatPriceString(notation: Int) -> String? {
+    func formatPriceString(notation: Int) -> String {
         let value = pow(10, notation) as NSNumber
         let processedNumber = Double(self)/value.doubleValue
         
@@ -20,11 +20,11 @@ extension Int {
         formatter.maximumFractionDigits = 2
         formatter.roundingMode = .halfEven
         
-        guard let string = formatter.string(from: NSNumber(value: processedNumber)) else { return nil }
+        guard let string = formatter.string(from: NSNumber(value: processedNumber)) else { return "" }
         return string.replacingOccurrences(of: ",", with: "")
     }
     
-    func formatWithKNotation(notation: Int) -> String? {
+    func formatWithKNotation(notation: Int) -> String {
         let value = pow(10, notation) as NSNumber
         let processedNumber = Double(self)/value.doubleValue / 1000
         
@@ -34,7 +34,7 @@ extension Int {
         formatter.maximumFractionDigits = 2
         formatter.roundingMode = .up
         
-        guard var string = formatter.string(from: NSNumber(value: processedNumber)) else { return nil }
+        guard var string = formatter.string(from: NSNumber(value: processedNumber)) else { return "" }
         string.append("K")
         return string.replacingOccurrences(of: ",", with: "")
     }

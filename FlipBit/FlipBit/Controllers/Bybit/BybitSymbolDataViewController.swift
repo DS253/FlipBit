@@ -87,6 +87,7 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
     
     enum Section: Int, CaseIterable {
         case chart
+        case infoTitle
         case info
     }
     
@@ -124,6 +125,7 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         symbolObserver.delegate = self
         tradeObserver.delegate = self
         view.backgroundColor = themeManager.themeBackgroundColor
+        collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.id)
         collectionView.register(PriceCollectionViewCell.self, forCellWithReuseIdentifier: PriceCollectionViewCell.id)
         collectionView.register(ChartCollectionViewCell.self, forCellWithReuseIdentifier: ChartCollectionViewCell.id)
         collectionView.register(InfoCollectionViewCell.self, forCellWithReuseIdentifier: InfoCollectionViewCell.id)
@@ -191,11 +193,11 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         guard let collectionViewSection = Section(rawValue: section) else { return 0 }
         
         switch collectionViewSection {
-        case .chart, .info:
+        case .chart, .infoTitle, .info:
             return 1
         }
     }
-    
+        
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> BaseCollectionViewCell {
         guard let section = Section(rawValue: indexPath.section) else { return BaseCollectionViewCell(frame: .zero) }
         switch section {
@@ -204,6 +206,15 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ChartCollectionViewCell.id, for: indexPath) as? ChartCollectionViewCell
                 else { return ChartCollectionViewCell(frame: .zero) }
             
+            return cell
+            
+        case .infoTitle:
+            guard
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.id, for: indexPath) as? TitleCollectionViewCell
+                else {
+                    return TitleCollectionViewCell(frame: .zero)
+            }
+            cell.configure(title: "Stats")
             return cell
             
         case .info:

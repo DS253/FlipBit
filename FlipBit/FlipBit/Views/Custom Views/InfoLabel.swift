@@ -11,11 +11,11 @@ import UIKit
 class InfoLabel: BaseView {
     
     private lazy var titleLabel: UILabel = {
-        UILabel(text: " ", font: .subheadline, textColor: .white)
+        UILabel(text: " ", font: .footnote, textColor: .flatGray)
     }()
     
     private lazy var infoLabel: UILabel = {
-        UILabel(text: "     ", font: .subheadline, textColor: .white, textAlignment: .right)
+        UILabel(text: "     ", font: .footnote, textColor: .white, textAlignment: .right)
     }()
     
     private lazy var container: UIStackView = {
