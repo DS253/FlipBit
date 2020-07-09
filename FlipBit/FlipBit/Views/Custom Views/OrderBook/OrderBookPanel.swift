@@ -27,9 +27,7 @@ class OrderBookPanel: View {
     
     /// Lists the upcoming sell orders.
     private lazy var sellbook: SellOrderBookView = {
-        let sellView = SellOrderBookView()
-        sellView.configureViewForSellBook()
-        return sellView
+        SellOrderBookView()
     }()
     
     override func setup() {

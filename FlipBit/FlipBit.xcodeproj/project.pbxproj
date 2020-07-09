@@ -40,7 +40,6 @@
 		062895DA2383A77C0076AA27 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D92383A77C0076AA27 /* BaseView.swift */; };
 		062B825823A5AF2D008287C9 /* UIStackView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B825723A5AF2D008287C9 /* UIStackView+Additions.swift */; };
 		062B825F23A5B14D008287C9 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B825E23A5B14D008287C9 /* String+Additions.swift */; };
-		062E276E2391C01700AF0C7D /* OrderBookBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276D2391C01700AF0C7D /* OrderBookBaseView.swift */; };
 		062E27702391C17100AF0C7D /* BuyOrderBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */; };
 		062E27732391C3C800AF0C7D /* SellOrderBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E27722391C3C800AF0C7D /* SellOrderBookView.swift */; };
 		062E27772393590500AF0C7D /* OrderBookPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E27762393590500AF0C7D /* OrderBookPanel.swift */; };
@@ -112,6 +111,8 @@
 		0647E74124B406400064A8E5 /* OrderBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0647E74024B406400064A8E5 /* OrderBookCollectionViewCell.swift */; };
 		0647E74324B5646E0064A8E5 /* DynamicCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0647E74224B5646E0064A8E5 /* DynamicCollectionView.swift */; };
 		0647E74924B6AE440064A8E5 /* OrderBookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0647E74824B6AE430064A8E5 /* OrderBookRow.swift */; };
+		0647E74B24B6BECC0064A8E5 /* BuyBookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0647E74A24B6BECC0064A8E5 /* BuyBookRow.swift */; };
+		0647E74D24B6BED50064A8E5 /* SellBookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0647E74C24B6BED50064A8E5 /* SellBookRow.swift */; };
 		06490F81237CF81C00C37ED4 /* BitService+BBPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F80237CF81C00C37ED4 /* BitService+BBPosition.swift */; };
 		06490F83237D04D100C37ED4 /* BBPosition+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */; };
 		06490F85237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */; };
@@ -250,7 +251,6 @@
 		062895D92383A77C0076AA27 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		062B825723A5AF2D008287C9 /* UIStackView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Additions.swift"; sourceTree = "<group>"; };
 		062B825E23A5B14D008287C9 /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
-		062E276D2391C01700AF0C7D /* OrderBookBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookBaseView.swift; sourceTree = "<group>"; };
 		062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyOrderBookView.swift; sourceTree = "<group>"; };
 		062E27722391C3C800AF0C7D /* SellOrderBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellOrderBookView.swift; sourceTree = "<group>"; };
 		062E27762393590500AF0C7D /* OrderBookPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookPanel.swift; sourceTree = "<group>"; };
@@ -327,6 +327,8 @@
 		0647E74024B406400064A8E5 /* OrderBookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookCollectionViewCell.swift; sourceTree = "<group>"; };
 		0647E74224B5646E0064A8E5 /* DynamicCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicCollectionView.swift; sourceTree = "<group>"; };
 		0647E74824B6AE430064A8E5 /* OrderBookRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderBookRow.swift; sourceTree = "<group>"; };
+		0647E74A24B6BECC0064A8E5 /* BuyBookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyBookRow.swift; sourceTree = "<group>"; };
+		0647E74C24B6BED50064A8E5 /* SellBookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellBookRow.swift; sourceTree = "<group>"; };
 		06490F80237CF81C00C37ED4 /* BitService+BBPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBPosition.swift"; sourceTree = "<group>"; };
 		06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBPosition+Endpoint.swift"; sourceTree = "<group>"; };
 		06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBPreviousFundingRate.swift"; sourceTree = "<group>"; };
@@ -491,9 +493,11 @@
 		062E27712391C3B700AF0C7D /* OrderBook */ = {
 			isa = PBXGroup;
 			children = (
+				0647E74A24B6BECC0064A8E5 /* BuyBookRow.swift */,
 				062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */,
 				062E27762393590500AF0C7D /* OrderBookPanel.swift */,
 				0647E74824B6AE430064A8E5 /* OrderBookRow.swift */,
+				0647E74C24B6BED50064A8E5 /* SellBookRow.swift */,
 				062E27722391C3C800AF0C7D /* SellOrderBookView.swift */,
 			);
 			path = OrderBook;
@@ -506,7 +510,6 @@
 				45B3D938238604BA0004DF76 /* BaseTableHeaderView.swift */,
 				06DA0D8023E76FC500890EF3 /* BaseTableViewCell.swift */,
 				062895D92383A77C0076AA27 /* BaseView.swift */,
-				062E276D2391C01700AF0C7D /* OrderBookBaseView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1224,6 +1227,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				06470DF82377C2C700419238 /* Double+Additions.swift in Sources */,
+				0647E74D24B6BED50064A8E5 /* SellBookRow.swift in Sources */,
 				06FC07B623D3A66F00E6949E /* BybitQuantityUpdateViewController.swift in Sources */,
 				06490F85237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift in Sources */,
 				065F6018238B5F61008B5B89 /* BybitBookOrderSellCell.swift in Sources */,
@@ -1278,7 +1282,6 @@
 				065F6024238C5DBB008B5B89 /* Bybit+SymbolInfoSnapshot.swift in Sources */,
 				06746EB42381404E00F14521 /* BitService+BBActiveOrder.swift in Sources */,
 				06470E132377C6C600419238 /* BitService+BBAPIKeyInfo.swift in Sources */,
-				062E276E2391C01700AF0C7D /* OrderBookBaseView.swift in Sources */,
 				06470DF62377C2B000419238 /* DateFormatter+Additions.swift in Sources */,
 				063FDD4A23CE9D20002D0CDC /* BybitPriceUpdateViewController.swift in Sources */,
 				06490F81237CF81C00C37ED4 /* BitService+BBPosition.swift in Sources */,
@@ -1300,6 +1303,7 @@
 				0647E74124B406400064A8E5 /* OrderBookCollectionViewCell.swift in Sources */,
 				064DC2DE24B00A9A0039DE98 /* InfoRow.swift in Sources */,
 				064D3D8D2389A76300B34173 /* Bybit+BookOrderUpdate.swift in Sources */,
+				0647E74B24B6BECC0064A8E5 /* BuyBookRow.swift in Sources */,
 				06470E082377C3B500419238 /* BitService+Registry.swift in Sources */,
 				06741BA22479DFE8007363CA /* ChartCollectionViewCell.swift in Sources */,
 				45B3D9452386075A0004DF76 /* ScrollStackView.swift in Sources */,
