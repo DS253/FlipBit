@@ -19,8 +19,8 @@ import UIKit
 class FlipBitCollectionViewController: FlipBitViewController {
     /// The primary collectionView for displaying information relating
     /// to this controller.
-    public lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+    public lazy var collectionView: DynamicCollectionView = {
+        let collectionView = DynamicCollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = themeManager.themeBackgroundColor
         collectionView.dataSource = self

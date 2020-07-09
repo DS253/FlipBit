@@ -10,9 +10,6 @@ import UIKit
 
 class OrderBookRow: View {
     
-    weak var priceSelector: PriceSelection?
-    weak var quantitySelector: QuantitySelection?
-    
     var bookOrder: Bybit.BookOrder?
     var colorTheme: UIColor
     var font: UIFont
@@ -20,15 +17,11 @@ class OrderBookRow: View {
     private var isAnimating: Bool = false
     
     lazy var priceLabel: UILabel = {
-        let label = UILabel(text: " ", font: font, textColor: colorTheme)
-        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(priceTapped)))
-        return label
+        UILabel(text: " ", font: font, textColor: colorTheme)
     }()
     
     lazy var quantityLabel: UILabel = {
-        let label = UILabel(text: " ", font: font, textColor: themeManager.themeFontColor, textAlignment: .right)
-        label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(quantityTapped)))
-        return label
+        UILabel(text: " ", font: font, textColor: themeManager.themeFontColor, textAlignment: .right)
     }()
     
     private lazy var quantityColorView: View = {
@@ -110,17 +103,5 @@ extension OrderBookRow {
                 self.isAnimating = false
             })
         }
-    }
-    
-    @objc func priceTapped() {
-        guard let price = priceLabel.text else { return }
-        priceSelector?.priceSelected(price: price)
-        hapticFeedback()
-    }
-    
-    @objc func quantityTapped() {
-        guard let quantity = quantityLabel.text else { return }
-        quantitySelector?.quantitySelected(quantity: quantity)
-        hapticFeedback()
     }
 }

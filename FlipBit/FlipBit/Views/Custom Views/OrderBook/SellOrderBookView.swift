@@ -15,7 +15,7 @@ class SellOrderBookView: OrderBookBaseView {
     }
     
     override func allRows() -> [OrderBookRow] {
-        return [firstRow, secondRow, thirdRow, fourthRow, fifthRow,  sixthRow]
+        return [firstRow, secondRow, thirdRow, fourthRow, fifthRow,  sixthRow, seventhRow]
     }
     
     override func notificationName() -> Notification.Name {

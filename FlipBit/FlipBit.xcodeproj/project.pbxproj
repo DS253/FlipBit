@@ -40,7 +40,6 @@
 		062895DA2383A77C0076AA27 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062895D92383A77C0076AA27 /* BaseView.swift */; };
 		062B825823A5AF2D008287C9 /* UIStackView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B825723A5AF2D008287C9 /* UIStackView+Additions.swift */; };
 		062B825F23A5B14D008287C9 /* String+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B825E23A5B14D008287C9 /* String+Additions.swift */; };
-		062E276C2391B7D800AF0C7D /* OrderBookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276B2391B7D800AF0C7D /* OrderBookRow.swift */; };
 		062E276E2391C01700AF0C7D /* OrderBookBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276D2391C01700AF0C7D /* OrderBookBaseView.swift */; };
 		062E27702391C17100AF0C7D /* BuyOrderBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */; };
 		062E27732391C3C800AF0C7D /* SellOrderBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062E27722391C3C800AF0C7D /* SellOrderBookView.swift */; };
@@ -110,6 +109,9 @@
 		06470E242377C87300419238 /* BitService+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E232377C87300419238 /* BitService+Service.swift */; };
 		06470E262377C8BD00419238 /* Constants+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E252377C8BD00419238 /* Constants+Endpoints.swift */; };
 		06470E292377C8CD00419238 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06470E282377C8CD00419238 /* Constants.swift */; };
+		0647E74124B406400064A8E5 /* OrderBookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0647E74024B406400064A8E5 /* OrderBookCollectionViewCell.swift */; };
+		0647E74324B5646E0064A8E5 /* DynamicCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0647E74224B5646E0064A8E5 /* DynamicCollectionView.swift */; };
+		0647E74924B6AE440064A8E5 /* OrderBookRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0647E74824B6AE430064A8E5 /* OrderBookRow.swift */; };
 		06490F81237CF81C00C37ED4 /* BitService+BBPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F80237CF81C00C37ED4 /* BitService+BBPosition.swift */; };
 		06490F83237D04D100C37ED4 /* BBPosition+Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */; };
 		06490F85237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */; };
@@ -248,7 +250,6 @@
 		062895D92383A77C0076AA27 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
 		062B825723A5AF2D008287C9 /* UIStackView+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Additions.swift"; sourceTree = "<group>"; };
 		062B825E23A5B14D008287C9 /* String+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Additions.swift"; sourceTree = "<group>"; };
-		062E276B2391B7D800AF0C7D /* OrderBookRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookRow.swift; sourceTree = "<group>"; };
 		062E276D2391C01700AF0C7D /* OrderBookBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookBaseView.swift; sourceTree = "<group>"; };
 		062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyOrderBookView.swift; sourceTree = "<group>"; };
 		062E27722391C3C800AF0C7D /* SellOrderBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellOrderBookView.swift; sourceTree = "<group>"; };
@@ -323,6 +324,9 @@
 		06470E232377C87300419238 /* BitService+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+Service.swift"; sourceTree = "<group>"; };
 		06470E252377C8BD00419238 /* Constants+Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Constants+Endpoints.swift"; sourceTree = "<group>"; };
 		06470E282377C8CD00419238 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0647E74024B406400064A8E5 /* OrderBookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookCollectionViewCell.swift; sourceTree = "<group>"; };
+		0647E74224B5646E0064A8E5 /* DynamicCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicCollectionView.swift; sourceTree = "<group>"; };
+		0647E74824B6AE430064A8E5 /* OrderBookRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderBookRow.swift; sourceTree = "<group>"; };
 		06490F80237CF81C00C37ED4 /* BitService+BBPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBPosition.swift"; sourceTree = "<group>"; };
 		06490F82237D04D100C37ED4 /* BBPosition+Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BBPosition+Endpoint.swift"; sourceTree = "<group>"; };
 		06490F84237D1B3D00C37ED4 /* BitService+BBPreviousFundingRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBPreviousFundingRate.swift"; sourceTree = "<group>"; };
@@ -488,9 +492,9 @@
 			isa = PBXGroup;
 			children = (
 				062E276F2391C17100AF0C7D /* BuyOrderBookView.swift */,
-				062E27722391C3C800AF0C7D /* SellOrderBookView.swift */,
 				062E27762393590500AF0C7D /* OrderBookPanel.swift */,
-				062E276B2391B7D800AF0C7D /* OrderBookRow.swift */,
+				0647E74824B6AE430064A8E5 /* OrderBookRow.swift */,
+				062E27722391C3C800AF0C7D /* SellOrderBookView.swift */,
 			);
 			path = OrderBook;
 			sourceTree = "<group>";
@@ -529,6 +533,7 @@
 				06DA0D7E23E76F1600890EF3 /* OrderOptionsCell.swift */,
 				0644AA4C242A92ED00C32A2B /* TitleCollectionViewCell.swift */,
 				06741BA12479DFE8007363CA /* ChartCollectionViewCell.swift */,
+				0647E74024B406400064A8E5 /* OrderBookCollectionViewCell.swift */,
 				068FE7AC249DBFEE003B606A /* PriceCollectionViewCell.swift */,
 			);
 			path = Cells;
@@ -1003,6 +1008,7 @@
 		45B3D943238607480004DF76 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				0647E74224B5646E0064A8E5 /* DynamicCollectionView.swift */,
 				06163D5E23B023B60076EFC0 /* FlipBitTextField.swift */,
 				062E27712391C3B700AF0C7D /* OrderBook */,
 				06F2213D239C4A0200E1BEB5 /* PercentageView.swift */,
@@ -1227,6 +1233,7 @@
 				062B825F23A5B14D008287C9 /* String+Additions.swift in Sources */,
 				06470E0E2377C66C00419238 /* BBApiKeyInfo+Endpoint.swift in Sources */,
 				064D3D882389A69700B34173 /* Bybit+BookOrder.swift in Sources */,
+				0647E74324B5646E0064A8E5 /* DynamicCollectionView.swift in Sources */,
 				064D3D932389AD3D00B34173 /* Bybit+Metadata.swift in Sources */,
 				06741BA424830937007363CA /* TimeBarButton.swift in Sources */,
 				065F6026238C5DFD008B5B89 /* Bybit+SymbolInfoUpdate.swift in Sources */,
@@ -1235,7 +1242,6 @@
 				0644AA492427E51C00C32A2B /* BaseCollectionViewCell.swift in Sources */,
 				064D3D852389A55200B34173 /* Bybit.swift in Sources */,
 				063FDD4E23CEAC83002D0CDC /* Panel.swift in Sources */,
-				062E276C2391B7D800AF0C7D /* OrderBookRow.swift in Sources */,
 				067FEB1023D683E800B160AC /* UIToolBar+Additions.swift in Sources */,
 				060C8BF9239499E100E50A57 /* BybitTradeEventCell.swift in Sources */,
 				064D3D8A2389A6E700B34173 /* Bybit+BookOrderSnapshot.swift in Sources */,
@@ -1291,6 +1297,7 @@
 				06470E1F2377C82100419238 /* BitService+BBTickers.swift in Sources */,
 				06433BD023820AFD00480EC1 /* BitService+BBLeverageStatus.swift in Sources */,
 				06490F83237D04D100C37ED4 /* BBPosition+Endpoint.swift in Sources */,
+				0647E74124B406400064A8E5 /* OrderBookCollectionViewCell.swift in Sources */,
 				064DC2DE24B00A9A0039DE98 /* InfoRow.swift in Sources */,
 				064D3D8D2389A76300B34173 /* Bybit+BookOrderUpdate.swift in Sources */,
 				06470E082377C3B500419238 /* BitService+Registry.swift in Sources */,
@@ -1314,6 +1321,7 @@
 				06DA0D7F23E76F1600890EF3 /* OrderOptionsCell.swift in Sources */,
 				06470DFC2377C2FB00419238 /* Result+Additions.swift in Sources */,
 				45B3D94A23860A810004DF76 /* UILabel+Additions.swift in Sources */,
+				0647E74924B6AE440064A8E5 /* OrderBookRow.swift in Sources */,
 				06258C6D2468921600116F40 /* TimeBarView.swift in Sources */,
 				06405B44241D658F00132493 /* FlipBitTableViewController+Additions.swift in Sources */,
 				062895DA2383A77C0076AA27 /* BaseView.swift in Sources */,

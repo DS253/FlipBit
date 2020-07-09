@@ -11,7 +11,7 @@ import UIKit
 class OrderBookBaseView: View {
     
     private lazy var stackView: UIStackView = {
-        UIStackView(spacing: Space.margin2, views: [firstRow, secondRow, thirdRow, fourthRow, fifthRow, sixthRow])
+        UIStackView(spacing: Space.margin2, views: [firstRow, secondRow, thirdRow, fourthRow, fifthRow, sixthRow, seventhRow])
     }()
     
     lazy var firstRow: OrderBookRow = {
@@ -38,6 +38,10 @@ class OrderBookBaseView: View {
         OrderBookRow(font: UIFont.subheadline.bold, colorTheme: colorTheme())
     }()
     
+    lazy var seventhRow: OrderBookRow = {
+        OrderBookRow(font: UIFont.subheadline.bold, colorTheme: colorTheme())
+    }()
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: notificationName(), object: nil)
     }
@@ -60,25 +64,7 @@ class OrderBookBaseView: View {
             make.top.bottom.leading.trailing.equalToSuperview()
         }
     }
-    
-    func setPriceSelector(selector: PriceSelection) {
-        firstRow.priceSelector = selector
-        secondRow.priceSelector = selector
-        thirdRow.priceSelector = selector
-        fourthRow.priceSelector = selector
-        fifthRow.priceSelector = selector
-        sixthRow.priceSelector = selector
-    }
-    
-    func setQuantitySelector(selector: QuantitySelection) {
-        firstRow.quantitySelector = selector
-        secondRow.quantitySelector = selector
-        thirdRow.quantitySelector = selector
-        fourthRow.quantitySelector = selector
-        fifthRow.quantitySelector = selector
-        sixthRow.quantitySelector = selector
-    }
-    
+        
     func orderBook() -> [Bybit.BookOrder?]? {
         fatalError("Must be implemented by child class")
     }
@@ -124,6 +110,11 @@ class OrderBookBaseView: View {
         if book.count >= 6 {
             guard let sixthOrder = book[5] else { return }
             rows[5].configure(with: sixthOrder, multiplier: bookObserver.percentageOf(book, size: sixthOrder.size ?? 0))
+        }
+        
+        if book.count >= 7 {
+            guard let seventhOrder = book[6] else { return }
+            rows[6].configure(with: seventhOrder, multiplier: bookObserver.percentageOf(book, size: seventhOrder.size ?? 0))
         }
     }
 }

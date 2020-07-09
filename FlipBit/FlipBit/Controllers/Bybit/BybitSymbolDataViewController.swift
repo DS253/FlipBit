@@ -89,6 +89,8 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         case chart
         case infoTitle
         case info
+        case orderBookTitle
+        case orderBook
     }
     
     deinit {
@@ -119,6 +121,12 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         optionsViewGradient.frame = CGRect(x: .zero, y: .zero, width: tradeView.bounds.size.width, height: Space.margin4)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //collectionView.reloadData()
+        print("CONTENT SIZE: \(collectionView.contentSize)")
+    }
+    
     override func setup() {
         super.setup()
         bookObserver.delegate = self
@@ -129,7 +137,7 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         collectionView.register(PriceCollectionViewCell.self, forCellWithReuseIdentifier: PriceCollectionViewCell.id)
         collectionView.register(ChartCollectionViewCell.self, forCellWithReuseIdentifier: ChartCollectionViewCell.id)
         collectionView.register(InfoCollectionViewCell.self, forCellWithReuseIdentifier: InfoCollectionViewCell.id)
-        
+        collectionView.register(OrderBookCollectionViewCell.self, forCellWithReuseIdentifier: OrderBookCollectionViewCell.id)
     }
     
     override func setupSubviews() {
@@ -143,8 +151,6 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         //        view.addSubview(tradeHistoryContainer)
         //        view.addSubview(tradeView)
         
-        orderbookPanel.setPriceSelector(selector: self)
-        orderbookPanel.setQuantitySelector(selector: self)
         tradeView.configureButtons(self, action: #selector(tradeButtonTapped(sender:)))
     }
     
@@ -193,11 +199,11 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
         guard let collectionViewSection = Section(rawValue: section) else { return 0 }
         
         switch collectionViewSection {
-        case .chart, .infoTitle, .info:
+        case .chart, .infoTitle, .info, .orderBookTitle, .orderBook:
             return 1
         }
     }
-        
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> BaseCollectionViewCell {
         guard let section = Section(rawValue: indexPath.section) else { return BaseCollectionViewCell(frame: .zero) }
         switch section {
@@ -222,6 +228,24 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoCollectionViewCell.id, for: indexPath) as? InfoCollectionViewCell
                 else {
                     return InfoCollectionViewCell(frame: .zero)
+            }
+            
+            return cell
+            
+        case .orderBookTitle:
+            guard
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.id, for: indexPath) as? TitleCollectionViewCell
+                else {
+                    return TitleCollectionViewCell(frame: .zero)
+            }
+            cell.configure(title: "Orderbook")
+            return cell
+            
+        case .orderBook:
+            guard
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OrderBookCollectionViewCell.id, for: indexPath) as? OrderBookCollectionViewCell
+                else {
+                    return OrderBookCollectionViewCell(frame: .zero)
             }
             
             return cell
