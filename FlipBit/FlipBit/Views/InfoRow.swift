@@ -52,7 +52,7 @@ class InfoRow: BaseView {
         
         container.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(Space.margin8)
-            make.leading.trailing.equalToSuperview().inset(Space.margin16)
+            make.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
         
         leftLabel.snp.makeConstraints { make in

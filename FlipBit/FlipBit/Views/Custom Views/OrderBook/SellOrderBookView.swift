@@ -11,19 +11,19 @@ import UIKit
 class SellOrderBookView: View {
     
     private lazy var stackView: UIStackView = {
-        UIStackView(spacing: Space.margin2, views: [firstRow, secondRow, thirdRow, fourthRow, fifthRow, sixthRow, seventhRow])
+        UIStackView(spacing: Space.margin2, views: [firstRow, secondRow, thirdRow, fourthRow, fifthRow, sixthRow, seventhRow, eighthRow, ninthRow, tenthRow])
     }()
     
     lazy var firstRow: SellBookRow = {
-        SellBookRow(font: UIFont.footnote)
+        SellBookRow(font: UIFont.subheadline)
     }()
     
     lazy var secondRow: SellBookRow = {
-        SellBookRow(font: UIFont.footnote.bold)
+        SellBookRow(font: UIFont.subheadline)
     }()
     
     lazy var thirdRow: SellBookRow = {
-        SellBookRow(font: UIFont.footnote.bold)
+        SellBookRow(font: UIFont.subheadline)
     }()
     
     lazy var fourthRow: SellBookRow = {
@@ -31,15 +31,27 @@ class SellOrderBookView: View {
     }()
     
     lazy var fifthRow: SellBookRow = {
-        SellBookRow(font: UIFont.subheadline.semibold)
+        SellBookRow(font: UIFont.subheadline)
     }()
     
     lazy var sixthRow: SellBookRow = {
-        SellBookRow(font: UIFont.subheadline.bold)
+        SellBookRow(font: UIFont.subheadline)
     }()
     
     lazy var seventhRow: SellBookRow = {
-        SellBookRow(font: UIFont.subheadline.bold)
+        SellBookRow(font: UIFont.subheadline)
+    }()
+    
+    lazy var eighthRow: SellBookRow = {
+        SellBookRow(font: UIFont.subheadline)
+    }()
+    
+    lazy var ninthRow: SellBookRow = {
+        SellBookRow(font: UIFont.subheadline)
+    }()
+    
+    lazy var tenthRow: SellBookRow = {
+        SellBookRow(font: UIFont.subheadline)
     }()
     
     deinit {
@@ -102,6 +114,21 @@ class SellOrderBookView: View {
         if book.count >= 7 {
             guard let seventhOrder = book[6] else { return }
             seventhRow.configure(with: seventhOrder, multiplier: bookObserver.percentageOf(book, size: seventhOrder.size ?? 0))
+        }
+        
+        if book.count >= 8 {
+            guard let eighthOrder = book[6] else { return }
+            eighthRow.configure(with: eighthOrder, multiplier: bookObserver.percentageOf(book, size: eighthOrder.size ?? 0))
+        }
+        
+        if book.count >= 9 {
+            guard let ninthOrder = book[8] else { return }
+            ninthRow.configure(with: ninthOrder, multiplier: bookObserver.percentageOf(book, size: ninthOrder.size ?? 0))
+        }
+        
+        if book.count >= 10 {
+            guard let tenthOrder = book[9] else { return }
+            tenthRow.configure(with: tenthOrder, multiplier: bookObserver.percentageOf(book, size: tenthOrder.size ?? 0))
         }
     }
 }

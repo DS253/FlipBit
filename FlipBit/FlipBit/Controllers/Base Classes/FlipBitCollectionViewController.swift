@@ -22,6 +22,7 @@ class FlipBitCollectionViewController: FlipBitViewController {
     public lazy var collectionView: DynamicCollectionView = {
         let collectionView = DynamicCollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = themeManager.themeBackgroundColor
         collectionView.dataSource = self
         collectionView.delegate = self

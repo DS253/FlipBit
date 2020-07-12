@@ -50,7 +50,7 @@ class OrderBookPanel: View {
         super.setupConstraints()
         
         bookHeader.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview().inset(Space.margin16)
+            make.top.leading.trailing.equalToSuperview().inset(Space.margin8)
         }
         
         priceHeaderLabel.snp.makeConstraints { make in

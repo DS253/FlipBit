@@ -50,7 +50,7 @@ class InfoLabel: BaseView {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.width.equalTo(infoLabel.snp.width)
+            make.width.greaterThanOrEqualTo(infoLabel.snp.width)
         }
         
         infoLabel.snp.makeConstraints { make in

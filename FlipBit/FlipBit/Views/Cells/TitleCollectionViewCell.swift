@@ -34,7 +34,7 @@ class TitleCollectionViewCell: BaseCollectionViewCell {
     override func setupConstraints() {
         super.setupConstraints()
         titleLabel.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview().inset(Space.margin16)
+            make.top.leading.trailing.equalToSuperview().inset(Space.margin8)
             make.bottom.equalToSuperview().inset(Space.margin8)
         }
     }

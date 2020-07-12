@@ -27,7 +27,7 @@ class SellBookRow: View {
         let view = View(backgroundColor: themeManager.sellTextColor.withAlphaComponent(0.3))
         view.layer.cornerRadius = 7
         view.layer.masksToBounds = true
-        view.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner]
+        view.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMinXMinYCorner]
         return view
     }()
     
