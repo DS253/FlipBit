@@ -70,9 +70,9 @@ class BuyBookRow: View {
             priceLabel.trailingAnchor.constraint(equalTo: centerXAnchor),
             priceLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Space.margin4),
             
-            quantityLabel.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin2),
+            quantityLabel.topAnchor.constraint(equalTo: topAnchor, constant: Space.margin4),
             quantityLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -Space.margin4),
-            quantityLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Space.margin4),
+            quantityLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             quantityLabel.leadingAnchor.constraint(equalTo: centerXAnchor)
         ])
     }
