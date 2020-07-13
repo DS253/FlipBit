@@ -132,7 +132,9 @@ class ChartView: BaseView {
     
     override func setup() {
         translatesAutoresizingMaskIntoConstraints = false
-        addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(userDidPan(_:))))
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(userDidLongPress(_:)))
+        longPress.minimumPressDuration = 0.2
+        addGestureRecognizer(longPress)
         addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(userDidLongPress(_:))))
     }
     
@@ -235,25 +237,7 @@ class ChartView: BaseView {
             break
         }
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-            let x = convertTouchLocationToPointX(touchLocation: touch.location(in: self))
-            guard let xIndex = xCoordinates.firstIndex(of: x) else {return }
             
-            let dataPoint = dataPoints.data[xIndex]
-            updateIndicator(with: x, date: dataPoint.date, price: dataPoint.price)
-            
-            let y = convertToY(dataPoint: dataPoint)
-            circularMarker.center = CGPoint(x: x, y: y)
-            circularMarker.isHidden = false
-            dateLabel.isHidden = false
-            timeLabel.isHidden = false
-            lineView.isHidden = false
-            hapticFeedback()
-        }
-    }
-        
     /// Moves the position of the line view and the time stamp label  based on the provided offset.
     private func updateIndicator(with offset: CGFloat, date: Date, price: Double) {
         dateLabel.text = dateFormatter.string(from: date)
