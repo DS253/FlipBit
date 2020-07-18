@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// The CollectionViewCell contains information related to the `Symbol`.
 class InfoCollectionViewCell: BaseCollectionViewCell {
     
     private lazy var firstRow: InfoRow = {

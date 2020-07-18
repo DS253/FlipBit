@@ -70,15 +70,7 @@ class ChartView: BaseView {
     
     /// Displays the time of the selected data point.
     private let timeLabel: UILabel = {
-        let label = UILabel(text: "", font: UIFont.body, textColor: themeManager.themeFontColor)
-        label.lineBreakMode = .byTruncatingTail
-        label.isHidden = true
-        return label
-    }()
-    
-    /// Displays the date of the selected data point.
-    private let dateLabel: UILabel = {
-        let label = UILabel(text: "", font: UIFont.body, textColor: themeManager.themeFontColor)
+        let label = UILabel(text: "", font: .footnote, textColor: .flatWhiteDark)
         label.lineBreakMode = .byTruncatingTail
         label.isHidden = true
         return label
@@ -86,7 +78,7 @@ class ChartView: BaseView {
     
     /// Constraint used to center the time stamp label with the line indicator and to update the position as the user selects a data point too close to the boundaries of the chart.
     private lazy var timeStampCenterConstraint: NSLayoutConstraint = {
-        NSLayoutConstraint(item: dateLabel, attribute: .centerX, relatedBy: .equal, toItem: lineView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
+        NSLayoutConstraint(item: timeLabel, attribute: .centerX, relatedBy: .equal, toItem: lineView, attribute: .centerX, multiplier: 1.0, constant: 0.0)
     }()
     
     /// The circular marker indicates the selected `DataPoint` on the `ChartView`.
@@ -115,16 +107,10 @@ class ChartView: BaseView {
     
     private var timeFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm a"
+        formatter.dateFormat = "h:mm a, MMM d"
         return formatter
     }
-    
-    private var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "E MMM d, yyyy"
-        return formatter
-    }
-    
+        
     init(data: ChartData) {
         self.dataPoints = data
         super.init()
@@ -133,7 +119,7 @@ class ChartView: BaseView {
     override func setup() {
         translatesAutoresizingMaskIntoConstraints = false
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(userDidLongPress(_:)))
-        longPress.minimumPressDuration = 0.2
+        longPress.minimumPressDuration = 0.1
         addGestureRecognizer(longPress)
         addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(userDidLongPress(_:))))
     }
@@ -141,17 +127,13 @@ class ChartView: BaseView {
     override func setupSubviews() {
         addSubview(lineView)
         addSubview(timeLabel)
-        addSubview(dateLabel)
         addSubview(circularMarker)
     }
     
     override func setupConstraints() {
         NSLayoutConstraint.activate([
             timeStampCenterConstraint,
-            timeLabel.topAnchor.constraint(equalTo: topAnchor),
-            timeLabel.bottomAnchor.constraint(equalTo: dateLabel.topAnchor),
-            timeLabel.leadingAnchor.constraint(equalTo: dateLabel.leadingAnchor),
-            timeLabel.widthAnchor.constraint(equalTo: dateLabel.widthAnchor),
+            timeLabel.topAnchor.constraint(equalTo: topAnchor, constant: -Space.margin24),
             lineViewLeadConstraint,
             lineView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             lineView.widthAnchor.constraint(equalToConstant: 1.0),
@@ -240,8 +222,7 @@ class ChartView: BaseView {
             
     /// Moves the position of the line view and the time stamp label  based on the provided offset.
     private func updateIndicator(with offset: CGFloat, date: Date, price: Double) {
-        dateLabel.text = dateFormatter.string(from: date)
-        timeLabel.text = timeFormatter.string(from: date).uppercased()
+        timeLabel.text = timeFormatter.string(from: date)
         delegate?.didMoveToPrice(price: price)
         
         lineViewLeadConstraint.constant = offset
@@ -269,12 +250,10 @@ class ChartView: BaseView {
         switch gesture.state {
         case .began:
             circularMarker.isHidden = false
-            dateLabel.isHidden = false
             timeLabel.isHidden = false
             lineView.isHidden = false
         case .ended:
             circularMarker.isHidden = true
-            dateLabel.isHidden = true
             timeLabel.isHidden = true
             lineView.isHidden = true
             delegate?.movementEnded()

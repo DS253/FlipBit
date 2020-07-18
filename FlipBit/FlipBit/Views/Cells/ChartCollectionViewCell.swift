@@ -14,6 +14,7 @@ class ChartCollectionViewCell: BaseCollectionViewCell {
     private lazy var weekChartView = ChartView(data: ChartData(fileName: "BYBIT_BTCUSD, 1W"))
     private lazy var monthChartView = ChartView(data: ChartData(fileName: "BYBIT_BTCUSD, 1M"))
     
+    /// Displays the time options that the `ChartView` can be set to.
     private lazy var timeBar: TimeBarView = {
         let view = TimeBarView()
         view.timeDelegate = self

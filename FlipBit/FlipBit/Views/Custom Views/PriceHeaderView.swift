@@ -48,23 +48,16 @@ class PriceHeaderView: BaseView {
     
     override func setupSubviews() {
         super.setupSubviews()
-       // addSubview(topSeparator)
         addSubview(currentPriceLabel)
         addSubview(previousPriceLabel)
         addSubview(percentageLabel)
         addSubview(percentageSymbolLabel)
         addSubview(currencySymbolLabel)
         addSubview(currencyTypeLabel)
-      //  addSubview(bottomSeparator)
     }
     
     override func setupConstraints() {
         super.setupConstraints()
-//        topSeparator.snp.makeConstraints { make in
-//            make.height.equalTo(Space.margin1)
-//            make.top.equalToSuperview()
-//            make.leading.trailing.equalToSuperview().inset(Space.margin8)
-//        }
         
         currentPriceLabel.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview().inset(Space.margin16)
@@ -95,12 +88,6 @@ class PriceHeaderView: BaseView {
             make.trailing.equalToSuperview().inset(Space.margin8)
             make.centerY.equalTo(percentageLabel.snp.centerY)
         }
-        
-//        bottomSeparator.snp.makeConstraints { make in
-//            make.height.equalTo(Space.margin1)
-//            make.bottom.equalToSuperview()
-//            make.leading.trailing.equalToSuperview().inset(Space.margin8)
-//        }
     }
     
     @objc func updateSymbolInfo(notification: NSNotification) {
