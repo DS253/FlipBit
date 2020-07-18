@@ -20,11 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             let tabBarController = FlipBitTabBarController()
             
-            let rootNavigationController = UINavigationController(rootViewController: BybitSymbolDataViewController())
-            rootNavigationController.navigationBar.isHidden = true
+            let rootNavigationController = UINavigationController(rootViewController: BybitSymbolDetailViewController())
+            //rootNavigationController.navigationBar.isHidden = true
             tabBarController.viewControllers = [rootNavigationController]
             //window.rootViewController = tabBarController
-            window.rootViewController = BybitSymbolDataViewController()
+            window.rootViewController = rootNavigationController
 //            window.rootViewController = SandBoxViewController()
             self.window = window
             window.makeKeyAndVisible()

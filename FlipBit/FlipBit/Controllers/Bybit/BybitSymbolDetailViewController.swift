@@ -1,15 +1,15 @@
 //
-//  BybitSymbolDataViewController.swift
+//  BybitSymbolDetailViewController.swift
 //  FlipBit
 //
-//  Created by Daniel Stewart on 12/18/19.
-//  Copyright © 2019 DS Studios. All rights reserved.
+//  Created by Daniel Stewart on 7/18/20.
+//  Copyright © 2020 DS Studios. All rights reserved.
 //
 
 import Starscream
 import UIKit
 
-class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObserverDelegate {
+class BybitSymbolDetailViewController: FlipBitCollectionViewController, SocketObserverDelegate {
     
     private lazy var symbolInfoView: SymbolInfoHeaderView = {
         SymbolInfoHeaderView()
@@ -329,32 +329,33 @@ class BybitSymbolDataViewController: FlipBitCollectionViewController, SocketObse
     }
 }
 
-extension BybitSymbolDataViewController: PriceSelection {
+extension BybitSymbolDetailViewController: PriceSelection {
     func priceSelected(price: String) {
         priceLabel.text = price
     }
 }
 
-extension BybitSymbolDataViewController: QuantitySelection {
+extension BybitSymbolDetailViewController: QuantitySelection {
     func quantitySelected(quantity: String) {
         quantityLabel.text = quantity
     }
 }
 
-extension BybitSymbolDataViewController: LeverageObserver {
+extension BybitSymbolDetailViewController: LeverageObserver {
     func leverageUpdated(leverage: String) {
         self.currentLeverageLabel.text = "\(leverage)x"
     }
 }
 
-extension BybitSymbolDataViewController: PriceObserver {
+extension BybitSymbolDetailViewController: PriceObserver {
     func priceUpdated(price: String) {
         self.priceLabel.text = price
     }
 }
 
-extension BybitSymbolDataViewController: QuantityObserver {
+extension BybitSymbolDetailViewController: QuantityObserver {
     func quantityUpdated(quantity: String) {
         self.quantityLabel.text = quantity
     }
 }
+
