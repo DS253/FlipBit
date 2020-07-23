@@ -13,7 +13,7 @@ extension BitService.BybitTickerList {
     
     struct Endpoint: Requestable {
         
-        var symbol: Bybit.Symbol
+        var symbol: Bybit.Symbol?
         
         internal func baseURL() throws -> Atom.BaseURL {
             return try Atom.BaseURL(host: "api-testnet.bybit.com")
@@ -24,10 +24,13 @@ extension BitService.BybitTickerList {
         }
         
         var queryItems: [Atom.QueryItem]? {
-            return [Atom.QueryItem(name: "symbol", value: self.symbol.rawValue)]
+            if let tickerSymbol = self.symbol {
+                return [Atom.QueryItem(name: "symbol", value: tickerSymbol.rawValue)]
+            }
+            return nil
         }
         
-        init(symbol: Bybit.Symbol) {
+        init(symbol: Bybit.Symbol? = nil) {
             self.symbol = symbol
         }
     }

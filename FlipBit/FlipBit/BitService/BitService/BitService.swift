@@ -26,6 +26,7 @@ public extension BitService {
         case ETH = "ETH"
         case EOS = "EOS"
         case XRP = "XRP"
+        case USDT = "BTCUSDT"
     }
     
     enum BybitExecutionType: String, Codable {
@@ -151,7 +152,7 @@ public extension BitService {
         service.load(endpoint, expecting: BybitServerTime.self, on: completion)
     }
     
-    func lookupBybitTickers(symbol: Bybit.Symbol, completion: @escaping (Result<BybitTickerList, BitService.Error>) -> Void) {
+    func lookupBybitTickers(symbol: Bybit.Symbol? = nil, completion: @escaping (Result<BybitTickerList, BitService.Error>) -> Void) {
         let endpoint = BybitTickerList.Endpoint.init(symbol: symbol)
         service.load(endpoint, expecting: BybitTickerList.self, on: completion)
     }

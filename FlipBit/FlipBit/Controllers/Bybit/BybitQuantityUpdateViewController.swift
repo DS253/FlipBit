@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol QuantityObserver: class {
-    func quantityUpdated(quantity: String)
-}
-
 class BybitQuantityUpdateViewController: ViewController {
     
     // MARK: - Private Properties
@@ -35,10 +31,7 @@ class BybitQuantityUpdateViewController: ViewController {
     private var orderManager: OrderManager {
         OrderManager(price: (self.price as NSString).doubleValue, quantity: (currentValue as NSString).doubleValue, leverage: (self.leverage as NSString).doubleValue, tradeType: .Buy)
     }
-    
-    /// Delegate observer tracks changes to the set price.
-    private weak var quantityDelegate: QuantityObserver?
-    
+        
     /// Tracks the dismissal of the numberpad by the Cancel button in the toolbar.
     private var manualCancel: Bool = false
     
@@ -142,11 +135,10 @@ class BybitQuantityUpdateViewController: ViewController {
     
     // MARK: Initializers
     
-    init(quantity: String, price: String, leverage: String, observer: QuantityObserver) {
+    init(quantity: String, price: String, leverage: String) {
         self.price = price
         self.leverage = leverage
         super.init(nibName: nil, bundle: nil)
-        self.quantityDelegate = observer
         currentValue = quantity
         initialValue = quantity
         modalPresentationStyle = .custom
@@ -220,7 +212,6 @@ class BybitQuantityUpdateViewController: ViewController {
     
     /// Set the new price.
     @objc private func updatePrice(sender: Any) {
-        quantityDelegate?.quantityUpdated(quantity: quantityStepper.textField.text ?? "")
         dismiss(animated: true)
         hapticFeedback()
     }

@@ -41,7 +41,6 @@ class BybitPositionObserver: BybitObserver {
                 success == true
                 else {
                     print("Decoding Position Response Failed")
-                    delegate?.observerFailedToDecode(observer: self)
                     return
             }
             response = socketResponse

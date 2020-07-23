@@ -34,7 +34,6 @@ class BybitSymbolInfoObserver: BybitObserver {
                 NotificationCenter.default.post(name: .symbolObserverUpdate, object: nil)
             } else {
                 print("Failed to decode Bybit SymbolInfo Snapshot")
-                delegate?.observerFailedToDecode(observer: self)
             }
         case .Update:
             guard
@@ -43,7 +42,6 @@ class BybitSymbolInfoObserver: BybitObserver {
                 let updatedSymbol = allSymbols.first
                 else {
                     print("Failed to decode Bybit SymbolInfo Update")
-                    delegate?.observerFailedToDecode(observer: self)
                     return
             }
             symbolInfo?.updateSymbolInfo(newSymbol: updatedSymbol)
@@ -53,11 +51,9 @@ class BybitSymbolInfoObserver: BybitObserver {
                 response = socketResponse
             } else {
                 print("Failed to decode Bybit SymbolInfo SocketResponse")
-                delegate?.observerFailedToDecode(observer: self)
             }
         default:
             print("Decoding SymbolInfo Response Failed")
-            delegate?.observerFailedToDecode(observer: self)
         }
     }
 }

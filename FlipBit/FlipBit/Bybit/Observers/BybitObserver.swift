@@ -12,7 +12,6 @@ import Starscream
 class BybitObserver: WebSocketDelegate {
     
     var socket: WebSocket?
-    weak var delegate: SocketObserverDelegate?
     var connected: Bool = false
     var response: Bybit.SocketResponse?
     
@@ -22,7 +21,6 @@ class BybitObserver: WebSocketDelegate {
             socket?.delegate = self
         } else {
             print("The URL is invalid")
-            delegate?.observerFailedToConnect()
         }
     }
     
@@ -69,7 +67,6 @@ class BybitObserver: WebSocketDelegate {
     func writeToSocket(topic: String) {
         print("Attempting to write to socket.")
         socket?.write(string: topic)
-        delegate?.observer(observer: self, didWriteToSocket: topic)
     }
     
     func sendPing() {

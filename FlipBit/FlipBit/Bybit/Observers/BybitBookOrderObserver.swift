@@ -40,7 +40,6 @@ class BybitBookOrderObserver: BybitObserver {
                 NotificationCenter.default.post(name: .sellBookObserverUpdate, object: nil)
             } else {
                 print("Failed to decode Bybit BookOrder Snapshot")
-                delegate?.observerFailedToDecode(observer: self)
             }
         case .Update, .Delete, .Insert:
             if let bookUpdate = try? Bybit.BookUpdate(from: newData) {
@@ -53,18 +52,15 @@ class BybitBookOrderObserver: BybitObserver {
                 insertBookOrders(bookUpdate.insert?.filter { $0.side == Bybit.Side.Sell }, side: .Sell)
             } else {
                 print("Failed to decode Bybit BookOrder Update")
-                delegate?.observerFailedToDecode(observer: self)
             }
         case .SocketResponse:
             if let socketResponse = try? Bybit.SocketResponse(from: newData) {
                 response = socketResponse
             } else {
                 print("Failed to decode Bybit BookOrder SocketResponse")
-                delegate?.observerFailedToDecode(observer: self)
             }
         default:
             print("Decoding BookOrder Response Failed")
-            delegate?.observerFailedToDecode(observer: self)
         }
     }
 }

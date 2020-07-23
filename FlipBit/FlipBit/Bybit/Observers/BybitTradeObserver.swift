@@ -34,18 +34,15 @@ class BybitTradeObserver: BybitObserver {
                 NotificationCenter.default.post(name: .tradeEventObserverUpdate, object: nil)
             } else {
                 print("Failed to decode Bybit TradeEvent SocketResponse")
-                delegate?.observerFailedToDecode(observer: self)
             }
         case .SocketResponse:
             if let socketResponse = try? Bybit.SocketResponse(from: newData) {
                 response = socketResponse
             } else {
                 print("Failed to decode Bybit TradeEvent SocketResponse")
-                delegate?.observerFailedToDecode(observer: self)
             }
         default:
             print("Decoding TradeEvent Response Failed")
-            delegate?.observerFailedToDecode(observer: self)
         }
     }
     

@@ -9,6 +9,8 @@
 import Atom
 import Foundation
 
+typealias BybitTickerList = BitService.BybitTickerList
+
 public extension BitService {
     
     struct BybitTickerList {
@@ -84,7 +86,7 @@ public extension BitService {
         let indexPrice: String
         
         /// The current open interest.
-        let openInterest: Int
+        let openInterest: Double
         
         /// The open value.
         let openValue: String
@@ -96,10 +98,10 @@ public extension BitService {
         let turnover24H: String
         
         /// Total turned over in USD.
-        let totalVolume: Int
+        let totalVolume: Double
         
         /// Total turned over in USD in the last 24 hours.
-        let volume24H: Int
+        let volume24H: Double
         
         /// The current funding rate.
         let fundingRate: String
@@ -159,12 +161,12 @@ extension BitService.BybitTickerItem: Model {
         self.prevPcnt1H = try data.decode(String.self, forKey: .prevPcnt1)
         self.markPrice = try data.decode(String.self, forKey: .markPrice)
         self.indexPrice = try data.decode(String.self, forKey: .indexPrice)
-        self.openInterest = try data.decode(Int.self, forKey: .openInterest)
+        self.openInterest = try data.decode(Double.self, forKey: .openInterest)
         self.openValue = try data.decode(String.self, forKey: .openValue)
         self.totalTurnover = try data.decode(String.self, forKey: .totalTurnover)
         self.turnover24H = try data.decode(String.self, forKey: .turnover24)
-        self.totalVolume = try data.decode(Int.self, forKey: .totalVolume)
-        self.volume24H = try data.decode(Int.self, forKey: .volume24)
+        self.totalVolume = try data.decode(Double.self, forKey: .totalVolume)
+        self.volume24H = try data.decode(Double.self, forKey: .volume24)
         self.fundingRate = try data.decode(String.self, forKey: .fundingRate)
         self.predictedFundingRate = try data.decode(String.self, forKey: .predictedFundRate)
         self.nextFundingTime = try data.decode(String.self, forKey: .nextFundingTime)

@@ -89,7 +89,7 @@ class Services {
         bitService.lookupBybitTradeRecords(symbol: symbol, pageNumber: pageNumber, completion: completion)
     }
     
-    func fetchBybitTickers(symbol: Bybit.Symbol, completion: @escaping BitServiceTickersLookupCompletion) {
+    func fetchBybitTickers(symbol: Bybit.Symbol? = nil, completion: @escaping BitServiceTickersLookupCompletion) {
         bitService.lookupBybitTickers(symbol: symbol, completion: completion)
     }
     

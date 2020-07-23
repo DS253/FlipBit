@@ -88,6 +88,7 @@ public extension Bybit {
         case ETH = "ETHUSD"
         case EOS = "EOSUSD"
         case XRP = "XRPUSD"
+        case USDT = "BTCUSDT"
     }
 
     /// The most recent directional change in price.

@@ -7,30 +7,9 @@
 //
 
 import Foundation
-import Starscream
 import UIKit
 
-class SandBoxViewController: ViewController, SocketObserverDelegate {
-    func observer(observer: WebSocketDelegate, didWriteToSocket: String) {
-        print("Observer has written to the web socket")
-    }
-    
-    func observerFailedToConnect() {
-        print("Observer has failed to connect to the web socket")
-    }
-    
-    func observerDidConnect(observer: WebSocketDelegate) {
-        print("Observer has connected to the web socket")
-    }
-    
-    func observerDidReceiveMessage(observer: WebSocketDelegate) {
-        print("Observer has received messages from the web socket")
-    }
-    
-    func observerFailedToDecode(observer: WebSocketDelegate) {
-        print("Observer failed to decode the response from the web socket")
-    }
-    
+class SandBoxViewController: ViewController {
     lazy private var tickerControl: TickerControl = {
         return TickerControl(value: 5000.0)
     }()
@@ -64,7 +43,6 @@ class SandBoxViewController: ViewController, SocketObserverDelegate {
     
     override func setup() {
         super.setup()
-        bookObserver.delegate = self
         view.backgroundColor = .white
     }
     
