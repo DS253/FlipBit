@@ -7,6 +7,7 @@
 //
 
 import Firebase
+import GoogleSignIn
 import UIKit
 
 @UIApplicationMain
