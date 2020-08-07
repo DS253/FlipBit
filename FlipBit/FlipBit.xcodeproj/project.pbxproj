@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -162,6 +162,7 @@
 		069CFA932384E77A00B46BCF /* Services.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069CFA922384E77A00B46BCF /* Services.swift */; };
 		06AE860A2415C9650004C68A /* Atom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06AE86092415C9650004C68A /* Atom.framework */; };
 		06AE860B2415C9650004C68A /* Atom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 06AE86092415C9650004C68A /* Atom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		06C83B3524D8E3E9003080F9 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C83B3424D8E3E9003080F9 /* SignInViewController.swift */; };
 		06DA0D7F23E76F1600890EF3 /* OrderOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DA0D7E23E76F1600890EF3 /* OrderOptionsCell.swift */; };
 		06DA0D8123E76FC500890EF3 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DA0D8023E76FC500890EF3 /* BaseTableViewCell.swift */; };
 		06ED4C4223C2C683002F7139 /* BybitLeverageUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED4C4123C2C683002F7139 /* BybitLeverageUpdateViewController.swift */; };
@@ -381,6 +382,7 @@
 		069CFA8B2384D9F400B46BCF /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		069CFA922384E77A00B46BCF /* Services.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services.swift; sourceTree = "<group>"; };
 		06AE86092415C9650004C68A /* Atom.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Atom.framework; path = Carthage/Build/iOS/Atom.framework; sourceTree = "<group>"; };
+		06C83B3424D8E3E9003080F9 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		06DA0D7E23E76F1600890EF3 /* OrderOptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderOptionsCell.swift; sourceTree = "<group>"; };
 		06DA0D8023E76FC500890EF3 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		06ED4C4123C2C683002F7139 /* BybitLeverageUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitLeverageUpdateViewController.swift; sourceTree = "<group>"; };
@@ -468,6 +470,7 @@
 				062895D22383A4320076AA27 /* Base Classes */,
 				45B3D94B23874B2A0004DF76 /* Bybit */,
 				062895CF2383A37E0076AA27 /* Protocols */,
+				06C83B3324D8E3D5003080F9 /* SignIn */,
 				062895CD2383A1CC0076AA27 /* SandBoxViewController.swift */,
 			);
 			path = Controllers;
@@ -983,6 +986,14 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		06C83B3324D8E3D5003080F9 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				06C83B3424D8E3E9003080F9 /* SignInViewController.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
 		45436FC523AAF10400AA141A /* ActivityIndicator */ = {
 			isa = PBXGroup;
 			children = (
@@ -1092,7 +1103,6 @@
 				E1DC5B56CD2BB7DF00EE2675 /* Pods-FlipBitTests.debug.xcconfig */,
 				28BCC804E126EF59422D0ED6 /* Pods-FlipBitTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -1438,6 +1448,7 @@
 				064AD9E6238F86AC00A7AA3E /* UIImage+Additions.swift in Sources */,
 				06163D5F23B023B60076EFC0 /* FlipBitTextField.swift in Sources */,
 				06433BDC23826A6400480EC1 /* BBLeverageUpdate+Endpoint.swift in Sources */,
+				06C83B3524D8E3E9003080F9 /* SignInViewController.swift in Sources */,
 				066CBB4024C35DCE007E1613 /* BybitSymbolDetailViewController.swift in Sources */,
 				064AD9E2238F500A00A7AA3E /* Notification+Names.swift in Sources */,
 				068FE7AD249DBFEE003B606A /* PriceCollectionViewCell.swift in Sources */,
