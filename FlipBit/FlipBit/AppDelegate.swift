@@ -11,37 +11,19 @@ import GoogleSignIn
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
-    
+class AppDelegate: UIResponder, UIApplicationDelegate {
     
     @available(iOS 9.0, *)
     func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-            return GIDSignIn.sharedInstance()?.handle(url) ?? false
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let error = error {
-            print(error.localizedDescription)
-            return
-        }
-        
-        guard let auth = user.authentication else { return }
-        let credential = GoogleAuthProvider.credential(withIDToken: auth.idToken, accessToken: auth.accessToken)
-        
-        Auth.auth().signIn(with: credential) { (authResult, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-            print("Google user is signed in \(String(describing: authResult?.user.uid))")
-        }
+        return GIDSignIn.sharedInstance()?.handle(url) ?? false
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
         // Override point for customization after application launch.
-        FirebaseApp.configure()
-        GIDSignIn.sharedInstance()?.clientID = FirebaseApp.app()?.options.clientID
-        GIDSignIn.sharedInstance()?.delegate = self
+        
+        signIn.startFirebase()
+        signIn.setupGoogleSignIn()
         return true
     }
     
@@ -58,7 +40,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-    
-    
 }
-

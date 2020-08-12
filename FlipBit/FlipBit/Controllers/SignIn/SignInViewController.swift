@@ -7,16 +7,17 @@
 //
 
 import FBSDKLoginKit
-import Firebase
+import FirebaseAuth
+import FirebaseCore
 import GoogleSignIn
 import UIKit
 
-class SignInViewController: ViewController, LoginButtonDelegate {
+class SignInViewController: ViewController {
     private lazy var facebookSignInButton: FBLoginButton = {
         let facebookButton = FBLoginButton()
         facebookButton.translatesAutoresizingMaskIntoConstraints = false
         facebookButton.permissions = ["email"]
-        facebookButton.delegate = self
+        facebookButton.delegate = signIn
         return facebookButton
     }()
     
@@ -41,8 +42,6 @@ class SignInViewController: ViewController, LoginButtonDelegate {
     
     override func setup() {
         super.setup()
-        
-        setSignInState()
     }
     
     override func setupSubviews() {
@@ -52,9 +51,9 @@ class SignInViewController: ViewController, LoginButtonDelegate {
         view.addSubview(facebookSignInButton)
         
         
-        //        if let token = AccessToken.current, !token.isExpired {
-        //            print("FB Logged In!!!!")
-        //        }
+        if let token = AccessToken.current, !token.isExpired {
+            print("FB Logged In!!!!")
+        }
     }
     
     override func setupConstraints() {
@@ -80,51 +79,14 @@ class SignInViewController: ViewController, LoginButtonDelegate {
         }
     }
     
-    func setSignInState() {
-        googleButton.isHidden = GIDSignIn.sharedInstance()?.hasPreviousSignIn() ?? false
-        googleSignOutButton.isHidden = !(GIDSignIn.sharedInstance()?.hasPreviousSignIn() ?? false)
-    }
-    
     @objc func signOut() {
         let firebaseAuth = Auth.auth()
         do {
             try firebaseAuth.signOut()
             GIDSignIn.sharedInstance()?.signOut()
             GIDSignIn.sharedInstance()?.disconnect()
-            setSignInState()
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-    }
-    
-    func loginButton(_ loginButton: FBLoginButton, didCompleteWith result: LoginManagerLoginResult?, error: Error?) {
-        if error == nil {
-            if result!.isCancelled {
-                return
-            }
-        }
-        if let error = error {
-            print(error.localizedDescription)
-        }
-        
-        let credential = FacebookAuthProvider.credential(withAccessToken: AccessToken.current!.tokenString)
-        
-        Auth.auth().signIn(with: credential) { (authResult, error) in
-            if let error = error {
-                print("Unable to login to Facebook: error [\(error)]")
-                return
-            }
-            print("Facebook user is signed in \(String(describing: authResult?.user.uid))")
-        }
-    }
-    
-    func loginButtonDidLogOut(_ loginButton: FBLoginButton) {
-        let firebaseAuth = Auth.auth()
-        do {
-            try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-        print("Facebook user is signed out")
     }
 }

@@ -1,0 +1,6 @@
+framework module Pods_FlipBit {
+  umbrella header "Pods-FlipBit-umbrella.h"
+
+  export *
+  module * { export * }
+}
