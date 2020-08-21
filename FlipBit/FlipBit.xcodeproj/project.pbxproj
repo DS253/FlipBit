@@ -166,8 +166,6 @@
 		06DA0D7F23E76F1600890EF3 /* OrderOptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DA0D7E23E76F1600890EF3 /* OrderOptionsCell.swift */; };
 		06DA0D8123E76FC500890EF3 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DA0D8023E76FC500890EF3 /* BaseTableViewCell.swift */; };
 		06DF9CDE24E21B7E00DE6F15 /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DF9CDD24E21B7E00DE6F15 /* SignIn.swift */; };
-		06DF9CE024E2276900DE6F15 /* SignIn+Google.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DF9CDF24E2276900DE6F15 /* SignIn+Google.swift */; };
-		06DF9CE224E27CC700DE6F15 /* SignIn+Facebook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06DF9CE124E27CC700DE6F15 /* SignIn+Facebook.swift */; };
 		06ED4C4223C2C683002F7139 /* BybitLeverageUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED4C4123C2C683002F7139 /* BybitLeverageUpdateViewController.swift */; };
 		06ED4C4423C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED4C4323C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift */; };
 		06ED56A323B9724A00EF4AF4 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06ED56A223B9724A00EF4AF4 /* Order.swift */; };
@@ -187,9 +185,9 @@
 		45B3D948238607E80004DF76 /* UIFont+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D947238607E80004DF76 /* UIFont+Additions.swift */; };
 		45B3D94A23860A810004DF76 /* UILabel+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D94923860A810004DF76 /* UILabel+Additions.swift */; };
 		45B3D94F23874DCC0004DF76 /* BybitBookOrderObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45B3D94E23874DCC0004DF76 /* BybitBookOrderObserver.swift */; };
-		55C3E11175DB80268145F1BD /* Pods_FlipBit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37FD0711294F22760E3915FF /* Pods_FlipBit.framework */; };
-		8B220AB55BFF4BCCDF421F95 /* Pods_FlipBit_FlipBitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0B3BDF9A4978CB10D77262 /* Pods_FlipBit_FlipBitUITests.framework */; };
-		B030D04F5F553011587C47DC /* Pods_FlipBitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64AE7DBD78DD8E9691113369 /* Pods_FlipBitTests.framework */; };
+		88D3331F13983A48A7A59673 /* Pods_FlipBit_FlipBitUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B08D40A3FBBA12D5100C69D1 /* Pods_FlipBit_FlipBitUITests.framework */; };
+		DF30DDD2DD927B1DAAAA8064 /* Pods_FlipBitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A20769EC280B5EA02A66C7FC /* Pods_FlipBitTests.framework */; };
+		F1C1995B85B3B496A5D67D14 /* Pods_FlipBit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58620FA1B9CD41A919AB1BFA /* Pods_FlipBit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -390,8 +388,6 @@
 		06DA0D7E23E76F1600890EF3 /* OrderOptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderOptionsCell.swift; sourceTree = "<group>"; };
 		06DA0D8023E76FC500890EF3 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		06DF9CDD24E21B7E00DE6F15 /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
-		06DF9CDF24E2276900DE6F15 /* SignIn+Google.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignIn+Google.swift"; sourceTree = "<group>"; };
-		06DF9CE124E27CC700DE6F15 /* SignIn+Facebook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignIn+Facebook.swift"; sourceTree = "<group>"; };
 		06ED4C4123C2C683002F7139 /* BybitLeverageUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitLeverageUpdateViewController.swift; sourceTree = "<group>"; };
 		06ED4C4323C2CCE8002F7139 /* BybitLeverageUpdateViewController+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitLeverageUpdateViewController+Delegates.swift"; sourceTree = "<group>"; };
 		06ED56A223B9724A00EF4AF4 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
@@ -400,8 +396,7 @@
 		06FC07B523D3A66F00E6949E /* BybitQuantityUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitQuantityUpdateViewController.swift; sourceTree = "<group>"; };
 		06FC07B723D3A6BD00E6949E /* BybitQuantityUpdateViewController+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BybitQuantityUpdateViewController+Delegates.swift"; sourceTree = "<group>"; };
 		06FD3F0F23DD635600215AA1 /* Space.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Space.swift; sourceTree = "<group>"; };
-		345822A71806E409CBFCD208 /* Pods-FlipBit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipBit.release.xcconfig"; path = "Target Support Files/Pods-FlipBit/Pods-FlipBit.release.xcconfig"; sourceTree = "<group>"; };
-		37FD0711294F22760E3915FF /* Pods_FlipBit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlipBit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32AB7250DFD5EB3183C62081 /* Pods-FlipBit-FlipBitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipBit-FlipBitUITests.debug.xcconfig"; path = "Target Support Files/Pods-FlipBit-FlipBitUITests/Pods-FlipBit-FlipBitUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		45237FB0238C9D19005FC176 /* Bybit+SymbolInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bybit+SymbolInfo.swift"; sourceTree = "<group>"; };
 		45436FC323AAEF4800AA141A /* ActivityIndicatorPresentationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorPresentationViewController.swift; sourceTree = "<group>"; };
 		455A1F3A237E2825005969B9 /* BitService+BBOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BitService+BBOrder.swift"; sourceTree = "<group>"; };
@@ -413,13 +408,14 @@
 		45B3D947238607E80004DF76 /* UIFont+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Additions.swift"; sourceTree = "<group>"; };
 		45B3D94923860A810004DF76 /* UILabel+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Additions.swift"; sourceTree = "<group>"; };
 		45B3D94E23874DCC0004DF76 /* BybitBookOrderObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BybitBookOrderObserver.swift; sourceTree = "<group>"; };
-		64AE7DBD78DD8E9691113369 /* Pods_FlipBitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlipBitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6AA704153F6C2B2C38EBD48C /* Pods-FlipBit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipBit.debug.xcconfig"; path = "Target Support Files/Pods-FlipBit/Pods-FlipBit.debug.xcconfig"; sourceTree = "<group>"; };
-		B9AE422ABA4CC8E7DAEE90D8 /* Pods-FlipBitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipBitTests.debug.xcconfig"; path = "Target Support Files/Pods-FlipBitTests/Pods-FlipBitTests.debug.xcconfig"; sourceTree = "<group>"; };
-		BE0B3BDF9A4978CB10D77262 /* Pods_FlipBit_FlipBitUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlipBit_FlipBitUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0B645C6967DD56DF3B1912C /* Pods-FlipBit-FlipBitUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipBit-FlipBitUITests.release.xcconfig"; path = "Target Support Files/Pods-FlipBit-FlipBitUITests/Pods-FlipBit-FlipBitUITests.release.xcconfig"; sourceTree = "<group>"; };
-		C1F720CB291CD831CC1518CB /* Pods-FlipBit-FlipBitUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipBit-FlipBitUITests.debug.xcconfig"; path = "Target Support Files/Pods-FlipBit-FlipBitUITests/Pods-FlipBit-FlipBitUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		FE8F31579BA4D3CD4D548697 /* Pods-FlipBitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipBitTests.release.xcconfig"; path = "Target Support Files/Pods-FlipBitTests/Pods-FlipBitTests.release.xcconfig"; sourceTree = "<group>"; };
+		58620FA1B9CD41A919AB1BFA /* Pods_FlipBit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlipBit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6761D27CA9D04A58B1BE9FC5 /* Pods-FlipBitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipBitTests.release.xcconfig"; path = "Target Support Files/Pods-FlipBitTests/Pods-FlipBitTests.release.xcconfig"; sourceTree = "<group>"; };
+		6DB9B67977EACA5B1F41FFB2 /* Pods-FlipBit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipBit.debug.xcconfig"; path = "Target Support Files/Pods-FlipBit/Pods-FlipBit.debug.xcconfig"; sourceTree = "<group>"; };
+		A20769EC280B5EA02A66C7FC /* Pods_FlipBitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlipBitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B08D40A3FBBA12D5100C69D1 /* Pods_FlipBit_FlipBitUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlipBit_FlipBitUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0E4CD4DC78DBB1DD317EC55 /* Pods-FlipBitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipBitTests.debug.xcconfig"; path = "Target Support Files/Pods-FlipBitTests/Pods-FlipBitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DE7631EDB3BB4D1D0EB5F225 /* Pods-FlipBit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipBit.release.xcconfig"; path = "Target Support Files/Pods-FlipBit/Pods-FlipBit.release.xcconfig"; sourceTree = "<group>"; };
+		F067E7D830EFEF30EF2A57B6 /* Pods-FlipBit-FlipBitUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlipBit-FlipBitUITests.release.xcconfig"; path = "Target Support Files/Pods-FlipBit-FlipBitUITests/Pods-FlipBit-FlipBitUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,7 +426,7 @@
 				063C508D242FDFC6008CB9FC /* SnapKit.framework in Frameworks */,
 				069CFA8C2384D9F400B46BCF /* Starscream.framework in Frameworks */,
 				06AE860A2415C9650004C68A /* Atom.framework in Frameworks */,
-				55C3E11175DB80268145F1BD /* Pods_FlipBit.framework in Frameworks */,
+				F1C1995B85B3B496A5D67D14 /* Pods_FlipBit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,7 +434,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B030D04F5F553011587C47DC /* Pods_FlipBitTests.framework in Frameworks */,
+				DF30DDD2DD927B1DAAAA8064 /* Pods_FlipBitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +442,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B220AB55BFF4BCCDF421F95 /* Pods_FlipBit_FlipBitUITests.framework in Frameworks */,
+				88D3331F13983A48A7A59673 /* Pods_FlipBit_FlipBitUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,9 +648,9 @@
 				063C508C242FDFC6008CB9FC /* SnapKit.framework */,
 				06AE86092415C9650004C68A /* Atom.framework */,
 				069CFA8B2384D9F400B46BCF /* Starscream.framework */,
-				37FD0711294F22760E3915FF /* Pods_FlipBit.framework */,
-				BE0B3BDF9A4978CB10D77262 /* Pods_FlipBit_FlipBitUITests.framework */,
-				64AE7DBD78DD8E9691113369 /* Pods_FlipBitTests.framework */,
+				58620FA1B9CD41A919AB1BFA /* Pods_FlipBit.framework */,
+				B08D40A3FBBA12D5100C69D1 /* Pods_FlipBit_FlipBitUITests.framework */,
+				A20769EC280B5EA02A66C7FC /* Pods_FlipBitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1007,8 +1003,6 @@
 			isa = PBXGroup;
 			children = (
 				06DF9CDD24E21B7E00DE6F15 /* SignIn.swift */,
-				06DF9CE124E27CC700DE6F15 /* SignIn+Facebook.swift */,
-				06DF9CDF24E2276900DE6F15 /* SignIn+Google.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -1115,12 +1109,12 @@
 		5796A99C24EC1065345FA68F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				6AA704153F6C2B2C38EBD48C /* Pods-FlipBit.debug.xcconfig */,
-				345822A71806E409CBFCD208 /* Pods-FlipBit.release.xcconfig */,
-				C1F720CB291CD831CC1518CB /* Pods-FlipBit-FlipBitUITests.debug.xcconfig */,
-				C0B645C6967DD56DF3B1912C /* Pods-FlipBit-FlipBitUITests.release.xcconfig */,
-				B9AE422ABA4CC8E7DAEE90D8 /* Pods-FlipBitTests.debug.xcconfig */,
-				FE8F31579BA4D3CD4D548697 /* Pods-FlipBitTests.release.xcconfig */,
+				6DB9B67977EACA5B1F41FFB2 /* Pods-FlipBit.debug.xcconfig */,
+				DE7631EDB3BB4D1D0EB5F225 /* Pods-FlipBit.release.xcconfig */,
+				32AB7250DFD5EB3183C62081 /* Pods-FlipBit-FlipBitUITests.debug.xcconfig */,
+				F067E7D830EFEF30EF2A57B6 /* Pods-FlipBit-FlipBitUITests.release.xcconfig */,
+				D0E4CD4DC78DBB1DD317EC55 /* Pods-FlipBitTests.debug.xcconfig */,
+				6761D27CA9D04A58B1BE9FC5 /* Pods-FlipBitTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1132,14 +1126,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 06470DCE2377B6D500419238 /* Build configuration list for PBXNativeTarget "FlipBit" */;
 			buildPhases = (
-				C2A3FA477B9BFA9DD428BEB0 /* [CP] Check Pods Manifest.lock */,
+				6017439A3161FBBD6C33750B /* [CP] Check Pods Manifest.lock */,
 				06470DA02377B6D500419238 /* Sources */,
 				06470DA12377B6D500419238 /* Frameworks */,
 				06470DA22377B6D500419238 /* Resources */,
 				06470DDC2377B7A100419238 /* ShellScript */,
 				06470DE22377BBBF00419238 /* Embed Frameworks */,
-				0BDCA630600F686F7C226876 /* [CP] Embed Pods Frameworks */,
-				B6B44964307407705541DF01 /* [CP] Copy Pods Resources */,
+				E07DB8C0073C0A07691AC09F /* [CP] Embed Pods Frameworks */,
+				B27B6AB1D1436525EF4B4D4F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1154,7 +1148,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 06470DD12377B6D500419238 /* Build configuration list for PBXNativeTarget "FlipBitTests" */;
 			buildPhases = (
-				5DF164901DB98D85FDB3E52B /* [CP] Check Pods Manifest.lock */,
+				B15E019B31239691B7DE2997 /* [CP] Check Pods Manifest.lock */,
 				06470DB62377B6D500419238 /* Sources */,
 				06470DB72377B6D500419238 /* Frameworks */,
 				06470DB82377B6D500419238 /* Resources */,
@@ -1173,12 +1167,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 06470DD42377B6D500419238 /* Build configuration list for PBXNativeTarget "FlipBitUITests" */;
 			buildPhases = (
-				2E8CA7313C2CB560C100A6DD /* [CP] Check Pods Manifest.lock */,
+				EE59F521538245FBA62E988B /* [CP] Check Pods Manifest.lock */,
 				06470DC12377B6D500419238 /* Sources */,
 				06470DC22377B6D500419238 /* Frameworks */,
 				06470DC32377B6D500419238 /* Resources */,
-				8A53A9C870F579435311749F /* [CP] Embed Pods Frameworks */,
-				55D5A11F64775C58135FDBD7 /* [CP] Copy Pods Resources */,
+				10B901BF0CE9F3828F607E68 /* [CP] Embed Pods Frameworks */,
+				47FDA59D3349D3EC1AEB3091 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1292,46 +1286,24 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
-		0BDCA630600F686F7C226876 /* [CP] Embed Pods Frameworks */ = {
+		10B901BF0CE9F3828F607E68 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FlipBit/Pods-FlipBit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-FlipBit-FlipBitUITests/Pods-FlipBit-FlipBitUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FlipBit/Pods-FlipBit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-FlipBit-FlipBitUITests/Pods-FlipBit-FlipBitUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlipBit/Pods-FlipBit-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlipBit-FlipBitUITests/Pods-FlipBit-FlipBitUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2E8CA7313C2CB560C100A6DD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FlipBit-FlipBitUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		55D5A11F64775C58135FDBD7 /* [CP] Copy Pods Resources */ = {
+		47FDA59D3349D3EC1AEB3091 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1348,7 +1320,29 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlipBit-FlipBitUITests/Pods-FlipBit-FlipBitUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5DF164901DB98D85FDB3E52B /* [CP] Check Pods Manifest.lock */ = {
+		6017439A3161FBBD6C33750B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlipBit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B15E019B31239691B7DE2997 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1370,24 +1364,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8A53A9C870F579435311749F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FlipBit-FlipBitUITests/Pods-FlipBit-FlipBitUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FlipBit-FlipBitUITests/Pods-FlipBit-FlipBitUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlipBit-FlipBitUITests/Pods-FlipBit-FlipBitUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B6B44964307407705541DF01 /* [CP] Copy Pods Resources */ = {
+		B27B6AB1D1436525EF4B4D4F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1404,7 +1381,24 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlipBit/Pods-FlipBit-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C2A3FA477B9BFA9DD428BEB0 /* [CP] Check Pods Manifest.lock */ = {
+		E07DB8C0073C0A07691AC09F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlipBit/Pods-FlipBit-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlipBit/Pods-FlipBit-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlipBit/Pods-FlipBit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE59F521538245FBA62E988B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1419,7 +1413,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FlipBit-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-FlipBit-FlipBitUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1527,7 +1521,6 @@
 				06470E022377C35D00419238 /* BitService+Application.swift in Sources */,
 				0641F84E239CD02800EF7A0B /* ValuePickerView.swift in Sources */,
 				062E27772393590500AF0C7D /* OrderBookPanel.swift in Sources */,
-				06DF9CE024E2276900DE6F15 /* SignIn+Google.swift in Sources */,
 				0623602A23B593820098A4EF /* Stepper.swift in Sources */,
 				06433BD223820E5900480EC1 /* BBLeverageStatus+Endpoint.swift in Sources */,
 				060D96E4237B70A70040598A /* BBServerTime+Endpoint.swift in Sources */,
@@ -1570,7 +1563,6 @@
 				06470DF02377C24B00419238 /* Requestable+Additions.swift in Sources */,
 				06ED4C4223C2C683002F7139 /* BybitLeverageUpdateViewController.swift in Sources */,
 				0665AD95240CB2E700D28AB9 /* TickerCell.swift in Sources */,
-				06DF9CE224E27CC700DE6F15 /* SignIn+Facebook.swift in Sources */,
 				45B3D93F238605D90004DF76 /* UITableView+Additions.swift in Sources */,
 				064EA948238091CE00570CEE /* BitService+BBResponseMetaData.swift in Sources */,
 				06163D5D23AED17D0076EFC0 /* FadeAnimationTransition.swift in Sources */,
@@ -1756,7 +1748,7 @@
 		};
 		06470DCF2377B6D500419238 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AA704153F6C2B2C38EBD48C /* Pods-FlipBit.debug.xcconfig */;
+			baseConfigurationReference = 6DB9B67977EACA5B1F41FFB2 /* Pods-FlipBit.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FlipBit/FlipBit.entitlements;
@@ -1780,7 +1772,7 @@
 		};
 		06470DD02377B6D500419238 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 345822A71806E409CBFCD208 /* Pods-FlipBit.release.xcconfig */;
+			baseConfigurationReference = DE7631EDB3BB4D1D0EB5F225 /* Pods-FlipBit.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FlipBit/FlipBit.entitlements;
@@ -1804,7 +1796,7 @@
 		};
 		06470DD22377B6D500419238 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B9AE422ABA4CC8E7DAEE90D8 /* Pods-FlipBitTests.debug.xcconfig */;
+			baseConfigurationReference = D0E4CD4DC78DBB1DD317EC55 /* Pods-FlipBitTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1826,7 +1818,7 @@
 		};
 		06470DD32377B6D500419238 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE8F31579BA4D3CD4D548697 /* Pods-FlipBitTests.release.xcconfig */;
+			baseConfigurationReference = 6761D27CA9D04A58B1BE9FC5 /* Pods-FlipBitTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1848,7 +1840,7 @@
 		};
 		06470DD52377B6D500419238 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C1F720CB291CD831CC1518CB /* Pods-FlipBit-FlipBitUITests.debug.xcconfig */;
+			baseConfigurationReference = 32AB7250DFD5EB3183C62081 /* Pods-FlipBit-FlipBitUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1868,7 +1860,7 @@
 		};
 		06470DD62377B6D500419238 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C0B645C6967DD56DF3B1912C /* Pods-FlipBit-FlipBitUITests.release.xcconfig */;
+			baseConfigurationReference = F067E7D830EFEF30EF2A57B6 /* Pods-FlipBit-FlipBitUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

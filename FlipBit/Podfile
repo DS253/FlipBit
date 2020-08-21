@@ -13,6 +13,12 @@ target 'FlipBit' do
   pod 'Firebase/Core'
   pod 'Firebase/Analytics'
   pod 'GoogleSignIn'
+  pod 'FirebaseUI/Auth'
+  pod 'FirebaseUI/Google'
+  pod 'FirebaseUI/Facebook'
+  pod 'FirebaseUI/OAuth' # Used for Sign in with Apple, Twitter, etc
+  pod 'FirebaseUI/Phone'
+  
   # add pods for any other desired Firebase products
   # https://firebase.google.com/docs/ios/setup#available-pods
 
