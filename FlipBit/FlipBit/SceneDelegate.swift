@@ -6,9 +6,10 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
+import FirebaseAuth
 import UIKit
 
-class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -24,12 +25,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             //rootNavigationController.navigationBar.isHidden = true
             tabBarController.viewControllers = [rootNavigationController]
             //window.rootViewController = tabBarController
-            window.rootViewController = BybitSymbolDetailViewController()
-//            window.rootViewController = SandBoxViewController()
+            window.rootViewController = SignInViewController()
             self.window = window
             window.makeKeyAndVisible()
         }
     }
+    
+    /// If the user is signed in, navigate to the Landing View.
+    /// If the user is not signed in, navigate to the SignInViewController.
+    func setRootViewController() -> ViewController {
+        if Auth.auth().currentUser != nil { return BybitSymbolDetailViewController() }
+        return SignInViewController()
+    }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         print("SceneDidDisconnect")
