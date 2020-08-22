@@ -6,39 +6,17 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
-import FirebaseUI
 import Firebase
-import GoogleSignIn
 import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
-    //    @available(iOS 9.0, *)
-    //    func application(_ application: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-    //        return GIDSignIn.sharedInstance()?.handle(url) ?? false
-    //    }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-        let sourceApplication = options[UIApplication.OpenURLOptionsKey.sourceApplication] as! String?
-        if FUIAuth.defaultAuthUI()?.handleOpen(url, sourceApplication: sourceApplication) ?? false {
-            return true
-        }
         
-        
-        // other URL handling goes here.
-        return false
-    }
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Override point for customization after application launch.
         
-        signIn.startFirebase()
-        if Auth.auth().currentUser != nil {
-            print("there is a user")
-            print(Auth.auth().currentUser?.displayName)
-        }
+        FirebaseApp.configure()
         return true
     }
     

@@ -6,7 +6,7 @@
 //  Copyright © 2019 DS Studios. All rights reserved.
 //
 
-import FBSDKCoreKit
+import FirebaseAuth
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate {
@@ -26,11 +26,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate {
             tabBarController.viewControllers = [rootNavigationController]
             //window.rootViewController = tabBarController
             window.rootViewController = SignInViewController()
-//            window.rootViewController = SandBoxViewController()
             self.window = window
             window.makeKeyAndVisible()
         }
     }
+    
+    /// If the user is signed in, navigate to the Landing View.
+    /// If the user is not signed in, navigate to the SignInViewController.
+    func setRootViewController() -> ViewController {
+        if Auth.auth().currentUser != nil { return BybitSymbolDetailViewController() }
+        return SignInViewController()
+    }
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         print("SceneDidDisconnect")
@@ -63,18 +70,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate, UIApplicationDelegate {
 
     func sceneDidEnterBackground(_ scene: UIScene) {
         print("SceneDidEnterBackground")
-    }
-    
-    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-        guard let url = URLContexts.first?.url else {
-            return
-        }
-
-        ApplicationDelegate.shared.application(
-            UIApplication.shared,
-            open: url,
-            sourceApplication: nil,
-            annotation: [UIApplication.OpenURLOptionsKey.annotation]
-        )
     }
 }
